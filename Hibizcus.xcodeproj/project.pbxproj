@@ -81,11 +81,6 @@
 		00535284260B6829007F33D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0053522E2608DB8C007F33D9 /* Assets.xcassets */; };
 		006CAE79264E3A0700D404D3 /* AnchorPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083669B25E581AF0058CA1B /* AnchorPoints.swift */; };
 		006CAE7A264E3A1800D404D3 /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053525F2608DE96007F33D9 /* FontMetrics.swift */; };
-		007CFC25264E9AF600AF2FD2 /* README.Hibizcus.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC24264E9AF600AF2FD2 /* README.Hibizcus.md */; };
-		007CFC27264E9B1200AF2FD2 /* README.Hibizcus.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC26264E9B1200AF2FD2 /* README.Hibizcus.md */; };
-		007CFC2A264E9CC500AF2FD2 /* README.Hibizcus.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC29264E9CC500AF2FD2 /* README.Hibizcus.md */; };
-		007CFC2D264EB0B800AF2FD2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC2B264EB0B800AF2FD2 /* README.md */; };
-		007CFC2E264EB0B800AF2FD2 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC2C264EB0B800AF2FD2 /* LICENSE.md */; };
 		0093EC7B264E83EB009AB412 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0093EC3D264E83EB009AB412 /* LICENSE */; };
 		0093EC7C264E83EB009AB412 /* liblibotfcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0093EC7A264E83EB009AB412 /* liblibotfcc.a */; };
 		00A8D24F264E866B00C2B964 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 00A8D11F264E866B00C2B964 /* README */; };
@@ -452,8 +447,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00A8D250264E866B00C2B964 /* libharfbuzz.a in Frameworks */,
 				0047EA532639A53E00A07ACC /* BinarySwift.framework in Frameworks */,
+				00A8D250264E866B00C2B964 /* libharfbuzz.a in Frameworks */,
 				0093EC7C264E83EB009AB412 /* liblibotfcc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,11 +1034,7 @@
 				005352762608E2D6007F33D9 /* cluster_tamil.json in Resources */,
 				005352772608E2D6007F33D9 /* cluster_gurmukhi.json in Resources */,
 				0047EA52263859D000A07ACC /* cluster_meeteimayek.json in Resources */,
-				007CFC2D264EB0B800AF2FD2 /* README.md in Resources */,
-				007CFC25264E9AF600AF2FD2 /* README.Hibizcus.md in Resources */,
 				00A8D24F264E866B00C2B964 /* README in Resources */,
-				007CFC27264E9B1200AF2FD2 /* README.Hibizcus.md in Resources */,
-				007CFC2A264E9CC500AF2FD2 /* README.Hibizcus.md in Resources */,
 				005352732608E2D6007F33D9 /* devanagari_hindi.txt in Resources */,
 				0016436A263505C20044B965 /* telugu_telugu.txt in Resources */,
 				004546EC26306BF500601DB6 /* cluster_gujarati.json in Resources */,
@@ -1058,7 +1049,6 @@
 				00CEEA8F264105A100F515A1 /* cluster_batak.json in Resources */,
 				0023784226343112006B5E9B /* bengali_bengali.txt in Resources */,
 				00341CF6263EF00D00EFA443 /* cluster_sundanese.json in Resources */,
-				007CFC2E264EB0B800AF2FD2 /* LICENSE.md in Resources */,
 				0023784826345710006B5E9B /* cluster_grantha.json in Resources */,
 				0023785326346717006B5E9B /* cluster_malayalam.json in Resources */,
 				0016437026354C6F0044B965 /* kannada_kannada.txt in Resources */,
@@ -1151,6 +1141,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs",
+					"$(PROJECT_DIR)/Libs/BinarySwift",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$PROJECT_DIR/Libs/harfbuzz/src/**",
@@ -1193,6 +1184,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs",
+					"$(PROJECT_DIR)/Libs/BinarySwift",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$PROJECT_DIR/Libs/harfbuzz/src/**",
