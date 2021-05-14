@@ -23,10 +23,10 @@ Pre-built libraries for all the above are included in the repo
 ## Steps to build
 
 1. Clone the repo
-2. Copy the file from to
+2. Open the project in Xcode
+3. Create an assets file
     - The original Hibizcus icon/logo is copyrighted and thus is not included in the repo. 
-    - This file will include a place holder icon.
-3. Open the project in Xcode
+    - Create Assets.xcassets in Hibizcus/Hibizcus and add an applogo.
 4. Build and run
 
 ## Wordlists and cluseter data
