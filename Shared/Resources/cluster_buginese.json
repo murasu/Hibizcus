@@ -1,0 +1,80 @@
+{
+  "Vowel Signs" : [
+    "ᨗ",
+    "ᨘ",
+    "ᨙ",
+    "ᨚ",
+    "ᨛ"
+  ],
+  "Base Letters" : [
+    "ᨀ",
+    "ᨁ",
+    "ᨂ",
+    "ᨃ",
+    "ᨄ",
+    "ᨅ",
+    "ᨆ",
+    "ᨇ",
+    "ᨈ",
+    "ᨉ",
+    "ᨊ",
+    "ᨋ",
+    "ᨌ",
+    "ᨍ",
+    "ᨎ",
+    "ᨏ",
+    "ᨐ",
+    "ᨑ",
+    "ᨒ",
+    "ᨓ",
+    "ᨔ",
+    "ᨕ",
+    "ᨖ"
+  ],
+  "Other Bases" : [
+
+  ],
+  "SubConsonantNames" : [
+    "None"
+  ],
+  "BaseNames" : [
+    "Base Letters",
+    "Ligatures",
+    "Other Bases"
+  ],
+  "Numbers" : [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "Hibizcus" : [
+    "ClusterData",
+    "Buginese",
+    "2021-05-02",
+    "2"
+  ],
+  "Nukta" : [
+    ""
+  ],
+  "Other Signs" : [
+    "᨞",
+    "᨟",
+    "ꧏ"
+  ],
+  "Ligatures" : [
+    "ᨕᨗ‍ᨐ"
+  ],
+  "UsesLakh" : [
+    "false"
+  ],
+  "None" : [
+    ""
+  ]
+}

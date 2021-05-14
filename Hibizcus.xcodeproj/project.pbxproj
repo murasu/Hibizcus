@@ -1,0 +1,1356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00129F9F260C861E00B82FB7 /* TraceSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */; };
+		00129FA0260C861E00B82FB7 /* HBFontAnkrTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB53525ED9AA6002FC0B4 /* HBFontAnkrTable.swift */; };
+		00129FA1260C861E00B82FB7 /* TraceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FB99325E6950F00F05B17 /* TraceView.swift */; };
+		00129FA2260C861E00B82FB7 /* TraceRowViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51525E98733002FC0B4 /* TraceRowViewRepresentable.swift */; };
+		00129FA3260C861E00B82FB7 /* TracerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB4FA25E965F3002FC0B4 /* TracerBridge.swift */; };
+		00129FA4260C861E00B82FB7 /* TraceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51425E98733002FC0B4 /* TraceRowView.swift */; };
+		00129FAA260C93F100B82FB7 /* HBStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00129FA9260C93F100B82FB7 /* HBStringView.swift */; };
+		00129FAD260C950D00B82FB7 /* HBStringSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00129FAC260C950D00B82FB7 /* HBStringSidebarView.swift */; };
+		00129FB0260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00129FAF260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift */; };
+		00129FB3260CC9CF00B82FB7 /* HBStringLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00129FB2260CC9CF00B82FB7 /* HBStringLayoutView.swift */; };
+		0016436A263505C20044B965 /* telugu_telugu.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00164369263505C20044B965 /* telugu_telugu.txt */; };
+		0016436C26353F630044B965 /* cluster_telugu.json in Resources */ = {isa = PBXBuildFile; fileRef = 0016436B26353F630044B965 /* cluster_telugu.json */; };
+		0016436E26354C5B0044B965 /* cluster_kannada.json in Resources */ = {isa = PBXBuildFile; fileRef = 0016436D26354C5B0044B965 /* cluster_kannada.json */; };
+		0016437026354C6F0044B965 /* kannada_kannada.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0016436F26354C6F0044B965 /* kannada_kannada.txt */; };
+		00164375263564610044B965 /* sinhala_sinhala.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00164374263564610044B965 /* sinhala_sinhala.txt */; };
+		001643772635647F0044B965 /* cluster_sinhala.json in Resources */ = {isa = PBXBuildFile; fileRef = 001643762635647F0044B965 /* cluster_sinhala.json */; };
+		0016437F2635B9F60044B965 /* bengali_manipuri.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0016437E2635B9F60044B965 /* bengali_manipuri.txt */; };
+		001643812636F2B20044B965 /* meeteimayek_meetei.txt in Resources */ = {isa = PBXBuildFile; fileRef = 001643802636F2B20044B965 /* meeteimayek_meetei.txt */; };
+		0023783B263401CB006B5E9B /* odia_odia.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023783A263401CB006B5E9B /* odia_odia.txt */; };
+		0023783D26340717006B5E9B /* cluster_odia.json in Resources */ = {isa = PBXBuildFile; fileRef = 0023783C26340717006B5E9B /* cluster_odia.json */; };
+		0023784226343112006B5E9B /* bengali_bengali.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023784126343112006B5E9B /* bengali_bengali.txt */; };
+		0023784426343B99006B5E9B /* cluster_bengali.json in Resources */ = {isa = PBXBuildFile; fileRef = 0023784326343B99006B5E9B /* cluster_bengali.json */; };
+		0023784626344319006B5E9B /* bengali_assamese.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023784526344319006B5E9B /* bengali_assamese.txt */; };
+		0023784826345710006B5E9B /* cluster_grantha.json in Resources */ = {isa = PBXBuildFile; fileRef = 002378472634570F006B5E9B /* cluster_grantha.json */; };
+		0023784A26345CB8006B5E9B /* malayalam_malayalam.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023784926345CB8006B5E9B /* malayalam_malayalam.txt */; };
+		0023785326346717006B5E9B /* cluster_malayalam.json in Resources */ = {isa = PBXBuildFile; fileRef = 0023785226346717006B5E9B /* cluster_malayalam.json */; };
+		00341CEA263AD91C00EFA443 /* cluster_tirhuta.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CE9263AD91C00EFA443 /* cluster_tirhuta.json */; };
+		00341CEC263B991D00EFA443 /* cluster_balinese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CEB263B991D00EFA443 /* cluster_balinese.json */; };
+		00341CF0263EB15100EFA443 /* cluster_buginese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CEF263EB15100EFA443 /* cluster_buginese.json */; };
+		00341CF6263EF00D00EFA443 /* cluster_sundanese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CF5263EF00D00EFA443 /* cluster_sundanese.json */; };
+		00341CF8263EF09E00EFA443 /* cluster_rejang.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CF7263EF09E00EFA443 /* cluster_rejang.json */; };
+		004546EA26306BDA00601DB6 /* gujarati_gujarati.txt in Resources */ = {isa = PBXBuildFile; fileRef = 004546E926306BDA00601DB6 /* gujarati_gujarati.txt */; };
+		004546EC26306BF500601DB6 /* cluster_gujarati.json in Resources */ = {isa = PBXBuildFile; fileRef = 004546EB26306BF500601DB6 /* cluster_gujarati.json */; };
+		004546F12631993F00601DB6 /* HBGridViewNumberFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004546F02631993F00601DB6 /* HBGridViewNumberFuncs.swift */; };
+		0047EA52263859D000A07ACC /* cluster_meeteimayek.json in Resources */ = {isa = PBXBuildFile; fileRef = 0047EA51263859D000A07ACC /* cluster_meeteimayek.json */; };
+		0047EA532639A53E00A07ACC /* BinarySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DDB53325ED9A2B002FC0B4 /* BinarySwift.framework */; };
+		0047EA542639A53E00A07ACC /* BinarySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00DDB53325ED9A2B002FC0B4 /* BinarySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		005352292608DB8A007F33D9 /* HibizcusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005352282608DB8A007F33D9 /* HibizcusApp.swift */; };
+		0053522B2608DB8A007F33D9 /* HibizcusDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053522A2608DB8A007F33D9 /* HibizcusDocument.swift */; };
+		005352322608DB8C007F33D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 005352312608DB8C007F33D9 /* Preview Assets.xcassets */; };
+		0053523B2608DC90007F33D9 /* HBGridSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0014DD3325EE16B5003FEEAF /* HBGridSidebarView.swift */; };
+		0053523C2608DC90007F33D9 /* HBGlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE4B25F65043007FB99A /* HBGlyphView.swift */; };
+		0053523E2608DC90007F33D9 /* RadioGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE4325F40DCE007FB99A /* RadioGroup.swift */; };
+		0053523F2608DC90007F33D9 /* PickerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE4525F4FE4E007FB99A /* PickerGrid.swift */; };
+		005352402608DC90007F33D9 /* HBGridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE2E25EEDA2B007FB99A /* HBGridCellView.swift */; };
+		005352412608DC90007F33D9 /* HBGridSidebarClusterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B5FF925F8A5D200A1CC4F /* HBGridSidebarClusterViewModel.swift */; };
+		005352422608DC90007F33D9 /* HBGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FB99025E694E900F05B17 /* HBGridView.swift */; };
+		005352432608DC90007F33D9 /* HBGridSidebarCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE4125F3447D007FB99A /* HBGridSidebarCluster.swift */; };
+		005352442608DC90007F33D9 /* HBGridCellViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE3025EEDA49007FB99A /* HBGridCellViewRepresentable.swift */; };
+		005352452608DC90007F33D9 /* HBClusterEntryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE4D25F74490007FB99A /* HBClusterEntryEditor.swift */; };
+		005352472608DCDE007F33D9 /* HBFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51B25EA8067002FC0B4 /* HBFont.swift */; };
+		005352492608DD02007F33D9 /* Hibizcus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083646A25DAA6F60058CA1B /* Hibizcus.swift */; };
+		005352532608DD28007F33D9 /* hb_shaper_cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0083652D25DB0F720058CA1B /* hb_shaper_cpp.cpp */; };
+		005352552608DD2C007F33D9 /* hb_tracer.c in Sources */ = {isa = PBXBuildFile; fileRef = 008366AF25E665560058CA1B /* hb_tracer.c */; };
+		005352572608DD30007F33D9 /* HibizcusCppBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0083653025DB1CCE0058CA1B /* HibizcusCppBridge.mm */; };
+		005352592608DD33007F33D9 /* otfcc_read.c in Sources */ = {isa = PBXBuildFile; fileRef = 0083668B25E555030058CA1B /* otfcc_read.c */; };
+		005352642608DEBD007F33D9 /* OTScriptTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51F25EAA5D7002FC0B4 /* OTScriptTags.swift */; };
+		005352652608DEBD007F33D9 /* OTLanguageTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB52125EB3150002FC0B4 /* OTLanguageTags.swift */; };
+		0053526A2608DEFA007F33D9 /* HBFontLangSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51D25EA957E002FC0B4 /* HBFontLangSelectionView.swift */; };
+		0053526C2608DF2E007F33D9 /* HBFontData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A5FE3225F0BB0E007FB99A /* HBFontData.swift */; };
+		005352702608E2D6007F33D9 /* grantha_sanskrit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AFF25FA619A00D06D7D /* grantha_sanskrit.txt */; };
+		005352712608E2D6007F33D9 /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00A5FE2825EE5678007FB99A /* Readme.txt */; };
+		005352722608E2D6007F33D9 /* gurmukhi_punjabi.txt in Resources */ = {isa = PBXBuildFile; fileRef = 000B600425F9F81000A1CC4F /* gurmukhi_punjabi.txt */; };
+		005352732608E2D6007F33D9 /* devanagari_hindi.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00A5FE2A25EE6EFC007FB99A /* devanagari_hindi.txt */; };
+		005352742608E2D6007F33D9 /* devanagari_nepali.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AFB25FA5B8500D06D7D /* devanagari_nepali.txt */; };
+		005352752608E2D6007F33D9 /* tamil_tamil.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00A5FE2C25EE876D007FB99A /* tamil_tamil.txt */; };
+		005352762608E2D6007F33D9 /* cluster_tamil.json in Resources */ = {isa = PBXBuildFile; fileRef = 002C626025F7AFB000596186 /* cluster_tamil.json */; };
+		005352772608E2D6007F33D9 /* cluster_gurmukhi.json in Resources */ = {isa = PBXBuildFile; fileRef = 000B600225F9E74C00A1CC4F /* cluster_gurmukhi.json */; };
+		005352782608E2D6007F33D9 /* cluster_devanagari.json in Resources */ = {isa = PBXBuildFile; fileRef = 002C625B25F781E300596186 /* cluster_devanagari.json */; };
+		005352792608E2D6007F33D9 /* devanagari_sanskrit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AFD25FA5E3000D06D7D /* devanagari_sanskrit.txt */; };
+		0053527A2608E2D6007F33D9 /* devanagari_marathi.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AF925FA59D900D06D7D /* devanagari_marathi.txt */; };
+		00535284260B6829007F33D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0053522E2608DB8C007F33D9 /* Assets.xcassets */; };
+		006CAE79264E3A0700D404D3 /* AnchorPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083669B25E581AF0058CA1B /* AnchorPoints.swift */; };
+		006CAE7A264E3A1800D404D3 /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053525F2608DE96007F33D9 /* FontMetrics.swift */; };
+		007CFC25264E9AF600AF2FD2 /* README.Hibizcus.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC24264E9AF600AF2FD2 /* README.Hibizcus.md */; };
+		007CFC27264E9B1200AF2FD2 /* README.Hibizcus.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC26264E9B1200AF2FD2 /* README.Hibizcus.md */; };
+		007CFC2A264E9CC500AF2FD2 /* README.Hibizcus.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC29264E9CC500AF2FD2 /* README.Hibizcus.md */; };
+		007CFC2D264EB0B800AF2FD2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC2B264EB0B800AF2FD2 /* README.md */; };
+		007CFC2E264EB0B800AF2FD2 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 007CFC2C264EB0B800AF2FD2 /* LICENSE.md */; };
+		0093EC7B264E83EB009AB412 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0093EC3D264E83EB009AB412 /* LICENSE */; };
+		0093EC7C264E83EB009AB412 /* liblibotfcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0093EC7A264E83EB009AB412 /* liblibotfcc.a */; };
+		00A8D24F264E866B00C2B964 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 00A8D11F264E866B00C2B964 /* README */; };
+		00A8D250264E866B00C2B964 /* libharfbuzz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A8D120264E866B00C2B964 /* libharfbuzz.a */; };
+		00A8D276264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl in Resources */ = {isa = PBXBuildFile; fileRef = 00A8D16C264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl */; };
+		00A8D2A6264E866B00C2B964 /* harfbuzz-gobject.pc.in in Resources */ = {isa = PBXBuildFile; fileRef = 00A8D1D3264E866B00C2B964 /* harfbuzz-gobject.pc.in */; };
+		00B2548A2625ECAD00A8B39D /* HBStringGlyphListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B254892625ECAD00A8B39D /* HBStringGlyphListView.swift */; };
+		00B2548D2628619200A8B39D /* HBSidebarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B2548C2628619200A8B39D /* HBSidebarFont.swift */; };
+		00B254912628845500A8B39D /* HBSidebarLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B254902628845500A8B39D /* HBSidebarLanguage.swift */; };
+		00B2549A262DA48600A8B39D /* LoadAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B25499262DA48600A8B39D /* LoadAnimation.swift */; };
+		00B254A5262E26B100A8B39D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 00B254A1262E265F00A8B39D /* Credits.rtf */; };
+		00CEEA8F264105A100F515A1 /* cluster_batak.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA8E264105A100F515A1 /* cluster_batak.json */; };
+		00CEEA9126410D6800F515A1 /* cluster_javanese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA9026410D6800F515A1 /* cluster_javanese.json */; };
+		00CEEA95264126AE00F515A1 /* cluster_thaana.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA94264126AE00F515A1 /* cluster_thaana.json */; };
+		00CEEA9B2641708400F515A1 /* cluster_thai.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA9A2641708400F515A1 /* cluster_thai.json */; };
+		00ED49A4260E344F00AF29E0 /* HBFileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED49A2260E344F00AF29E0 /* HBFileWatcher.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0047EA552639A53E00A07ACC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0047EA542639A53E00A07ACC /* BinarySwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		000B5FF925F8A5D200A1CC4F /* HBGridSidebarClusterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridSidebarClusterViewModel.swift; sourceTree = "<group>"; };
+		000B600225F9E74C00A1CC4F /* cluster_gurmukhi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_gurmukhi.json; sourceTree = "<group>"; };
+		000B600425F9F81000A1CC4F /* gurmukhi_punjabi.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gurmukhi_punjabi.txt; sourceTree = "<group>"; };
+		00129FA9260C93F100B82FB7 /* HBStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBStringView.swift; sourceTree = "<group>"; };
+		00129FAC260C950D00B82FB7 /* HBStringSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBStringSidebarView.swift; sourceTree = "<group>"; };
+		00129FAF260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBStringLayoutViewRepresentable.swift; sourceTree = "<group>"; };
+		00129FB2260CC9CF00B82FB7 /* HBStringLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBStringLayoutView.swift; sourceTree = "<group>"; };
+		0014DD3325EE16B5003FEEAF /* HBGridSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridSidebarView.swift; sourceTree = "<group>"; };
+		00164369263505C20044B965 /* telugu_telugu.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = telugu_telugu.txt; sourceTree = "<group>"; };
+		0016436B26353F630044B965 /* cluster_telugu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_telugu.json; sourceTree = "<group>"; };
+		0016436D26354C5B0044B965 /* cluster_kannada.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_kannada.json; sourceTree = "<group>"; };
+		0016436F26354C6F0044B965 /* kannada_kannada.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = kannada_kannada.txt; sourceTree = "<group>"; };
+		00164374263564610044B965 /* sinhala_sinhala.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sinhala_sinhala.txt; sourceTree = "<group>"; };
+		001643762635647F0044B965 /* cluster_sinhala.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_sinhala.json; sourceTree = "<group>"; };
+		0016437E2635B9F60044B965 /* bengali_manipuri.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bengali_manipuri.txt; sourceTree = "<group>"; };
+		001643802636F2B20044B965 /* meeteimayek_meetei.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = meeteimayek_meetei.txt; sourceTree = "<group>"; };
+		0023783A263401CB006B5E9B /* odia_odia.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = odia_odia.txt; sourceTree = "<group>"; };
+		0023783C26340717006B5E9B /* cluster_odia.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_odia.json; sourceTree = "<group>"; };
+		0023784126343112006B5E9B /* bengali_bengali.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bengali_bengali.txt; sourceTree = "<group>"; };
+		0023784326343B99006B5E9B /* cluster_bengali.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_bengali.json; sourceTree = "<group>"; };
+		0023784526344319006B5E9B /* bengali_assamese.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bengali_assamese.txt; sourceTree = "<group>"; };
+		002378472634570F006B5E9B /* cluster_grantha.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_grantha.json; sourceTree = "<group>"; };
+		0023784926345CB8006B5E9B /* malayalam_malayalam.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = malayalam_malayalam.txt; sourceTree = "<group>"; };
+		0023785226346717006B5E9B /* cluster_malayalam.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_malayalam.json; sourceTree = "<group>"; };
+		002C625B25F781E300596186 /* cluster_devanagari.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_devanagari.json; sourceTree = "<group>"; };
+		002C626025F7AFB000596186 /* cluster_tamil.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_tamil.json; sourceTree = "<group>"; };
+		00341CE9263AD91C00EFA443 /* cluster_tirhuta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_tirhuta.json; sourceTree = "<group>"; };
+		00341CEB263B991D00EFA443 /* cluster_balinese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_balinese.json; sourceTree = "<group>"; };
+		00341CEF263EB15100EFA443 /* cluster_buginese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_buginese.json; sourceTree = "<group>"; };
+		00341CF5263EF00D00EFA443 /* cluster_sundanese.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_sundanese.json; sourceTree = "<group>"; };
+		00341CF7263EF09E00EFA443 /* cluster_rejang.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_rejang.json; sourceTree = "<group>"; };
+		004546E926306BDA00601DB6 /* gujarati_gujarati.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gujarati_gujarati.txt; sourceTree = "<group>"; };
+		004546EB26306BF500601DB6 /* cluster_gujarati.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_gujarati.json; sourceTree = "<group>"; };
+		004546F02631993F00601DB6 /* HBGridViewNumberFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridViewNumberFuncs.swift; sourceTree = "<group>"; };
+		0047EA51263859D000A07ACC /* cluster_meeteimayek.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_meeteimayek.json; sourceTree = "<group>"; };
+		005352262608DB8A007F33D9 /* Hibizcus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hibizcus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		005352282608DB8A007F33D9 /* HibizcusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HibizcusApp.swift; sourceTree = "<group>"; };
+		0053522A2608DB8A007F33D9 /* HibizcusDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HibizcusDocument.swift; sourceTree = "<group>"; };
+		0053522E2608DB8C007F33D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		005352312608DB8C007F33D9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		005352332608DB8C007F33D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		005352342608DB8C007F33D9 /* Hibizcus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hibizcus.entitlements; sourceTree = "<group>"; };
+		0053525F2608DE96007F33D9 /* FontMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontMetrics.swift; sourceTree = "<group>"; };
+		00566AF925FA59D900D06D7D /* devanagari_marathi.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = devanagari_marathi.txt; sourceTree = "<group>"; };
+		00566AFB25FA5B8500D06D7D /* devanagari_nepali.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = devanagari_nepali.txt; sourceTree = "<group>"; };
+		00566AFD25FA5E3000D06D7D /* devanagari_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = devanagari_sanskrit.txt; sourceTree = "<group>"; };
+		00566AFF25FA619A00D06D7D /* grantha_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = grantha_sanskrit.txt; sourceTree = "<group>"; };
+		006FB99025E694E900F05B17 /* HBGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridView.swift; sourceTree = "<group>"; };
+		006FB99325E6950F00F05B17 /* TraceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceView.swift; sourceTree = "<group>"; };
+		007CFC24264E9AF600AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
+		007CFC26264E9B1200AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
+		007CFC29264E9CC500AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
+		007CFC2B264EB0B800AF2FD2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		007CFC2C264EB0B800AF2FD2 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = SOURCE_ROOT; };
+		0083646A25DAA6F60058CA1B /* Hibizcus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hibizcus.swift; sourceTree = "<group>"; };
+		0083652C25DB0F720058CA1B /* Hibizcus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hibizcus-Bridging-Header.h"; sourceTree = "<group>"; };
+		0083652D25DB0F720058CA1B /* hb_shaper_cpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hb_shaper_cpp.cpp; sourceTree = "<group>"; };
+		0083652E25DB0F720058CA1B /* hb_shaper_cpp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hb_shaper_cpp.h; sourceTree = "<group>"; };
+		0083653025DB1CCE0058CA1B /* HibizcusCppBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HibizcusCppBridge.mm; sourceTree = "<group>"; };
+		0083653225DB1CE20058CA1B /* HibizcusCppBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HibizcusCppBridge.h; sourceTree = "<group>"; };
+		0083668B25E555030058CA1B /* otfcc_read.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = otfcc_read.c; sourceTree = "<group>"; };
+		0083668C25E555030058CA1B /* otfcc_read.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = otfcc_read.h; sourceTree = "<group>"; };
+		0083669B25E581AF0058CA1B /* AnchorPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorPoints.swift; sourceTree = "<group>"; };
+		008366AE25E665560058CA1B /* hb_tracer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hb_tracer.h; sourceTree = "<group>"; };
+		008366AF25E665560058CA1B /* hb_tracer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hb_tracer.c; sourceTree = "<group>"; };
+		0093EC3D264E83EB009AB412 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		0093EC40264E83EB009AB412 /* glyph-order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "glyph-order.h"; sourceTree = "<group>"; };
+		0093EC42264E83EB009AB412 /* axis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = axis.h; sourceTree = "<group>"; };
+		0093EC43264E83EB009AB412 /* vf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vf.h; sourceTree = "<group>"; };
+		0093EC44264E83EB009AB412 /* vv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vv.h; sourceTree = "<group>"; };
+		0093EC45264E83EB009AB412 /* region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = region.h; sourceTree = "<group>"; };
+		0093EC46264E83EB009AB412 /* vq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vq.h; sourceTree = "<group>"; };
+		0093EC47264E83EB009AB412 /* sfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfnt.h; sourceTree = "<group>"; };
+		0093EC48264E83EB009AB412 /* options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = options.h; sourceTree = "<group>"; };
+		0093EC49264E83EB009AB412 /* sfnt-builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sfnt-builder.h"; sourceTree = "<group>"; };
+		0093EC4B264E83EB009AB412 /* cmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmap.h; sourceTree = "<group>"; };
+		0093EC4C264E83EB009AB412 /* head.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = head.h; sourceTree = "<group>"; };
+		0093EC4D264E83EB009AB412 /* post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = post.h; sourceTree = "<group>"; };
+		0093EC4E264E83EB009AB412 /* maxp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxp.h; sourceTree = "<group>"; };
+		0093EC4F264E83EB009AB412 /* CFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFF.h; sourceTree = "<group>"; };
+		0093EC50264E83EB009AB412 /* _TSI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TSI.h; sourceTree = "<group>"; };
+		0093EC51264E83EB009AB412 /* gasp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gasp.h; sourceTree = "<group>"; };
+		0093EC52264E83EB009AB412 /* COLR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COLR.h; sourceTree = "<group>"; };
+		0093EC53264E83EB009AB412 /* name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = name.h; sourceTree = "<group>"; };
+		0093EC54264E83EB009AB412 /* OS_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OS_2.h; sourceTree = "<group>"; };
+		0093EC55264E83EB009AB412 /* hhea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hhea.h; sourceTree = "<group>"; };
+		0093EC56264E83EB009AB412 /* vmtx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmtx.h; sourceTree = "<group>"; };
+		0093EC57264E83EB009AB412 /* vhea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vhea.h; sourceTree = "<group>"; };
+		0093EC59264E83EB009AB412 /* coverage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverage.h; sourceTree = "<group>"; };
+		0093EC5A264E83EB009AB412 /* classdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classdef.h; sourceTree = "<group>"; };
+		0093EC5B264E83EB009AB412 /* hmtx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmtx.h; sourceTree = "<group>"; };
+		0093EC5C264E83EB009AB412 /* LTSH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSH.h; sourceTree = "<group>"; };
+		0093EC5D264E83EB009AB412 /* SVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVG.h; sourceTree = "<group>"; };
+		0093EC5E264E83EB009AB412 /* GDEF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDEF.h; sourceTree = "<group>"; };
+		0093EC5F264E83EB009AB412 /* table-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "table-common.h"; sourceTree = "<group>"; };
+		0093EC60264E83EB009AB412 /* fpgm-prep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "fpgm-prep.h"; sourceTree = "<group>"; };
+		0093EC61264E83EB009AB412 /* VORG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VORG.h; sourceTree = "<group>"; };
+		0093EC62264E83EB009AB412 /* otl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = otl.h; sourceTree = "<group>"; };
+		0093EC63264E83EB009AB412 /* glyf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glyf.h; sourceTree = "<group>"; };
+		0093EC64264E83EB009AB412 /* cvt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvt.h; sourceTree = "<group>"; };
+		0093EC65264E83EB009AB412 /* hdmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hdmx.h; sourceTree = "<group>"; };
+		0093EC66264E83EB009AB412 /* VDMX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VDMX.h; sourceTree = "<group>"; };
+		0093EC67264E83EB009AB412 /* meta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = meta.h; sourceTree = "<group>"; };
+		0093EC68264E83EB009AB412 /* TSI5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSI5.h; sourceTree = "<group>"; };
+		0093EC69264E83EB009AB412 /* fvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fvar.h; sourceTree = "<group>"; };
+		0093EC6A264E83EB009AB412 /* CPAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAL.h; sourceTree = "<group>"; };
+		0093EC6B264E83EB009AB412 /* BASE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BASE.h; sourceTree = "<group>"; };
+		0093EC6C264E83EB009AB412 /* handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = handle.h; sourceTree = "<group>"; };
+		0093EC6D264E83EB009AB412 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
+		0093EC6E264E83EB009AB412 /* primitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitives.h; sourceTree = "<group>"; };
+		0093EC6F264E83EB009AB412 /* logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logger.h; sourceTree = "<group>"; };
+		0093EC71264E83EB009AB412 /* uthash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uthash.h; sourceTree = "<group>"; };
+		0093EC72264E83EB009AB412 /* sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sds.h; sourceTree = "<group>"; };
+		0093EC73264E83EB009AB412 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		0093EC74264E83EB009AB412 /* json-builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-builder.h"; sourceTree = "<group>"; };
+		0093EC76264E83EB009AB412 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		0093EC77264E83EB009AB412 /* element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = element.h; sourceTree = "<group>"; };
+		0093EC78264E83EB009AB412 /* ownership.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ownership.h; sourceTree = "<group>"; };
+		0093EC79264E83EB009AB412 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		0093EC7A264E83EB009AB412 /* liblibotfcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibotfcc.a; sourceTree = "<group>"; };
+		00A5FE2825EE5678007FB99A /* Readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		00A5FE2A25EE6EFC007FB99A /* devanagari_hindi.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = devanagari_hindi.txt; sourceTree = "<group>"; };
+		00A5FE2C25EE876D007FB99A /* tamil_tamil.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tamil_tamil.txt; sourceTree = "<group>"; };
+		00A5FE2E25EEDA2B007FB99A /* HBGridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellView.swift; sourceTree = "<group>"; };
+		00A5FE3025EEDA49007FB99A /* HBGridCellViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridCellViewRepresentable.swift; sourceTree = "<group>"; };
+		00A5FE3225F0BB0E007FB99A /* HBFontData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontData.swift; sourceTree = "<group>"; };
+		00A5FE4125F3447D007FB99A /* HBGridSidebarCluster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridSidebarCluster.swift; sourceTree = "<group>"; };
+		00A5FE4325F40DCE007FB99A /* RadioGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioGroup.swift; sourceTree = "<group>"; };
+		00A5FE4525F4FE4E007FB99A /* PickerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerGrid.swift; sourceTree = "<group>"; };
+		00A5FE4B25F65043007FB99A /* HBGlyphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGlyphView.swift; sourceTree = "<group>"; };
+		00A5FE4D25F74490007FB99A /* HBClusterEntryEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBClusterEntryEditor.swift; sourceTree = "<group>"; };
+		00A8D11F264E866B00C2B964 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		00A8D120264E866B00C2B964 /* libharfbuzz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libharfbuzz.a; sourceTree = "<group>"; };
+		00A8D126264E866B00C2B964 /* hb-ot-shape-complex-arabic-joining-list.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-arabic-joining-list.hh"; sourceTree = "<group>"; };
+		00A8D127264E866B00C2B964 /* hb-buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-buffer.h"; sourceTree = "<group>"; };
+		00A8D128264E866B00C2B964 /* hb-ot-var-gvar-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-var-gvar-table.hh"; sourceTree = "<group>"; };
+		00A8D129264E866B00C2B964 /* hb-ot-post-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-post-table.hh"; sourceTree = "<group>"; };
+		00A8D12B264E866B00C2B964 /* hb-ot-shape-complex-indic-machine.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-indic-machine.hh"; sourceTree = "<group>"; };
+		00A8D12C264E866B00C2B964 /* hb-open-type.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-open-type.hh"; sourceTree = "<group>"; };
+		00A8D12F264E866B00C2B964 /* hb-aat-layout-common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-common.hh"; sourceTree = "<group>"; };
+		00A8D130264E866B00C2B964 /* hb-ot-shape-complex-use-machine.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-use-machine.hh"; sourceTree = "<group>"; };
+		00A8D131264E866B00C2B964 /* hb-ot-layout-base-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout-base-table.hh"; sourceTree = "<group>"; };
+		00A8D132264E866B00C2B964 /* hb-ot-head-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-head-table.hh"; sourceTree = "<group>"; };
+		00A8D133264E866B00C2B964 /* hb-set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-set.h"; sourceTree = "<group>"; };
+		00A8D135264E866B00C2B964 /* hb-ot-shape-complex-arabic-win1256.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-arabic-win1256.hh"; sourceTree = "<group>"; };
+		00A8D137264E866B00C2B964 /* hb-shaper-list.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-shaper-list.hh"; sourceTree = "<group>"; };
+		00A8D138264E866B00C2B964 /* hb-face.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-face.h"; sourceTree = "<group>"; };
+		00A8D13A264E866B00C2B964 /* hb-buffer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-buffer.hh"; sourceTree = "<group>"; };
+		00A8D13C264E866B00C2B964 /* hb-cff-interp-common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-cff-interp-common.hh"; sourceTree = "<group>"; };
+		00A8D142264E866B00C2B964 /* hb-gobject-structs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-gobject-structs.h"; sourceTree = "<group>"; };
+		00A8D144264E866B00C2B964 /* hb-ot-post-macroman.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-post-macroman.hh"; sourceTree = "<group>"; };
+		00A8D146264E866B00C2B964 /* hb-draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-draw.h"; sourceTree = "<group>"; };
+		00A8D147264E866B00C2B964 /* hb-ot-shape-fallback.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-fallback.hh"; sourceTree = "<group>"; };
+		00A8D148264E866B00C2B964 /* hb-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-common.h"; sourceTree = "<group>"; };
+		00A8D149264E866B00C2B964 /* hb-ot-deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-deprecated.h"; sourceTree = "<group>"; };
+		00A8D14E264E866B00C2B964 /* hb-ucd-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ucd-table.hh"; sourceTree = "<group>"; };
+		00A8D14F264E866B00C2B964 /* hb-subset.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-subset.hh"; sourceTree = "<group>"; };
+		00A8D153264E866B00C2B964 /* hb-version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-version.h"; sourceTree = "<group>"; };
+		00A8D157264E866B00C2B964 /* hb-ot-stat-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-stat-table.hh"; sourceTree = "<group>"; };
+		00A8D159264E866B00C2B964 /* hb-ot-name-language.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-name-language.hh"; sourceTree = "<group>"; };
+		00A8D15A264E866B00C2B964 /* hb-aat-ltag-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-ltag-table.hh"; sourceTree = "<group>"; };
+		00A8D15B264E866B00C2B964 /* hb-aat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-aat.h"; sourceTree = "<group>"; };
+		00A8D15C264E866B00C2B964 /* hb-font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-font.h"; sourceTree = "<group>"; };
+		00A8D15E264E866B00C2B964 /* hb-style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-style.h"; sourceTree = "<group>"; };
+		00A8D162264E866B00C2B964 /* hb-cff-interp-cs-common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-cff-interp-cs-common.hh"; sourceTree = "<group>"; };
+		00A8D163264E866B00C2B964 /* hb-kern.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-kern.hh"; sourceTree = "<group>"; };
+		00A8D164264E866B00C2B964 /* hb-subset-cff-common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-subset-cff-common.hh"; sourceTree = "<group>"; };
+		00A8D168264E866B00C2B964 /* hb-coretext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-coretext.h"; sourceTree = "<group>"; };
+		00A8D16B264E866B00C2B964 /* hb-aat-layout-just-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-just-table.hh"; sourceTree = "<group>"; };
+		00A8D16C264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hb-ot-shape-complex-khmer-machine.rl"; sourceTree = "<group>"; };
+		00A8D16D264E866B00C2B964 /* hb-ot-color-colr-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-color-colr-table.hh"; sourceTree = "<group>"; };
+		00A8D16E264E866B00C2B964 /* hb-serialize.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-serialize.hh"; sourceTree = "<group>"; };
+		00A8D16F264E866B00C2B964 /* hb-deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-deprecated.h"; sourceTree = "<group>"; };
+		00A8D171264E866B00C2B964 /* hb-ot-shape-complex-arabic-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-arabic-table.hh"; sourceTree = "<group>"; };
+		00A8D173264E866B00C2B964 /* hb-directwrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-directwrite.h"; sourceTree = "<group>"; };
+		00A8D174264E866B00C2B964 /* hb-draw.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-draw.hh"; sourceTree = "<group>"; };
+		00A8D175264E866B00C2B964 /* hb-aat-layout-kerx-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-kerx-table.hh"; sourceTree = "<group>"; };
+		00A8D176264E866B00C2B964 /* hb-ot-vorg-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-vorg-table.hh"; sourceTree = "<group>"; };
+		00A8D177264E866B00C2B964 /* hb-blob.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-blob.hh"; sourceTree = "<group>"; };
+		00A8D17A264E866B00C2B964 /* hb-unicode.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-unicode.hh"; sourceTree = "<group>"; };
+		00A8D17D264E866B00C2B964 /* hb-ot-kern-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-kern-table.hh"; sourceTree = "<group>"; };
+		00A8D17F264E866B00C2B964 /* hb-ot-shape-normalize.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-normalize.hh"; sourceTree = "<group>"; };
+		00A8D183264E866B00C2B964 /* hb-ot-layout-gpos-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout-gpos-table.hh"; sourceTree = "<group>"; };
+		00A8D184264E866B00C2B964 /* hb-ot-var-avar-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-var-avar-table.hh"; sourceTree = "<group>"; };
+		00A8D188264E866B00C2B964 /* hb-meta.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-meta.hh"; sourceTree = "<group>"; };
+		00A8D189264E866B00C2B964 /* hb-ot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot.h"; sourceTree = "<group>"; };
+		00A8D18A264E866B00C2B964 /* hb-ot-cff1-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-cff1-table.hh"; sourceTree = "<group>"; };
+		00A8D18B264E866B00C2B964 /* hb.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hb.hh; sourceTree = "<group>"; };
+		00A8D18C264E866B00C2B964 /* hb-face.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-face.hh"; sourceTree = "<group>"; };
+		00A8D190264E866B00C2B964 /* hb-string-array.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-string-array.hh"; sourceTree = "<group>"; };
+		00A8D192264E866B00C2B964 /* hb-ot-layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-layout.h"; sourceTree = "<group>"; };
+		00A8D193264E866B00C2B964 /* hb-number-parser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-number-parser.hh"; sourceTree = "<group>"; };
+		00A8D196264E866B00C2B964 /* hb-subset-cff1.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-subset-cff1.hh"; sourceTree = "<group>"; };
+		00A8D197264E866B00C2B964 /* hb-dispatch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-dispatch.hh"; sourceTree = "<group>"; };
+		00A8D198264E866B00C2B964 /* hb-ot-var-hvar-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-var-hvar-table.hh"; sourceTree = "<group>"; };
+		00A8D199264E866B00C2B964 /* hb-ot-layout-gsubgpos.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout-gsubgpos.hh"; sourceTree = "<group>"; };
+		00A8D19A264E866B00C2B964 /* hb-ot-var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-var.h"; sourceTree = "<group>"; };
+		00A8D19B264E866B00C2B964 /* hb-cache.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-cache.hh"; sourceTree = "<group>"; };
+		00A8D19D264E866B00C2B964 /* hb-atomic.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-atomic.hh"; sourceTree = "<group>"; };
+		00A8D19F264E866B00C2B964 /* hb-aat-layout-morx-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-morx-table.hh"; sourceTree = "<group>"; };
+		00A8D1A1264E866B00C2B964 /* hb-cff2-interp-cs.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-cff2-interp-cs.hh"; sourceTree = "<group>"; };
+		00A8D1A2264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-khmer-machine.hh"; sourceTree = "<group>"; };
+		00A8D1A3264E866B00C2B964 /* hb-ot-name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-name.h"; sourceTree = "<group>"; };
+		00A8D1A4264E866B00C2B964 /* hb-algs.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-algs.hh"; sourceTree = "<group>"; };
+		00A8D1A6264E866B00C2B964 /* hb-ot-hhea-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-hhea-table.hh"; sourceTree = "<group>"; };
+		00A8D1A8264E866B00C2B964 /* hb-ot-var-mvar-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-var-mvar-table.hh"; sourceTree = "<group>"; };
+		00A8D1AB264E866B00C2B964 /* hb-shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-shape.h"; sourceTree = "<group>"; };
+		00A8D1AD264E866B00C2B964 /* hb-subset-plan.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-subset-plan.hh"; sourceTree = "<group>"; };
+		00A8D1AF264E866B00C2B964 /* hb-aat-layout-opbd-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-opbd-table.hh"; sourceTree = "<group>"; };
+		00A8D1B1264E866B00C2B964 /* hb-ot-os2-unicode-ranges.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-os2-unicode-ranges.hh"; sourceTree = "<group>"; };
+		00A8D1B3264E866B00C2B964 /* hb-pool.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-pool.hh"; sourceTree = "<group>"; };
+		00A8D1B5264E866B00C2B964 /* hb-ot-shape-complex-machine-index.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-machine-index.hh"; sourceTree = "<group>"; };
+		00A8D1B6264E866B00C2B964 /* hb-ot-hdmx-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-hdmx-table.hh"; sourceTree = "<group>"; };
+		00A8D1B7264E866B00C2B964 /* hb-ot-shape-complex-khmer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-khmer.hh"; sourceTree = "<group>"; };
+		00A8D1B9264E866B00C2B964 /* hb-ot-cff-common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-cff-common.hh"; sourceTree = "<group>"; };
+		00A8D1BA264E866B00C2B964 /* hb-ot-layout-gdef-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout-gdef-table.hh"; sourceTree = "<group>"; };
+		00A8D1BB264E866B00C2B964 /* hb-ot-glyf-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-glyf-table.hh"; sourceTree = "<group>"; };
+		00A8D1C4264E866B00C2B964 /* hb-ot-map.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-map.hh"; sourceTree = "<group>"; };
+		00A8D1C7264E866B00C2B964 /* hb-ot-name-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-name-table.hh"; sourceTree = "<group>"; };
+		00A8D1C8264E866B00C2B964 /* hb-set.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-set.hh"; sourceTree = "<group>"; };
+		00A8D1CA264E866B00C2B964 /* hb-ot-color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-color.h"; sourceTree = "<group>"; };
+		00A8D1CC264E866B00C2B964 /* hb-shape-plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-shape-plan.h"; sourceTree = "<group>"; };
+		00A8D1CE264E866B00C2B964 /* hb-ot-meta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-meta.h"; sourceTree = "<group>"; };
+		00A8D1D0264E866B00C2B964 /* hb-ot-font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-font.h"; sourceTree = "<group>"; };
+		00A8D1D1264E866B00C2B964 /* hb-ot-face-table-list.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-face-table-list.hh"; sourceTree = "<group>"; };
+		00A8D1D3264E866B00C2B964 /* harfbuzz-gobject.pc.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "harfbuzz-gobject.pc.in"; sourceTree = "<group>"; };
+		00A8D1D4264E866B00C2B964 /* hb-ot-color-sbix-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-color-sbix-table.hh"; sourceTree = "<group>"; };
+		00A8D1D5264E866B00C2B964 /* hb-ot-shape-complex-indic.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-indic.hh"; sourceTree = "<group>"; };
+		00A8D1D7264E866B00C2B964 /* hb-unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-unicode.h"; sourceTree = "<group>"; };
+		00A8D1D8264E866B00C2B964 /* hb-unicode-emoji-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-unicode-emoji-table.hh"; sourceTree = "<group>"; };
+		00A8D1DA264E866B00C2B964 /* hb-aat-layout-feat-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-feat-table.hh"; sourceTree = "<group>"; };
+		00A8D1DB264E866B00C2B964 /* hb-object.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-object.hh"; sourceTree = "<group>"; };
+		00A8D1DC264E866B00C2B964 /* hb-ot-shape-complex-myanmar.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-myanmar.hh"; sourceTree = "<group>"; };
+		00A8D1DD264E866B00C2B964 /* hb-ot-gasp-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-gasp-table.hh"; sourceTree = "<group>"; };
+		00A8D1DF264E866B00C2B964 /* hb-uniscribe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-uniscribe.h"; sourceTree = "<group>"; };
+		00A8D1E0264E866B00C2B964 /* hb-buffer-deserialize-json.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-buffer-deserialize-json.hh"; sourceTree = "<group>"; };
+		00A8D1E1264E866B00C2B964 /* hb-ot-shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-shape.h"; sourceTree = "<group>"; };
+		00A8D1E2264E866B00C2B964 /* hb-vector.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-vector.hh"; sourceTree = "<group>"; };
+		00A8D1E3264E866B00C2B964 /* hb-ot-shape-complex-myanmar-machine.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-myanmar-machine.hh"; sourceTree = "<group>"; };
+		00A8D1E4264E866B00C2B964 /* hb-ot-shape-complex-arabic-fallback.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-arabic-fallback.hh"; sourceTree = "<group>"; };
+		00A8D1E5264E866B00C2B964 /* hb-debug.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-debug.hh"; sourceTree = "<group>"; };
+		00A8D1E6264E866B00C2B964 /* hb-config.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-config.hh"; sourceTree = "<group>"; };
+		00A8D1E7264E866B00C2B964 /* hb-ot-tag-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-tag-table.hh"; sourceTree = "<group>"; };
+		00A8D1E8264E866B00C2B964 /* hb-ot-shape-complex-vowel-constraints.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-vowel-constraints.hh"; sourceTree = "<group>"; };
+		00A8D1EA264E866B00C2B964 /* hb-shaper.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-shaper.hh"; sourceTree = "<group>"; };
+		00A8D1EB264E866B00C2B964 /* hb-aat-layout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout.hh"; sourceTree = "<group>"; };
+		00A8D1EC264E866B00C2B964 /* hb-iter.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-iter.hh"; sourceTree = "<group>"; };
+		00A8D1EE264E866B00C2B964 /* hb-bimap.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-bimap.hh"; sourceTree = "<group>"; };
+		00A8D1EF264E866B00C2B964 /* hb-blob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-blob.h"; sourceTree = "<group>"; };
+		00A8D1F2264E866B00C2B964 /* hb-ot-face.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-face.hh"; sourceTree = "<group>"; };
+		00A8D1F3264E866B00C2B964 /* hb-aat-layout-trak-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-trak-table.hh"; sourceTree = "<group>"; };
+		00A8D1F4264E866B00C2B964 /* hb-cff1-interp-cs.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-cff1-interp-cs.hh"; sourceTree = "<group>"; };
+		00A8D1F5264E866B00C2B964 /* hb-ot-hmtx-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-hmtx-table.hh"; sourceTree = "<group>"; };
+		00A8D1F6264E866B00C2B964 /* hb-aat-layout-ankr-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-ankr-table.hh"; sourceTree = "<group>"; };
+		00A8D1FA264E866B00C2B964 /* hb-cff-interp-dict-common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-cff-interp-dict-common.hh"; sourceTree = "<group>"; };
+		00A8D1FB264E866B00C2B964 /* hb-aat-map.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-map.hh"; sourceTree = "<group>"; };
+		00A8D1FC264E866B00C2B964 /* hb-ot-layout-common.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout-common.hh"; sourceTree = "<group>"; };
+		00A8D1FE264E866B00C2B964 /* hb-subset-input.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-subset-input.hh"; sourceTree = "<group>"; };
+		00A8D1FF264E866B00C2B964 /* hb-ot-color-cbdt-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-color-cbdt-table.hh"; sourceTree = "<group>"; };
+		00A8D200264E866B00C2B964 /* hb-ot-color-cpal-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-color-cpal-table.hh"; sourceTree = "<group>"; };
+		00A8D201264E866B00C2B964 /* hb-subset-cff2.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-subset-cff2.hh"; sourceTree = "<group>"; };
+		00A8D203264E866B00C2B964 /* hb-utf.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-utf.hh"; sourceTree = "<group>"; };
+		00A8D206264E866B00C2B964 /* hb-ot-var-fvar-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-var-fvar-table.hh"; sourceTree = "<group>"; };
+		00A8D20A264E866B00C2B964 /* hb-map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-map.h"; sourceTree = "<group>"; };
+		00A8D20B264E866B00C2B964 /* hb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hb.h; sourceTree = "<group>"; };
+		00A8D20C264E866B00C2B964 /* hb-glib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-glib.h"; sourceTree = "<group>"; };
+		00A8D20E264E866B00C2B964 /* hb-ot-layout-jstf-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout-jstf-table.hh"; sourceTree = "<group>"; };
+		00A8D212264E866B00C2B964 /* hb-mutex.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-mutex.hh"; sourceTree = "<group>"; };
+		00A8D213264E866B00C2B964 /* hb-ot-os2-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-os2-table.hh"; sourceTree = "<group>"; };
+		00A8D218264E866B00C2B964 /* hb-ot-layout.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout.hh"; sourceTree = "<group>"; };
+		00A8D219264E866B00C2B964 /* hb-ot-layout-gsub-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-layout-gsub-table.hh"; sourceTree = "<group>"; };
+		00A8D21A264E866B00C2B964 /* hb-aat-layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-aat-layout.h"; sourceTree = "<group>"; };
+		00A8D21C264E866B00C2B964 /* hb-ot-math-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-math-table.hh"; sourceTree = "<group>"; };
+		00A8D21E264E866B00C2B964 /* hb-ot-cmap-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-cmap-table.hh"; sourceTree = "<group>"; };
+		00A8D21F264E866B00C2B964 /* hb-aat-layout-bsln-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-aat-layout-bsln-table.hh"; sourceTree = "<group>"; };
+		00A8D221264E866B00C2B964 /* hb-ot-shape.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape.hh"; sourceTree = "<group>"; };
+		00A8D223264E866B00C2B964 /* hb-gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-gdi.h"; sourceTree = "<group>"; };
+		00A8D226264E866B00C2B964 /* hb-font.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-font.hh"; sourceTree = "<group>"; };
+		00A8D227264E866B00C2B964 /* hb-ot-maxp-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-maxp-table.hh"; sourceTree = "<group>"; };
+		00A8D228264E866B00C2B964 /* hb-buffer-deserialize-text.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-buffer-deserialize-text.hh"; sourceTree = "<group>"; };
+		00A8D229264E866B00C2B964 /* hb-map.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-map.hh"; sourceTree = "<group>"; };
+		00A8D22B264E866B00C2B964 /* hb-array.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-array.hh"; sourceTree = "<group>"; };
+		00A8D22C264E866B00C2B964 /* hb-ot-cff1-std-str.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-cff1-std-str.hh"; sourceTree = "<group>"; };
+		00A8D22E264E866B00C2B964 /* hb-shape-plan.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-shape-plan.hh"; sourceTree = "<group>"; };
+		00A8D231264E866B00C2B964 /* hb-null.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-null.hh"; sourceTree = "<group>"; };
+		00A8D232264E866B00C2B964 /* hb-ot-meta-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-meta-table.hh"; sourceTree = "<group>"; };
+		00A8D233264E866B00C2B964 /* hb-ot-cff2-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-cff2-table.hh"; sourceTree = "<group>"; };
+		00A8D235264E866B00C2B964 /* hb-ot-shape-complex.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex.hh"; sourceTree = "<group>"; };
+		00A8D236264E866B00C2B964 /* hb-number.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-number.hh"; sourceTree = "<group>"; };
+		00A8D237264E866B00C2B964 /* hb-graphite2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-graphite2.h"; sourceTree = "<group>"; };
+		00A8D238264E866B00C2B964 /* hb-set-digest.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-set-digest.hh"; sourceTree = "<group>"; };
+		00A8D239264E866B00C2B964 /* hb-ot-metrics.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-metrics.hh"; sourceTree = "<group>"; };
+		00A8D23B264E866B00C2B964 /* hb-open-file.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-open-file.hh"; sourceTree = "<group>"; };
+		00A8D23C264E866B00C2B964 /* hb-machinery.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-machinery.hh"; sourceTree = "<group>"; };
+		00A8D23E264E866B00C2B964 /* hb-subset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-subset.h"; sourceTree = "<group>"; };
+		00A8D23F264E866B00C2B964 /* hb-ot-color-svg-table.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-color-svg-table.hh"; sourceTree = "<group>"; };
+		00A8D240264E866B00C2B964 /* hb-ot-shape-complex-use.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-use.hh"; sourceTree = "<group>"; };
+		00A8D241264E866B00C2B964 /* hb-gobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-gobject.h"; sourceTree = "<group>"; };
+		00A8D242264E866B00C2B964 /* hb-ot-name-language-static.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-name-language-static.hh"; sourceTree = "<group>"; };
+		00A8D243264E866B00C2B964 /* hb-sanitize.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-sanitize.hh"; sourceTree = "<group>"; };
+		00A8D244264E866B00C2B964 /* hb-ot-metrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-metrics.h"; sourceTree = "<group>"; };
+		00A8D247264E866B00C2B964 /* hb-ot-math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ot-math.h"; sourceTree = "<group>"; };
+		00A8D248264E866B00C2B964 /* hb-icu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-icu.h"; sourceTree = "<group>"; };
+		00A8D24A264E866B00C2B964 /* hb-ft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ft.h"; sourceTree = "<group>"; };
+		00A8D24B264E866B00C2B964 /* hb-ot-shape-complex-arabic.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-arabic.hh"; sourceTree = "<group>"; };
+		00A8D24D264E866B00C2B964 /* hb-shaper-impl.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-shaper-impl.hh"; sourceTree = "<group>"; };
+		00B254892625ECAD00A8B39D /* HBStringGlyphListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBStringGlyphListView.swift; sourceTree = "<group>"; };
+		00B2548C2628619200A8B39D /* HBSidebarFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBSidebarFont.swift; sourceTree = "<group>"; };
+		00B254902628845500A8B39D /* HBSidebarLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBSidebarLanguage.swift; sourceTree = "<group>"; };
+		00B25499262DA48600A8B39D /* LoadAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAnimation.swift; sourceTree = "<group>"; };
+		00B254A1262E265F00A8B39D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		00CEEA8E264105A100F515A1 /* cluster_batak.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_batak.json; sourceTree = "<group>"; };
+		00CEEA9026410D6800F515A1 /* cluster_javanese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_javanese.json; sourceTree = "<group>"; };
+		00CEEA94264126AE00F515A1 /* cluster_thaana.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_thaana.json; sourceTree = "<group>"; };
+		00CEEA9A2641708400F515A1 /* cluster_thai.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_thai.json; sourceTree = "<group>"; };
+		00DDB4FA25E965F3002FC0B4 /* TracerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracerBridge.swift; sourceTree = "<group>"; };
+		00DDB51425E98733002FC0B4 /* TraceRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceRowView.swift; sourceTree = "<group>"; };
+		00DDB51525E98733002FC0B4 /* TraceRowViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceRowViewRepresentable.swift; sourceTree = "<group>"; };
+		00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceSidebarView.swift; sourceTree = "<group>"; };
+		00DDB51B25EA8067002FC0B4 /* HBFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFont.swift; sourceTree = "<group>"; };
+		00DDB51D25EA957E002FC0B4 /* HBFontLangSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontLangSelectionView.swift; sourceTree = "<group>"; };
+		00DDB51F25EAA5D7002FC0B4 /* OTScriptTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTScriptTags.swift; sourceTree = "<group>"; };
+		00DDB52125EB3150002FC0B4 /* OTLanguageTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTLanguageTags.swift; sourceTree = "<group>"; };
+		00DDB53325ED9A2B002FC0B4 /* BinarySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BinarySwift.framework; sourceTree = "<group>"; };
+		00DDB53525ED9AA6002FC0B4 /* HBFontAnkrTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontAnkrTable.swift; sourceTree = "<group>"; };
+		00ED49A2260E344F00AF29E0 /* HBFileWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFileWatcher.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		005352232608DB8A007F33D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A8D250264E866B00C2B964 /* libharfbuzz.a in Frameworks */,
+				0047EA532639A53E00A07ACC /* BinarySwift.framework in Frameworks */,
+				0093EC7C264E83EB009AB412 /* liblibotfcc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00129FA8260C93A800B82FB7 /* StringView */ = {
+			isa = PBXGroup;
+			children = (
+				00129FA9260C93F100B82FB7 /* HBStringView.swift */,
+				00129FAC260C950D00B82FB7 /* HBStringSidebarView.swift */,
+				00129FAF260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift */,
+				00129FB2260CC9CF00B82FB7 /* HBStringLayoutView.swift */,
+				00B254892625ECAD00A8B39D /* HBStringGlyphListView.swift */,
+			);
+			path = StringView;
+			sourceTree = "<group>";
+		};
+		002C625A25F781B000596186 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00B254A1262E265F00A8B39D /* Credits.rtf */,
+				00A5FE2825EE5678007FB99A /* Readme.txt */,
+				00A5FE2C25EE876D007FB99A /* tamil_tamil.txt */,
+				00A5FE2A25EE6EFC007FB99A /* devanagari_hindi.txt */,
+				00566AF925FA59D900D06D7D /* devanagari_marathi.txt */,
+				00566AFB25FA5B8500D06D7D /* devanagari_nepali.txt */,
+				00566AFD25FA5E3000D06D7D /* devanagari_sanskrit.txt */,
+				0023784126343112006B5E9B /* bengali_bengali.txt */,
+				0023784526344319006B5E9B /* bengali_assamese.txt */,
+				0016437E2635B9F60044B965 /* bengali_manipuri.txt */,
+				00566AFF25FA619A00D06D7D /* grantha_sanskrit.txt */,
+				000B600425F9F81000A1CC4F /* gurmukhi_punjabi.txt */,
+				004546E926306BDA00601DB6 /* gujarati_gujarati.txt */,
+				0023783A263401CB006B5E9B /* odia_odia.txt */,
+				0023784926345CB8006B5E9B /* malayalam_malayalam.txt */,
+				00164369263505C20044B965 /* telugu_telugu.txt */,
+				0016436F26354C6F0044B965 /* kannada_kannada.txt */,
+				00164374263564610044B965 /* sinhala_sinhala.txt */,
+				001643802636F2B20044B965 /* meeteimayek_meetei.txt */,
+				002C626025F7AFB000596186 /* cluster_tamil.json */,
+				002C625B25F781E300596186 /* cluster_devanagari.json */,
+				000B600225F9E74C00A1CC4F /* cluster_gurmukhi.json */,
+				004546EB26306BF500601DB6 /* cluster_gujarati.json */,
+				0023783C26340717006B5E9B /* cluster_odia.json */,
+				0023784326343B99006B5E9B /* cluster_bengali.json */,
+				002378472634570F006B5E9B /* cluster_grantha.json */,
+				0023785226346717006B5E9B /* cluster_malayalam.json */,
+				0016436B26353F630044B965 /* cluster_telugu.json */,
+				0016436D26354C5B0044B965 /* cluster_kannada.json */,
+				001643762635647F0044B965 /* cluster_sinhala.json */,
+				0047EA51263859D000A07ACC /* cluster_meeteimayek.json */,
+				00341CE9263AD91C00EFA443 /* cluster_tirhuta.json */,
+				00341CEB263B991D00EFA443 /* cluster_balinese.json */,
+				00341CEF263EB15100EFA443 /* cluster_buginese.json */,
+				00341CF5263EF00D00EFA443 /* cluster_sundanese.json */,
+				00341CF7263EF09E00EFA443 /* cluster_rejang.json */,
+				00CEEA8E264105A100F515A1 /* cluster_batak.json */,
+				00CEEA9026410D6800F515A1 /* cluster_javanese.json */,
+				00CEEA94264126AE00F515A1 /* cluster_thaana.json */,
+				00CEEA9A2641708400F515A1 /* cluster_thai.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		005352272608DB8A007F33D9 /* Hibizcus */ = {
+			isa = PBXGroup;
+			children = (
+				007CFC2C264EB0B800AF2FD2 /* LICENSE.md */,
+				007CFC2B264EB0B800AF2FD2 /* README.md */,
+				005352282608DB8A007F33D9 /* HibizcusApp.swift */,
+				0053522A2608DB8A007F33D9 /* HibizcusDocument.swift */,
+				0053522E2608DB8C007F33D9 /* Assets.xcassets */,
+				005352332608DB8C007F33D9 /* Info.plist */,
+				005352342608DB8C007F33D9 /* Hibizcus.entitlements */,
+				005352302608DB8C007F33D9 /* Preview Content */,
+			);
+			path = Hibizcus;
+			sourceTree = "<group>";
+		};
+		005352302608DB8C007F33D9 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				005352312608DB8C007F33D9 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		006CAE7B264E3A4F00D404D3 /* HBFont */ = {
+			isa = PBXGroup;
+			children = (
+				00DDB51B25EA8067002FC0B4 /* HBFont.swift */,
+				00B2548C2628619200A8B39D /* HBSidebarFont.swift */,
+				00B254902628845500A8B39D /* HBSidebarLanguage.swift */,
+				00DDB51D25EA957E002FC0B4 /* HBFontLangSelectionView.swift */,
+				00DDB53525ED9AA6002FC0B4 /* HBFontAnkrTable.swift */,
+				00DDB51F25EAA5D7002FC0B4 /* OTScriptTags.swift */,
+				00DDB52125EB3150002FC0B4 /* OTLanguageTags.swift */,
+				00A5FE3225F0BB0E007FB99A /* HBFontData.swift */,
+				00ED49A2260E344F00AF29E0 /* HBFileWatcher.swift */,
+				0083669B25E581AF0058CA1B /* AnchorPoints.swift */,
+				0053525F2608DE96007F33D9 /* FontMetrics.swift */,
+			);
+			path = HBFont;
+			sourceTree = "<group>";
+		};
+		006CAE7C264E3AEC00D404D3 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				00A5FE4325F40DCE007FB99A /* RadioGroup.swift */,
+				00A5FE4525F4FE4E007FB99A /* PickerGrid.swift */,
+				00B25499262DA48600A8B39D /* LoadAnimation.swift */,
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
+		006FB98F25E694CF00F05B17 /* HBGridView */ = {
+			isa = PBXGroup;
+			children = (
+				00A5FE4125F3447D007FB99A /* HBGridSidebarCluster.swift */,
+				000B5FF925F8A5D200A1CC4F /* HBGridSidebarClusterViewModel.swift */,
+				0014DD3325EE16B5003FEEAF /* HBGridSidebarView.swift */,
+				006FB99025E694E900F05B17 /* HBGridView.swift */,
+				00A5FE2E25EEDA2B007FB99A /* HBGridCellView.swift */,
+				00A5FE3025EEDA49007FB99A /* HBGridCellViewRepresentable.swift */,
+				004546F02631993F00601DB6 /* HBGridViewNumberFuncs.swift */,
+				00A5FE4B25F65043007FB99A /* HBGlyphView.swift */,
+				00A5FE4D25F74490007FB99A /* HBClusterEntryEditor.swift */,
+			);
+			path = HBGridView;
+			sourceTree = "<group>";
+		};
+		006FB99225E694FA00F05B17 /* TraceView */ = {
+			isa = PBXGroup;
+			children = (
+				00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */,
+				006FB99325E6950F00F05B17 /* TraceView.swift */,
+				00DDB4FA25E965F3002FC0B4 /* TracerBridge.swift */,
+				00DDB51425E98733002FC0B4 /* TraceRowView.swift */,
+				00DDB51525E98733002FC0B4 /* TraceRowViewRepresentable.swift */,
+			);
+			path = TraceView;
+			sourceTree = "<group>";
+		};
+		007CFC28264E9C9F00AF2FD2 /* BinarySwift */ = {
+			isa = PBXGroup;
+			children = (
+				00DDB53325ED9A2B002FC0B4 /* BinarySwift.framework */,
+				007CFC29264E9CC500AF2FD2 /* README.Hibizcus.md */,
+			);
+			path = BinarySwift;
+			sourceTree = "<group>";
+		};
+		0083652925DB0E310058CA1B /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				007CFC28264E9C9F00AF2FD2 /* BinarySwift */,
+				00A8D11E264E866B00C2B964 /* Harfbuzz */,
+				0093EC3C264E83EB009AB412 /* Otfcc */,
+				0083652C25DB0F720058CA1B /* Hibizcus-Bridging-Header.h */,
+				0083652E25DB0F720058CA1B /* hb_shaper_cpp.h */,
+				0083652D25DB0F720058CA1B /* hb_shaper_cpp.cpp */,
+				008366AE25E665560058CA1B /* hb_tracer.h */,
+				008366AF25E665560058CA1B /* hb_tracer.c */,
+				0083653225DB1CE20058CA1B /* HibizcusCppBridge.h */,
+				0083653025DB1CCE0058CA1B /* HibizcusCppBridge.mm */,
+				0083668C25E555030058CA1B /* otfcc_read.h */,
+				0083668B25E555030058CA1B /* otfcc_read.c */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		0093EC3C264E83EB009AB412 /* Otfcc */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC3D264E83EB009AB412 /* LICENSE */,
+				0093EC3E264E83EB009AB412 /* include */,
+				0093EC7A264E83EB009AB412 /* liblibotfcc.a */,
+				007CFC26264E9B1200AF2FD2 /* README.Hibizcus.md */,
+			);
+			path = Otfcc;
+			sourceTree = "<group>";
+		};
+		0093EC3E264E83EB009AB412 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC3F264E83EB009AB412 /* otfcc */,
+				0093EC70264E83EB009AB412 /* dep */,
+				0093EC75264E83EB009AB412 /* caryll */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		0093EC3F264E83EB009AB412 /* otfcc */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC40264E83EB009AB412 /* glyph-order.h */,
+				0093EC41264E83EB009AB412 /* vf */,
+				0093EC47264E83EB009AB412 /* sfnt.h */,
+				0093EC48264E83EB009AB412 /* options.h */,
+				0093EC49264E83EB009AB412 /* sfnt-builder.h */,
+				0093EC4A264E83EB009AB412 /* table */,
+				0093EC6C264E83EB009AB412 /* handle.h */,
+				0093EC6D264E83EB009AB412 /* font.h */,
+				0093EC6E264E83EB009AB412 /* primitives.h */,
+				0093EC6F264E83EB009AB412 /* logger.h */,
+			);
+			path = otfcc;
+			sourceTree = "<group>";
+		};
+		0093EC41264E83EB009AB412 /* vf */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC42264E83EB009AB412 /* axis.h */,
+				0093EC43264E83EB009AB412 /* vf.h */,
+				0093EC44264E83EB009AB412 /* vv.h */,
+				0093EC45264E83EB009AB412 /* region.h */,
+				0093EC46264E83EB009AB412 /* vq.h */,
+			);
+			path = vf;
+			sourceTree = "<group>";
+		};
+		0093EC4A264E83EB009AB412 /* table */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC4B264E83EB009AB412 /* cmap.h */,
+				0093EC4C264E83EB009AB412 /* head.h */,
+				0093EC4D264E83EB009AB412 /* post.h */,
+				0093EC4E264E83EB009AB412 /* maxp.h */,
+				0093EC4F264E83EB009AB412 /* CFF.h */,
+				0093EC50264E83EB009AB412 /* _TSI.h */,
+				0093EC51264E83EB009AB412 /* gasp.h */,
+				0093EC52264E83EB009AB412 /* COLR.h */,
+				0093EC53264E83EB009AB412 /* name.h */,
+				0093EC54264E83EB009AB412 /* OS_2.h */,
+				0093EC55264E83EB009AB412 /* hhea.h */,
+				0093EC56264E83EB009AB412 /* vmtx.h */,
+				0093EC57264E83EB009AB412 /* vhea.h */,
+				0093EC58264E83EB009AB412 /* otl */,
+				0093EC5B264E83EB009AB412 /* hmtx.h */,
+				0093EC5C264E83EB009AB412 /* LTSH.h */,
+				0093EC5D264E83EB009AB412 /* SVG.h */,
+				0093EC5E264E83EB009AB412 /* GDEF.h */,
+				0093EC5F264E83EB009AB412 /* table-common.h */,
+				0093EC60264E83EB009AB412 /* fpgm-prep.h */,
+				0093EC61264E83EB009AB412 /* VORG.h */,
+				0093EC62264E83EB009AB412 /* otl.h */,
+				0093EC63264E83EB009AB412 /* glyf.h */,
+				0093EC64264E83EB009AB412 /* cvt.h */,
+				0093EC65264E83EB009AB412 /* hdmx.h */,
+				0093EC66264E83EB009AB412 /* VDMX.h */,
+				0093EC67264E83EB009AB412 /* meta.h */,
+				0093EC68264E83EB009AB412 /* TSI5.h */,
+				0093EC69264E83EB009AB412 /* fvar.h */,
+				0093EC6A264E83EB009AB412 /* CPAL.h */,
+				0093EC6B264E83EB009AB412 /* BASE.h */,
+			);
+			path = table;
+			sourceTree = "<group>";
+		};
+		0093EC58264E83EB009AB412 /* otl */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC59264E83EB009AB412 /* coverage.h */,
+				0093EC5A264E83EB009AB412 /* classdef.h */,
+			);
+			path = otl;
+			sourceTree = "<group>";
+		};
+		0093EC70264E83EB009AB412 /* dep */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC71264E83EB009AB412 /* uthash.h */,
+				0093EC72264E83EB009AB412 /* sds.h */,
+				0093EC73264E83EB009AB412 /* json.h */,
+				0093EC74264E83EB009AB412 /* json-builder.h */,
+			);
+			path = dep;
+			sourceTree = "<group>";
+		};
+		0093EC75264E83EB009AB412 /* caryll */ = {
+			isa = PBXGroup;
+			children = (
+				0093EC76264E83EB009AB412 /* buffer.h */,
+				0093EC77264E83EB009AB412 /* element.h */,
+				0093EC78264E83EB009AB412 /* ownership.h */,
+				0093EC79264E83EB009AB412 /* vector.h */,
+			);
+			path = caryll;
+			sourceTree = "<group>";
+		};
+		00A8D11E264E866B00C2B964 /* Harfbuzz */ = {
+			isa = PBXGroup;
+			children = (
+				00A8D11F264E866B00C2B964 /* README */,
+				00A8D120264E866B00C2B964 /* libharfbuzz.a */,
+				00A8D121264E866B00C2B964 /* src */,
+				007CFC24264E9AF600AF2FD2 /* README.Hibizcus.md */,
+			);
+			path = Harfbuzz;
+			sourceTree = "<group>";
+		};
+		00A8D121264E866B00C2B964 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				00A8D126264E866B00C2B964 /* hb-ot-shape-complex-arabic-joining-list.hh */,
+				00A8D127264E866B00C2B964 /* hb-buffer.h */,
+				00A8D128264E866B00C2B964 /* hb-ot-var-gvar-table.hh */,
+				00A8D129264E866B00C2B964 /* hb-ot-post-table.hh */,
+				00A8D12B264E866B00C2B964 /* hb-ot-shape-complex-indic-machine.hh */,
+				00A8D12C264E866B00C2B964 /* hb-open-type.hh */,
+				00A8D12F264E866B00C2B964 /* hb-aat-layout-common.hh */,
+				00A8D130264E866B00C2B964 /* hb-ot-shape-complex-use-machine.hh */,
+				00A8D131264E866B00C2B964 /* hb-ot-layout-base-table.hh */,
+				00A8D132264E866B00C2B964 /* hb-ot-head-table.hh */,
+				00A8D133264E866B00C2B964 /* hb-set.h */,
+				00A8D135264E866B00C2B964 /* hb-ot-shape-complex-arabic-win1256.hh */,
+				00A8D137264E866B00C2B964 /* hb-shaper-list.hh */,
+				00A8D138264E866B00C2B964 /* hb-face.h */,
+				00A8D13A264E866B00C2B964 /* hb-buffer.hh */,
+				00A8D13C264E866B00C2B964 /* hb-cff-interp-common.hh */,
+				00A8D142264E866B00C2B964 /* hb-gobject-structs.h */,
+				00A8D144264E866B00C2B964 /* hb-ot-post-macroman.hh */,
+				00A8D146264E866B00C2B964 /* hb-draw.h */,
+				00A8D147264E866B00C2B964 /* hb-ot-shape-fallback.hh */,
+				00A8D148264E866B00C2B964 /* hb-common.h */,
+				00A8D149264E866B00C2B964 /* hb-ot-deprecated.h */,
+				00A8D14E264E866B00C2B964 /* hb-ucd-table.hh */,
+				00A8D14F264E866B00C2B964 /* hb-subset.hh */,
+				00A8D153264E866B00C2B964 /* hb-version.h */,
+				00A8D157264E866B00C2B964 /* hb-ot-stat-table.hh */,
+				00A8D159264E866B00C2B964 /* hb-ot-name-language.hh */,
+				00A8D15A264E866B00C2B964 /* hb-aat-ltag-table.hh */,
+				00A8D15B264E866B00C2B964 /* hb-aat.h */,
+				00A8D15C264E866B00C2B964 /* hb-font.h */,
+				00A8D15E264E866B00C2B964 /* hb-style.h */,
+				00A8D162264E866B00C2B964 /* hb-cff-interp-cs-common.hh */,
+				00A8D163264E866B00C2B964 /* hb-kern.hh */,
+				00A8D164264E866B00C2B964 /* hb-subset-cff-common.hh */,
+				00A8D168264E866B00C2B964 /* hb-coretext.h */,
+				00A8D16B264E866B00C2B964 /* hb-aat-layout-just-table.hh */,
+				00A8D16C264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl */,
+				00A8D16D264E866B00C2B964 /* hb-ot-color-colr-table.hh */,
+				00A8D16E264E866B00C2B964 /* hb-serialize.hh */,
+				00A8D16F264E866B00C2B964 /* hb-deprecated.h */,
+				00A8D171264E866B00C2B964 /* hb-ot-shape-complex-arabic-table.hh */,
+				00A8D173264E866B00C2B964 /* hb-directwrite.h */,
+				00A8D174264E866B00C2B964 /* hb-draw.hh */,
+				00A8D175264E866B00C2B964 /* hb-aat-layout-kerx-table.hh */,
+				00A8D176264E866B00C2B964 /* hb-ot-vorg-table.hh */,
+				00A8D177264E866B00C2B964 /* hb-blob.hh */,
+				00A8D17A264E866B00C2B964 /* hb-unicode.hh */,
+				00A8D17D264E866B00C2B964 /* hb-ot-kern-table.hh */,
+				00A8D17F264E866B00C2B964 /* hb-ot-shape-normalize.hh */,
+				00A8D183264E866B00C2B964 /* hb-ot-layout-gpos-table.hh */,
+				00A8D184264E866B00C2B964 /* hb-ot-var-avar-table.hh */,
+				00A8D188264E866B00C2B964 /* hb-meta.hh */,
+				00A8D189264E866B00C2B964 /* hb-ot.h */,
+				00A8D18A264E866B00C2B964 /* hb-ot-cff1-table.hh */,
+				00A8D18B264E866B00C2B964 /* hb.hh */,
+				00A8D18C264E866B00C2B964 /* hb-face.hh */,
+				00A8D190264E866B00C2B964 /* hb-string-array.hh */,
+				00A8D192264E866B00C2B964 /* hb-ot-layout.h */,
+				00A8D193264E866B00C2B964 /* hb-number-parser.hh */,
+				00A8D196264E866B00C2B964 /* hb-subset-cff1.hh */,
+				00A8D197264E866B00C2B964 /* hb-dispatch.hh */,
+				00A8D198264E866B00C2B964 /* hb-ot-var-hvar-table.hh */,
+				00A8D199264E866B00C2B964 /* hb-ot-layout-gsubgpos.hh */,
+				00A8D19A264E866B00C2B964 /* hb-ot-var.h */,
+				00A8D19B264E866B00C2B964 /* hb-cache.hh */,
+				00A8D19D264E866B00C2B964 /* hb-atomic.hh */,
+				00A8D19F264E866B00C2B964 /* hb-aat-layout-morx-table.hh */,
+				00A8D1A1264E866B00C2B964 /* hb-cff2-interp-cs.hh */,
+				00A8D1A2264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.hh */,
+				00A8D1A3264E866B00C2B964 /* hb-ot-name.h */,
+				00A8D1A4264E866B00C2B964 /* hb-algs.hh */,
+				00A8D1A6264E866B00C2B964 /* hb-ot-hhea-table.hh */,
+				00A8D1A8264E866B00C2B964 /* hb-ot-var-mvar-table.hh */,
+				00A8D1AB264E866B00C2B964 /* hb-shape.h */,
+				00A8D1AD264E866B00C2B964 /* hb-subset-plan.hh */,
+				00A8D1AF264E866B00C2B964 /* hb-aat-layout-opbd-table.hh */,
+				00A8D1B1264E866B00C2B964 /* hb-ot-os2-unicode-ranges.hh */,
+				00A8D1B3264E866B00C2B964 /* hb-pool.hh */,
+				00A8D1B5264E866B00C2B964 /* hb-ot-shape-complex-machine-index.hh */,
+				00A8D1B6264E866B00C2B964 /* hb-ot-hdmx-table.hh */,
+				00A8D1B7264E866B00C2B964 /* hb-ot-shape-complex-khmer.hh */,
+				00A8D1B9264E866B00C2B964 /* hb-ot-cff-common.hh */,
+				00A8D1BA264E866B00C2B964 /* hb-ot-layout-gdef-table.hh */,
+				00A8D1BB264E866B00C2B964 /* hb-ot-glyf-table.hh */,
+				00A8D1C4264E866B00C2B964 /* hb-ot-map.hh */,
+				00A8D1C7264E866B00C2B964 /* hb-ot-name-table.hh */,
+				00A8D1C8264E866B00C2B964 /* hb-set.hh */,
+				00A8D1CA264E866B00C2B964 /* hb-ot-color.h */,
+				00A8D1CC264E866B00C2B964 /* hb-shape-plan.h */,
+				00A8D1CE264E866B00C2B964 /* hb-ot-meta.h */,
+				00A8D1D0264E866B00C2B964 /* hb-ot-font.h */,
+				00A8D1D1264E866B00C2B964 /* hb-ot-face-table-list.hh */,
+				00A8D1D3264E866B00C2B964 /* harfbuzz-gobject.pc.in */,
+				00A8D1D4264E866B00C2B964 /* hb-ot-color-sbix-table.hh */,
+				00A8D1D5264E866B00C2B964 /* hb-ot-shape-complex-indic.hh */,
+				00A8D1D7264E866B00C2B964 /* hb-unicode.h */,
+				00A8D1D8264E866B00C2B964 /* hb-unicode-emoji-table.hh */,
+				00A8D1DA264E866B00C2B964 /* hb-aat-layout-feat-table.hh */,
+				00A8D1DB264E866B00C2B964 /* hb-object.hh */,
+				00A8D1DC264E866B00C2B964 /* hb-ot-shape-complex-myanmar.hh */,
+				00A8D1DD264E866B00C2B964 /* hb-ot-gasp-table.hh */,
+				00A8D1DF264E866B00C2B964 /* hb-uniscribe.h */,
+				00A8D1E0264E866B00C2B964 /* hb-buffer-deserialize-json.hh */,
+				00A8D1E1264E866B00C2B964 /* hb-ot-shape.h */,
+				00A8D1E2264E866B00C2B964 /* hb-vector.hh */,
+				00A8D1E3264E866B00C2B964 /* hb-ot-shape-complex-myanmar-machine.hh */,
+				00A8D1E4264E866B00C2B964 /* hb-ot-shape-complex-arabic-fallback.hh */,
+				00A8D1E5264E866B00C2B964 /* hb-debug.hh */,
+				00A8D1E6264E866B00C2B964 /* hb-config.hh */,
+				00A8D1E7264E866B00C2B964 /* hb-ot-tag-table.hh */,
+				00A8D1E8264E866B00C2B964 /* hb-ot-shape-complex-vowel-constraints.hh */,
+				00A8D1EA264E866B00C2B964 /* hb-shaper.hh */,
+				00A8D1EB264E866B00C2B964 /* hb-aat-layout.hh */,
+				00A8D1EC264E866B00C2B964 /* hb-iter.hh */,
+				00A8D1EE264E866B00C2B964 /* hb-bimap.hh */,
+				00A8D1EF264E866B00C2B964 /* hb-blob.h */,
+				00A8D1F2264E866B00C2B964 /* hb-ot-face.hh */,
+				00A8D1F3264E866B00C2B964 /* hb-aat-layout-trak-table.hh */,
+				00A8D1F4264E866B00C2B964 /* hb-cff1-interp-cs.hh */,
+				00A8D1F5264E866B00C2B964 /* hb-ot-hmtx-table.hh */,
+				00A8D1F6264E866B00C2B964 /* hb-aat-layout-ankr-table.hh */,
+				00A8D1FA264E866B00C2B964 /* hb-cff-interp-dict-common.hh */,
+				00A8D1FB264E866B00C2B964 /* hb-aat-map.hh */,
+				00A8D1FC264E866B00C2B964 /* hb-ot-layout-common.hh */,
+				00A8D1FE264E866B00C2B964 /* hb-subset-input.hh */,
+				00A8D1FF264E866B00C2B964 /* hb-ot-color-cbdt-table.hh */,
+				00A8D200264E866B00C2B964 /* hb-ot-color-cpal-table.hh */,
+				00A8D201264E866B00C2B964 /* hb-subset-cff2.hh */,
+				00A8D203264E866B00C2B964 /* hb-utf.hh */,
+				00A8D206264E866B00C2B964 /* hb-ot-var-fvar-table.hh */,
+				00A8D20A264E866B00C2B964 /* hb-map.h */,
+				00A8D20B264E866B00C2B964 /* hb.h */,
+				00A8D20C264E866B00C2B964 /* hb-glib.h */,
+				00A8D20E264E866B00C2B964 /* hb-ot-layout-jstf-table.hh */,
+				00A8D212264E866B00C2B964 /* hb-mutex.hh */,
+				00A8D213264E866B00C2B964 /* hb-ot-os2-table.hh */,
+				00A8D218264E866B00C2B964 /* hb-ot-layout.hh */,
+				00A8D219264E866B00C2B964 /* hb-ot-layout-gsub-table.hh */,
+				00A8D21A264E866B00C2B964 /* hb-aat-layout.h */,
+				00A8D21C264E866B00C2B964 /* hb-ot-math-table.hh */,
+				00A8D21E264E866B00C2B964 /* hb-ot-cmap-table.hh */,
+				00A8D21F264E866B00C2B964 /* hb-aat-layout-bsln-table.hh */,
+				00A8D221264E866B00C2B964 /* hb-ot-shape.hh */,
+				00A8D223264E866B00C2B964 /* hb-gdi.h */,
+				00A8D226264E866B00C2B964 /* hb-font.hh */,
+				00A8D227264E866B00C2B964 /* hb-ot-maxp-table.hh */,
+				00A8D228264E866B00C2B964 /* hb-buffer-deserialize-text.hh */,
+				00A8D229264E866B00C2B964 /* hb-map.hh */,
+				00A8D22B264E866B00C2B964 /* hb-array.hh */,
+				00A8D22C264E866B00C2B964 /* hb-ot-cff1-std-str.hh */,
+				00A8D22E264E866B00C2B964 /* hb-shape-plan.hh */,
+				00A8D231264E866B00C2B964 /* hb-null.hh */,
+				00A8D232264E866B00C2B964 /* hb-ot-meta-table.hh */,
+				00A8D233264E866B00C2B964 /* hb-ot-cff2-table.hh */,
+				00A8D235264E866B00C2B964 /* hb-ot-shape-complex.hh */,
+				00A8D236264E866B00C2B964 /* hb-number.hh */,
+				00A8D237264E866B00C2B964 /* hb-graphite2.h */,
+				00A8D238264E866B00C2B964 /* hb-set-digest.hh */,
+				00A8D239264E866B00C2B964 /* hb-ot-metrics.hh */,
+				00A8D23B264E866B00C2B964 /* hb-open-file.hh */,
+				00A8D23C264E866B00C2B964 /* hb-machinery.hh */,
+				00A8D23E264E866B00C2B964 /* hb-subset.h */,
+				00A8D23F264E866B00C2B964 /* hb-ot-color-svg-table.hh */,
+				00A8D240264E866B00C2B964 /* hb-ot-shape-complex-use.hh */,
+				00A8D241264E866B00C2B964 /* hb-gobject.h */,
+				00A8D242264E866B00C2B964 /* hb-ot-name-language-static.hh */,
+				00A8D243264E866B00C2B964 /* hb-sanitize.hh */,
+				00A8D244264E866B00C2B964 /* hb-ot-metrics.h */,
+				00A8D247264E866B00C2B964 /* hb-ot-math.h */,
+				00A8D248264E866B00C2B964 /* hb-icu.h */,
+				00A8D24A264E866B00C2B964 /* hb-ft.h */,
+				00A8D24B264E866B00C2B964 /* hb-ot-shape-complex-arabic.hh */,
+				00A8D24D264E866B00C2B964 /* hb-shaper-impl.hh */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		00E5E76D25D2BCA50061AC60 = {
+			isa = PBXGroup;
+			children = (
+				006CAE7B264E3A4F00D404D3 /* HBFont */,
+				006FB98F25E694CF00F05B17 /* HBGridView */,
+				00129FA8260C93A800B82FB7 /* StringView */,
+				006FB99225E694FA00F05B17 /* TraceView */,
+				006CAE7C264E3AEC00D404D3 /* UIElements */,
+				0083652925DB0E310058CA1B /* Libs */,
+				00E5E77225D2BCA50061AC60 /* Shared */,
+				005352272608DB8A007F33D9 /* Hibizcus */,
+				00E5E77B25D2BCA90061AC60 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00E5E77225D2BCA50061AC60 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				002C625A25F781B000596186 /* Resources */,
+				0083646A25DAA6F60058CA1B /* Hibizcus.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		00E5E77B25D2BCA90061AC60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				005352262608DB8A007F33D9 /* Hibizcus.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		005352252608DB8A007F33D9 /* Hibizcus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 005352372608DB8C007F33D9 /* Build configuration list for PBXNativeTarget "Hibizcus" */;
+			buildPhases = (
+				005352222608DB8A007F33D9 /* Sources */,
+				005352232608DB8A007F33D9 /* Frameworks */,
+				005352242608DB8A007F33D9 /* Resources */,
+				0047EA552639A53E00A07ACC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hibizcus;
+			productName = Hibiscus;
+			productReference = 005352262608DB8A007F33D9 /* Hibizcus.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00E5E76E25D2BCA50061AC60 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					005352252608DB8A007F33D9 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 00E5E77125D2BCA50061AC60 /* Build configuration list for PBXProject "Hibizcus" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00E5E76D25D2BCA50061AC60;
+			productRefGroup = 00E5E77B25D2BCA90061AC60 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				005352252608DB8A007F33D9 /* Hibizcus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		005352242608DB8A007F33D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0093EC7B264E83EB009AB412 /* LICENSE in Resources */,
+				0016437F2635B9F60044B965 /* bengali_manipuri.txt in Resources */,
+				005352322608DB8C007F33D9 /* Preview Assets.xcassets in Resources */,
+				0023783D26340717006B5E9B /* cluster_odia.json in Resources */,
+				0023784626344319006B5E9B /* bengali_assamese.txt in Resources */,
+				0023784A26345CB8006B5E9B /* malayalam_malayalam.txt in Resources */,
+				004546EA26306BDA00601DB6 /* gujarati_gujarati.txt in Resources */,
+				00341CEA263AD91C00EFA443 /* cluster_tirhuta.json in Resources */,
+				00164375263564610044B965 /* sinhala_sinhala.txt in Resources */,
+				005352762608E2D6007F33D9 /* cluster_tamil.json in Resources */,
+				005352772608E2D6007F33D9 /* cluster_gurmukhi.json in Resources */,
+				0047EA52263859D000A07ACC /* cluster_meeteimayek.json in Resources */,
+				007CFC2D264EB0B800AF2FD2 /* README.md in Resources */,
+				007CFC25264E9AF600AF2FD2 /* README.Hibizcus.md in Resources */,
+				00A8D24F264E866B00C2B964 /* README in Resources */,
+				007CFC27264E9B1200AF2FD2 /* README.Hibizcus.md in Resources */,
+				007CFC2A264E9CC500AF2FD2 /* README.Hibizcus.md in Resources */,
+				005352732608E2D6007F33D9 /* devanagari_hindi.txt in Resources */,
+				0016436A263505C20044B965 /* telugu_telugu.txt in Resources */,
+				004546EC26306BF500601DB6 /* cluster_gujarati.json in Resources */,
+				005352752608E2D6007F33D9 /* tamil_tamil.txt in Resources */,
+				00B254A5262E26B100A8B39D /* Credits.rtf in Resources */,
+				00CEEA9B2641708400F515A1 /* cluster_thai.json in Resources */,
+				00341CF0263EB15100EFA443 /* cluster_buginese.json in Resources */,
+				00341CF8263EF09E00EFA443 /* cluster_rejang.json in Resources */,
+				0053527A2608E2D6007F33D9 /* devanagari_marathi.txt in Resources */,
+				00CEEA9126410D6800F515A1 /* cluster_javanese.json in Resources */,
+				00CEEA95264126AE00F515A1 /* cluster_thaana.json in Resources */,
+				00CEEA8F264105A100F515A1 /* cluster_batak.json in Resources */,
+				0023784226343112006B5E9B /* bengali_bengali.txt in Resources */,
+				00341CF6263EF00D00EFA443 /* cluster_sundanese.json in Resources */,
+				007CFC2E264EB0B800AF2FD2 /* LICENSE.md in Resources */,
+				0023784826345710006B5E9B /* cluster_grantha.json in Resources */,
+				0023785326346717006B5E9B /* cluster_malayalam.json in Resources */,
+				0016437026354C6F0044B965 /* kannada_kannada.txt in Resources */,
+				00535284260B6829007F33D9 /* Assets.xcassets in Resources */,
+				005352792608E2D6007F33D9 /* devanagari_sanskrit.txt in Resources */,
+				005352712608E2D6007F33D9 /* Readme.txt in Resources */,
+				0016436E26354C5B0044B965 /* cluster_kannada.json in Resources */,
+				00341CEC263B991D00EFA443 /* cluster_balinese.json in Resources */,
+				005352722608E2D6007F33D9 /* gurmukhi_punjabi.txt in Resources */,
+				00A8D2A6264E866B00C2B964 /* harfbuzz-gobject.pc.in in Resources */,
+				0023784426343B99006B5E9B /* cluster_bengali.json in Resources */,
+				005352702608E2D6007F33D9 /* grantha_sanskrit.txt in Resources */,
+				001643812636F2B20044B965 /* meeteimayek_meetei.txt in Resources */,
+				0016436C26353F630044B965 /* cluster_telugu.json in Resources */,
+				00A8D276264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl in Resources */,
+				005352742608E2D6007F33D9 /* devanagari_nepali.txt in Resources */,
+				005352782608E2D6007F33D9 /* cluster_devanagari.json in Resources */,
+				0023783B263401CB006B5E9B /* odia_odia.txt in Resources */,
+				001643772635647F0044B965 /* cluster_sinhala.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		005352222608DB8A007F33D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				005352552608DD2C007F33D9 /* hb_tracer.c in Sources */,
+				0053522B2608DB8A007F33D9 /* HibizcusDocument.swift in Sources */,
+				006CAE7A264E3A1800D404D3 /* FontMetrics.swift in Sources */,
+				0053523C2608DC90007F33D9 /* HBGlyphView.swift in Sources */,
+				005352492608DD02007F33D9 /* Hibizcus.swift in Sources */,
+				0053526A2608DEFA007F33D9 /* HBFontLangSelectionView.swift in Sources */,
+				0053523B2608DC90007F33D9 /* HBGridSidebarView.swift in Sources */,
+				005352532608DD28007F33D9 /* hb_shaper_cpp.cpp in Sources */,
+				005352572608DD30007F33D9 /* HibizcusCppBridge.mm in Sources */,
+				00B254912628845500A8B39D /* HBSidebarLanguage.swift in Sources */,
+				00ED49A4260E344F00AF29E0 /* HBFileWatcher.swift in Sources */,
+				00129FA0260C861E00B82FB7 /* HBFontAnkrTable.swift in Sources */,
+				005352292608DB8A007F33D9 /* HibizcusApp.swift in Sources */,
+				00B2549A262DA48600A8B39D /* LoadAnimation.swift in Sources */,
+				00129F9F260C861E00B82FB7 /* TraceSidebarView.swift in Sources */,
+				004546F12631993F00601DB6 /* HBGridViewNumberFuncs.swift in Sources */,
+				005352642608DEBD007F33D9 /* OTScriptTags.swift in Sources */,
+				00129FA2260C861E00B82FB7 /* TraceRowViewRepresentable.swift in Sources */,
+				005352652608DEBD007F33D9 /* OTLanguageTags.swift in Sources */,
+				005352432608DC90007F33D9 /* HBGridSidebarCluster.swift in Sources */,
+				00B2548D2628619200A8B39D /* HBSidebarFont.swift in Sources */,
+				005352422608DC90007F33D9 /* HBGridView.swift in Sources */,
+				006CAE79264E3A0700D404D3 /* AnchorPoints.swift in Sources */,
+				00129FB3260CC9CF00B82FB7 /* HBStringLayoutView.swift in Sources */,
+				005352472608DCDE007F33D9 /* HBFont.swift in Sources */,
+				00129FA1260C861E00B82FB7 /* TraceView.swift in Sources */,
+				005352592608DD33007F33D9 /* otfcc_read.c in Sources */,
+				00B2548A2625ECAD00A8B39D /* HBStringGlyphListView.swift in Sources */,
+				005352412608DC90007F33D9 /* HBGridSidebarClusterViewModel.swift in Sources */,
+				005352452608DC90007F33D9 /* HBClusterEntryEditor.swift in Sources */,
+				00129FA4260C861E00B82FB7 /* TraceRowView.swift in Sources */,
+				00129FB0260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift in Sources */,
+				00129FAD260C950D00B82FB7 /* HBStringSidebarView.swift in Sources */,
+				0053523F2608DC90007F33D9 /* PickerGrid.swift in Sources */,
+				00129FA3260C861E00B82FB7 /* TracerBridge.swift in Sources */,
+				005352402608DC90007F33D9 /* HBGridCellView.swift in Sources */,
+				0053523E2608DC90007F33D9 /* RadioGroup.swift in Sources */,
+				00129FAA260C93F100B82FB7 /* HBStringView.swift in Sources */,
+				0053526C2608DF2E007F33D9 /* HBFontData.swift in Sources */,
+				005352442608DC90007F33D9 /* HBGridCellViewRepresentable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		005352352608DB8C007F33D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hibizcus/Hibizcus.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 102;
+				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
+				DEVELOPMENT_TEAM = F7UG2X3VU8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$PROJECT_DIR/Libs/harfbuzz/src/**",
+					"$PROJECT_DIR/Libs/otfcc/include/**",
+				);
+				INFOPLIST_FILE = Hibizcus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs",
+					"$(PROJECT_DIR)/Libs/otfcc",
+					"$(PROJECT_DIR)/Libs/harfbuzz",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Libs/Hibizcus-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		005352362608DB8C007F33D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hibizcus/Hibizcus.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 102;
+				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
+				DEVELOPMENT_TEAM = F7UG2X3VU8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$PROJECT_DIR/Libs/harfbuzz/src/**",
+					"$PROJECT_DIR/Libs/otfcc/include/**",
+				);
+				INFOPLIST_FILE = Hibizcus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs",
+					"$(PROJECT_DIR)/Libs/otfcc",
+					"$(PROJECT_DIR)/Libs/harfbuzz",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Libs/Hibizcus-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		00E5E78C25D2BCA90061AC60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		00E5E78D25D2BCA90061AC60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		005352372608DB8C007F33D9 /* Build configuration list for PBXNativeTarget "Hibizcus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				005352352608DB8C007F33D9 /* Debug */,
+				005352362608DB8C007F33D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00E5E77125D2BCA50061AC60 /* Build configuration list for PBXProject "Hibizcus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E5E78C25D2BCA90061AC60 /* Debug */,
+				00E5E78D25D2BCA90061AC60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00E5E76E25D2BCA50061AC60 /* Project object */;
+}

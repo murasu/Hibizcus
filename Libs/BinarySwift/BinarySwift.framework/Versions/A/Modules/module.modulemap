@@ -1,0 +1,4 @@
+framework module BinarySwift {
+  header "BinarySwift-Swift.h"
+  requires objc
+}
