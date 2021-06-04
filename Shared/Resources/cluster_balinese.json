@@ -16,6 +16,45 @@
     "ᭂ",
     "ᭃ"
   ],
+  "Other Bases" : [
+    "ᭅ",
+    "ᭆ",
+    "ᭇ",
+    "ᭈ",
+    "ᭉ",
+    "ᭊ",
+    "ᭋ"
+  ],
+  "Hibizcus" : [
+    "ClusterData",
+    "Balinese",
+    "2021-04-30",
+    "1"
+  ],
+  "BaseNames" : [
+    "Vowels",
+    "Consonants",
+    "Conjuncts All 2 Parts",
+    "Other Bases"
+  ],
+  "Sub Ra" : [
+    "᭄ᬭ"
+  ],
+  "Numbers" : [
+    "᭐",
+    "᭑",
+    "᭒",
+    "᭓",
+    "᭔",
+    "᭕",
+    "᭖",
+    "᭗",
+    "᭘",
+    "᭙"
+  ],
+  "Sub Ya" : [
+    "᭄ᬬ"
+  ],
   "Vowels" : [
     "ᬅ",
     "ᬆ",
@@ -31,46 +70,6 @@
     "ᬐ",
     "ᬑ",
     "ᬒ"
-  ],
-  "Other Bases" : [
-    "ᭅ",
-    "ᭆ",
-    "ᭇ",
-    "ᭈ",
-    "ᭉ",
-    "ᭊ",
-    "ᭋ"
-  ],
-  "BaseNames" : [
-    "Vowels",
-    "Consonants",
-    "Conjuncts All 2 Parts",
-    "Other Bases"
-  ],
-  "Numbers" : [
-    "᭐",
-    "᭑",
-    "᭒",
-    "᭓",
-    "᭔",
-    "᭕",
-    "᭖",
-    "᭗",
-    "᭘",
-    "᭙"
-  ],
-  "SubConsonantNames" : [
-    "None",
-    "Repa",
-    "Sub Ya",
-    "Sub Wa",
-    "Sub Ra"
-  ],
-  "Sub Ya" : [
-    "᭄ᬬ"
-  ],
-  "Nukta" : [
-    "᬴"
   ],
   "Conjuncts All 2 Parts" : [
     "ᬓ᭄ᬓ",
@@ -1163,8 +1162,8 @@
     "ᬳ᭄ᬲ",
     "ᬳ᭄ᬳ"
   ],
-  "Sub Ra" : [
-    "᭄ᬭ"
+  "Nukta" : [
+    "᬴"
   ],
   "Other Signs" : [
     "ᬀ",
@@ -1173,8 +1172,8 @@
     "ᬃ",
     "ᬄ"
   ],
-  "Repa" : [
-    "ᬃ"
+  "Repha" : [
+    "ᬭ᭄"
   ],
   "Consonants" : [
     "ᬓ",
@@ -1220,10 +1219,11 @@
   "Sub Wa" : [
     "᭄ᬯ"
   ],
-  "Hibizcus" : [
-    "ClusterData",
-    "Balinese",
-    "2021-04-30",
-    "1"
+  "SubConsonantNames" : [
+    "None",
+    "Repha",
+    "Sub Ya",
+    "Sub Wa",
+    "Sub Ra"
   ]
 }

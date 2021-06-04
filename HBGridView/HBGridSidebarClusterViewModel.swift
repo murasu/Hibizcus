@@ -103,7 +103,7 @@ class HBGridSidebarClusterViewModel: ObservableObject {
                         self.vowelSignParts          = Int(dictionary["Hibizcus"]![3]) ?? 0
                         // Currently selected base
                         self.baseStrings             = dictionary[self.selectedBase] ?? [String]()
-                        if self.selectedSubConsonant.count > 0 {
+                        if dictionary[self.selectedSubConsonant] != nil && self.selectedSubConsonant.count > 0 {
                             self.subConsonantString      = dictionary[self.selectedSubConsonant]![0]
                         }
                         self.justLoadedFromFile      = true // to initiate a refresh

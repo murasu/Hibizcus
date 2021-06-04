@@ -16,7 +16,7 @@ struct HBGridSidebarCluster: View {
     
     var body: some View {
         if viewModel.errorMessage.count == 0 {
-            ScrollView {
+            ScrollView([.vertical], showsIndicators: true) {
                 HStack {
                     ZStack {
                         VStack(alignment: .leading) {

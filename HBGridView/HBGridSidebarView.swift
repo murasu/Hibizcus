@@ -176,13 +176,13 @@ struct HBGridSidebarView: View {
 
                             Divider()
 
-                            Toggle("Show Thousand", isOn: $gridViewOptions.showThousand)
+                            Toggle("Show thousand", isOn: $gridViewOptions.showThousand)
                                 .padding(.top, 20)
                                 .padding(.bottom, 10)
                                 .padding(.leading, 20)
                             
                             if clusterViewModel.usesLakh {
-                                Toggle("Show Lakh", isOn: $gridViewOptions.showLakh)
+                                Toggle("Show lakh", isOn: $gridViewOptions.showLakh)
                                     .padding(.bottom, 10)
                                     .padding(.leading, 20)
                             }
@@ -240,7 +240,7 @@ struct GridDisplayOptionsView: View {
                     }
                 }
             
-                Toggle("Show diffs only", isOn: $gridViewOptions.showDiffsOnly)
+                Toggle("Show differences only", isOn: $gridViewOptions.showDiffsOnly)
                     .padding(.bottom, 10)
                     .disabled(!gridViewOptions.compareWordLayout && gridViewOptions.currentTab == HBGridViewTab.WordsTab)
             }

@@ -139,7 +139,7 @@ class HBGridCellView: NSView {
                 }
                 
                 // Draw the left and right boundaries if there is a diff or if we are viewing scaled glyph
-                if showDiff || scale > 1.0 {
+                //if showDiff || scale > 1.0 {
                     let xLeft:CGFloat = (self.bounds.width - layoutWidth) / 2
                     let xRight:CGFloat = xLeft + layoutWidth
                     let y1 = scale > 1.0 ? 0 : baseLine-10
@@ -147,7 +147,7 @@ class HBGridCellView: NSView {
                     let sbColor = showDiff ? textColors[colorIndex] : metricLineColor
                     drawLine(inContext: context, fromPoint: CGPoint(x: xLeft, y: y1), toPoint: CGPoint(x: xLeft, y: y2), lineWidth: 1, lineColor: sbColor)
                     drawLine(inContext: context, fromPoint: CGPoint(x: xRight, y: y1), toPoint: CGPoint(x: xRight, y: y2), lineWidth: 1, lineColor: sbColor)
-                }
+                //}
             }
             colorIndex += 1
         }
@@ -159,7 +159,6 @@ class HBGridCellView: NSView {
     }
     
     func computeBaseLine(ctFont: CTFont) -> CGFloat {
-        //let font = hbFont1!.ctFont! as NSFont
         let font = ctFont as NSFont
         // Bounding boxes of the font
         let boundingRect    = font.boundingRectForFont

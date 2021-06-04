@@ -37,7 +37,7 @@ struct HBSidebarFont: View {
                 .padding(.leading, 10)
                 .help("Set main font")
             } */
-            Text("Main Font:")
+            Text("Main font:")
                 .multilineTextAlignment(.leading)
                 .padding(.trailing, 15)
                 .padding(.bottom, 2)
@@ -82,7 +82,7 @@ struct HBSidebarFont: View {
             }
         }
         else {
-            Text("None Selected")
+            Text("None selected")
                 .multilineTextAlignment(.leading)
                 .padding(.leading, 20)
                 .padding(.bottom, 20)
@@ -113,7 +113,7 @@ struct HBSidebarFont: View {
                     .padding(.leading, 10)
                     .help("Set compare font")
                 } */
-                Text("Compare Font:")
+                Text("Comparison font:")
                     .multilineTextAlignment(.leading)
                     .padding(.trailing, 15)
                     .padding(.bottom, 2)
@@ -157,7 +157,7 @@ struct HBSidebarFont: View {
                 .padding(.bottom, 30)
             }
             else {
-                Text("None Selected")
+                Text("None selected")
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 20)
                     .padding(.bottom, 20)
@@ -176,7 +176,7 @@ struct HBSidebarFont: View {
     
     func openFont(fontNum:Int) {
         let openPanel = NSOpenPanel()
-        openPanel.prompt = "Select File"
+        openPanel.prompt = "Select file"
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
@@ -186,7 +186,7 @@ struct HBSidebarFont: View {
             if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
                 let selectedPath = openPanel.url!.path
                 DispatchQueue.main.async {
-                    print("Selected \(selectedPath) for Font \(fontNum)")
+                    print("Selected \(selectedPath) for font \(fontNum)")
                     switch (fontNum) {
                     case 1:
                         hbProject.hbFont1.setFontFile(filePath: selectedPath)
