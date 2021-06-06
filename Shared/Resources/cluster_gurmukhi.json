@@ -1,58 +1,4 @@
 {
-  "Vowel Signs" : [
-    "ਾ",
-    "ਿ",
-    "ੀ",
-    "ੁ",
-    "ੂ",
-    "ੇ",
-    "ੈ",
-    "ੋ",
-    "ੌ",
-    "੍"
-  ],
-  "Udaat" : [
-    "ੑ"
-  ],
-  "Other Bases" : [
-    ""
-  ],
-  "Pairin Ha" : [
-    "੍ਹ"
-  ],
-  "BaseNames" : [
-    "Vowels",
-    "Consonants",
-    "Consonants + Old Pairin Forms",
-    "Other Bases"
-  ],
-  "SubConsonantNames" : [
-    "None",
-    "Pairin Ya",
-    "Pairin Ra",
-    "Pairin Va",
-    "Pairin Ha",
-    "Yakash",
-    "Udaat"
-  ],
-  "Numbers" : [
-    "੦",
-    "੧",
-    "੨",
-    "੩",
-    "੪",
-    "੫",
-    "੬",
-    "੭",
-    "੮",
-    "੯"
-  ],
-  "Pairin Ra" : [
-    "੍ਰ"
-  ],
-  "Nukta" : [
-    "਼"
-  ],
   "Consonants + Old Pairin Forms" : [
     "ਕ੍ਗ",
     "ਕ੍ਚ",
@@ -359,11 +305,65 @@
     "ਫ਼੍ਨ",
     "ਫ਼੍ਥ"
   ],
-  "Hibizcus" : [
-    "ClusterData",
-    "Gurmukhi",
-    "2021-03-11",
-    "1"
+  "Vowel Signs" : [
+    "ਾ",
+    "ਿ",
+    "ੀ",
+    "ੁ",
+    "ੂ",
+    "ੇ",
+    "ੈ",
+    "ੋ",
+    "ੌ",
+    "੍"
+  ],
+  "Other Bases" : [
+    ""
+  ],
+  "Pairin Va" : [
+    "੍ਵ"
+  ],
+  "BaseNames" : [
+    "Vowels",
+    "Consonants",
+    "Consonants + Old Pairin Forms",
+    "Other Bases"
+  ],
+  "Numbers" : [
+    "੦",
+    "੧",
+    "੨",
+    "੩",
+    "੪",
+    "੫",
+    "੬",
+    "੭",
+    "੮",
+    "੯"
+  ],
+  "Pairin Ra" : [
+    "੍ਰ"
+  ],
+  "Addha Ya" : [
+    "੍ਯ"
+  ],
+  "Nukta" : [
+    "਼"
+  ],
+  "Pairin Ha" : [
+    "੍ਹ"
+  ],
+  "Vowels" : [
+    "ਅ",
+    "ਆ",
+    "ਇ",
+    "ਈ",
+    "ਉ",
+    "ਊ",
+    "ਏ",
+    "ਐ",
+    "ਓ",
+    "ਔ"
   ],
   "Other Signs" : [
     "ਁ",
@@ -372,8 +372,14 @@
     "ੰ",
     "ੱ"
   ],
-  "Pairin Va" : [
-    "੍ਵ"
+  "Hibizcus" : [
+    "ClusterData",
+    "Gurmukhi",
+    "2021-03-11",
+    "1"
+  ],
+  "UsesLakh" : [
+    "true"
   ],
   "Consonants" : [
     "ਕ",
@@ -415,26 +421,20 @@
     "ੜ",
     "ਫ਼"
   ],
-  "UsesLakh" : [
-    "true"
-  ],
   "None" : [
     ""
   ],
-  "Vowels" : [
-    "ਅ",
-    "ਆ",
-    "ਇ",
-    "ਈ",
-    "ਉ",
-    "ਊ",
-    "ਏ",
-    "ਐ",
-    "ਓ",
-    "ਔ"
+  "SubConsonantNames" : [
+    "None",
+    "Addha Ya",
+    "Pairin Ra",
+    "Pairin Va",
+    "Pairin Ha",
+    "Yakash",
+    "Udaat"
   ],
-  "Pairin Ya" : [
-    "੍ਯ"
+  "Udaat" : [
+    "ੑ"
   ],
   "Yakash" : [
     "ੵ"
