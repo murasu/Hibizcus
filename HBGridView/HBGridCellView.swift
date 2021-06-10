@@ -1,5 +1,5 @@
 //
-//  WordsCellView.swift
+//  HBGridCellView.swift
 //
 //  Created by Muthu Nedumaran on 3/3/21.
 //

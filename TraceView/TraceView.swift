@@ -164,14 +164,14 @@ struct TraceLog: View {
             ZStack {
                 Text("")
                     .font(.callout)
-                    .frame(width: 100, height: 80, alignment: .leading)
+                    .frame(width: 100, height: 100/*viewOptions.showGlyphNames ? 100 : 80*/, alignment: .leading)
                     .border(Color.primary.opacity(0.3), width: 1)
                 Text(tvLogItem.message) //  + " " + tvLogItem.traceId) // for debugging
                     .font(.callout)
-                    .frame(width: 80, height: 70, alignment: .leading)
+                    .frame(width: 80, height: 90/*viewOptions.showGlyphNames ? 90 : 70*/, alignment: .leading)
             }
             TraceRowViewRepresentable(tvLogItem: tvLogItem, ctFont: ctFont, viewOptions: viewOptions)
-                .frame(height:80)
+                .frame(height:100/*viewOptions.showGlyphNames ? 100 : 80*/)
                 .padding(.horizontal, 0)
                 .border(Color.primary.opacity(0.3), width: 1)
         }

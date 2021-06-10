@@ -98,7 +98,7 @@ class HBFont: ObservableObject {
     @Published var version:String                   = "" {
         didSet { self.objectWillChange.send() }
     }
-    @Published var metrics:FontMetics               = FontMetics()
+    @Published var metrics:FontMetrics               = FontMetrics()
     @Published var glyphCount:Int                   = 0
     @Published var scripts:[String]                 = [String]()
     @Published var supportedLanguages:[Language]    = [Language]()

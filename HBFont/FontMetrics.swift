@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct FontMetics {
+struct FontMetrics {
     var baseline:Float = 0
     // Scaled font-ascent metric
     var ascent:Float = 0

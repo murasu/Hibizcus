@@ -166,7 +166,8 @@ class TraceRowView: NSView {
                 // Draw the glyph name if the flag is set & name exists
                 if item.gn != nil && viewOptions.showGlyphNames {
                     var gn = item.gn!
-                    gn = gn.count >= 10 ? gn.truncated(limit: 10) : gn
+                    gn = gn.count >= 12 ? gn.truncated(limit: 12, position: .middle, leader: "...") : gn
+                    //gn = gn.count >= 10 ? gn.truncated(limit: 10) : gn
                     drawGlyphName(inContext: context, glyphName: gn, x: x+cellWidth/2, y: 3, color: NSColor.textColor.withAlphaComponent(0.6).cgColor, pointSize: glyphNamePointSize)
                 }
             }
