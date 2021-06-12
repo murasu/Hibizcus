@@ -127,6 +127,24 @@ struct HBStringView: View, DropDelegate {
                 })
             }
         }
+        .onOpenURL(perform: { url in
+            print("Url opened = \(url.absoluteString)")
+            let params = url.queryParameters
+            if params != nil {
+                if params!["projectfileurl"] != nil {
+                    
+                }
+                if params!["font1Url"] != nil && params!["font1Url"] != "none" {
+                    hbProject.hbFont1.setFontFile(filePath: params!["font1Url"]!)
+                }
+                if params!["font2Url"] != nil && params!["font2Url"] != "none" {
+                    hbProject.hbFont2.setFontFile(filePath: params!["font2Url"]!)
+                }
+                if params!["text"] != nil {
+                    hbProject.hbStringViewText = params!["text"]!
+                }
+            }
+        })
         .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
         .navigationTitle(Text("StringViewer: \(hbProject.projectName)"))
     }

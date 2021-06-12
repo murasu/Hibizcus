@@ -53,7 +53,6 @@ class HBGridViewOptions: ObservableObject {
 
 struct HBGridView: View, DropDelegate {
     @Environment(\.openURL) var openURL
-    //@EnvironmentObject var hbProject: HBProject
     @Binding var document: HibizcusDocument
     
     @StateObject var hbProject = HBProject()
@@ -239,7 +238,7 @@ struct HBGridView: View, DropDelegate {
                 // String Viewer
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
-                        if let url = URL(string: "Hibizcus://stringview") {
+                        if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
                             hbProject.hbStringViewText = tappedItem.text ?? ""
                             openURL(url)
                         }
@@ -302,6 +301,14 @@ struct HBGridView: View, DropDelegate {
             refreshGridItems()
         }
         .environmentObject(hbProject)
+    }
+    
+    func urlParamsForToolWindow(text: String) -> String {
+        let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let pfUrl = projectFileUrl?.absoluteString ?? "none"
+        let f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? "none"
+        let f2Url = hbProject.hbFont1.fileUrl?.absoluteString ?? "none"
+        return "text=\(etext)&projectfileurl=\(pfUrl)&font1Url=\(f1Url)&font2Url=\(f2Url)"
     }
     
     func performDrop(info: DropInfo) -> Bool {

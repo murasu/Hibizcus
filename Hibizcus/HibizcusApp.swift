@@ -30,21 +30,18 @@ struct HibizcusApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: HibizcusDocument()) { file in
             HBGridView(document: file.$document, projectFileUrl: file.fileURL)
-                //.environmentObject(hbProject)
         }
         
         WindowGroup("TraceViewer") {
             // activate existing window if exists
             TraceView()
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "*"))
-                //.environmentObject(hbProject)
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "traceview")) // create new window if one doesn't exist
 
         WindowGroup("StringViewer") {
             HBStringView()
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "stringview"), allowing: Set(arrayLiteral: "*"))
-                //.environmentObject(hbProject)
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "stringview")) 
     }
