@@ -25,36 +25,26 @@ class HBProject: ObservableObject {
 @main
 struct HibizcusApp: App {
     
-    @StateObject var hbProject = HBProject()
+    //@StateObject var hbProject = HBProject()
     
     var body: some Scene {
         DocumentGroup(newDocument: HibizcusDocument()) { file in
-            HBGridView(document: file.$document, projectFileUrl: file.fileURL).environmentObject(hbProject)
+            HBGridView(document: file.$document, projectFileUrl: file.fileURL)
+                //.environmentObject(hbProject)
         }
         
         WindowGroup("TraceViewer") {
             // activate existing window if exists
             TraceView()
-                .environmentObject(hbProject)
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "*"))
+                //.environmentObject(hbProject)
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "traceview")) // create new window if one doesn't exist
-        /*
-        .commands {
-            CommandGroup(replacing: .help) {
-                Button(action: {print("clicked on MyApp Help menu")}) {
-                    Text("MyApp Help")
-                }
-            }
-            CommandMenu("Edit") {
-                Text("edit menu item")
-            }
-        } */
-        
+
         WindowGroup("StringViewer") {
             HBStringView()
-                .environmentObject(hbProject)
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "stringview"), allowing: Set(arrayLiteral: "*"))
+                //.environmentObject(hbProject)
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "stringview")) 
     }

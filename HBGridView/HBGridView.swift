@@ -53,8 +53,10 @@ class HBGridViewOptions: ObservableObject {
 
 struct HBGridView: View, DropDelegate {
     @Environment(\.openURL) var openURL
-    @EnvironmentObject var hbProject: HBProject
+    //@EnvironmentObject var hbProject: HBProject
     @Binding var document: HibizcusDocument
+    
+    @StateObject var hbProject = HBProject()
     
     var projectFileUrl: URL?
 
@@ -299,6 +301,7 @@ struct HBGridView: View, DropDelegate {
             hbProject.refresh()
             refreshGridItems()
         }
+        .environmentObject(hbProject)
     }
     
     func performDrop(info: DropInfo) -> Bool {

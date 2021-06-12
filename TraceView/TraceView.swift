@@ -15,8 +15,9 @@ class TraceViewOptions: ObservableObject {
 }
 
 struct TraceView: View, DropDelegate {
-    @EnvironmentObject var hbProject: HBProject
-
+    //@EnvironmentObject var hbProject: HBProject
+    @StateObject var hbProject = HBProject()
+    
     @ObservedObject var hbTraceBridge: TracerBridge = TracerBridge.shared
     @ObservedObject var traceViewOptions = TraceViewOptions()
     
@@ -82,6 +83,7 @@ struct TraceView: View, DropDelegate {
             .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
             .navigationTitle(Text("TraceViewer: \(hbProject.projectName)"))
         }
+        .environmentObject(hbProject)
         .onAppear {
             hbTraceBridge.hbFont    = hbProject.hbFont1
             hbTraceBridge.theText   = hbProject.hbTraceViewText

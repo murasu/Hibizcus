@@ -23,9 +23,11 @@ class HBStringViewSettings: ObservableObject {
 
 struct HBStringView: View, DropDelegate {
     @Environment(\.openURL) var openURL
-    @EnvironmentObject var hbProject: HBProject
+    //@EnvironmentObject var hbProject: HBProject
     @StateObject var stringViewSettings = HBStringViewSettings()
     
+    @StateObject var hbProject = HBProject()
+
     var body: some View {
         NavigationView() {
             // Sidebar
@@ -90,30 +92,33 @@ struct HBStringView: View, DropDelegate {
                         }
                     }
                 }
-                Divider()
-                VStack {
-                    HStack {
-                        // Glyphs in the shaped text, shaped using font1, the main font
-                        VStack {
-                            StringGlyphListView(stringViewSettings:stringViewSettings,
-                                                defaultColor: (hbProject.hbFont2.fileUrl == nil) ? Color.primary : Hibizcus.FontColor.MainFontUIColor.opacity(0.8),
-                                                mainFont: true)
-                        }
-                        .padding(.leading, 10)
-                        if hbProject.hbFont2.fileUrl != nil {
-                            Divider()
-                            // Glyphs in the shaped text, shaped font2, the compare font
+                if hbProject.hbStringViewText.count > 0 {
+                    Divider()
+                    VStack {
+                        HStack {
+                            // Glyphs in the shaped text, shaped using font1, the main font
                             VStack {
                                 StringGlyphListView(stringViewSettings:stringViewSettings,
-                                                    defaultColor: (hbProject.hbFont2.fileUrl == nil) ? Color.primary : Hibizcus.FontColor.CompareFontUIColor.opacity(0.8),
-                                                    mainFont: false)
+                                                    defaultColor: (hbProject.hbFont2.fileUrl == nil) ? Color.primary : Hibizcus.FontColor.MainFontUIColor.opacity(0.8),
+                                                    mainFont: true)
                             }
-                            .padding(.trailing, 10)
+                            .padding(.leading, 10)
+                            if hbProject.hbFont2.fileUrl != nil {
+                                Divider()
+                                // Glyphs in the shaped text, shaped font2, the compare font
+                                VStack {
+                                    StringGlyphListView(stringViewSettings:stringViewSettings,
+                                                        defaultColor: (hbProject.hbFont2.fileUrl == nil) ? Color.primary : Hibizcus.FontColor.CompareFontUIColor.opacity(0.8),
+                                                        mainFont: false)
+                                }
+                                .padding(.trailing, 10)
+                            }
                         }
                     }
                 }
             }
         }
+        .environmentObject(hbProject)
         .toolbar {
             // Toggle sidebar
             ToolbarItem(placement: .navigation) {
