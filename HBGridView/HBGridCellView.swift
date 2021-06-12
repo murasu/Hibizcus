@@ -32,11 +32,12 @@ class HBGridCellView: NSView {
         }
     }
     
+    /*
     var viewOptions:HBGridViewOptions = HBGridViewOptions() {
         didSet {
             needsDisplay = true
         }
-    }
+    } */
     
     var scale:CGFloat = 1 {
         didSet {

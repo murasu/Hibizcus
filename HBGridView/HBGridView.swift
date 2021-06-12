@@ -58,8 +58,8 @@ struct HBGridView: View, DropDelegate {
     
     var projectFileUrl: URL?
 
-    @StateObject var gridViewOptions            = HBGridViewOptions()
     @StateObject var clusterViewModel           = HBGridSidebarClusterViewModel()
+    @StateObject var gridViewOptions            = HBGridViewOptions()
     
     // Used across all tabs
     @State var hbGridItems                      = [HBGridItem]()
@@ -157,7 +157,7 @@ struct HBGridView: View, DropDelegate {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
                                 if !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly && hbGridItem.hasDiff()) {
-                                    HBGridCellViewRepresentable(wordItem: hbGridItem, scale: 1.0, viewOptions: gridViewOptions)
+                                    HBGridCellViewRepresentable(wordItem: hbGridItem, scale: 1.0)//, viewOptions: gridViewOptions)
                                         .frame(width: maxCellWidth, height: 92, alignment: .center)
                                         .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ? 1 : 0)
                                         .gesture(TapGesture(count: 2).onEnded {
@@ -181,9 +181,10 @@ struct HBGridView: View, DropDelegate {
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
                                         })
                                         .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                            HBGlyphView(scale: tappedItem.type == .Word ? 4.0 : 6.0,
-                                                        gridItem: tappedItem,
-                                                        viewOptions: gridViewOptions)
+                                            HBGlyphView(tapped: tappedItem, items: hbGridItems)
+                                            // TODO: The above can be replaced with the code below when it can be complied without any swift compile errors
+                                            // See notes above init func in HBGLyphView
+                                            //HBGlyphView(scale: tappedItem.type == .Word ? 4.0 : 6.0, currItem: hbGridItems.firstIndex(of: tappedItem) ?? 0, items: hbGridItems)
                                         }
                                 }
                             }

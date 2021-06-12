@@ -15,7 +15,7 @@ struct HBGridCellViewRepresentable: NSViewRepresentable {
 
     var wordItem:HBGridItem
     var scale:CGFloat
-    @ObservedObject var viewOptions:HBGridViewOptions
+    //@ObservedObject var viewOptions:HBGridViewOptions
 
     func makeNSView(context: Context) -> HBGridCellView {
         let cellView = HBGridCellView()
@@ -23,7 +23,7 @@ struct HBGridCellViewRepresentable: NSViewRepresentable {
         cellView.hbFont1 = hbProject.hbFont1
         cellView.hbFont2 = hbProject.hbFont2
         cellView.gridItem = wordItem
-        cellView.viewOptions = viewOptions
+        //cellView.viewOptions = viewOptions
         cellView.scale = scale
         return cellView
     }
@@ -33,7 +33,7 @@ struct HBGridCellViewRepresentable: NSViewRepresentable {
         nsView.hbFont1 = hbProject.hbFont1
         nsView.hbFont2 = hbProject.hbFont2
         nsView.gridItem = wordItem
-        nsView.viewOptions = viewOptions
+        //nsView.viewOptions = viewOptions
         nsView.scale = scale
     }
 }
