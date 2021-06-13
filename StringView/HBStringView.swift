@@ -131,23 +131,7 @@ struct HBStringView: View, DropDelegate {
             print("Url opened = \(url.absoluteString)")
             let params = url.queryParameters
             if params != nil {
-                if params!["font1BookMark"] != nil && params!["font1BookMark"] != "" {
-                    let bookMarkData = Data(base64Encoded: params!["font1BookMark"]!)
-                    hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-                }
-                if params!["font2BookMark"] != nil && params!["font2BookMark"] != "" {
-                    let bookMarkData = Data(base64Encoded: params!["font2BookMark"]!)
-                    hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-                }
-                if params!["font1Url"] != nil && params!["font1Url"] != "" {
-                    hbProject.hbFont1.setFontFile(filePath: params!["font1Url"]!)
-                }
-                if params!["font2Url"] != nil && params!["font2Url"] != "" {
-                    hbProject.hbFont2.setFontFile(filePath: params!["font2Url"]!)
-                }
-                if params!["text"] != nil {
-                    hbProject.hbStringViewText = params!["text"]!
-                }
+                updateTextAndFonts(params: params!)
             }
         })
         .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
@@ -170,14 +154,9 @@ struct HBStringView: View, DropDelegate {
                     let jsonData = droppedData!.data(using: .utf8)!
                     do {
                         let dictionary = try JSONDecoder().decode([String:String].self, from: jsonData)
-                        
-                        //let f1 = dictionary["font1"]
-                        //let f2 = dictionary["font2"]
-                        let tx = dictionary["text"]
-                        if tx != nil {
-                            DispatchQueue.main.async {
-                                hbProject.hbStringViewText = tx!
-                            }
+                        // Update should be done on the main thread
+                        DispatchQueue.main.async {
+                            updateTextAndFonts(params: dictionary)
                         }
                     }
                     catch{
@@ -198,16 +177,10 @@ struct HBStringView: View, DropDelegate {
                     DispatchQueue.main.async {
                         if hbProject.hbFont1.fileUrl == nil {
                             hbProject.hbFont1.setFontFile(filePath: url.path)
-                            // Update the string layout data with our new font
-//                            updateStringLayoutData(forFont1: true, forFont2: false)
                         } else {
                             hbProject.hbFont2.setFontFile(filePath: url.path)
-                            // Update the string layout data with our new font
-//                            updateStringLayoutData(forFont1: false, forFont2: true)
                         }
-                        hbProject.refresh() // .lastUpdated = NSDate().timeIntervalSince1970.debugDescription
-                        // Just toggle this flag to force update the UI
-                        //stringViewSettings.toggleRefresh.toggle()
+                        hbProject.refresh() 
                     }
                 }
             }
@@ -235,6 +208,26 @@ struct HBStringView: View, DropDelegate {
         
         let dataInJson = try! JSONEncoder().encode(data)
         return String(data: dataInJson, encoding: .utf8)!
+    }
+    
+    func updateTextAndFonts(params: [String: String]) {
+        if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
+            let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
+            hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+        }
+        if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
+            let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
+            hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+        }
+        if params["font1Url"] != nil && params["font1Url"] != "" {
+            hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
+        }
+        if params["font2Url"] != nil && params["font2Url"] != "" {
+            hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
+        }
+        if params["text"] != nil {
+            hbProject.hbStringViewText = params["text"]!
+        }
     }
 }
 

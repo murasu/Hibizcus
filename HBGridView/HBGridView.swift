@@ -176,7 +176,7 @@ struct HBGridView: View, DropDelegate {
                                             print("single clicked on item \(hbGridItem)")
                                         })
                                         .onDrag({
-                                            let dragData = jsonFrom(font1:hbProject.hbFont1, font2:hbProject.hbFont2, text:hbGridItem.text!)
+                                            let dragData = jsonParamsForToolWindow(text: hbGridItem.text!)
                                             UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
                                             print("Dragging out \(dragData)")
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
@@ -301,28 +301,6 @@ struct HBGridView: View, DropDelegate {
             refreshGridItems()
         }
         .environmentObject(hbProject)
-    }
-    
-    func urlParamsForToolWindow(text: String) -> String {
-        let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        var f1Url = ""
-        var f2Url = ""
-        //let pfUrl = projectFileUrl?.absoluteString ?? "none"
-        var bkMk1 = ""
-        var bkMk2 = ""
-        if document.projectData.fontFile1Bookmark != nil {
-            bkMk1 = document.projectData.fontFile1Bookmark!.base64EncodedString()
-        } else {
-            f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
-        }
-        if document.projectData.fontFile2Bookmark != nil {
-            bkMk2 = document.projectData.fontFile2Bookmark!.base64EncodedString()
-        } else {
-            f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
-        }
-        
-        let params = "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
-        return params
     }
     
     func performDrop(info: DropInfo) -> Bool {
@@ -779,17 +757,56 @@ struct HBGridView: View, DropDelegate {
         }
     }
     
-    // MARK: ----- JSON helper
+    // MARK: ----- helpers
     
-    func jsonFrom(font1:HBFont, font2:HBFont, text:String) -> String {
+    // Json Helper
+    func jsonParamsForToolWindow(text:String) -> String {
+        var f1Url = ""
+        var f2Url = ""
+        var bkMk1 = ""
+        var bkMk2 = ""
+        if document.projectData.fontFile1Bookmark != nil {
+            bkMk1 = document.projectData.fontFile1Bookmark!.base64EncodedString()
+        } else {
+            f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+        }
+        if document.projectData.fontFile2Bookmark != nil {
+            bkMk2 = document.projectData.fontFile2Bookmark!.base64EncodedString()
+        } else {
+            f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+        }
+        
         let data = [
-            "font1": font1.fileUrl?.absoluteString ?? "",
-            "font2": font2.fileUrl?.absoluteString ?? "",
-            "text": text
+            "text": text,
+            "font1BookMark": bkMk1,
+            "font2BookMark": bkMk2,
+            "font1Url": f1Url,
+            "font2Url": f2Url
         ]
         
         let dataInJson = try! JSONEncoder().encode(data)
         return String(data: dataInJson, encoding: .utf8)!
+    }
+    
+    // Help construct URL parameters
+    func urlParamsForToolWindow(text: String) -> String {
+        let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        var f1Url = ""
+        var f2Url = ""
+        var bkMk1 = ""
+        var bkMk2 = ""
+        if document.projectData.fontFile1Bookmark != nil {
+            bkMk1 = document.projectData.fontFile1Bookmark!.base64EncodedString()
+        } else {
+            f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+        }
+        if document.projectData.fontFile2Bookmark != nil {
+            bkMk2 = document.projectData.fontFile2Bookmark!.base64EncodedString()
+        } else {
+            f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+        }
+
+        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
     }
 }
 

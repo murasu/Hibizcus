@@ -16,6 +16,8 @@
 
 char *get_data_as_json_from_font_file(const char* inPath)
 {
+    printf("==> get_data_as_json_from_font_file \"%s\"\n", inPath);
+    
     // TODO: ttcindex probably points to the index of the ttc file - revisit this when we test TTCs
     uint32_t ttcindex = 0;
     
