@@ -239,7 +239,6 @@ struct HBGridView: View, DropDelegate {
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
-                            //hbProject.hbStringViewText = tappedItem.text ?? ""
                             openURL(url)
                         }
                     }, label: {
@@ -251,7 +250,6 @@ struct HBGridView: View, DropDelegate {
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
-                            //hbProject.hbTraceViewText = tappedItem.text ?? ""
                             openURL(url)
                         }
                     }, label: {
