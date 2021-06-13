@@ -23,7 +23,9 @@ class HBStringViewSettings: ObservableObject {
 
 struct HBStringView: View, DropDelegate {
     @Environment(\.openURL) var openURL
-    //@EnvironmentObject var hbProject: HBProject
+
+    // This does not update the saved project as that data is not shared across other windows
+    // SwiftUI limitation?
     @StateObject var stringViewSettings = HBStringViewSettings()
     
     @StateObject var hbProject = HBProject()

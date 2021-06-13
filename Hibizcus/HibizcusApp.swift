@@ -32,17 +32,17 @@ struct HibizcusApp: App {
             HBGridView(document: file.$document, projectFileUrl: file.fileURL)
         }
         
-        WindowGroup("TraceViewer") {
-            // activate existing window if exists
-            TraceView()
-                .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "*"))
-        }
-        .handlesExternalEvents(matching: Set(arrayLiteral: "traceview")) // create new window if one doesn't exist
-
         WindowGroup("StringViewer") {
+            // activate existing window if exists
             HBStringView()
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "stringview"), allowing: Set(arrayLiteral: "*"))
         }
-        .handlesExternalEvents(matching: Set(arrayLiteral: "stringview")) 
+        .handlesExternalEvents(matching: Set(arrayLiteral: "stringview"))  // create new window if one doesn't exist
+        
+        WindowGroup("TraceViewer") {
+            TraceView()
+                .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "*"))
+        }
+        .handlesExternalEvents(matching: Set(arrayLiteral: "traceview"))
     }
 }

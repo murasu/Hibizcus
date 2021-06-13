@@ -15,7 +15,10 @@ class TraceViewOptions: ObservableObject {
 }
 
 struct TraceView: View, DropDelegate {
-    //@EnvironmentObject var hbProject: HBProject
+    @Environment(\.openURL) var openURL
+
+    // This does not update the saved project as that data is not shared across other windows
+    // SwiftUI limitation?
     @StateObject var hbProject = HBProject()
     
     @ObservedObject var hbTraceBridge: TracerBridge = TracerBridge.shared
@@ -84,11 +87,21 @@ struct TraceView: View, DropDelegate {
             .navigationTitle(Text("TraceViewer: \(hbProject.projectName)"))
         }
         .environmentObject(hbProject)
+        .onOpenURL(perform: { url in
+            print("Url opened = \(url.absoluteString)")
+            let params = url.queryParameters
+            if params != nil {
+                updateTextAndFonts(params: params!)
+                hbTraceBridge.tvLogItems.removeAll()
+                hbTraceBridge.hbFont  = hbProject.hbFont1
+                hbTraceBridge.startTrace()
+            }
+        }) /*
         .onAppear {
             hbTraceBridge.hbFont    = hbProject.hbFont1
             hbTraceBridge.theText   = hbProject.hbTraceViewText
             hbTraceBridge.startTrace()
-        }
+        } */
     }
     
     func copyHexString() {
@@ -116,15 +129,10 @@ struct TraceView: View, DropDelegate {
                     let jsonData = droppedData!.data(using: .utf8)!
                     do {
                         let dictionary = try JSONDecoder().decode([String:String].self, from: jsonData)
-                        
-                        //let f1 = dictionary["font1"]
-                        let tx = dictionary["text"]
-                        
+                        // Update should be done on the main thread
                         DispatchQueue.main.async {
                             hbTraceBridge.tvLogItems.removeAll()
-                            //hbProject.hbFont1.setFontFile(filePath: f1!)
-                            //hbTraceBridge.hbFont = hbProject.hbFont1
-                            hbTraceBridge.theText = tx!
+                            updateTextAndFonts(params: dictionary)
                             hbTraceBridge.startTrace()
                         }
                     }
@@ -153,6 +161,26 @@ struct TraceView: View, DropDelegate {
         }
         
         return true
+    }
+    
+    func updateTextAndFonts(params: [String: String]) {
+        if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
+            let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
+            hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+        }
+        if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
+            let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
+            hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+        }
+        if params["font1Url"] != nil && params["font1Url"] != "" {
+            hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
+        }
+        if params["font2Url"] != nil && params["font2Url"] != "" {
+            hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
+        }
+        if params["text"] != nil {
+            hbTraceBridge.theText = params["text"]!
+        }
     }
 }
 
