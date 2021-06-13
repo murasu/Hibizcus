@@ -305,10 +305,24 @@ struct HBGridView: View, DropDelegate {
     
     func urlParamsForToolWindow(text: String) -> String {
         let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let pfUrl = projectFileUrl?.absoluteString ?? "none"
-        let f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? "none"
-        let f2Url = hbProject.hbFont1.fileUrl?.absoluteString ?? "none"
-        return "text=\(etext)&projectfileurl=\(pfUrl)&font1Url=\(f1Url)&font2Url=\(f2Url)"
+        var f1Url = ""
+        var f2Url = ""
+        //let pfUrl = projectFileUrl?.absoluteString ?? "none"
+        var bkMk1 = ""
+        var bkMk2 = ""
+        if document.projectData.fontFile1Bookmark != nil {
+            bkMk1 = document.projectData.fontFile1Bookmark!.base64EncodedString()
+        } else {
+            f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+        }
+        if document.projectData.fontFile2Bookmark != nil {
+            bkMk2 = document.projectData.fontFile2Bookmark!.base64EncodedString()
+        } else {
+            f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+        }
+        
+        let params = "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
+        return params
     }
     
     func performDrop(info: DropInfo) -> Bool {
