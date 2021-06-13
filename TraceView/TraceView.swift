@@ -82,6 +82,34 @@ struct TraceView: View, DropDelegate {
                         Image(systemName: "sidebar.left")
                     })
                 }
+            
+                // Copy buton
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    Button(action: {
+                        if hbTraceBridge.theText != "" {
+                            copyTextToClipboard(textToCopy: hbTraceBridge.theText)
+                        }
+                    }, label: {
+                        //Image(systemName: "doc.on.doc")
+                        Text("Copy text")
+                    })
+                    .help((hbTraceBridge.theText != "") ? "Copy \(hbTraceBridge.theText) to clipboard" : "")
+                    .disabled(hbTraceBridge.theText == "")
+                }
+                
+                // String Viewer
+                /*
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    Button(action: {
+                        if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: hbTraceBridge.theText))") {
+                            openURL(url)
+                        }
+                    }, label: {
+                        //Image(systemName: "rectangle.and.text.magnifyingglass")
+                        Text("String viewer")
+                    })
+                    .help(hbTraceBridge.theText != "" ? "Open \(hbTraceBridge.theText) in StringViewer" : "Open StringViewer")
+                } */
             }
             .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
             .navigationTitle(Text("TraceViewer: \(hbProject.projectName)"))
@@ -96,12 +124,7 @@ struct TraceView: View, DropDelegate {
                 hbTraceBridge.hbFont  = hbProject.hbFont1
                 hbTraceBridge.startTrace()
             }
-        }) /*
-        .onAppear {
-            hbTraceBridge.hbFont    = hbProject.hbFont1
-            hbTraceBridge.theText   = hbProject.hbTraceViewText
-            hbTraceBridge.startTrace()
-        } */
+        })
     }
     
     func copyHexString() {

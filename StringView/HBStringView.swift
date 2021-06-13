@@ -128,6 +128,32 @@ struct HBStringView: View, DropDelegate {
                     Image(systemName: "sidebar.left")
                 })
             }
+            // Copy buton
+            ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                Button(action: {
+                    if hbProject.hbStringViewText != "" {
+                        copyTextToClipboard(textToCopy: hbProject.hbStringViewText)
+                    }
+                }, label: {
+                    //Image(systemName: "doc.on.doc")
+                    Text("Copy text")
+                })
+                .help( hbProject.hbStringViewText != "" ? "Copy \(hbProject.hbStringViewText) to clipboard" : "")
+                .disabled(hbProject.hbStringViewText == "")
+            }
+            // TraceView
+            /*
+            ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                Button(action: {
+                    if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: hbProject.hbStringViewText))") {
+                        openURL(url)
+                    }
+                }, label: {
+                    //Image(systemName: "list.bullet.rectangle")
+                    Text("Trace viewer")
+                })
+                .help( hbProject.hbStringViewText != "" ? "Open \(hbProject.hbStringViewText) in TraceViewer" : "Open TraceViewer")
+            } */
         }
         .onOpenURL(perform: { url in
             print("Url opened = \(url.absoluteString)")

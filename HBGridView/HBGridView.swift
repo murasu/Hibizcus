@@ -230,7 +230,8 @@ struct HBGridView: View, DropDelegate {
                             copyTextToClipboard(textToCopy: tappedItem.text!)
                         }
                     }, label: {
-                        Image(systemName: "doc.on.doc")
+                        //Image(systemName: "doc.on.doc")
+                        Text("Copy text")
                     })
                     .help((tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
                     .disabled(tappedItem.text == nil || tappedItem.text == "")
@@ -242,7 +243,8 @@ struct HBGridView: View, DropDelegate {
                             openURL(url)
                         }
                     }, label: {
-                        Image(systemName: "rectangle.and.text.magnifyingglass")
+                        //Image(systemName: "rectangle.and.text.magnifyingglass")
+                        Text("String viewer")
                     })
                     .help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in StringViewer" : "Open StringViewer")
                 }
@@ -253,7 +255,8 @@ struct HBGridView: View, DropDelegate {
                             openURL(url)
                         }
                     }, label: {
-                        Image(systemName: "list.bullet.rectangle")
+                        //Image(systemName: "list.bullet.rectangle")
+                        Text("Trace viewer")
                     })
                     .help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in TraceViewer" : "Open TraceViewer")
                 }
