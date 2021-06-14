@@ -132,6 +132,18 @@ struct HBGridView: View, DropDelegate {
                     print("Font file changed - need to redraw the UI")
                     hbProject.refresh()
                 }
+                .onChange(of: hbProject.hbFont1.fileUrl) { _ in
+                    // Remove the bookmark if the font is removed from the project
+                    if hbProject.hbFont1.fileUrl == nil && document.projectData.fontFile1Bookmark != nil {
+                        document.projectData.fontFile1Bookmark = nil
+                    }
+                }
+                .onChange(of: hbProject.hbFont2.fileUrl) { _ in
+                    // Remove the bookmark if the font is removed from the project
+                    if hbProject.hbFont2.fileUrl == nil && document.projectData.fontFile2Bookmark != nil {
+                        document.projectData.fontFile2Bookmark = nil
+                    }
+                }
             VStack {
                 if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
                     VStack {

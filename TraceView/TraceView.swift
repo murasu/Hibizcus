@@ -12,6 +12,8 @@ class TraceViewOptions: ObservableObject {
     @Published var showFullTrace:Bool   = false
     @Published var showCluster:Bool     = false
     @Published var showGlyphNames:Bool  = false
+    var fontBookmark1 = Data()
+    var fontBookmark2 = Data()
 }
 
 struct TraceView: View, DropDelegate {
@@ -98,7 +100,6 @@ struct TraceView: View, DropDelegate {
                 }
                 
                 // String Viewer
-                /*
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: hbTraceBridge.theText))") {
@@ -109,7 +110,7 @@ struct TraceView: View, DropDelegate {
                         Text("String viewer")
                     })
                     .help(hbTraceBridge.theText != "" ? "Open \(hbTraceBridge.theText) in StringViewer" : "Open StringViewer")
-                } */
+                } 
             }
             .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
             .navigationTitle(Text("TraceViewer: \(hbProject.projectName)"))
@@ -190,10 +191,14 @@ struct TraceView: View, DropDelegate {
         if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
             let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
             hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+            // Save the bookmark
+            traceViewOptions.fontBookmark1 = bookMarkData!
         }
         if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
             let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
             hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+            // Save the bookmark
+            traceViewOptions.fontBookmark2 = bookMarkData!
         }
         if params["font1Url"] != nil && params["font1Url"] != "" {
             hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
@@ -204,6 +209,27 @@ struct TraceView: View, DropDelegate {
         if params["text"] != nil {
             hbTraceBridge.theText = params["text"]!
         }
+    }
+    
+    // Help construct URL parameters
+    func urlParamsForToolWindow(text: String) -> String {
+        let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        var f1Url = ""
+        var f2Url = ""
+        var bkMk1 = ""
+        var bkMk2 = ""
+        if traceViewOptions.fontBookmark1.count > 0 {
+            bkMk1 = traceViewOptions.fontBookmark1.base64EncodedString() //document.projectData.fontFile1Bookmark!.base64EncodedString()
+        } else {
+            f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+        }
+        if traceViewOptions.fontBookmark2.count > 0 {
+            bkMk2 = traceViewOptions.fontBookmark2.base64EncodedString() // document.projectData.fontFile2Bookmark!.base64EncodedString()
+        } else {
+            f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+        }
+
+        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
     }
 }
 

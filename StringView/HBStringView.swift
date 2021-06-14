@@ -19,6 +19,8 @@ class HBStringViewSettings: ObservableObject {
     // This is used to force update view when fonts change
     @Published var toggleRefresh    = false
     @Published var fontSize: Double = 100
+    var fontBookmark1 = Data()
+    var fontBookmark2 = Data()
 }
 
 struct HBStringView: View, DropDelegate {
@@ -142,7 +144,7 @@ struct HBStringView: View, DropDelegate {
                 .disabled(hbProject.hbStringViewText == "")
             }
             // TraceView
-            /*
+            //*
             ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                 Button(action: {
                     if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: hbProject.hbStringViewText))") {
@@ -153,7 +155,7 @@ struct HBStringView: View, DropDelegate {
                     Text("Trace viewer")
                 })
                 .help( hbProject.hbStringViewText != "" ? "Open \(hbProject.hbStringViewText) in TraceViewer" : "Open TraceViewer")
-            } */
+            } //*/
         }
         .onOpenURL(perform: { url in
             print("Url opened = \(url.absoluteString)")
@@ -242,10 +244,13 @@ struct HBStringView: View, DropDelegate {
         if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
             let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
             hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+            // Save the bookmark
+            stringViewSettings.fontBookmark1 = bookMarkData!
         }
         if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
             let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
             hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+            stringViewSettings.fontBookmark2 = bookMarkData!
         }
         if params["font1Url"] != nil && params["font1Url"] != "" {
             hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
@@ -256,6 +261,27 @@ struct HBStringView: View, DropDelegate {
         if params["text"] != nil {
             hbProject.hbStringViewText = params["text"]!
         }
+    }
+    
+    // Help construct URL parameters
+    func urlParamsForToolWindow(text: String) -> String {
+        let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        var f1Url = ""
+        var f2Url = ""
+        var bkMk1 = ""
+        var bkMk2 = ""
+        if stringViewSettings.fontBookmark1.count > 0 {
+            bkMk1 = stringViewSettings.fontBookmark1.base64EncodedString() //document.projectData.fontFile1Bookmark!.base64EncodedString()
+        } else {
+            f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+        }
+        if stringViewSettings.fontBookmark2.count > 0 {
+            bkMk2 = stringViewSettings.fontBookmark2.base64EncodedString() // document.projectData.fontFile2Bookmark!.base64EncodedString()
+        } else {
+            f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+        }
+
+        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
     }
 }
 

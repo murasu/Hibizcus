@@ -8,7 +8,7 @@ import Combine
 import SwiftUI
 import AppKit
 
-struct HBSidebarFont: View {
+struct HBSidebarFont: View {    
     @EnvironmentObject var hbProject: HBProject
     @State private var showingLanguageSelection = false
     var showCompareFont = true
@@ -202,11 +202,17 @@ struct HBSidebarFont: View {
     }
     
     func removeFont1() {
+        // Remove the bookmark if this font in the document
+        //document.projectData.fontFile1Bookmark = nil
+        // Update hbFont
         hbProject.hbFont1.setFontFile(filePath: "")
         hbProject.refresh()
     }
     
     func removeFont2() {
+        // Remove the bookmark if this font in the document
+        //document.projectData.fontFile2Bookmark = nil
+        // Update hbFont
         hbProject.hbFont2.setFontFile(filePath: "")
         hbProject.refresh()
     }

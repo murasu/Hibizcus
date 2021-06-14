@@ -585,8 +585,8 @@
 		006FB99225E694FA00F05B17 /* TraceView */ = {
 			isa = PBXGroup;
 			children = (
-				00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */,
 				006FB99325E6950F00F05B17 /* TraceView.swift */,
+				00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */,
 				00DDB4FA25E965F3002FC0B4 /* TracerBridge.swift */,
 				00DDB51425E98733002FC0B4 /* TraceRowView.swift */,
 				00DDB51525E98733002FC0B4 /* TraceRowViewRepresentable.swift */,
