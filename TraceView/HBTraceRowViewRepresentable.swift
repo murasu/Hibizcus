@@ -8,16 +8,16 @@
 import Combine
 import SwiftUI
 
-struct TraceRowViewRepresentable: NSViewRepresentable {
+struct HBTraceRowViewRepresentable: NSViewRepresentable {
     
-    typealias NSViewType = TraceRowView
+    typealias NSViewType = HBTraceRowView
 
     var tvLogItem: TVLogItem
     var ctFont:CTFont
-    @ObservedObject var viewOptions:TraceViewOptions
+    @ObservedObject var viewOptions:HBTraceViewOptions
 
-    func makeNSView(context: Context) -> TraceRowView {
-        let traceRowView = TraceRowView()
+    func makeNSView(context: Context) -> HBTraceRowView {
+        let traceRowView = HBTraceRowView()
         // Set defaults
         traceRowView.tvLogItem = tvLogItem
         traceRowView.ctFont = ctFont
@@ -25,7 +25,7 @@ struct TraceRowViewRepresentable: NSViewRepresentable {
         return traceRowView
     }
     
-    func updateNSView(_ nsView: TraceRowView, context: Context) {
+    func updateNSView(_ nsView: HBTraceRowView, context: Context) {
         //print("Update called: in TraceRowViewRepresentable")
         nsView.tvLogItem = tvLogItem
         nsView.ctFont = ctFont

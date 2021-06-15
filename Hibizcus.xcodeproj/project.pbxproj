@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		00129F9F260C861E00B82FB7 /* TraceSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */; };
 		00129FA0260C861E00B82FB7 /* HBFontAnkrTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB53525ED9AA6002FC0B4 /* HBFontAnkrTable.swift */; };
-		00129FA1260C861E00B82FB7 /* TraceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FB99325E6950F00F05B17 /* TraceView.swift */; };
-		00129FA2260C861E00B82FB7 /* TraceRowViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51525E98733002FC0B4 /* TraceRowViewRepresentable.swift */; };
-		00129FA3260C861E00B82FB7 /* TracerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB4FA25E965F3002FC0B4 /* TracerBridge.swift */; };
-		00129FA4260C861E00B82FB7 /* TraceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51425E98733002FC0B4 /* TraceRowView.swift */; };
+		00129FA1260C861E00B82FB7 /* HBTraceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FB99325E6950F00F05B17 /* HBTraceView.swift */; };
+		00129FA2260C861E00B82FB7 /* HBTraceRowViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51525E98733002FC0B4 /* HBTraceRowViewRepresentable.swift */; };
+		00129FA3260C861E00B82FB7 /* HBTracerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB4FA25E965F3002FC0B4 /* HBTracerBridge.swift */; };
+		00129FA4260C861E00B82FB7 /* HBTraceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51425E98733002FC0B4 /* HBTraceRowView.swift */; };
 		00129FAA260C93F100B82FB7 /* HBStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00129FA9260C93F100B82FB7 /* HBStringView.swift */; };
 		00129FAD260C950D00B82FB7 /* HBStringSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00129FAC260C950D00B82FB7 /* HBStringSidebarView.swift */; };
 		00129FB0260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00129FAF260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift */; };
@@ -39,6 +39,8 @@
 		00341CF6263EF00D00EFA443 /* cluster_sundanese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CF5263EF00D00EFA443 /* cluster_sundanese.json */; };
 		00341CF8263EF09E00EFA443 /* cluster_rejang.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CF7263EF09E00EFA443 /* cluster_rejang.json */; };
 		0036DB192678CEF1003E91AF /* Hibizcus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0036DB182678CEF1003E91AF /* Hibizcus.icns */; };
+		0036DB1B26795DB0003E91AF /* supported_scripts.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0036DB1A26795DB0003E91AF /* supported_scripts.txt */; };
+		0036DB1D267968CF003E91AF /* HBFontScriptSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036DB1C267968CF003E91AF /* HBFontScriptSelectionView.swift */; };
 		004546EA26306BDA00601DB6 /* gujarati_gujarati.txt in Resources */ = {isa = PBXBuildFile; fileRef = 004546E926306BDA00601DB6 /* gujarati_gujarati.txt */; };
 		004546EC26306BF500601DB6 /* cluster_gujarati.json in Resources */ = {isa = PBXBuildFile; fileRef = 004546EB26306BF500601DB6 /* cluster_gujarati.json */; };
 		004546F12631993F00601DB6 /* HBGridViewNumberFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004546F02631993F00601DB6 /* HBGridViewNumberFuncs.swift */; };
@@ -147,6 +149,8 @@
 		00341CF5263EF00D00EFA443 /* cluster_sundanese.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_sundanese.json; sourceTree = "<group>"; };
 		00341CF7263EF09E00EFA443 /* cluster_rejang.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_rejang.json; sourceTree = "<group>"; };
 		0036DB182678CEF1003E91AF /* Hibizcus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Hibizcus.icns; path = Hibizcus/Hibizcus.icns; sourceTree = "<group>"; };
+		0036DB1A26795DB0003E91AF /* supported_scripts.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = supported_scripts.txt; sourceTree = "<group>"; };
+		0036DB1C267968CF003E91AF /* HBFontScriptSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontScriptSelectionView.swift; sourceTree = "<group>"; };
 		004546E926306BDA00601DB6 /* gujarati_gujarati.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gujarati_gujarati.txt; sourceTree = "<group>"; };
 		004546EB26306BF500601DB6 /* cluster_gujarati.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_gujarati.json; sourceTree = "<group>"; };
 		004546F02631993F00601DB6 /* HBGridViewNumberFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridViewNumberFuncs.swift; sourceTree = "<group>"; };
@@ -164,7 +168,7 @@
 		00566AFD25FA5E3000D06D7D /* devanagari_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = devanagari_sanskrit.txt; sourceTree = "<group>"; };
 		00566AFF25FA619A00D06D7D /* grantha_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = grantha_sanskrit.txt; sourceTree = "<group>"; };
 		006FB99025E694E900F05B17 /* HBGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridView.swift; sourceTree = "<group>"; };
-		006FB99325E6950F00F05B17 /* TraceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceView.swift; sourceTree = "<group>"; };
+		006FB99325E6950F00F05B17 /* HBTraceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTraceView.swift; sourceTree = "<group>"; };
 		007CFC24264E9AF600AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
 		007CFC26264E9B1200AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
 		007CFC29264E9CC500AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
@@ -431,9 +435,9 @@
 		00CEEA9026410D6800F515A1 /* cluster_javanese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_javanese.json; sourceTree = "<group>"; };
 		00CEEA94264126AE00F515A1 /* cluster_thaana.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_thaana.json; sourceTree = "<group>"; };
 		00CEEA9A2641708400F515A1 /* cluster_thai.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_thai.json; sourceTree = "<group>"; };
-		00DDB4FA25E965F3002FC0B4 /* TracerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracerBridge.swift; sourceTree = "<group>"; };
-		00DDB51425E98733002FC0B4 /* TraceRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceRowView.swift; sourceTree = "<group>"; };
-		00DDB51525E98733002FC0B4 /* TraceRowViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceRowViewRepresentable.swift; sourceTree = "<group>"; };
+		00DDB4FA25E965F3002FC0B4 /* HBTracerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTracerBridge.swift; sourceTree = "<group>"; };
+		00DDB51425E98733002FC0B4 /* HBTraceRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBTraceRowView.swift; sourceTree = "<group>"; };
+		00DDB51525E98733002FC0B4 /* HBTraceRowViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBTraceRowViewRepresentable.swift; sourceTree = "<group>"; };
 		00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceSidebarView.swift; sourceTree = "<group>"; };
 		00DDB51B25EA8067002FC0B4 /* HBFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFont.swift; sourceTree = "<group>"; };
 		00DDB51D25EA957E002FC0B4 /* HBFontLangSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBFontLangSelectionView.swift; sourceTree = "<group>"; };
@@ -475,6 +479,7 @@
 			children = (
 				00B254A1262E265F00A8B39D /* Credits.rtf */,
 				00A5FE2825EE5678007FB99A /* Readme.txt */,
+				0036DB1A26795DB0003E91AF /* supported_scripts.txt */,
 				00A5FE2C25EE876D007FB99A /* tamil_tamil.txt */,
 				00A5FE2A25EE6EFC007FB99A /* devanagari_hindi.txt */,
 				00566AF925FA59D900D06D7D /* devanagari_marathi.txt */,
@@ -547,6 +552,7 @@
 				00B2548C2628619200A8B39D /* HBSidebarFont.swift */,
 				00B254902628845500A8B39D /* HBSidebarLanguage.swift */,
 				00DDB51D25EA957E002FC0B4 /* HBFontLangSelectionView.swift */,
+				0036DB1C267968CF003E91AF /* HBFontScriptSelectionView.swift */,
 				00DDB53525ED9AA6002FC0B4 /* HBFontAnkrTable.swift */,
 				00DDB51F25EAA5D7002FC0B4 /* OTScriptTags.swift */,
 				00DDB52125EB3150002FC0B4 /* OTLanguageTags.swift */,
@@ -587,11 +593,11 @@
 		006FB99225E694FA00F05B17 /* TraceView */ = {
 			isa = PBXGroup;
 			children = (
-				006FB99325E6950F00F05B17 /* TraceView.swift */,
+				006FB99325E6950F00F05B17 /* HBTraceView.swift */,
 				00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */,
-				00DDB4FA25E965F3002FC0B4 /* TracerBridge.swift */,
-				00DDB51425E98733002FC0B4 /* TraceRowView.swift */,
-				00DDB51525E98733002FC0B4 /* TraceRowViewRepresentable.swift */,
+				00DDB4FA25E965F3002FC0B4 /* HBTracerBridge.swift */,
+				00DDB51425E98733002FC0B4 /* HBTraceRowView.swift */,
+				00DDB51525E98733002FC0B4 /* HBTraceRowViewRepresentable.swift */,
 			);
 			path = TraceView;
 			sourceTree = "<group>";
@@ -1057,6 +1063,7 @@
 				0016437026354C6F0044B965 /* kannada_kannada.txt in Resources */,
 				00535284260B6829007F33D9 /* Assets.xcassets in Resources */,
 				005352792608E2D6007F33D9 /* devanagari_sanskrit.txt in Resources */,
+				0036DB1B26795DB0003E91AF /* supported_scripts.txt in Resources */,
 				005352712608E2D6007F33D9 /* Readme.txt in Resources */,
 				0016436E26354C5B0044B965 /* cluster_kannada.json in Resources */,
 				00341CEC263B991D00EFA443 /* cluster_balinese.json in Resources */,
@@ -1099,7 +1106,7 @@
 				00129F9F260C861E00B82FB7 /* TraceSidebarView.swift in Sources */,
 				004546F12631993F00601DB6 /* HBGridViewNumberFuncs.swift in Sources */,
 				005352642608DEBD007F33D9 /* OTScriptTags.swift in Sources */,
-				00129FA2260C861E00B82FB7 /* TraceRowViewRepresentable.swift in Sources */,
+				00129FA2260C861E00B82FB7 /* HBTraceRowViewRepresentable.swift in Sources */,
 				005352652608DEBD007F33D9 /* OTLanguageTags.swift in Sources */,
 				005352432608DC90007F33D9 /* HBGridSidebarCluster.swift in Sources */,
 				00B2548D2628619200A8B39D /* HBSidebarFont.swift in Sources */,
@@ -1107,16 +1114,17 @@
 				006CAE79264E3A0700D404D3 /* AnchorPoints.swift in Sources */,
 				00129FB3260CC9CF00B82FB7 /* HBStringLayoutView.swift in Sources */,
 				005352472608DCDE007F33D9 /* HBFont.swift in Sources */,
-				00129FA1260C861E00B82FB7 /* TraceView.swift in Sources */,
+				00129FA1260C861E00B82FB7 /* HBTraceView.swift in Sources */,
 				005352592608DD33007F33D9 /* otfcc_read.c in Sources */,
 				00B2548A2625ECAD00A8B39D /* HBStringGlyphListView.swift in Sources */,
 				005352412608DC90007F33D9 /* HBGridSidebarClusterViewModel.swift in Sources */,
 				005352452608DC90007F33D9 /* HBClusterEntryEditor.swift in Sources */,
-				00129FA4260C861E00B82FB7 /* TraceRowView.swift in Sources */,
+				00129FA4260C861E00B82FB7 /* HBTraceRowView.swift in Sources */,
 				00129FB0260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift in Sources */,
+				0036DB1D267968CF003E91AF /* HBFontScriptSelectionView.swift in Sources */,
 				00129FAD260C950D00B82FB7 /* HBStringSidebarView.swift in Sources */,
 				0053523F2608DC90007F33D9 /* PickerGrid.swift in Sources */,
-				00129FA3260C861E00B82FB7 /* TracerBridge.swift in Sources */,
+				00129FA3260C861E00B82FB7 /* HBTracerBridge.swift in Sources */,
 				005352402608DC90007F33D9 /* HBGridCellView.swift in Sources */,
 				0053523E2608DC90007F33D9 /* RadioGroup.swift in Sources */,
 				00129FAA260C93F100B82FB7 /* HBStringView.swift in Sources */,

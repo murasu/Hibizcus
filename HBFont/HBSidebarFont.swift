@@ -10,7 +10,7 @@ import AppKit
 
 struct HBSidebarFont: View {    
     @EnvironmentObject var hbProject: HBProject
-    @State private var showingLanguageSelection = false
+    @State private var showingScriptSelection = false
     var showCompareFont = true
 
     var body: some View {
@@ -29,20 +29,17 @@ struct HBSidebarFont: View {
                 .accentColor(.red)
                 .help("Remove font")
             }
-            //*
             else {
                 Button(action: addFont1, label: {
                     Image(systemName: "plus.circle")
                 })
                 .padding(.leading, 10)
                 .help("Set main font")
-            } //*/
+            }
             Text("Main font:")
                 .multilineTextAlignment(.leading)
                 .padding(.trailing, 15)
                 .padding(.bottom, 2)
-                // remove this when (+) buton is enabled
-                .padding(.leading, 10)
             Spacer()
             if hbProject.hbFont1.fileWatcher.fontFileChanged { 
                 Button(action: reloadFont1, label: {
@@ -50,6 +47,16 @@ struct HBSidebarFont: View {
                 })
                 .padding(.trailing, 15)
                 .help("Reload font")
+            }
+            if hbProject.hbFont1.fileUrl == nil {
+                Button(action: selectScriptForSystemFont, label: {
+                    Image(systemName: "globe")
+                })
+                .padding(.trailing, 15)
+                .help("Select script for system font")
+                .sheet(isPresented: $showingScriptSelection, onDismiss: scriptSelected) {
+                    HBFontScriptSelectionView(hbFont: hbProject.hbFont1)
+                }
             }
         }
         if hbProject.hbFont1.fileUrl != nil {
@@ -106,20 +113,17 @@ struct HBSidebarFont: View {
                     .accentColor(.red)
                     .help("Remove font")
                 }
-                //*
                 else {
                     Button(action: addFont2, label: {
                         Image(systemName: "plus.circle")
                     })
                     .padding(.leading, 10)
-                    .help("Set compare font")
-                } //*/
+                    .help("Set comparison font")
+                }
                 Text("Comparison font:")
                     .multilineTextAlignment(.leading)
                     .padding(.trailing, 15)
                     .padding(.bottom, 2)
-                    // remove this when (+) buton is enabled
-                    .padding(.leading, 10)
                 Spacer()
                 if hbProject.hbFont2.fileWatcher.fontFileChanged {
                     Button(action: reloadFont2, label: {
@@ -127,6 +131,13 @@ struct HBSidebarFont: View {
                     })
                     .padding(.trailing, 15)
                     .help("Reload font")
+                }
+                if hbProject.hbFont2.fileUrl == nil {
+                    Button(action: selectScriptForSystemFont, label: {
+                        Image(systemName: "globe")
+                    })
+                    .padding(.trailing, 15)
+                    .help("Select script for system font")
                 }
             }
             .padding(.top, 15)
@@ -230,5 +241,13 @@ struct HBSidebarFont: View {
         hbProject.hbFont2.fileWatcher.fontFileChanged = false
         hbProject.hbFont2.reloadFont()
         hbProject.refresh()
+    }
+    
+    func selectScriptForSystemFont() {        
+        showingScriptSelection = true
+    }
+    
+    func scriptSelected() {
+        showingScriptSelection = false
     }
 }

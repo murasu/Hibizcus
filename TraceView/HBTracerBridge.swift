@@ -39,7 +39,7 @@ struct TVLogItem: Identifiable, Equatable {
     }
 }
 
-class TracerBridge: ObservableObject {
+class HBTracerBridge: ObservableObject {
     @Published var hbFont: HBFont = HBFont(filePath: "", fontSize: 40)
     @Published var prevGlyphs = TVGlyphs()
     @Published var prevMessage = ""
@@ -49,7 +49,7 @@ class TracerBridge: ObservableObject {
 
     var traceId = ""
     
-    static let shared = TracerBridge()
+    static let shared = HBTracerBridge()
     
     // this will become SUB and POS
     // to indicate substitution (GSUB and morx) and positioning (GPOS and kerx)
@@ -67,7 +67,7 @@ class TracerBridge: ObservableObject {
                     if  markIndex != nil {
                         let retTraceId = String(retstr.prefix(upTo: markIndex!))
                         //print("Returned traceId: \(retTraceId) | current traceId: \(TracerBridge.shared.traceId)")
-                        if retTraceId != TracerBridge.shared.traceId {
+                        if retTraceId != HBTracerBridge.shared.traceId {
                             // This is unlikely
                             //print("Returned traceId \(retTraceId) expired. New one is \(TracerBridge.shared.traceId)")
                             return
@@ -116,7 +116,7 @@ class TracerBridge: ObservableObject {
                                 //print("Message: \(message) Items: \(tvGlyphs.items ?? [TVGlyph]())")
 
                                 // Scale the dimensions to facilitate drawing
-                                let scale = (Hibizcus.FontScale / (2048/TracerBridge.shared.hbFont.metrics.upem)) * (192/40)
+                                let scale = (Hibizcus.FontScale / (2048/HBTracerBridge.shared.hbFont.metrics.upem)) * (192/40)
                                 for i in 0..<tvGlyphs.items!.count {
                                     let w = tvGlyphs.items![i].w ?? 0
                                     tvGlyphs.items![i].w = w / scale
@@ -141,7 +141,7 @@ class TracerBridge: ObservableObject {
                                 
                                 var tvLogItem = TVLogItem()
                                 tvLogItem.message = message
-                                tvLogItem.traceId = TracerBridge.shared.traceId
+                                tvLogItem.traceId = HBTracerBridge.shared.traceId
                                 tvLogItem.items = tvGlyphs.items!
                                 
                                 /*
@@ -168,11 +168,11 @@ class TracerBridge: ObservableObject {
                                         TracerBridge.shared.tvLogItems.append(tvLogItemPrev)
                                         tvLogItem.didShape = true
                                     } */
-                                    TracerBridge.shared.tvLogItems.append(tvLogItem)
+                                    HBTracerBridge.shared.tvLogItems.append(tvLogItem)
                                     if tvLogItem.message == "final output" {
                                         //print("Final message received and processed:\n\(TracerBridge.shared.tvLogItems)")
                                         print("Here's where I can check and set the flags!")
-                                        TracerBridge.shared.updateDidShapeFlag()
+                                        HBTracerBridge.shared.updateDidShapeFlag()
                                     }
                                 }
                             }
@@ -191,33 +191,33 @@ class TracerBridge: ObservableObject {
             return
         }
         
-        for i in 0 ..< TracerBridge.shared.tvLogItems.count-1 {
-            let prevItem = TracerBridge.shared.tvLogItems[i]
-            let currItem = TracerBridge.shared.tvLogItems[i+1]
+        for i in 0 ..< HBTracerBridge.shared.tvLogItems.count-1 {
+            let prevItem = HBTracerBridge.shared.tvLogItems[i]
+            let currItem = HBTracerBridge.shared.tvLogItems[i+1]
             
             // We track start and end of tables and final output
             if prevItem.message.hasPrefix("start table") || prevItem.message.hasPrefix("end table") {
-                TracerBridge.shared.tvLogItems[i].didShape = true
+                HBTracerBridge.shared.tvLogItems[i].didShape = true
             }
             
             // Also the final output
             if currItem.message=="final output" {
-                TracerBridge.shared.tvLogItems[i+1].didShape = true
+                HBTracerBridge.shared.tvLogItems[i+1].didShape = true
             }
             
             print("==>Message Prev: \(prevItem.message)")
             let updatedPrevMessage = tagActionTo(message: prevItem.message)
-            TracerBridge.shared.tvLogItems[i].message = updatedPrevMessage
+            HBTracerBridge.shared.tvLogItems[i].message = updatedPrevMessage
             print("   Updated Prev: \(updatedPrevMessage)")
             
             print("==>Message Curr: \(currItem.message)")
             let updatedCurrMessage = tagActionTo(message: currItem.message)
-            TracerBridge.shared.tvLogItems[i+1].message = updatedCurrMessage
+            HBTracerBridge.shared.tvLogItems[i+1].message = updatedCurrMessage
             print("   Updated Curr: \(updatedCurrMessage)")
             
             if shapingHappened(updatedCurrMessage, prevMessage: updatedPrevMessage, currGlyphs: currItem.items, prevGlyphs: prevItem.items) {
-                TracerBridge.shared.tvLogItems[i].didShape = true
-                TracerBridge.shared.tvLogItems[i+1].didShape = true
+                HBTracerBridge.shared.tvLogItems[i].didShape = true
+                HBTracerBridge.shared.tvLogItems[i+1].didShape = true
             }
         }
     }

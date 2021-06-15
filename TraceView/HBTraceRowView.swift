@@ -1,6 +1,6 @@
 //
-//  GlyphsView.swift
-//  OpenRecentDocument
+//  HBTraceRowView.swift
+//  Hibizcus
 //
 //  Created by Muthu Nedumaran on 25/2/21.
 //
@@ -9,7 +9,7 @@ import Cocoa
 import Combine
 import SwiftUI
 
-class TraceRowView: NSView {
+class HBTraceRowView: NSView {
     let glyphNamePointSize:CGFloat = 10
     let frameColor = NSColor.textColor.withAlphaComponent(0.1).cgColor
     let metricLineColor = NSColor.textColor.withAlphaComponent(0.15).cgColor
@@ -26,7 +26,7 @@ class TraceRowView: NSView {
         }
     }
     
-    var viewOptions:TraceViewOptions = TraceViewOptions() {
+    var viewOptions:HBTraceViewOptions = HBTraceViewOptions() {
         didSet {
             needsDisplay = true
         }

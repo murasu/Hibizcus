@@ -8,7 +8,7 @@ import Combine
 import SwiftUI
 import AppKit
 
-class TraceViewOptions: ObservableObject {
+class HBTraceViewOptions: ObservableObject {
     @Published var showFullTrace:Bool   = false
     @Published var showCluster:Bool     = false
     @Published var showGlyphNames:Bool  = false
@@ -16,19 +16,19 @@ class TraceViewOptions: ObservableObject {
     var fontBookmark2 = Data()
 }
 
-struct TraceView: View, DropDelegate {
+struct HBTraceView: View, DropDelegate {
     @Environment(\.openURL) var openURL
 
     // This does not update the saved project as that data is not shared across other windows
     // SwiftUI limitation?
     @StateObject var hbProject = HBProject()
     
-    @ObservedObject var hbTraceBridge: TracerBridge = TracerBridge.shared
-    @ObservedObject var traceViewOptions = TraceViewOptions()
+    @ObservedObject var hbTraceBridge: HBTracerBridge = HBTracerBridge.shared
+    @ObservedObject var traceViewOptions = HBTraceViewOptions()
     
     var body: some View {
         NavigationView() {
-            TraceSideBarView(traceViewData: traceViewOptions)
+            HBTraceSideBarView(traceViewData: traceViewOptions)
             VStack {
                 VStack {
                     TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $hbTraceBridge.theText)
@@ -240,7 +240,7 @@ struct TraceView: View, DropDelegate {
 struct TraceLog: View {
     var tvLogItem:TVLogItem
     var ctFont:CTFont
-    @ObservedObject var viewOptions:TraceViewOptions
+    @ObservedObject var viewOptions:HBTraceViewOptions
     
     var body: some View {
         HStack {
@@ -253,7 +253,7 @@ struct TraceLog: View {
                     .font(.callout)
                     .frame(width: 80, height: 90/*viewOptions.showGlyphNames ? 90 : 70*/, alignment: .leading)
             }
-            TraceRowViewRepresentable(tvLogItem: tvLogItem, ctFont: ctFont, viewOptions: viewOptions)
+            HBTraceRowViewRepresentable(tvLogItem: tvLogItem, ctFont: ctFont, viewOptions: viewOptions)
                 .frame(height:100/*viewOptions.showGlyphNames ? 100 : 80*/)
                 .padding(.horizontal, 0)
                 .border(Color.primary.opacity(0.3), width: 1)

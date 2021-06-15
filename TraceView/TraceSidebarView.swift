@@ -9,10 +9,10 @@ import SwiftUI
 import AppKit
 
 
-struct TraceSideBarView: View {
+struct HBTraceSideBarView: View {
     @EnvironmentObject var hbProject: HBProject
-    @ObservedObject var hbTraceBridge: TracerBridge = TracerBridge.shared
-    @ObservedObject var traceViewData:TraceViewOptions
+    @ObservedObject var hbTraceBridge: HBTracerBridge = HBTracerBridge.shared
+    @ObservedObject var traceViewData:HBTraceViewOptions
     @State private var showingLanguageSelection = false
     
     var body: some View {
@@ -63,7 +63,7 @@ struct TraceSideBarView: View {
 }
 
 struct TraceOptionsView: View {
-    @ObservedObject var traceViewData:TraceViewOptions
+    @ObservedObject var traceViewData:HBTraceViewOptions
 
     var body: some View {
         VStack(alignment: .leading) {

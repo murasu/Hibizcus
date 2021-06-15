@@ -40,7 +40,7 @@ struct HibizcusApp: App {
         .handlesExternalEvents(matching: Set(arrayLiteral: "stringview"))  // create new window if one doesn't exist
         
         WindowGroup("TraceViewer") {
-            TraceView()
+            HBTraceView()
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "traceview" /*"*"*/))
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "traceview"))

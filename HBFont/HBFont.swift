@@ -244,11 +244,6 @@ class HBFont: ObservableObject {
                 let fontData = try NSData(contentsOf: fileUrl!) as CFData
                 let descriptor = CTFontManagerCreateFontDescriptorFromData(fontData)
                 ctFont = CTFontCreateWithFontDescriptor(descriptor!, CGFloat(fontSize), nil)
-                if ( ctFont != nil ) {
-                    print("New cfont created: \(String(describing: ctFont))")
-                    displayName = CTFontCopyDisplayName(ctFont!) as String
-                    version = CTFontCopyName(ctFont!, kCTFontVersionNameKey)! as String
-                }
             }
             catch {
                 print("GlyphView: Can't create ctFont from file: \(fileUrl!.absoluteString). Error \(error.localizedDescription)")
@@ -258,6 +253,13 @@ class HBFont: ObservableObject {
         if ctFont == nil {
             // Create from system font
             ctFont = CTFontCreateUIFontForLanguage(CTFontUIFontType.label, CGFloat(fontSize), nil)!
+            ctFont = CTFontCreateForString(ctFont!, "தமிழ்" as CFString, CFRange(location: 0, length: 1))
+        }
+        
+        if ( ctFont != nil ) {
+            print("New cfont created: \(String(describing: ctFont))")
+            displayName = CTFontCopyDisplayName(ctFont!) as String
+            version = CTFontCopyName(ctFont!, kCTFontVersionNameKey)! as String
         }
     }
     
