@@ -194,10 +194,7 @@ struct HBGridView: View, DropDelegate {
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
                                         })
                                         .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                            HBGlyphView(tapped: tappedItem, items: hbGridItems)
-                                            // TODO: The above can be replaced with the code below when it can be complied without any swift compile errors
-                                            // See notes above init func in HBGLyphView
-                                            //HBGlyphView(scale: tappedItem.type == .Word ? 4.0 : 6.0, currItem: hbGridItems.firstIndex(of: tappedItem) ?? 0, items: hbGridItems)
+                                            HBGlyphView(tappedItem: tappedItem, gridItems: hbGridItems)
                                         }
                                 }
                             }

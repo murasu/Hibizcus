@@ -13,21 +13,10 @@ struct HBGlyphView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var hbProject: HBProject
     
-    @State var currItem = 0
-    
-    var scale:CGFloat = 0 // CGFloat
+    @State var currItem         = 0
+    @State var scale:CGFloat    = 0
     var tappedItem: HBGridItem
     var gridItems: [HBGridItem]
-    
-    // This can be ommitted if currItem, scale and gridItems can be passed over
-    // Since I'm getting swift compile errors, I'm using this workaround
-    // TODO: Perhaps Xcode 13 may fix this, if it does, init can be removed.
-    init(tapped: HBGridItem, items: [HBGridItem]) {
-        tappedItem  = tapped
-        gridItems   = items
-        currItem    = items.firstIndex(of: tapped) ?? 0
-        scale       = tappedItem.type == .Word ? 4.0 : 6.0
-    }
 
     var body: some View {
         VStack {
@@ -133,7 +122,8 @@ struct HBGlyphView: View {
             .padding(.bottom, 20)
         }
         .onAppear() {
-            currItem = gridItems.firstIndex(of: tappedItem) ?? 0
+            currItem    = gridItems.firstIndex(of: tappedItem) ?? 0
+            scale       = tappedItem.type == .Word ? 4.0 : 6.0
         }
     }
     
