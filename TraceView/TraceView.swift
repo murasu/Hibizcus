@@ -174,7 +174,6 @@ struct TraceView: View, DropDelegate {
                 // There should be a better way to determine filetype
                 let urlstring = url.absoluteString.lowercased()
                 if urlstring.hasSuffix(".ttf") || urlstring.hasSuffix(".otf") || urlstring.hasSuffix(".ttc") {
-                //if url.absoluteString.hasSuffix(".ttf") || url.absoluteString.hasSuffix(".otf") || url.absoluteString.hasSuffix(".ttc") {
                     DispatchQueue.main.async {
                         hbProject.hbFont1.setFontFile(filePath: url.path)
                         hbTraceBridge.hbFont = hbProject.hbFont1
@@ -209,6 +208,8 @@ struct TraceView: View, DropDelegate {
         if params["text"] != nil {
             hbTraceBridge.theText = params["text"]!
         }
+        
+        hbProject.projectName = params["project"]!
     }
     
     // Help construct URL parameters
@@ -228,8 +229,11 @@ struct TraceView: View, DropDelegate {
         } else {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
         }
-
-        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
+        
+        // Project name is the last path component of the project file
+        let prjName = hbProject.projectName
+        
+        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)"
     }
 }
 

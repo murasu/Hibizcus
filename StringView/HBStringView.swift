@@ -261,6 +261,8 @@ struct HBStringView: View, DropDelegate {
         if params["text"] != nil {
             hbProject.hbStringViewText = params["text"]!
         }
+        
+        hbProject.projectName = params["project"]!
     }
     
     // Help construct URL parameters
@@ -281,7 +283,10 @@ struct HBStringView: View, DropDelegate {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
         }
 
-        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
+        // Project name is the last path component of the project file
+        let prjName = hbProject.projectName
+        
+        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)"
     }
 }
 

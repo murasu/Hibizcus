@@ -228,7 +228,7 @@ struct HBGridView: View, DropDelegate {
                     Spacer()
                 }
             }
-            .toolbar {
+            .toolbar {                
                 // Toggle sidebar
                 ToolbarItem(placement: .navigation) {
                     Button(action: toggleLeftSidebar, label: {
@@ -273,7 +273,7 @@ struct HBGridView: View, DropDelegate {
                     .help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in TraceViewer" : "Open TraceViewer")
                 }
             }
-            .navigationTitle("Hiziscus Font Tools")
+            //.navigationTitle("Hiziscus Font Tools")
             .onChange(of: clusterViewModel.selectedBase) { _ in
                 refreshGridItems()
             }
@@ -294,7 +294,7 @@ struct HBGridView: View, DropDelegate {
                 //refreshGridItems()
             }
         }
-        .navigationTitle("Hibizcus")
+        //.navigationTitle("Hibizcus")
         .onDrop(of: ["public.truetype-ttf-font", "public.file-url"], delegate: self)
         .onAppear {
             if document.projectData.fontFile1Bookmark != nil {
@@ -789,12 +789,16 @@ struct HBGridView: View, DropDelegate {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
         }
         
+        // Project name is the last path component of the project file
+        let prjName = projectFileUrl?.lastPathComponent ?? ""
+
         let data = [
             "text": text,
             "font1BookMark": bkMk1,
             "font2BookMark": bkMk2,
             "font1Url": f1Url,
-            "font2Url": f2Url
+            "font2Url": f2Url,
+            "project" : prjName
         ]
         
         let dataInJson = try! JSONEncoder().encode(data)
@@ -818,8 +822,10 @@ struct HBGridView: View, DropDelegate {
         } else {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
         }
+        // Project name is the last path component of the project file
+        let prjName = projectFileUrl?.lastPathComponent ?? ""
 
-        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)"
+        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)"
     }
 }
 
