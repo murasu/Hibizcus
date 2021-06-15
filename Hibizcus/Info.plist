@@ -40,6 +40,8 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Hibizcus</string>
 			<key>CFBundleURLName</key>
 			<string>Hibizcus</string>
 			<key>CFBundleURLSchemes</key>
@@ -66,12 +68,14 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Hibizcus Project</string>
+			<key>UTTypeIconFile</key>
+			<string>Hibizcus</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBackgroundName</key>
-				<string>DocBackground</string>
+				<string>Hibizcus</string>
 				<key>UTTypeIconBadgeName</key>
-				<string>DocIcon</string>
+				<string>Hibizcus</string>
 				<key>UTTypeIconText</key>
 				<string>Hibizcus</string>
 			</dict>

@@ -38,6 +38,7 @@
 		00341CF0263EB15100EFA443 /* cluster_buginese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CEF263EB15100EFA443 /* cluster_buginese.json */; };
 		00341CF6263EF00D00EFA443 /* cluster_sundanese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CF5263EF00D00EFA443 /* cluster_sundanese.json */; };
 		00341CF8263EF09E00EFA443 /* cluster_rejang.json in Resources */ = {isa = PBXBuildFile; fileRef = 00341CF7263EF09E00EFA443 /* cluster_rejang.json */; };
+		0036DB192678CEF1003E91AF /* Hibizcus.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0036DB182678CEF1003E91AF /* Hibizcus.icns */; };
 		004546EA26306BDA00601DB6 /* gujarati_gujarati.txt in Resources */ = {isa = PBXBuildFile; fileRef = 004546E926306BDA00601DB6 /* gujarati_gujarati.txt */; };
 		004546EC26306BF500601DB6 /* cluster_gujarati.json in Resources */ = {isa = PBXBuildFile; fileRef = 004546EB26306BF500601DB6 /* cluster_gujarati.json */; };
 		004546F12631993F00601DB6 /* HBGridViewNumberFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004546F02631993F00601DB6 /* HBGridViewNumberFuncs.swift */; };
@@ -145,6 +146,7 @@
 		00341CEF263EB15100EFA443 /* cluster_buginese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_buginese.json; sourceTree = "<group>"; };
 		00341CF5263EF00D00EFA443 /* cluster_sundanese.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_sundanese.json; sourceTree = "<group>"; };
 		00341CF7263EF09E00EFA443 /* cluster_rejang.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_rejang.json; sourceTree = "<group>"; };
+		0036DB182678CEF1003E91AF /* Hibizcus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Hibizcus.icns; path = Hibizcus/Hibizcus.icns; sourceTree = "<group>"; };
 		004546E926306BDA00601DB6 /* gujarati_gujarati.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gujarati_gujarati.txt; sourceTree = "<group>"; };
 		004546EB26306BF500601DB6 /* cluster_gujarati.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_gujarati.json; sourceTree = "<group>"; };
 		004546F02631993F00601DB6 /* HBGridViewNumberFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridViewNumberFuncs.swift; sourceTree = "<group>"; };
@@ -935,6 +937,7 @@
 		00E5E76D25D2BCA50061AC60 = {
 			isa = PBXGroup;
 			children = (
+				0036DB182678CEF1003E91AF /* Hibizcus.icns */,
 				006CAE7B264E3A4F00D404D3 /* HBFont */,
 				006FB98F25E694CF00F05B17 /* HBGridView */,
 				00129FA8260C93A800B82FB7 /* StringView */,
@@ -1062,6 +1065,7 @@
 				0023784426343B99006B5E9B /* cluster_bengali.json in Resources */,
 				005352702608E2D6007F33D9 /* grantha_sanskrit.txt in Resources */,
 				001643812636F2B20044B965 /* meeteimayek_meetei.txt in Resources */,
+				0036DB192678CEF1003E91AF /* Hibizcus.icns in Resources */,
 				0016436C26353F630044B965 /* cluster_telugu.json in Resources */,
 				00A8D276264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl in Resources */,
 				005352742608E2D6007F33D9 /* devanagari_nepali.txt in Resources */,

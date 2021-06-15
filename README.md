@@ -27,7 +27,8 @@ Pre-built libraries for all the above are included in the repo
 3. Create an assets file
     - The original Hibizcus icon/logo is copyrighted and thus is not included in the repo. 
     - Create Assets.xcassets in Hibizcus/Hibizcus and add an applogo.
-4. Build and run
+4. Create an icon file for documents (.icns) and set it as the document icon in info.plist
+5. Build and run
 
 ## Wordlists and cluseter data
 
