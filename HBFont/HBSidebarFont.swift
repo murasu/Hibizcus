@@ -29,14 +29,14 @@ struct HBSidebarFont: View {
                 .accentColor(.red)
                 .help("Remove font")
             }
-            /*
+            //*
             else {
                 Button(action: addFont1, label: {
                     Image(systemName: "plus.circle")
                 })
                 .padding(.leading, 10)
                 .help("Set main font")
-            } */
+            } //*/
             Text("Main font:")
                 .multilineTextAlignment(.leading)
                 .padding(.trailing, 15)
@@ -106,13 +106,14 @@ struct HBSidebarFont: View {
                     .accentColor(.red)
                     .help("Remove font")
                 }
-                /*else {
+                //*
+                else {
                     Button(action: addFont2, label: {
                         Image(systemName: "plus.circle")
                     })
                     .padding(.leading, 10)
                     .help("Set compare font")
-                } */
+                } //*/
                 Text("Comparison font:")
                     .multilineTextAlignment(.leading)
                     .padding(.trailing, 15)
@@ -190,8 +191,10 @@ struct HBSidebarFont: View {
                     switch (fontNum) {
                     case 1:
                         hbProject.hbFont1.setFontFile(filePath: selectedPath)
+                        hbProject.refresh()
                     case 2:
                         hbProject.hbFont2.setFontFile(filePath: selectedPath)
+                        hbProject.refresh()
                     default:
                         print("This should never be printed!")
                     }
