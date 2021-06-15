@@ -12,7 +12,7 @@ struct HBGlyphView: View {
     @Environment(\.openURL) var openURL
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var hbProject: HBProject
-    
+
     @State var currItem         = 0
     @State var scale:CGFloat    = 0
     var tappedItem: HBGridItem
@@ -26,7 +26,7 @@ struct HBGlyphView: View {
                     .padding(.horizontal, 15)
                     .padding(.top, 15)
                     .padding(.bottom, 10)
-                
+
                 HStack {
                     Button(action: { presentationMode.wrappedValue.dismiss() }, label: {
                         Image(systemName: "multiply.circle")
@@ -36,9 +36,9 @@ struct HBGlyphView: View {
                     .padding(.bottom, 0)
                     .padding(.horizontal, 10)
                     .buttonStyle(PlainButtonStyle())
-                    
+
                     Spacer()
-                    
+
                     // Copy button - only for clusters and words.
                     // TODO: Glyphs only if there's a unicode value
                     if gridItems[currItem].type != HBGridItemItemType.Glyph && gridItems[currItem].text != nil {
@@ -69,7 +69,7 @@ struct HBGlyphView: View {
                 }
             }
             Divider()
-            
+
             VStack {
                 HBGridCellViewRepresentable(wordItem: gridItems[currItem], scale: scale) //, viewOptions: viewOptions)
                     .frame(width: max((gridItems[currItem].width[0] * scale * 1.2), 800), height: 600, alignment: .center)
