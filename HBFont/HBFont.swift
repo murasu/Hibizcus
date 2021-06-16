@@ -126,7 +126,7 @@ class HBFont: ObservableObject {
     private var bridge = HibizcusCppBridge()
     
     // Use characters in this string when loading a system font
-    private var charsInScript = ""
+    var charsInScript = ""
     
     // Init with filename
     init(filePath: String, fontSize: Int) {

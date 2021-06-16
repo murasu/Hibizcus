@@ -15,6 +15,12 @@ struct HibizcusProjectData: Codable {
     var searchText  = ""
     var fontFile1Bookmark: Data?
     var fontFile2Bookmark: Data?
+    // Also allow system fonts, picked up by
+    // string or characters in that script
+    var systemFont1Script: String?
+    var systemFont2Script: String?
+    var systemFont1Chars: String?
+    var systemFont2Chars: String?
 }
 
 struct HibizcusDocument: FileDocument, Codable {

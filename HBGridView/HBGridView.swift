@@ -56,7 +56,6 @@ struct HBGridView: View, DropDelegate {
     @Binding var document: HibizcusDocument
     
     @StateObject var hbProject = HBProject()
-    
     var projectFileUrl: URL?
 
     @StateObject var clusterViewModel           = HBGridSidebarClusterViewModel()
@@ -116,6 +115,11 @@ struct HBGridView: View, DropDelegate {
                 .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                     print("Script has changed from \(clusterViewModel.currentScript) to \(newScript)")
                     clusterViewModel.currentScript = newScript
+                    // Save this to project if we have a character string
+                    if hbProject.hbFont1.charsInScript != "" {
+                        document.projectData.systemFont1Script = newScript
+                        document.projectData.systemFont1Chars = hbProject.hbFont1.charsInScript
+                    }
                     glyphItems.removeAll()
                     refreshGridItems()
                 }
@@ -147,6 +151,11 @@ struct HBGridView: View, DropDelegate {
                 .onChange(of: hbProject.hbFont2.selectedScript) { newScript in
                     // We don't care about the selected script in Font2 - but we want to refresh the
                     // grid in case a system font is loaded.
+                    // Save this to project if we have a character string
+                    if hbProject.hbFont2.charsInScript != "" {
+                        document.projectData.systemFont2Script = newScript
+                        document.projectData.systemFont2Chars = hbProject.hbFont2.charsInScript
+                    }
                     glyphItems.removeAll()
                     refreshGridItems()
                 }
@@ -300,11 +309,23 @@ struct HBGridView: View, DropDelegate {
         //.navigationTitle("Hibizcus")
         .onDrop(of: ["public.truetype-ttf-font", "public.file-url"], delegate: self)
         .onAppear {
+            // Load font1 from bookmark or system font for script and characters
             if document.projectData.fontFile1Bookmark != nil {
                 hbProject.hbFont1.loadFontWith(fontBookmark: document.projectData.fontFile1Bookmark!, fontSize: 40)
             }
+            else if document.projectData.systemFont1Script != nil {
+                hbProject.hbFont1.loadFontFor(script: document.projectData.systemFont1Script!,
+                                              fontSize: 40,
+                                              charsInScript: document.projectData.systemFont1Chars!)
+            }
+            // Likewise font2
             if document.projectData.fontFile2Bookmark != nil {
                 hbProject.hbFont2.loadFontWith(fontBookmark: document.projectData.fontFile2Bookmark!, fontSize: 40)
+            }
+            else if document.projectData.systemFont2Script != nil {
+                hbProject.hbFont2.loadFontFor(script: document.projectData.systemFont2Script!,
+                                              fontSize: 40,
+                                              charsInScript: document.projectData.systemFont2Chars!)
             }
             
             if projectFileUrl != nil {
@@ -543,9 +564,9 @@ struct HBGridView: View, DropDelegate {
             
             // If there are two fonts, see if we have a diff
             if hbProject.hbFont2.available { //} hbProject.hbFont2.fileUrl != nil {
-                if baseEx == "ल्क्य" || baseEx == "क़" || baseEx == "கா" {
-                    print("Debugging \(baseEx)")
-                }
+                //if baseEx == "ल्क्य" || baseEx == "क़" || baseEx == "கா" {
+                //    print("Debugging \(baseEx)")
+                //}
                 let sld2 = hbProject.hbFont2.getStringLayoutData(forText: baseEx)
                 item.width[1] = sld2.width
                 item.diffWidth = abs(item.width[1] - item.width[0]) > 0.01
@@ -563,7 +584,6 @@ struct HBGridView: View, DropDelegate {
             }
             hbGridItems.append(item)
         }
-        
         minCellWidth = CGFloat(Double(maxWidth) * 1.1)
         maxCellWidth = CGFloat(Double(maxWidth) * 1.1)
     }
