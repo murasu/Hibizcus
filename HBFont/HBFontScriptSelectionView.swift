@@ -9,7 +9,7 @@ import Cocoa
 import Combine
 import SwiftUI
 
-struct Script: Identifiable, Equatable, Hashable, Codable {
+struct HBScript: Identifiable, Equatable, Hashable, Codable {
     var id = UUID()
     var scriptName: String
     var scriptChar: String
@@ -19,31 +19,70 @@ struct HBFontScriptSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject var hbFont:HBFont
-    @State var scripts = [Script]()
+    @State var scripts = [HBScript]()
+    @State var selected = HBScript(scriptName: "", scriptChar: "")
     
     var body: some View {
         VStack {
-            Text("Select script for system font")
-                .font(.title)
-                .padding(15)
+            HStack {
+                Button(action: { presentationMode.wrappedValue.dismiss() }, label: {
+                    Image(systemName: "multiply.circle")
+                })
+                .font(.system(size: 20))
+                .padding(.top, 10)
+                .padding(.bottom, 0)
+                .padding(.horizontal, 10)
+                .buttonStyle(PlainButtonStyle())
+                Spacer()
+                Text("Select Script")
+                    .font(.title)
+                    .padding(15)
+                Spacer()
+                Text("")
+            }
+            
             List( scripts ) { script in
-                HStack {
-                    Text(script.scriptName)
-                    Spacer()
-                    Text(script.scriptChar)
-                }
+                ScriptRow(scriptName: script.scriptName, scriptChar: script.scriptChar)
+                    .contentShape(Rectangle())
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(script == selected ? Color.blue : .clear)
+                    .gesture(TapGesture(count: 2).onEnded {
+                        // UI Update should be done on main thread
+                        DispatchQueue.main.async {
+                            loadSelectedSystemFont()
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    })
+                    .simultaneousGesture(TapGesture().onEnded {
+                        DispatchQueue.main.async {
+                            selected = script
+                        }
+                    })
+                    .gesture(DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
+                                .onChanged { _ in
+                                    // touch down
+                                    selected = script
+                                }
+                                .onEnded { _ in
+                                    // touch up
+                                    //let index = hbFont.supportedLanguages.firstIndex(of: language)
+                                    //hbFont.supportedLanguages[index!].selected.toggle()
+                                }
+                    )
             }
             .frame(width: 250, height: 400, alignment: .center)
             .padding(.horizontal, 10)
             .padding(.top, 0)
             .padding(.bottom, 10)
+            
             HStack {
                 Button {
                     // Save the selected langauges to userdefaults
-                    saveSelections()
+                    loadSelectedSystemFont()
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Text("Load system font")
+                    Text("Load System Font")
                 }
             }
             .padding(.bottom, 20)
@@ -57,10 +96,9 @@ struct HBFontScriptSelectionView: View {
                         for line in lines {
                             if line.count > 1 {
                                 let comps = line.components(separatedBy: ",")
-                                scripts.append(Script(scriptName: comps[0], scriptChar: comps[1]))
+                                scripts.append(HBScript(scriptName: comps[0], scriptChar: comps[1]))
                             }
                         }
-                        print("Supported scripts: \(scripts)")
                     } catch {
                         print("Content of supported_scripts could not be loaded")
                     }
@@ -71,75 +109,20 @@ struct HBFontScriptSelectionView: View {
         }
     }
     
-    func saveSelections() {
-        var selections = [Language]()
-        for language in hbFont.supportedLanguages {
-            if language.selected {
-                selections.append(language)
-            }
-        }
-        let selectionData = try! JSONEncoder().encode(selections)
-        UserDefaults.standard.setValue(selectionData, forKey: Hibizcus.Key.SelectedLanguages)
-        
-        // Take this opportunity to sort the array
-        hbFont.supportedLanguages.sort { (lhs, rhs) -> Bool in
-            return String(!rhs.selected) + rhs.langName > String(!lhs.selected) + lhs.langName
-        }
-        
-        // Update the filtered languages for the Picker
-        hbFont.updateFilteredLanguages()
+    func loadSelectedSystemFont() {
+        hbFont.loadFontFor(script: selected.scriptName, fontSize: 40, charsInScript: selected.scriptChar)
     }
 }
 
-/*
-struct HBLanguageRow: View {
-    var language: Language
-    var highlighted: Bool
-    
-    var body: some View {
-        VStack {
-            HStack {
-                if language.selected {
-                    Text( Image(systemName: "checkmark") )
-                        .font(.system(size: 14, design: .monospaced))
-                        .frame(width: 12, height: 20, alignment: .leading)
-                        .padding(.trailing, 10)
-                } else {
-                    Text(" ")
-                        .font(.system(size: 14, design: .monospaced))
-                        .frame(width: 15, height: 20, alignment: .leading)
-                        .padding(.trailing, 10)
-                }
-                Divider()
-                Text(language.langName)
-                    .font(.system(size: 14, design: .monospaced))
-                    .frame(width: 200, height: 20, alignment: .leading)
-                Spacer()
-                Divider()
-                Text(language.langId)
-                    .font(.system(size: 14, design: .monospaced))
-                    .frame(width: 35, height: 20, alignment: .leading)
-            }
-            .background(highlighted ? Color.blue : .clear)
-            // Make the entire HStack tappable
-            .contentShape(Rectangle())
-            Divider()
-        }
-    }
-}
-
-struct HBClearButton: View {
-    var highlighted: Bool
+struct ScriptRow: View {
+    var scriptName: String
+    var scriptChar: String
     
     var body: some View {
         HStack {
-            (Text(Image(systemName: "xmark")) + Text(" Clear selections"))
-                .font(.system(size: 14, design: .monospaced))
-                .padding(15)
-                .background(highlighted ? Color.red : .clear)
+            Text(scriptName)
             Spacer()
+            Text(scriptChar)
         }
-        .padding(10)
     }
 }
-*/

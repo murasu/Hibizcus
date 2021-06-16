@@ -124,8 +124,11 @@ class HBFont: ObservableObject {
     // Used only by the hb shaper
     private var bridge = HibizcusCppBridge()
     
+    // Use characters in this string when loading a system font
+    private var charsInScript = ""
+    
     // Init with filename
-    init(filePath:String, fontSize:Int) {
+    init(filePath: String, fontSize: Int) {
         if filePath.count > 0  {
             self.fileUrl = URL(fileURLWithPath: filePath)
         } else {
@@ -144,6 +147,14 @@ class HBFont: ObservableObject {
             print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
             self?.objectWillChange.send()
         }
+    }
+    
+    // Init system font for character(s) in given string
+    func loadFontFor(script: String, fontSize: Int, charsInScript: String) {
+        self.fontSize = fontSize
+        self.charsInScript = charsInScript
+        createCTFont()
+        extractFontInfo()
     }
     
     // Init with scoped bookmark and watch for changes
@@ -253,7 +264,7 @@ class HBFont: ObservableObject {
         if ctFont == nil {
             // Create from system font
             ctFont = CTFontCreateUIFontForLanguage(CTFontUIFontType.label, CGFloat(fontSize), nil)!
-            ctFont = CTFontCreateForString(ctFont!, "தமிழ்" as CFString, CFRange(location: 0, length: 1))
+            ctFont = CTFontCreateForString(ctFont!, charsInScript as CFString, CFRange(location: 0, length: 1))
         }
         
         if ( ctFont != nil ) {

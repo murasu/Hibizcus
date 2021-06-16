@@ -216,17 +216,11 @@ struct HBSidebarFont: View {
     }
     
     func removeFont1() {
-        // Remove the bookmark if this font in the document
-        //document.projectData.fontFile1Bookmark = nil
-        // Update hbFont
         hbProject.hbFont1.setFontFile(filePath: "")
         hbProject.refresh()
     }
     
     func removeFont2() {
-        // Remove the bookmark if this font in the document
-        //document.projectData.fontFile2Bookmark = nil
-        // Update hbFont
         hbProject.hbFont2.setFontFile(filePath: "")
         hbProject.refresh()
     }
@@ -249,5 +243,6 @@ struct HBSidebarFont: View {
     
     func scriptSelected() {
         showingScriptSelection = false
+        hbProject.refresh()
     }
 }
