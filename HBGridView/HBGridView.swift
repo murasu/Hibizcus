@@ -203,7 +203,7 @@ struct HBGridView: View, DropDelegate {
                                             print("single clicked on item \(hbGridItem)")
                                         })
                                         .onDrag({
-                                            let dragData = jsonParamsForToolWindow(text: hbGridItem.text!)
+                                            let dragData = paramsForToolWindow(asJson: true, text: hbGridItem.text!) //jsonParamsForToolWindow(text: hbGridItem.text!)
                                             UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
                                             print("Dragging out \(dragData)")
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
@@ -263,7 +263,9 @@ struct HBGridView: View, DropDelegate {
                 // String Viewer
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
-                        if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
+                        
+                        //if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
+                        if let url = URL(string: "Hibizcus://stringview?\(paramsForToolWindow(asJson: false, text: tappedItem.text ?? ""))") {
                             openURL(url)
                         }
                     }, label: {
@@ -275,7 +277,8 @@ struct HBGridView: View, DropDelegate {
                 // TraceView
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
-                        if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
+                        //if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
+                        if let url = URL(string: "Hibizcus://traceview?\(paramsForToolWindow(asJson: false, text: tappedItem.text ?? ""))") {
                             openURL(url)
                         }
                     }, label: {
@@ -823,38 +826,66 @@ struct HBGridView: View, DropDelegate {
     // MARK: ----- helpers
     
     // Json Helper
-    func jsonParamsForToolWindow(text:String) -> String {
+    func paramsForToolWindow(asJson: Bool, text:String) -> String {
         var f1Url = ""
         var f2Url = ""
         var bkMk1 = ""
         var bkMk2 = ""
+        // Script info for system fonts in project
+        var scrp1 = ""
+        var chrs1 = ""
+        var scrp2 = ""
+        var chrs2 = ""
+        
         if document.projectData.fontFile1Bookmark != nil {
             bkMk1 = document.projectData.fontFile1Bookmark!.base64EncodedString()
-        } else {
+        } else if hbProject.hbFont1.fileUrl != nil {
             f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+        } else {
+            scrp1 = hbProject.hbFont1.selectedScript
+            chrs1 = hbProject.hbFont1.charsInScript
         }
+        
         if document.projectData.fontFile2Bookmark != nil {
             bkMk2 = document.projectData.fontFile2Bookmark!.base64EncodedString()
-        } else {
+        } else if hbProject.hbFont2.fileUrl != nil {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+        } else {
+            scrp2 = hbProject.hbFont2.selectedScript
+            chrs2 = hbProject.hbFont2.charsInScript
         }
         
         // Project name is the last path component of the project file
         let prjName = projectFileUrl?.lastPathComponent ?? ""
 
-        let data = [
-            "text": text,
-            "font1BookMark": bkMk1,
-            "font2BookMark": bkMk2,
-            "font1Url": f1Url,
-            "font2Url": f2Url,
-            "project" : prjName
-        ]
+        if asJson {
+            let data = [
+                "text": text,
+                "font1BookMark": bkMk1,
+                "font2BookMark": bkMk2,
+                "font1Url": f1Url,
+                "font2Url": f2Url,
+                "font1Script": scrp1,
+                "font2Script": scrp2,
+                "font1Chars": chrs1,
+                "font2Chars": chrs2,
+                "project" : prjName
+            ]
+            
+            let dataInJson = try! JSONEncoder().encode(data)
+            return String(data: dataInJson, encoding: .utf8)!
+        }
         
-        let dataInJson = try! JSONEncoder().encode(data)
-        return String(data: dataInJson, encoding: .utf8)!
+        // Otherwise, return URL Params
+        let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let echrs1 = chrs1.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let echrs2 = chrs2.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let params = "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)" +
+                "&font1Script=\(scrp1)&font2Script=\(scrp2)&font1Chars=\(echrs1)&font2Chars=\(echrs2)"
+        return params
     }
     
+    /*
     // Help construct URL parameters
     func urlParamsForToolWindow(text: String) -> String {
         let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
@@ -876,7 +907,7 @@ struct HBGridView: View, DropDelegate {
         let prjName = projectFileUrl?.lastPathComponent ?? ""
 
         return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)"
-    }
+    } */
 }
 
 // Toggle Left Sidebar
