@@ -144,6 +144,12 @@ struct HBGridView: View, DropDelegate {
                         document.projectData.fontFile2Bookmark = nil
                     }
                 }
+                .onChange(of: hbProject.hbFont2.selectedScript) { newScript in
+                    // We don't care about the selected script in Font2 - but we want to refresh the
+                    // grid in case a system font is loaded.
+                    glyphItems.removeAll()
+                    refreshGridItems()
+                }
             VStack {
                 if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
                     VStack {
@@ -416,8 +422,8 @@ struct HBGridView: View, DropDelegate {
             
             let fontData1   = hbProject.hbFont1.getHBFontData()
             let fontData2   = hbProject.hbFont2.getHBFontData()
-            let cgFont2     = hbProject.hbFont2.fileUrl != nil ? CTFontCopyGraphicsFont(hbProject.hbFont2.ctFont!, nil) : nil
-            
+            let cgFont2     = hbProject.hbFont2.available /*hbProject.hbFont2.fileUrl != nil*/ ? CTFontCopyGraphicsFont(hbProject.hbFont2.ctFont!, nil) : nil
+    
             // Get the glyph information and set the width of the widest glyph as the maxCellWidth
             glyphCellWidth  = 100
             let scale       = (Hibizcus.FontScale / (2048/hbProject.hbFont1.metrics.upem)) * (192/40)
@@ -428,25 +434,53 @@ struct HBGridView: View, DropDelegate {
                     let gName       = cgFont.name(for: gId)! as String
                     let fd1         = fontData1?.getGlyfData(forGlyphName: gName) ?? nil
                     let adv         = fd1?.width ?? 0
-                    let width       = CGFloat(Float(adv)/scale)
+                    var width       = CGFloat(Float(adv)/scale)
                     var wordItem    = HBGridItem(type:HBGridItemItemType.Glyph, text: "")
+                    
+                    // Getting data from fontData will allow more comparisons other then just the width of the glyph.
+                    // For that, I need to be able to open and read the font file (thorough otfcc). For systems fonts,
+                    // I can't read the TTFs. I can use CTFontGetOpticalBoundsForGlyphs instead.
+                    if fd1 == nil {
+                        var cgGlyphs = [CGGlyph(gId), CGGlyph(0)]
+                        var opticalRect = [CGRect(x: 0, y: 0, width: 0, height: 0), CGRect(x: 0, y: 0, width: 0, height: 0)]
+                        //var boundingRect = [CGRect(x: 0, y: 0, width: 0, height: 0), CGRect(x: 0, y: 0, width: 0, height: 0)]
+                        let ro = CTFontGetOpticalBoundsForGlyphs(hbProject.hbFont1.ctFont!, &cgGlyphs, &opticalRect, 1, 0)
+                        //let rb = CTFontGetBoundingRectsForGlyphs(hbProject.hbFont1.ctFont!, .horizontal, &cgGlyphs, &boundingRect, 1)
+                        //print ("rb = \(rb)")
+                        width = ro.width
+                        //if abs(width - ro.width) > 0.01 {
+                        //    print ("Glyph: \(gId), width: \(width), optical: \(ro.width), bounding: \(rb.width)")
+                        //}
+                    }
+                    
                     wordItem.glyphIds[0]    = gId
                     wordItem.width[0]       = width
                     wordItem.label          = gName
                     wordItem.uniLabel       = hbProject.hbFont1.unicodeLabelForGlyphId(glyph: gId)
-                    //var hasDiff     = false // no difference
+                    
+                    
                     var widthDiff   = false
                     var glyfDiff    = false
-                    if (fontData2 != nil) {
-                        let fd2     = fontData2?.getGlyfData(forGlyphName: gName) ?? nil
-                        glyfDiff    = fd1?.glyf != fd2?.glyf
+                    
+                    if hbProject.hbFont2.available {
                         let gId2    = cgFont2?.getGlyphWithGlyphName(name: gName as CFString)
-                        wordItem.glyphIds[1] = gId2 != nil ? CGGlyph(gId2!) : kCGFontIndexInvalid
-                        let adv2    = fd2?.width ?? 0
-                        wordItem.width[1] = CGFloat(Float(adv2)/scale)
-                        widthDiff   = abs(width - wordItem.width[1]) > 0.01
+                        if (fontData2 != nil) {
+                            let fd2     = fontData2?.getGlyfData(forGlyphName: gName) ?? nil
+                            glyfDiff    = fd1?.glyf != fd2?.glyf
+                            wordItem.glyphIds[1] = gId2 != nil ? CGGlyph(gId2!) : kCGFontIndexInvalid
+                            let adv2    = fd2?.width ?? 0
+                            wordItem.width[1] = CGFloat(Float(adv2)/scale)
+                            widthDiff   = abs(width - wordItem.width[1]) > 0.01
+                        }
+                        else if gId2 != nil {
+                            // This is a system font, we only compare width
+                            var cgGlyphs = [CGGlyph(gId2!), CGGlyph(0)]
+                            var opticalRect = [CGRect(x: 0, y: 0, width: 0, height: 0), CGRect(x: 0, y: 0, width: 0, height: 0)]
+                            let ro = CTFontGetOpticalBoundsForGlyphs(hbProject.hbFont2.ctFont!, &cgGlyphs, &opticalRect, 1, 0)
+                            widthDiff = abs(width - ro.width) > 0.01
+                        }
                     }
-                    //wordItem.hasDiff  = hasDiff
+                    
                     wordItem.diffGlyf   = glyfDiff
                     wordItem.diffWidth  = widthDiff
                     glyphCellWidth = max(width, glyphCellWidth)
@@ -454,7 +488,6 @@ struct HBGridView: View, DropDelegate {
                         hbGridItems.append(wordItem)
                         glyphItems.append(wordItem)
                         maxCellWidth = glyphCellWidth
-                        //print("Grid now has \(hbGridItems.count) glyphs")
                     }
                 }
             }
@@ -509,7 +542,7 @@ struct HBGridView: View, DropDelegate {
             item.width[0] = (sld1.width)
             
             // If there are two fonts, see if we have a diff
-            if hbProject.hbFont2.fileUrl != nil {
+            if hbProject.hbFont2.available { //} hbProject.hbFont2.fileUrl != nil {
                 if baseEx == "ल्क्य" || baseEx == "क़" || baseEx == "கா" {
                     print("Debugging \(baseEx)")
                 }

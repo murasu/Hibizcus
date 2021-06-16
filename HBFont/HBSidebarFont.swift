@@ -20,7 +20,7 @@ struct HBSidebarFont: View {
             // First Font File
             // ----------------------------------------
 
-            if hbProject.hbFont1.available { //} fileUrl != nil {
+            if hbProject.hbFont1.available {
                 Button(action: removeFont1, label: {
                     Image(systemName: "minus.circle.fill")
                         .foregroundColor(.red)
@@ -48,19 +48,19 @@ struct HBSidebarFont: View {
                 .padding(.trailing, 15)
                 .help("Reload font")
             }
-            if !hbProject.hbFont1.available { //} hbProject.hbFont1.fileUrl == nil {
+            if !hbProject.hbFont1.available {
                 Button(action: selectScriptForSystemFont, label: {
                     Image(systemName: "globe")
                 })
                 .padding(.trailing, 15)
                 .help("Select script for system font")
                 .sheet(isPresented: $showingScriptSelection, onDismiss: {showingScriptSelection=false}) {
-                    HBFontScriptSelectionView(hbFont: hbProject.hbFont1)
+                    HBFontScriptSelectionView(mainFont: true)
                 }
             }
         }
-        if hbProject.hbFont1.available { //hbProject.hbFont1.fileUrl != nil {
-            Text( hbProject.hbFont1.fileUrl != nil ? hbProject.hbFont1.fileUrl!.lastPathComponent : hbProject.hbFont1.displayName)
+        if hbProject.hbFont1.available {
+            Text( hbProject.hbFont1.fileUrl != nil ? hbProject.hbFont1.fileUrl!.lastPathComponent : hbProject.hbFont1.displayName )
                 .multilineTextAlignment(.leading)
                 .padding(.leading, 20)
                 .padding(.bottom, 2)
@@ -104,7 +104,7 @@ struct HBSidebarFont: View {
             Divider()
             
             HStack (alignment: .top) {
-                if hbProject.hbFont2.fileUrl != nil {
+                if hbProject.hbFont2.available {
                     Button(action: removeFont2, label: {
                         Image(systemName: "minus.circle.fill")
                             .foregroundColor(.red)
@@ -132,19 +132,22 @@ struct HBSidebarFont: View {
                     .padding(.trailing, 15)
                     .help("Reload font")
                 }
-                if hbProject.hbFont2.fileUrl == nil {
+                if !hbProject.hbFont2.available {
                     Button(action: selectScriptForSystemFont, label: {
                         Image(systemName: "globe")
                     })
                     .padding(.trailing, 15)
                     .help("Select script for system font")
+                    .sheet(isPresented: $showingScriptSelection, onDismiss: {showingScriptSelection=false}) {
+                        HBFontScriptSelectionView(mainFont: false)
+                    }
                 }
             }
             .padding(.top, 15)
             
             
-            if hbProject.hbFont2.fileUrl != nil {
-                Text(hbProject.hbFont2.fileUrl!.lastPathComponent)
+            if hbProject.hbFont2.available {
+                Text(hbProject.hbFont2.fileUrl != nil ? hbProject.hbFont2.fileUrl!.lastPathComponent : hbProject.hbFont2.displayName)
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 20)
                     .padding(.bottom, 2)
@@ -240,9 +243,4 @@ struct HBSidebarFont: View {
     func selectScriptForSystemFont() {        
         showingScriptSelection = true
     }
-    /*
-    func scriptSelected() {
-        showingScriptSelection = false
-        hbProject.refresh()
-    } */
 }

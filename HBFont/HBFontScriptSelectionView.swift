@@ -19,7 +19,8 @@ struct HBFontScriptSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var hbProject: HBProject
 
-    @ObservedObject var hbFont:HBFont
+    //@ObservedObject var hbFont:HBFont
+    let mainFont: Bool
     @State var scripts = [HBScript]()
     @State var selected = HBScript(scriptName: "", scriptChar: "")
     
@@ -49,11 +50,8 @@ struct HBFontScriptSelectionView: View {
                     .padding(.vertical, 4)
                     .background(script == selected ? Color.blue : .clear)
                     .gesture(TapGesture(count: 2).onEnded {
-                        // UI Update should be done on main thread
-                        //DispatchQueue.main.async {
-                            loadSelectedSystemFont()
-                            presentationMode.wrappedValue.dismiss()
-                        //}
+                        loadSelectedSystemFont()
+                        presentationMode.wrappedValue.dismiss()
                     })
                     .simultaneousGesture(TapGesture().onEnded {
                         DispatchQueue.main.async {
@@ -67,8 +65,6 @@ struct HBFontScriptSelectionView: View {
                                 }
                                 .onEnded { _ in
                                     // touch up
-                                    //let index = hbFont.supportedLanguages.firstIndex(of: language)
-                                    //hbFont.supportedLanguages[index!].selected.toggle()
                                 }
                     )
             }
@@ -113,7 +109,11 @@ struct HBFontScriptSelectionView: View {
     
     func loadSelectedSystemFont() {
         DispatchQueue.main.async {
-            hbFont.loadFontFor(script: selected.scriptName, fontSize: 40, charsInScript: selected.scriptChar)
+            if mainFont {
+                hbProject.hbFont1.loadFontFor(script: selected.scriptName, fontSize: 40, charsInScript: selected.scriptChar)
+            } else {
+                hbProject.hbFont2.loadFontFor(script: selected.scriptName, fontSize: 40, charsInScript: selected.scriptChar)
+            }
             hbProject.refresh()
         }
     }
