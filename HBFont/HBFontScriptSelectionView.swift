@@ -17,6 +17,7 @@ struct HBScript: Identifiable, Equatable, Hashable, Codable {
 
 struct HBFontScriptSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var hbProject: HBProject
 
     @ObservedObject var hbFont:HBFont
     @State var scripts = [HBScript]()
@@ -84,6 +85,7 @@ struct HBFontScriptSelectionView: View {
                 } label: {
                     Text("Load System Font")
                 }
+                .disabled(selected.scriptName == "")
             }
             .padding(.bottom, 20)
         }
@@ -111,6 +113,7 @@ struct HBFontScriptSelectionView: View {
     
     func loadSelectedSystemFont() {
         hbFont.loadFontFor(script: selected.scriptName, fontSize: 40, charsInScript: selected.scriptChar)
+        hbProject.refresh()
     }
 }
 

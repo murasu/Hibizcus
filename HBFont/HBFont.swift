@@ -89,29 +89,30 @@ enum BookmarkedFontOpenError: Error {
 }
 
 class HBFont: ObservableObject {
-    @Published var fileUrl:URL?
-    @Published var fontSize:Int
-    @Published var ctFont:CTFont?
-    @Published var displayName:String               = "" {
+    @Published var available                        = false // Flag to indicate if this font is available for use in the tools
+    @Published var fileUrl: URL?
+    @Published var fontSize: Int
+    @Published var ctFont: CTFont?
+    @Published var displayName: String              = "" {
         didSet { self.objectWillChange.send() }
     }
     @Published var version:String                   = "" {
         didSet { self.objectWillChange.send() }
     }
-    @Published var metrics:FontMetrics               = FontMetrics()
-    @Published var glyphCount:Int                   = 0
-    @Published var scripts:[String]                 = [String]()
-    @Published var supportedLanguages:[Language]    = [Language]()
-    @Published var filteredLanguages:[String]       = [String]()
-    @Published var shapers:[String]                 = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
+    @Published var metrics: FontMetrics             = FontMetrics()
+    @Published var glyphCount: Int                  = 0
+    @Published var scripts: [String]                = [String]()
+    @Published var supportedLanguages: [Language]   = [Language]()
+    @Published var filteredLanguages: [String]      = [String]()
+    @Published var shapers: [String]                = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
     @Published var fileWatcher                      = HBFileWatcher()
-    @Published var selectedLanguage:String          = Hibizcus.Shaper.DefaultLanguageName {
+    @Published var selectedLanguage: String         = Hibizcus.Shaper.DefaultLanguageName {
         didSet { self.objectWillChange.send() }
     }
-    @Published var selectedScript:String            = Hibizcus.Shaper.DefaultLanguageName {
+    @Published var selectedScript: String           = Hibizcus.Shaper.DefaultLanguageName {
         didSet { self.objectWillChange.send() }
     }
-    @Published var selectedShaper:String            = Hibizcus.Shaper.CoreText {
+    @Published var selectedShaper: String           = Hibizcus.Shaper.CoreText {
         didSet { self.objectWillChange.send() }
     }
     
@@ -178,6 +179,9 @@ class HBFont: ObservableObject {
                     print("New cfont created: \(String(describing: ctFont))")
                     displayName = CTFontCopyDisplayName(ctFont!) as String
                     version = CTFontCopyName(ctFont!, kCTFontVersionNameKey)! as String
+                    // If we have a file, we support both shapers
+                    self.shapers = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
+                    available = true
                 }
                 
                 fileWatcher.stopWatchingForChanges()
@@ -206,11 +210,15 @@ class HBFont: ObservableObject {
     func setFontFile(filePath: String) {
         // Clear
         self.fileUrl = nil
+        self.charsInScript = ""
+        self.available = false
         supportedLanguages.removeAll()
         scripts.removeAll()
         // Create
         if filePath.count > 0 {
             self.fileUrl = URL(fileURLWithPath: filePath)
+            // If we have a file, we support both shapers
+            self.shapers = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
         } 
         createCTFont()
         extractFontInfo()
@@ -255,6 +263,7 @@ class HBFont: ObservableObject {
                 let fontData = try NSData(contentsOf: fileUrl!) as CFData
                 let descriptor = CTFontManagerCreateFontDescriptorFromData(fontData)
                 ctFont = CTFontCreateWithFontDescriptor(descriptor!, CGFloat(fontSize), nil)
+                available = true
             }
             catch {
                 print("GlyphView: Can't create ctFont from file: \(fileUrl!.absoluteString). Error \(error.localizedDescription)")
@@ -264,7 +273,12 @@ class HBFont: ObservableObject {
         if ctFont == nil {
             // Create from system font
             ctFont = CTFontCreateUIFontForLanguage(CTFontUIFontType.label, CGFloat(fontSize), nil)!
-            ctFont = CTFontCreateForString(ctFont!, charsInScript as CFString, CFRange(location: 0, length: 1))
+            if charsInScript != "" {
+                ctFont = CTFontCreateForString(ctFont!, charsInScript as CFString, CFRange(location: 0, length: 1))
+                // System font can't use Harfbuzz as we can't open the file
+                self.shapers = [Hibizcus.Shaper.CoreText]
+                available = true
+            }
         }
         
         if ( ctFont != nil ) {
