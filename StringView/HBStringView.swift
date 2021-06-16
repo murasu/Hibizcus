@@ -71,19 +71,21 @@ struct HBStringView: View, DropDelegate {
                     }
                     .padding(.leading, 5)
                     .padding(.trailing, 5)
-                    if hbProject.hbFont1.fileUrl != nil || hbProject.hbFont2.fileUrl != nil {
+                    //if hbProject.hbFont1.fileUrl != nil || hbProject.hbFont2.fileUrl != nil {
+                    if  hbProject.hbFont1.available || hbProject.hbFont2.available {
                         // Our custom view to display the shaped text
                         HBStringLayoutViewRepresentable(fontSize: stringViewSettings.fontSize,
                                                         slData1: hbProject.hbFont1.getStringLayoutData(forText: hbProject.hbStringViewText),
                                                         slData2: hbProject.hbFont2.getStringLayoutData(forText: hbProject.hbStringViewText),
                                                         stringViewSettings: stringViewSettings)
                             .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
+                            /*
                             .onDrag({
                                 let dragData = jsonFrom(font1: hbProject.hbFont1.fileUrl!.absoluteString, font2: hbProject.hbFont2.fileUrl!.absoluteString, text: hbProject.hbStringViewText)
                                 UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
                                 print("Dragging out \(dragData)")
                                 return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
-                            })
+                            }) */
                     }
                     else {
                         VStack {
@@ -103,16 +105,16 @@ struct HBStringView: View, DropDelegate {
                             // Glyphs in the shaped text, shaped using font1, the main font
                             VStack {
                                 StringGlyphListView(stringViewSettings:stringViewSettings,
-                                                    defaultColor: (hbProject.hbFont2.fileUrl == nil) ? Color.primary : Hibizcus.FontColor.MainFontUIColor.opacity(0.8),
+                                                    defaultColor: (hbProject.hbFont2.available /*.fileUrl == nil*/) ? Color.primary : Hibizcus.FontColor.MainFontUIColor.opacity(0.8),
                                                     mainFont: true)
                             }
                             .padding(.leading, 10)
-                            if hbProject.hbFont2.fileUrl != nil {
+                            if hbProject.hbFont2.available { //} .fileUrl != nil {
                                 Divider()
                                 // Glyphs in the shaped text, shaped font2, the compare font
                                 VStack {
                                     StringGlyphListView(stringViewSettings:stringViewSettings,
-                                                        defaultColor: (hbProject.hbFont2.fileUrl == nil) ? Color.primary : Hibizcus.FontColor.CompareFontUIColor.opacity(0.8),
+                                                        defaultColor: (hbProject.hbFont2.available /*fileUrl == nil*/) ? Color.primary : Hibizcus.FontColor.CompareFontUIColor.opacity(0.8),
                                                         mainFont: false)
                                 }
                                 .padding(.trailing, 10)
@@ -203,7 +205,6 @@ struct HBStringView: View, DropDelegate {
                 // There should be a better way to determine filetype
                 let urlstring = url.absoluteString.lowercased()
                 if urlstring.hasSuffix(".ttf") || urlstring.hasSuffix(".otf") || urlstring.hasSuffix(".ttc") {
-                //if url.absoluteString.hasSuffix(".ttf") || url.absoluteString.hasSuffix(".otf") || url.absoluteString.hasSuffix(".ttc") {
                     DispatchQueue.main.async {
                         if hbProject.hbFont1.fileUrl == nil {
                             hbProject.hbFont1.setFontFile(filePath: url.path)

@@ -69,7 +69,7 @@ class HBStringLayoutView: NSView {
         //let r = self.bounds
         //drawLine(inContext: context, fromPoint: r.origin, toPoint: CGPoint(x: r.width, y: r.height), lineWidth: 2.0, lineColor: .white)
 
-        if hbFont1.fileUrl != nil && viewSettings.showFont1 { 
+        if hbFont1.available /*hbFont1.fileUrl != nil*/ && viewSettings.showFont1 {
             // --- Draw a diagonal line across the height of the font - for debugging
             /*
             let f = slData.font! as NSFont
@@ -90,7 +90,7 @@ class HBStringLayoutView: NSView {
             print("Font 1 not set \(hbFont1)")
         }
         
-        if hbFont2.fileUrl != nil && viewSettings.showFont2 {
+        if hbFont1.available /*hbFont2.fileUrl != nil*/ && viewSettings.showFont2 {
             
             var ctFont2 = hbFont2.ctFont!
             if CTFontGetSize(ctFont2) != CGFloat(fontSize) {
@@ -139,7 +139,7 @@ class HBStringLayoutView: NSView {
         for glyphIndex in 0..<slData.hbGlyphs.count {
                         
             var fillColor = slData.hbGlyphs[glyphIndex].color.cgColor
-            if viewSettings.showFont1 && viewSettings.showFont2 && hbFont1.fileUrl != nil && hbFont2.fileUrl != nil {
+            if viewSettings.showFont1 && viewSettings.showFont2 && hbFont1.available && hbFont2.available { //} hbFont1.fileUrl != nil && hbFont2.fileUrl != nil {
                 fillColor = isMain ? Hibizcus.FontColor.MainFontColor : Hibizcus.FontColor.CompareFontColor
             }
             context!.setFillColor(fillColor!)
