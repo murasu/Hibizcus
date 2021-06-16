@@ -25,7 +25,7 @@ struct HBSidebarLanguage: View {
                 Spacer()
             }
             Picker("", selection: $hbProject.hbFont1.selectedScript) {
-                ForEach(hbProject.hbFont1.scripts, id: \.self) { scriptName in
+                ForEach(hbProject.hbFont1.supportedScripts, id: \.self) { scriptName in
                     Text(scriptName)
                 }
             }

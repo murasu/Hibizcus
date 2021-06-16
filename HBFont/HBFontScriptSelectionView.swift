@@ -50,10 +50,10 @@ struct HBFontScriptSelectionView: View {
                     .background(script == selected ? Color.blue : .clear)
                     .gesture(TapGesture(count: 2).onEnded {
                         // UI Update should be done on main thread
-                        DispatchQueue.main.async {
+                        //DispatchQueue.main.async {
                             loadSelectedSystemFont()
                             presentationMode.wrappedValue.dismiss()
-                        }
+                        //}
                     })
                     .simultaneousGesture(TapGesture().onEnded {
                         DispatchQueue.main.async {
@@ -112,8 +112,10 @@ struct HBFontScriptSelectionView: View {
     }
     
     func loadSelectedSystemFont() {
-        hbFont.loadFontFor(script: selected.scriptName, fontSize: 40, charsInScript: selected.scriptChar)
-        hbProject.refresh()
+        DispatchQueue.main.async {
+            hbFont.loadFontFor(script: selected.scriptName, fontSize: 40, charsInScript: selected.scriptChar)
+            hbProject.refresh()
+        }
     }
 }
 

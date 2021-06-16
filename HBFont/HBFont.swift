@@ -101,7 +101,7 @@ class HBFont: ObservableObject {
     }
     @Published var metrics: FontMetrics             = FontMetrics()
     @Published var glyphCount: Int                  = 0
-    @Published var scripts: [String]                = [String]()
+    @Published var supportedScripts: [String]       = [String]()
     @Published var supportedLanguages: [Language]   = [Language]()
     @Published var filteredLanguages: [String]      = [String]()
     @Published var shapers: [String]                = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
@@ -156,6 +156,11 @@ class HBFont: ObservableObject {
         self.charsInScript = charsInScript
         createCTFont()
         extractFontInfo()
+        if available {
+            // Only the selected script and default
+            self.supportedScripts = [script, Hibizcus.Shaper.DefaultLanguageName]
+            self.selectedScript = script
+        }
     }
     
     // Init with scoped bookmark and watch for changes
@@ -196,7 +201,7 @@ class HBFont: ObservableObject {
         
         self.fontSize = fontSize
         supportedLanguages.removeAll()
-        scripts.removeAll()
+        supportedScripts.removeAll()
         getFontMetrics()
         extractFontInfo()
     }
@@ -213,7 +218,7 @@ class HBFont: ObservableObject {
         self.charsInScript = ""
         self.available = false
         supportedLanguages.removeAll()
-        scripts.removeAll()
+        supportedScripts.removeAll()
         // Create
         if filePath.count > 0 {
             self.fileUrl = URL(fileURLWithPath: filePath)
@@ -326,11 +331,11 @@ class HBFont: ObservableObject {
             let unicodes = bridge.hbCollectUnicodes() as NSArray as! [UInt32]
             //print("Unicodes: \(unicodes)")
             
-            scripts = scriptsFromUnicodes(unicodes: unicodes)
+            supportedScripts = scriptsFromUnicodes(unicodes: unicodes)
             //print("Scripts: \(scripts)")
             
-            if scripts.count > 0 {
-                selectedScript = scripts[0]
+            if supportedScripts.count > 0 {
+                selectedScript = supportedScripts[0]
             }
 
             // Below is the earlier method, where I collected script & language
@@ -366,8 +371,8 @@ class HBFont: ObservableObject {
                                 // Remove v.2 in case it's present
                                 let script = scriptTags.scripts[scriptCode]?.replacingOccurrences(of: " v.2", with: "")
                                 // This may not be necessary
-                                if script != nil && !scripts.contains(script!) {
-                                    scripts.append(script!)
+                                if script != nil && !supportedScripts.contains(script!) {
+                                    supportedScripts.append(script!)
                                 }
                                 
                                 let nextIndex = language.index(idx!, offsetBy: 1)

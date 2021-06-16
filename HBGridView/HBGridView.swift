@@ -165,7 +165,7 @@ struct HBGridView: View, DropDelegate {
                     }
                     .border(Color.primary.opacity(0.3), width: 1)
                 }
-                if hbProject.hbFont1.ctFont != nil && hbProject.hbFont1.fileUrl != nil {
+                if hbProject.hbFont1.available { //} hbProject.hbFont1.ctFont != nil && hbProject.hbFont1.fileUrl != nil {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
@@ -401,7 +401,7 @@ struct HBGridView: View, DropDelegate {
     func refreshGlyphsInFonts() {
         print("Refreshing items in Font tab")
         hbGridItems.removeAll()
-        if hbProject.hbFont1.fileUrl != nil {
+        if hbProject.hbFont1.available { //} hbProject.hbFont1.fileUrl != nil {
             // If we already have the data backed up, use it instead of recreating
             if glyphItems.count > 0 && glyphItems.count == hbProject.hbFont1.glyphCount {
                 hbGridItems = glyphItems
@@ -426,7 +426,7 @@ struct HBGridView: View, DropDelegate {
                 for i in 0 ..< hbProject.hbFont1.glyphCount {
                     let gId         = CGGlyph(i)
                     let gName       = cgFont.name(for: gId)! as String
-                    let fd1         = fontData1!.getGlyfData(forGlyphName: gName)
+                    let fd1         = fontData1?.getGlyfData(forGlyphName: gName) ?? nil
                     let adv         = fd1?.width ?? 0
                     let width       = CGFloat(Float(adv)/scale)
                     var wordItem    = HBGridItem(type:HBGridItemItemType.Glyph, text: "")
@@ -438,7 +438,7 @@ struct HBGridView: View, DropDelegate {
                     var widthDiff   = false
                     var glyfDiff    = false
                     if (fontData2 != nil) {
-                        let fd2     = fontData2!.getGlyfData(forGlyphName: gName)
+                        let fd2     = fontData2?.getGlyfData(forGlyphName: gName) ?? nil
                         glyfDiff    = fd1?.glyf != fd2?.glyf
                         let gId2    = cgFont2?.getGlyphWithGlyphName(name: gName as CFString)
                         wordItem.glyphIds[1] = gId2 != nil ? CGGlyph(gId2!) : kCGFontIndexInvalid
