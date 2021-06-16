@@ -16,6 +16,21 @@ enum HBGridItemItemType {
     case Glyph, Cluster, Word, Number
 }
 
+class HBProject: ObservableObject {
+    @Published var projectName      = ""
+    @Published var hbFont1          = HBFont(filePath: "", fontSize: 40)
+    @Published var hbFont2          = HBFont(filePath: "", fontSize: 40)
+    @Published var hbGridViewText   = ""
+    @Published var hbStringViewText = ""
+    @Published var hbTraceViewText  = ""
+    // Holds the last updated timestamp. Used to force change the value for UI updates
+    @Published var lastUpdated      = ""
+    
+    func refresh() {
+        self.lastUpdated = NSDate().timeIntervalSince1970.debugDescription
+    }
+}
+
 struct HBGridItem : Hashable {
     var type: HBGridItemItemType?
     var text: String?
