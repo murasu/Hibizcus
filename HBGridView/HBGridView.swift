@@ -119,6 +119,9 @@ struct HBGridView: View, DropDelegate {
                     if hbProject.hbFont1.charsInScript != "" {
                         document.projectData.systemFont1Script = newScript
                         document.projectData.systemFont1Chars = hbProject.hbFont1.charsInScript
+                    } else {
+                        document.projectData.systemFont1Script = ""
+                        document.projectData.systemFont1Chars = ""
                     }
                     glyphItems.removeAll()
                     refreshGridItems()
@@ -155,6 +158,9 @@ struct HBGridView: View, DropDelegate {
                     if hbProject.hbFont2.charsInScript != "" {
                         document.projectData.systemFont2Script = newScript
                         document.projectData.systemFont2Chars = hbProject.hbFont2.charsInScript
+                    } else {
+                        document.projectData.systemFont2Script = ""
+                        document.projectData.systemFont2Chars = ""
                     }
                     glyphItems.removeAll()
                     refreshGridItems()

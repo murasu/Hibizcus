@@ -216,6 +216,7 @@ class HBFont: ObservableObject {
         // Clear
         self.fileUrl = nil
         self.charsInScript = ""
+        self.selectedScript = ""
         self.available = false
         supportedLanguages.removeAll()
         supportedScripts.removeAll()

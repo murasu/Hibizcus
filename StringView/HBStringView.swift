@@ -146,7 +146,6 @@ struct HBStringView: View, DropDelegate {
                 .disabled(hbProject.hbStringViewText == "")
             }
             // TraceView
-            //*
             ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                 Button(action: {
                     if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: hbProject.hbStringViewText))") {
@@ -157,7 +156,8 @@ struct HBStringView: View, DropDelegate {
                     Text("Trace viewer")
                 })
                 .help( hbProject.hbStringViewText != "" ? "Open \(hbProject.hbStringViewText) in TraceViewer" : "Open TraceViewer")
-            } //*/
+                .disabled(hbProject.hbFont1.fileUrl == nil)
+            }
         }
         .onOpenURL(perform: { url in
             print("Url opened = \(url.absoluteString)")
