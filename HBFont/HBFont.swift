@@ -139,15 +139,19 @@ class HBFont: ObservableObject {
         createCTFont()
         extractFontInfo()
         fileWatcher.stopWatchingForChanges()
+        
         if filePath.count > 0 {
             fileWatcher.watchForChangesInFileAtUrl(fileUrl: URL(fileURLWithPath: filePath))
         }
         
         // Notify change when fileWatcher, which is a nested ObservableObject, changes
         anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in
-            print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
+            //if self!.fileUrl != nil {
+            //    print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
+            //}
             self?.objectWillChange.send()
         }
+        
     }
     
     // Init system font for character(s) in given string
@@ -202,7 +206,6 @@ class HBFont: ObservableObject {
         self.fontSize = fontSize
         supportedLanguages.removeAll()
         supportedScripts.removeAll()
-        getFontMetrics()
         extractFontInfo()
     }
     
@@ -234,12 +237,16 @@ class HBFont: ObservableObject {
         }
         // Notify change when fileWatcher, which is a nested ObservableObject, changes
         anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in
-            print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
+            //if self!.fileUrl != nil {
+            //    print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
+            //}
             self?.objectWillChange.send()
         }
     }
     
     func reloadFont() {
+        supportedLanguages.removeAll()
+        supportedScripts.removeAll()
         createCTFont()
         extractFontInfo()
     }

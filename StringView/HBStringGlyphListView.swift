@@ -24,30 +24,32 @@ struct StringViewGlyphRowHeader: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("GID")
-                    .font(.system(size: 14, design: .monospaced))
-                    .frame(width: 35, height: 20, alignment: .trailing)
-                    .foregroundColor(Color.primary)
+        ScrollView {
+            VStack {
+                HStack {
+                    Text("GID")
+                        .font(.system(size: 14, design: .monospaced))
+                        .frame(width: 35, height: 20, alignment: .trailing)
+                        .foregroundColor(Color.primary)
+                    Divider()
+                    Text("GLYPH NAME")
+                        .font(.system(size: 14, design: .monospaced))
+                        .frame(width: 200, height: 20, alignment: .leading)
+                        .foregroundColor(Color.primary)
+                    Spacer()
+                    Divider()
+                    Text("UNI")
+                        .font(.system(size: 14, design: .monospaced))
+                        .frame(width: 50, height: 20, alignment: .leading)
+                        .foregroundColor(Color.primary)
+                    Divider()
+                    Text("CHR")
+                        .font(.system(size: 14, design: .monospaced))
+                        .frame(width: 40, height: 20, alignment: .leading)
+                        .foregroundColor(Color.primary)
+                }
                 Divider()
-                Text("GLYPH NAME")
-                    .font(.system(size: 14, design: .monospaced))
-                    .frame(width: 200, height: 20, alignment: .leading)
-                    .foregroundColor(Color.primary)
-                Spacer()
-                Divider()
-                Text("UNI")
-                    .font(.system(size: 14, design: .monospaced))
-                    .frame(width: 50, height: 20, alignment: .leading)
-                    .foregroundColor(Color.primary)
-                Divider()
-                Text("CHR")
-                    .font(.system(size: 14, design: .monospaced))
-                    .frame(width: 40, height: 20, alignment: .leading)
-                    .foregroundColor(Color.primary)
             }
-            Divider()
         }
     }
 }

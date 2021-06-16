@@ -31,6 +31,7 @@ class HBFileWatcher: NSObject, NSFilePresenter, ObservableObject {
     }
     
     func stopWatchingForChanges() {
+        fontFileChanged = false
         presentedItemURL = nil
         NSFileCoordinator.removeFilePresenter(self)
     }

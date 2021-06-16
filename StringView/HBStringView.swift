@@ -71,7 +71,6 @@ struct HBStringView: View, DropDelegate {
                     }
                     .padding(.leading, 5)
                     .padding(.trailing, 5)
-                    //if hbProject.hbFont1.fileUrl != nil || hbProject.hbFont2.fileUrl != nil {
                     if  hbProject.hbFont1.available || hbProject.hbFont2.available {
                         // Our custom view to display the shaped text
                         HBStringLayoutViewRepresentable(fontSize: stringViewSettings.fontSize,
@@ -79,13 +78,6 @@ struct HBStringView: View, DropDelegate {
                                                         slData2: hbProject.hbFont2.getStringLayoutData(forText: hbProject.hbStringViewText),
                                                         stringViewSettings: stringViewSettings)
                             .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
-                            /*
-                            .onDrag({
-                                let dragData = jsonFrom(font1: hbProject.hbFont1.fileUrl!.absoluteString, font2: hbProject.hbFont2.fileUrl!.absoluteString, text: hbProject.hbStringViewText)
-                                UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
-                                print("Dragging out \(dragData)")
-                                return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
-                            }) */
                     }
                     else {
                         VStack {
