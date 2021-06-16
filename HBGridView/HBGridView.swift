@@ -209,7 +209,7 @@ struct HBGridView: View, DropDelegate {
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
                                         })
                                         .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                            HBGlyphView(tappedItem: tappedItem, gridItems: hbGridItems)
+                                            HBGlyphView(document: $document, tappedItem: tappedItem, gridItems: hbGridItems)
                                         }
                                 }
                             }
@@ -274,7 +274,7 @@ struct HBGridView: View, DropDelegate {
                     })
                     .help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in StringViewer" : "Open StringViewer")
                 }
-                // TraceView
+                // TraceView - only when font1 has file access
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         //if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
@@ -286,7 +286,9 @@ struct HBGridView: View, DropDelegate {
                         Text("Trace viewer")
                     })
                     .help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in TraceViewer" : "Open TraceViewer")
+                    .disabled(hbProject.hbFont1.fileUrl == nil)
                 }
+                
             }
             //.navigationTitle("Hiziscus Font Tools")
             .onChange(of: clusterViewModel.selectedBase) { _ in
@@ -884,30 +886,6 @@ struct HBGridView: View, DropDelegate {
                 "&font1Script=\(scrp1)&font2Script=\(scrp2)&font1Chars=\(echrs1)&font2Chars=\(echrs2)"
         return params
     }
-    
-    /*
-    // Help construct URL parameters
-    func urlParamsForToolWindow(text: String) -> String {
-        let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        var f1Url = ""
-        var f2Url = ""
-        var bkMk1 = ""
-        var bkMk2 = ""
-        if document.projectData.fontFile1Bookmark != nil {
-            bkMk1 = document.projectData.fontFile1Bookmark!.base64EncodedString()
-        } else {
-            f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
-        }
-        if document.projectData.fontFile2Bookmark != nil {
-            bkMk2 = document.projectData.fontFile2Bookmark!.base64EncodedString()
-        } else {
-            f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
-        }
-        // Project name is the last path component of the project file
-        let prjName = projectFileUrl?.lastPathComponent ?? ""
-
-        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)"
-    } */
 }
 
 // Toggle Left Sidebar

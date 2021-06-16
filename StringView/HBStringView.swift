@@ -285,21 +285,37 @@ struct HBStringView: View, DropDelegate {
         var f2Url = ""
         var bkMk1 = ""
         var bkMk2 = ""
+        // Script info for system fonts in project
+        var scrp1 = ""
+        var chrs1 = ""
+        var scrp2 = ""
+        var chrs2 = ""
+        
         if stringViewSettings.fontBookmark1.count > 0 {
             bkMk1 = stringViewSettings.fontBookmark1.base64EncodedString() //document.projectData.fontFile1Bookmark!.base64EncodedString()
-        } else {
+        } else if hbProject.hbFont1.fileUrl != nil {
             f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+        } else {
+            scrp1 = hbProject.hbFont1.selectedScript
+            chrs1 = hbProject.hbFont1.charsInScript
         }
+        
         if stringViewSettings.fontBookmark2.count > 0 {
             bkMk2 = stringViewSettings.fontBookmark2.base64EncodedString() // document.projectData.fontFile2Bookmark!.base64EncodedString()
-        } else {
+        } else if hbProject.hbFont2.fileUrl != nil {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+        } else {
+            scrp2 = hbProject.hbFont2.selectedScript
+            chrs2 = hbProject.hbFont2.charsInScript
         }
 
         // Project name is the last path component of the project file
         let prjName = hbProject.projectName
         
-        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)"
+        let echrs1 = chrs1.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let echrs2 = chrs2.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        return "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)" +
+            "&font1Script=\(scrp1)&font2Script=\(scrp2)&font1Chars=\(echrs1)&font2Chars=\(echrs2)"
+
     }
 }
-
