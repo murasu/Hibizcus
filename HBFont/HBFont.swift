@@ -562,7 +562,7 @@ class HBFont: ObservableObject {
     
     func getStringLayoutData(forText: String) -> StringLayoutData {
         var stringLayoutData = StringLayoutData()
-        if forText == "" || fileUrl == nil {
+        if forText == "" || !available { //} fileUrl == nil {
             return stringLayoutData
         }
         else {

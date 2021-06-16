@@ -551,8 +551,8 @@ struct HBGridView: View, DropDelegate {
                 item.diffWidth = abs(item.width[1] - item.width[0]) > 0.01
                 item.diffLayout = !(sld1 == sld2)
                 for hbGlyph in sld1.hbGlyphs {
-                    let fd1 = fontData1!.getGlyfData(forGlyphName: hbGlyph.name)
-                    let fd2 = fontData2!.getGlyfData(forGlyphName: hbGlyph.name)
+                    let fd1 = fontData1?.getGlyfData(forGlyphName: hbGlyph.name) ?? nil
+                    let fd2 = fontData2?.getGlyfData(forGlyphName: hbGlyph.name) ?? nil
                     if fd1 != nil && fd2 != nil {
                         if fd1!.glyf != fd2!.glyf {
                             item.diffGlyf = true
