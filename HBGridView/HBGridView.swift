@@ -156,16 +156,12 @@ struct HBGridView: View, DropDelegate {
                     hbProject.refresh()
                 }
                 .onChange(of: hbProject.hbFont1.fileUrl) { _ in
-                    // Remove the bookmark if the font is removed from the project
-                    if hbProject.hbFont1.fileUrl == nil && document.projectData.fontFile1Bookmark != nil {
-                        document.projectData.fontFile1Bookmark = nil
-                    }
+                    // Remove the bookmark if the font is removed from the project & vice-versa
+                    updateFontBookmark(mainFont: true)
                 }
                 .onChange(of: hbProject.hbFont2.fileUrl) { _ in
-                    // Remove the bookmark if the font is removed from the project
-                    if hbProject.hbFont2.fileUrl == nil && document.projectData.fontFile2Bookmark != nil {
-                        document.projectData.fontFile2Bookmark = nil
-                    }
+                    // Remove the bookmark if the font is removed from the project & vice-versa
+                    updateFontBookmark(mainFont: false)
                 }
                 .onChange(of: hbProject.hbFont2.selectedScript) { newScript in
                     // We don't care about the selected script in Font2 - but we want to refresh the
@@ -419,6 +415,25 @@ struct HBGridView: View, DropDelegate {
             relativeTo: nil
         )
         return bookmarkData
+    }
+    
+    func updateFontBookmark(mainFont: Bool) {
+        if mainFont {
+            if hbProject.hbFont1.fileUrl == nil && document.projectData.fontFile1Bookmark != nil {
+                    document.projectData.fontFile1Bookmark = nil
+            } else if hbProject.hbFont1.fileUrl != nil && document.projectData.fontFile1Bookmark == nil {
+                document.projectData.fontFile1Bookmark = securityScopedBookmark(ofUrl: hbProject.hbFont1.fileUrl!)
+            }
+        }
+        else {
+            if hbProject.hbFont2.fileUrl == nil && document.projectData.fontFile2Bookmark != nil {
+                    document.projectData.fontFile2Bookmark = nil
+            } else if hbProject.hbFont2.fileUrl != nil && document.projectData.fontFile2Bookmark == nil {
+                document.projectData.fontFile2Bookmark = securityScopedBookmark(ofUrl: hbProject.hbFont2.fileUrl!)
+            }
+        }
+        
+        hbProject.refresh()
     }
     
     func doubleClicked(clickedItem: HBGridItem) {
