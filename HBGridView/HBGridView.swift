@@ -64,6 +64,7 @@ class HBGridViewOptions: ObservableObject {
     @Published var showThousand: Bool           = false         // Insert a comma to show thousand in numbers with >= 4 digits
     @Published var showLakh: Bool               = false         // Insert a comma to show Lakh in a six digit number.
     @Published var colorGlyphs: Bool            = false         // Show each glyph in a different color - used in Cluster tab
+    @Published var wordlistAvailable: Bool      = true          // Flag to indicate if wordlist is availabe for current script
 }
 
 struct HBGridView: View, DropDelegate {
@@ -624,6 +625,7 @@ struct HBGridView: View, DropDelegate {
         
         let filename = script + "_" + language
         if let filepath = Bundle.main.path(forResource: filename, ofType: "txt") {
+            gridViewOptions.wordlistAvailable = true
             // Get groups - for searches that involve letters instead of unicodes
             var groups = ""
             for letter in theText {
@@ -668,6 +670,7 @@ struct HBGridView: View, DropDelegate {
         } else {
             print("The text file \(filename) can't be found in the bundle")
             hbGridItems.removeAll()
+            gridViewOptions.wordlistAvailable = false
         }
     }
     

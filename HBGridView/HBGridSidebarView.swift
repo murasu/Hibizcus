@@ -122,22 +122,32 @@ struct HBGridSidebarView: View {
                         HBSidebarLanguage(showDefaultLanguage: true)
                         Divider()
                         VStack(alignment: .leading) {
-                            Text("Search for words that:")
-                                .multilineTextAlignment(.leading)
-                                .padding(.top, 20)
-                                .padding(.bottom, 10)
-                                .padding(.leading, 20)
-                            
-                            RadioGroup(callback: { selected in
-                                print("Selected options is: \(selected)")
-                                gridViewOptions.matchOption = selected
-                            }, selection: gridViewOptions.matchOption, options: searchOptions)
-                            .padding(.bottom, 20)
-                            Spacer()
-                            Divider()
-                            
-                            GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                            if gridViewOptions.wordlistAvailable {
+                                Text("Search for words that:")
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.top, 20)
+                                    .padding(.bottom, 10)
+                                    .padding(.leading, 20)
+                                
+                                RadioGroup(callback: { selected in
+                                    print("Selected options is: \(selected)")
+                                    gridViewOptions.matchOption = selected
+                                }, selection: gridViewOptions.matchOption, options: searchOptions)
+                                .padding(.bottom, 20)
+                                Spacer()
+                                Divider()
+                                
+                                GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                            } else {
+                                Text("Word list not available for selected script and language.")
+                                    .padding(.top, 20)
+                                    .padding(.bottom, 10)
+                                    .padding(.horizontal, 20)
+                                    .foregroundColor(.red)
+                                Spacer()
+                            }
                         }
+                        
                     }
                     else {
                         Text("Load a font to select script and language")
