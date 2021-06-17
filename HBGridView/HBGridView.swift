@@ -117,7 +117,7 @@ struct HBGridView: View, DropDelegate {
                     updateNumberItems()
                 }
                 .onChange(of: gridViewOptions.colorGlyphs) { value in
-                    if hbProject.hbFont2.fileUrl != nil {
+                    if hbProject.hbFont2.available {
                         // Do not allow color if we are comparing
                         gridViewOptions.colorGlyphs = false
                     }
@@ -201,7 +201,7 @@ struct HBGridView: View, DropDelegate {
                     }
                     .border(Color.primary.opacity(0.3), width: 1)
                 }
-                if hbProject.hbFont1.available { //} hbProject.hbFont1.ctFont != nil && hbProject.hbFont1.fileUrl != nil {
+                if hbProject.hbFont1.available {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
@@ -224,7 +224,7 @@ struct HBGridView: View, DropDelegate {
                                             print("single clicked on item \(hbGridItem)")
                                         })
                                         .onDrag({
-                                            let dragData = paramsForToolWindow(asJson: true, text: hbGridItem.text!) //jsonParamsForToolWindow(text: hbGridItem.text!)
+                                            let dragData = paramsForToolWindow(asJson: true, text: hbGridItem.text!)
                                             UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
                                             print("Dragging out \(dragData)")
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
@@ -285,7 +285,6 @@ struct HBGridView: View, DropDelegate {
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         
-                        //if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
                         if let url = URL(string: "Hibizcus://stringview?\(paramsForToolWindow(asJson: false, text: tappedItem.text ?? ""))") {
                             openURL(url)
                         }
@@ -298,7 +297,6 @@ struct HBGridView: View, DropDelegate {
                 // TraceView - only when font1 has file access
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
-                        //if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: tappedItem.text ?? ""))") {
                         if let url = URL(string: "Hibizcus://traceview?\(paramsForToolWindow(asJson: false, text: tappedItem.text ?? ""))") {
                             openURL(url)
                         }
@@ -332,7 +330,6 @@ struct HBGridView: View, DropDelegate {
                 //refreshGridItems()
             }
         }
-        //.navigationTitle("Hibizcus")
         .onDrop(of: ["public.truetype-ttf-font", "public.file-url"], delegate: self)
         .onAppear {
             // Load font1 from bookmark or system font for script and characters
@@ -454,7 +451,7 @@ struct HBGridView: View, DropDelegate {
     func refreshGlyphsInFonts() {
         print("Refreshing items in Font tab")
         hbGridItems.removeAll()
-        if hbProject.hbFont1.available { //} hbProject.hbFont1.fileUrl != nil {
+        if hbProject.hbFont1.available {
             // If we already have the data backed up, use it instead of recreating
             if glyphItems.count > 0 && glyphItems.count == hbProject.hbFont1.glyphCount {
                 hbGridItems = glyphItems
@@ -469,7 +466,7 @@ struct HBGridView: View, DropDelegate {
             
             let fontData1   = hbProject.hbFont1.getHBFontData()
             let fontData2   = hbProject.hbFont2.getHBFontData()
-            let cgFont2     = hbProject.hbFont2.available /*hbProject.hbFont2.fileUrl != nil*/ ? CTFontCopyGraphicsFont(hbProject.hbFont2.ctFont!, nil) : nil
+            let cgFont2     = hbProject.hbFont2.available ? CTFontCopyGraphicsFont(hbProject.hbFont2.ctFont!, nil) : nil
     
             // Get the glyph information and set the width of the widest glyph as the maxCellWidth
             glyphCellWidth  = 100
@@ -490,14 +487,8 @@ struct HBGridView: View, DropDelegate {
                     if fd1 == nil {
                         var cgGlyphs = [CGGlyph(gId), CGGlyph(0)]
                         var opticalRect = [CGRect(x: 0, y: 0, width: 0, height: 0), CGRect(x: 0, y: 0, width: 0, height: 0)]
-                        //var boundingRect = [CGRect(x: 0, y: 0, width: 0, height: 0), CGRect(x: 0, y: 0, width: 0, height: 0)]
                         let ro = CTFontGetOpticalBoundsForGlyphs(hbProject.hbFont1.ctFont!, &cgGlyphs, &opticalRect, 1, 0)
-                        //let rb = CTFontGetBoundingRectsForGlyphs(hbProject.hbFont1.ctFont!, .horizontal, &cgGlyphs, &boundingRect, 1)
-                        //print ("rb = \(rb)")
                         width = ro.width
-                        //if abs(width - ro.width) > 0.01 {
-                        //    print ("Glyph: \(gId), width: \(width), optical: \(ro.width), bounding: \(rb.width)")
-                        //}
                     }
                     
                     wordItem.glyphIds[0]    = gId
@@ -589,7 +580,7 @@ struct HBGridView: View, DropDelegate {
             item.width[0] = (sld1.width)
             
             // If there are two fonts, see if we have a diff
-            if hbProject.hbFont2.available { //} hbProject.hbFont2.fileUrl != nil {
+            if hbProject.hbFont2.available {
                 //if baseEx == "ल्क्य" || baseEx == "क़" || baseEx == "கா" {
                 //    print("Debugging \(baseEx)")
                 //}
@@ -736,7 +727,7 @@ struct HBGridView: View, DropDelegate {
                     
                     // If there are two fonts, see if we have a diff
                     if gridViewOptions.compareWordLayout {
-                        if hbProject.hbFont2.fileUrl != nil { //} .filePath.count > 0 {
+                        if hbProject.hbFont2.fileUrl != nil {
                             let sld2 = hbProject.hbFont2.getStringLayoutData(forText: word)
                             item.width[1] = sld2.width
                             item.diffWidth = abs(item.width[1] - item.width[0]) > 0.01

@@ -64,7 +64,7 @@ struct HBGridSidebarView: View {
                     HBSidebarFont()
                     Spacer()
                     Divider()
-                    if hbProject.hbFont2.available { //} hbProject.hbFont2.fileUrl != nil {
+                    if hbProject.hbFont2.available {
                         GridDisplayOptionsView(gridViewOptions: gridViewOptions)
                     }
                     
@@ -84,7 +84,7 @@ struct HBGridSidebarView: View {
             
             HStack (alignment: .top) {
                 VStack(alignment: .leading) {
-                    if hbProject.hbFont1.available { //} hbProject.hbFont1.fileUrl != nil {
+                    if hbProject.hbFont1.available {
                         HBSidebarLanguage()
                     }
                     else {
@@ -94,7 +94,7 @@ struct HBGridSidebarView: View {
                     
                     Divider()
                     
-                    if hbProject.hbFont1.available { //} hbProject.hbFont1.fileUrl != nil {
+                    if hbProject.hbFont1.available {
                         HBGridSidebarCluster(viewModel: clusterViewModel)
                     }
                     
@@ -118,7 +118,7 @@ struct HBGridSidebarView: View {
             
             HStack (alignment: .top) {
                 VStack(alignment: .leading) {
-                    if hbProject.hbFont1.available { //} hbProject.hbFont1.fileUrl != nil {
+                    if hbProject.hbFont1.available {
                         HBSidebarLanguage(showDefaultLanguage: true)
                         Divider()
                         VStack(alignment: .leading) {
@@ -158,7 +158,7 @@ struct HBGridSidebarView: View {
             
             HStack (alignment: .top) {
                 VStack(alignment: .leading) {
-                    if hbProject.hbFont1.available { //} hbProject.hbFont1.fileUrl != nil {
+                    if hbProject.hbFont1.available {
                         HBSidebarLanguage(showDefaultLanguage: true)
                         Divider()
                         VStack(alignment: .leading) {
@@ -227,7 +227,7 @@ struct GridDisplayOptionsView: View {
                 }
             }
             
-            if hbProject.hbFont2.available { //} hbProject.hbFont2.fileUrl != nil {
+            if hbProject.hbFont2.available { 
                 if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
                     HStack {
                         Toggle("Compare layout", isOn: $gridViewOptions.compareWordLayout)

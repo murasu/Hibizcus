@@ -146,9 +146,6 @@ class HBFont: ObservableObject {
         
         // Notify change when fileWatcher, which is a nested ObservableObject, changes
         anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in
-            //if self!.fileUrl != nil {
-            //    print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
-            //}
             self?.objectWillChange.send()
         }
         
@@ -237,9 +234,6 @@ class HBFont: ObservableObject {
         }
         // Notify change when fileWatcher, which is a nested ObservableObject, changes
         anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in
-            //if self!.fileUrl != nil {
-            //    print("fileWatcher: sending objectWillChange for file \(self!.fileUrl!)")
-            //}
             self?.objectWillChange.send()
         }
     }

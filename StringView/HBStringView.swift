@@ -42,7 +42,7 @@ struct HBStringView: View, DropDelegate {
             VSplitView {
                 VStack {
                     // The text field where we input text
-                    TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $hbProject.hbStringViewText)                        
+                    TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $hbProject.hbStringViewText)
                         .font(.title)
                         .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                             // Update layout data for both fonts when script is changed
@@ -108,7 +108,7 @@ struct HBStringView: View, DropDelegate {
                                                     mainFont: true)
                             }
                             .padding(.leading, 10)
-                            if hbProject.hbFont2.available { //} .fileUrl != nil {
+                            if hbProject.hbFont2.available {
                                 Divider()
                                 // Glyphs in the shaped text, shaped font2, the compare font
                                 VStack {
