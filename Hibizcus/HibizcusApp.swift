@@ -13,7 +13,14 @@ struct HibizcusApp: App {
         DocumentGroup(newDocument: HibizcusDocument()) { file in
             HBGridView(document: file.$document, projectFileUrl: file.fileURL)
         }
-        
+        .commands {
+            CommandGroup(replacing: CommandGroupPlacement.help) {
+                Button("Hibizcus Help") {
+                    NSWorkspace.shared.open(URL(string: "https://hibizcus.com")!)
+                }
+            }
+        }
+            
         WindowGroup("StringViewer") {
             // activate existing window if exists
             HBStringView()
