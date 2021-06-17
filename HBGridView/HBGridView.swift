@@ -694,12 +694,13 @@ struct HBGridView: View, DropDelegate {
         }
     }
     
-    func selectWords(fromArray: [String], defWordLen: Int) { //}-> [HBGridItem] {
+    func selectWords(fromArray: [String], defWordLen: Int) {
         let attributes: [NSAttributedString.Key : Any] = [
             .font: hbProject.hbFont1.ctFont!
         ]
         
-        // This will be used to compare glyf data
+        // This will be used to compare glyf data. We need to have the ttf file
+        // for this as we are not extracing glyf data from system fonts.
         var fontData1: HBFontData?
         var fontData2: HBFontData?
         if hbProject.hbFont2.fileUrl != nil {

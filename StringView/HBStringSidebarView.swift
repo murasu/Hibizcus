@@ -30,7 +30,7 @@ struct HBStringSidebarView: View {
                 // Script and Language
                 HStack (alignment: .top) {
                     VStack(alignment: .leading) {
-                        if hbProject.hbFont1.fileUrl != nil {
+                        if hbProject.hbFont1.available { //} .fileUrl != nil {
                             HBSidebarLanguage(showDefaultLanguage: false)
                         }
                         else {
@@ -46,7 +46,7 @@ struct HBStringSidebarView: View {
                 Divider()
                 
                 // StringViewer Display Settings
-                if hbProject.hbFont1.fileUrl != nil || hbProject.hbFont2.fileUrl != nil {
+                if hbProject.hbFont1.available /*fileUrl != nil*/ || hbProject.hbFont2.available { //fileUrl != nil {
                     VStack {
                         VStack (alignment: .leading) {
                             Text("Font size:")

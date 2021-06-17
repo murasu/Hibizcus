@@ -106,7 +106,7 @@ struct HBGlyphView: View {
                 
                 Divider()
                 
-                if gridItems[currItem].hasDiff() && hbProject.hbFont2.fileUrl != nil {
+                if gridItems[currItem].hasDiff() && hbProject.hbFont2.available { //fileUrl != nil {
                     HStack {
                         if gridItems[currItem].diffWidth {
                             Text(" Width Mismatch ")

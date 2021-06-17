@@ -60,6 +60,7 @@ struct HBSidebarFont: View {
             }
         }
         if hbProject.hbFont1.available {
+            // Show file name if available, otherwise font name
             Text( hbProject.hbFont1.fileUrl != nil ? hbProject.hbFont1.fileUrl!.lastPathComponent : hbProject.hbFont1.displayName )
                 .multilineTextAlignment(.leading)
                 .padding(.leading, 20)
@@ -147,6 +148,7 @@ struct HBSidebarFont: View {
             
             
             if hbProject.hbFont2.available {
+                // Show filename if available otherwise font name
                 Text(hbProject.hbFont2.fileUrl != nil ? hbProject.hbFont2.fileUrl!.lastPathComponent : hbProject.hbFont2.displayName)
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 20)

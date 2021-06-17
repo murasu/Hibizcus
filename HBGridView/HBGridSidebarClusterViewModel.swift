@@ -82,7 +82,7 @@ class HBGridSidebarClusterViewModel: ObservableObject {
             // is done before this is processed in the queue
             //DispatchQueue.main.async {
                 if errorMessage.count > 0 {
-                    self.errorMessage = errorMessage
+                    self.errorMessage = "Can't load cluster data for \(self.currentScript): \(errorMessage)"
                 }
                 else {
                     if dictionary["BaseNames"] == nil {
@@ -170,7 +170,8 @@ class HBGridSidebarClusterViewModel: ObservableObject {
                 }
             }
             else {
-                errorMessage = "File \(clusterFile) not found!"
+                //errorMessage = "File \(clusterFile).json not found!"
+                errorMessage = "Data not available."
                 print("Error: \(errorMessage)")
             }
         }
