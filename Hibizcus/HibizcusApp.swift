@@ -17,13 +17,13 @@ struct HibizcusApp: App {
         WindowGroup("StringViewer") {
             // activate existing window if exists
             HBStringView()
-                .handlesExternalEvents(preferring: Set(arrayLiteral: "stringview"), allowing: Set(arrayLiteral: "stringview" /*"*"*/))
+                .handlesExternalEvents(preferring: Set(arrayLiteral: "stringview"), allowing: Set(arrayLiteral: "stringview"))
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "stringview"))  // create new window if one doesn't exist
         
         WindowGroup("TraceViewer") {
             HBTraceView()
-                .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "traceview" /*"*"*/))
+                .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "traceview"))
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "traceview"))
     }

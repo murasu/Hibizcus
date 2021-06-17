@@ -31,6 +31,7 @@ struct HBStringView: View, DropDelegate {
     @StateObject var stringViewSettings = HBStringViewSettings()
     
     @StateObject var hbProject = HBProject()
+    @State var listViewOpen = true
 
     var body: some View {
         NavigationView() {
@@ -41,7 +42,7 @@ struct HBStringView: View, DropDelegate {
             VSplitView {
                 VStack {
                     // The text field where we input text
-                    TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $hbProject.hbStringViewText)
+                    TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $hbProject.hbStringViewText)                        
                         .font(.title)
                         .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                             // Update layout data for both fonts when script is changed
@@ -53,24 +54,6 @@ struct HBStringView: View, DropDelegate {
                             hbProject.hbFont2.selectedLanguage = newLanguage
                             hbProject.refresh()
                         }
-                    // The text to display the unicodes of the string
-                    HStack {
-                        Text(hbProject.hbStringViewText.hexString())
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.body)
-                            .foregroundColor(.blue)
-                            .padding(.vertical, 3)
-                        Spacer()
-                        Button(action: copyHexString, label: {
-                            Image(systemName: "doc.on.doc")
-                        })
-                        .padding(.vertical, 3)
-                        .padding(.trailing, 5)
-                        .foregroundColor(.primary)
-                        .help("Copy hex string to clipboard")
-                    }
-                    .padding(.leading, 5)
-                    .padding(.trailing, 5)
                     if  hbProject.hbFont1.available || hbProject.hbFont2.available {
                         // Our custom view to display the shaped text
                         HBStringLayoutViewRepresentable(fontSize: stringViewSettings.fontSize,
@@ -90,7 +73,31 @@ struct HBStringView: View, DropDelegate {
                         }
                     }
                 }
-                if hbProject.hbStringViewText.count > 0 {
+                
+                // The text to display the unicodes of the string
+                HStack {
+                    Button(action: copyHexString, label: {
+                        Image(systemName: "doc.on.doc")
+                    })
+                    Text(hbProject.hbStringViewText.hexString())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.body)
+                        .foregroundColor(.blue)
+                        .padding(.vertical, 3)
+                    Spacer()
+                    Button(action: {listViewOpen = !listViewOpen}, label: {
+                        Image(systemName: "rectangle.bottomthird.inset.fill")
+                    })
+                    .padding(.vertical, 3)
+                    .padding(.trailing, 5)
+                    .foregroundColor(.primary)
+                    .help("Copy hex string to clipboard")
+                }
+                .padding(.leading, 5)
+                .padding(.trailing, 5)
+                
+                // Glyph ListView
+                if hbProject.hbStringViewText != "" && listViewOpen {
                     Divider()
                     VStack {
                         HStack {
@@ -312,3 +319,5 @@ struct HBStringView: View, DropDelegate {
 
     }
 }
+
+
