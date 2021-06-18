@@ -32,6 +32,6 @@ Pre-built libraries for all the above are included in the repo
 
 ## Wordlists and cluseter data
 
-1. Text files conatining a list of words for each supported language can be found in Hibizcus/Shares/Resources. The filenames will be in the format script_language.txt (eg: devanagari_hindi.txt)
+1. Text files containing a list of words for each supported language can be found in Hibizcus/Shares/Resources. The filenames will be in the format script_language.txt (eg: devanagari_hindi.txt)
 2. Cluster data can be found in the same directory. The names of these JSON files will be in the format cluster_script.json (eg: cluster_tamil.json). The format is described in the Readme file in that directory. 
 
