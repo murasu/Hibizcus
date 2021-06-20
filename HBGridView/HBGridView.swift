@@ -97,37 +97,30 @@ struct HBGridView: View, DropDelegate {
             HBGridSidebarView(gridViewOptions: gridViewOptions, clusterViewModel: clusterViewModel)
                 .onChange(of: gridViewOptions.matchOption) { value in
                     print("Time to refresh search with \(gridViewOptions.matchOption) for script \(hbProject.hbFont1.selectedScript) in language \(hbProject.hbFont1.selectedLanguage)")
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
                 .onChange(of: gridViewOptions.compareWordLayout) { value in
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
                 .onChange(of: gridViewOptions.digitsOption) { value in
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
                 .onChange(of: gridViewOptions.showThousand) { value in
                     if gridViewOptions.showLakh {
                         gridViewOptions.showThousand = true
                     }
-                    updateNumberItems()
-                }
+                    updateNumberItems() }
                 .onChange(of: gridViewOptions.showLakh) { value in
                     if value {
                         gridViewOptions.showThousand = true
                     }
-                    updateNumberItems()
-                }
+                    updateNumberItems() }
                 .onChange(of: gridViewOptions.colorGlyphs) { value in
                     if hbProject.hbFont2.available {
                         // Do not allow color if we are comparing
                         gridViewOptions.colorGlyphs = false
                     }
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
                 .onChange(of: gridViewOptions.currentTab) { newTab in
                     print("Tab switched to \(newTab)")
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
                 .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                     print("Script has changed from \(clusterViewModel.currentScript) to \(newScript)")
                     clusterViewModel.currentScript = newScript
@@ -140,29 +133,23 @@ struct HBGridView: View, DropDelegate {
                         document.projectData.systemFont1Chars = ""
                     }
                     glyphItems.removeAll()
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
                 .onChange(of: hbProject.hbFont1.selectedLanguage) { newLanguage in
                     print("Language has changed to \(newLanguage)")
                     glyphItems.removeAll()
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
                 .onChange(of: hbProject.hbFont1.fileWatcher.fontFileChanged) { _ in
                     print("Font file changed - need to redraw the UI")
-                    hbProject.refresh()
-                }
+                    hbProject.refresh() }
                 .onChange(of: hbProject.hbFont2.fileWatcher.fontFileChanged) { _ in
                     print("Font file changed - need to redraw the UI")
-                    hbProject.refresh()
-                }
+                    hbProject.refresh() }
                 .onChange(of: hbProject.hbFont1.fileUrl) { _ in
                     // Remove the bookmark if the font is removed from the project & vice-versa
-                    updateFontBookmark(mainFont: true)
-                }
+                    updateFontBookmark(mainFont: true) }
                 .onChange(of: hbProject.hbFont2.fileUrl) { _ in
                     // Remove the bookmark if the font is removed from the project & vice-versa
-                    updateFontBookmark(mainFont: false)
-                }
+                    updateFontBookmark(mainFont: false) }
                 .onChange(of: hbProject.hbFont2.selectedScript) { newScript in
                     // We don't care about the selected script in Font2 - but we want to refresh the
                     // grid in case a system font is loaded.
@@ -175,8 +162,13 @@ struct HBGridView: View, DropDelegate {
                         document.projectData.systemFont2Chars = ""
                     }
                     glyphItems.removeAll()
-                    refreshGridItems()
-                }
+                    refreshGridItems() }
+                .onChange(of: hbProject.hbFont1.selectedShaper) { _ in
+                        glyphItems.removeAll()
+                        refreshGridItems() }
+                .onChange(of: hbProject.hbFont2.selectedShaper) { _ in
+                        glyphItems.removeAll()
+                        refreshGridItems() }
             VStack {
                 if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
                     VStack {

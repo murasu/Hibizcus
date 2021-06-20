@@ -47,13 +47,15 @@ struct HBStringView: View, DropDelegate {
                         .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                             // Update layout data for both fonts when script is changed
                             hbProject.hbFont2.selectedScript = newScript
-                            hbProject.refresh()
-                        }
+                            hbProject.refresh() }
                         .onChange(of: hbProject.hbFont1.selectedLanguage) { newLanguage in
                             // Update layout data for both fonts when language is changed
                             hbProject.hbFont2.selectedLanguage = newLanguage
-                            hbProject.refresh()
-                        }
+                            hbProject.refresh() }
+                        .onChange(of: hbProject.hbFont1.selectedShaper) { _ in
+                            hbProject.refresh() }
+                        .onChange(of: hbProject.hbFont2.selectedShaper) { _ in
+                            hbProject.refresh() }
                     if  hbProject.hbFont1.available || hbProject.hbFont2.available {
                         // Our custom view to display the shaped text
                         HBStringLayoutViewRepresentable(fontSize: stringViewSettings.fontSize,
