@@ -65,6 +65,7 @@ class HBGridViewOptions: ObservableObject {
     @Published var showLakh: Bool               = false         // Insert a comma to show Lakh in a six digit number.
     @Published var colorGlyphs: Bool            = false         // Show each glyph in a different color - used in Cluster tab
     @Published var wordlistAvailable: Bool      = true          // Flag to indicate if wordlist is availabe for current script
+    @Published var showUnicodesOnly: Bool       = false         // Only show glyphs with Unicodes. Font tab only
 }
 
 struct HBGridView: View, DropDelegate {
@@ -101,6 +102,8 @@ struct HBGridView: View, DropDelegate {
                 .onChange(of: gridViewOptions.compareWordLayout) { value in
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.digitsOption) { value in
+                    refreshGridItems() }
+                .onChange(of: gridViewOptions.showUnicodesOnly) { value in
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.showThousand) { value in
                     if gridViewOptions.showLakh {
@@ -461,7 +464,7 @@ struct HBGridView: View, DropDelegate {
         hbGridItems.removeAll()
         if hbProject.hbFont1.available {
             // If we already have the data backed up, use it instead of recreating
-            if glyphItems.count > 0 && glyphItems.count == hbProject.hbFont1.glyphCount {
+            if glyphItems.count > 0 && glyphItems.count == hbProject.hbFont1.glyphCount && !gridViewOptions.showUnicodesOnly {
                 hbGridItems = glyphItems
                 maxCellWidth = glyphCellWidth
                 return
@@ -504,6 +507,10 @@ struct HBGridView: View, DropDelegate {
                     wordItem.label          = gName
                     wordItem.uniLabel       = hbProject.hbFont1.unicodeLabelForGlyphId(glyph: gId)
                     
+                    if gridViewOptions.showUnicodesOnly && wordItem.uniLabel == "" {
+                        // We can ignore this item
+                        continue
+                    }
                     
                     var widthDiff   = false
                     var glyfDiff    = false

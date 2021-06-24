@@ -230,10 +230,19 @@ struct GridDisplayOptionsView: View {
             Text("Display options:")
                 .padding(.bottom, 10)
             
-            if gridViewOptions.currentTab == HBGridViewTab.ClustersTab && hbProject.hbFont2.available { //} hbProject.hbFont2.fileUrl == nil {
+            if gridViewOptions.currentTab == HBGridViewTab.FontsTab {
+                HStack {
+                    Toggle("Show Unicode glyphs only", isOn: $gridViewOptions.showUnicodesOnly)
+                        .padding(.bottom, 10)
+                        .help("Show only glyphs with Unicode values")
+                }
+            }
+            
+            if gridViewOptions.currentTab == HBGridViewTab.ClustersTab && hbProject.hbFont2.available {
                 HStack {
                     Toggle("Color glyphs", isOn: $gridViewOptions.colorGlyphs)
                         .padding(.bottom, 10)
+                        .help("Show components in different colors")
                 }
             }
             
@@ -242,6 +251,7 @@ struct GridDisplayOptionsView: View {
                     HStack {
                         Toggle("Compare layout", isOn: $gridViewOptions.compareWordLayout)
                             .padding(.bottom, 10)
+                            .help("Compare the layouts of both fonts")
                         if gridViewOptions.runningComparisons {
                             LoadAnimation()
                                 .frame(width: 20, height: 20, alignment: .trailing)
@@ -253,6 +263,7 @@ struct GridDisplayOptionsView: View {
                 Toggle("Show differences only", isOn: $gridViewOptions.showDiffsOnly)
                     .padding(.bottom, 10)
                     .disabled(!gridViewOptions.compareWordLayout && gridViewOptions.currentTab == HBGridViewTab.WordsTab)
+                    .help("Show only items that are different between the fonts")
             }
         }
         .padding(.leading, 15)
