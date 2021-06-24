@@ -238,6 +238,14 @@ struct GridDisplayOptionsView: View {
                 }
             }
             
+            if gridViewOptions.currentTab == HBGridViewTab.NumbersTab {
+                HStack {
+                    Toggle("Show ASCII Digits (0-9)", isOn: $gridViewOptions.showASCIIDigits)
+                        .padding(.bottom, 10)
+                        .help("Show 0-9 instead of native digits")
+                }
+            }
+            
             if gridViewOptions.currentTab == HBGridViewTab.ClustersTab && hbProject.hbFont2.available {
                 HStack {
                     Toggle("Color glyphs", isOn: $gridViewOptions.colorGlyphs)

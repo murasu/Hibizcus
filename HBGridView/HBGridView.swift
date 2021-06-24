@@ -66,6 +66,7 @@ class HBGridViewOptions: ObservableObject {
     @Published var colorGlyphs: Bool            = false         // Show each glyph in a different color - used in Cluster tab
     @Published var wordlistAvailable: Bool      = true          // Flag to indicate if wordlist is availabe for current script
     @Published var showUnicodesOnly: Bool       = false         // Only show glyphs with Unicodes. Font tab only
+    @Published var showASCIIDigits: Bool        = false         // Show digits 0-9 instead of native ones
 }
 
 struct HBGridView: View, DropDelegate {
@@ -104,6 +105,8 @@ struct HBGridView: View, DropDelegate {
                 .onChange(of: gridViewOptions.digitsOption) { value in
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.showUnicodesOnly) { value in
+                    refreshGridItems() }
+                .onChange(of: gridViewOptions.showASCIIDigits) { value in
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.showThousand) { value in
                     if gridViewOptions.showLakh {
@@ -783,12 +786,12 @@ struct HBGridView: View, DropDelegate {
     // MARK: ----- Refresh Numbers
     
     func refreshNumbers() {
-        print ("Refreshing items in Numbers tab")
-        print ("I need to load numeric data for \(hbProject.hbFont1.selectedScript)-\(hbProject.hbFont1.selectedLanguage)")
-        print ("Number of digits to use: \(gridViewOptions.digitsOption)")
+        //print ("Refreshing items in Numbers tab")
+        //print ("I need to load numeric data for \(hbProject.hbFont1.selectedScript)-\(hbProject.hbFont1.selectedLanguage)")
+        //print ("Number of digits to use: \(gridViewOptions.digitsOption)")
         
         let scriptNumbers = clusterViewModel.numbers
-        let useLatin = scriptNumbers.count == 0 || hbProject.hbFont1.selectedScript == "Latin"
+        let useLatin = scriptNumbers.count == 0 || hbProject.hbFont1.selectedScript == "Latin" || gridViewOptions.showASCIIDigits
         
         var minValue = 100
         var maxValue = 999
