@@ -72,24 +72,52 @@ struct Hibizcus {
 func defaultLanguage(forScript: String) -> String {
     // This sould be configured in an external file
     switch forScript.lowercased() {
-    case "devanagari":
+    case "balinese" :
+        return "Balinese"
+    case "batak" :
+        return "Batak"
+    case "bengali" :
+        return "Bengali"
+    case "buginese" :
+        return "Buginese"
+    case "devanagari" :
         return "Hindi"
-    case "tamil":
-        return "Tamil"
-    case "gurmukhi":
-        return "Punjabi"
-    case "gujarati":
-        return "Gujarati"
-    case "odia":
-        return "Odia"
-    case "grantha":
+    case "grantha" :
         return "Sanskrit"
-    case "telugu" :
-        return "Telugu"
-    case "kannada":
+    case "gujarati" :
+        return "Gujarati"
+    case "gurmukhi" :
+        return "Punjabi"
+    case "javanese" :
+        return "Javanese"
+    case "kannada" :
         return "Kannada"
+    case "khmer" :
+        return "Khmer"
+    case "lao" :
+        return "Lao"
+    case "malayalam" :
+        return "Malayalam"
     case "meeteimayek" :
         return "Meetei"
+    case "odia" :
+        return "Odia"
+    case "rejang" :
+        return "Rejang"
+    case "sinhala" :
+        return "Sinhala"
+    case "sundanese" :
+        return "Sundanese"
+    case "tamil" :
+        return "Tamil"
+    case "telugu" :
+        return "Telugu"
+    case "thaana" :
+        return "Divehi"
+    case "thai" :
+        return "Thai"
+    case "tirhuta" :
+        return "Maithili"
     default:
         return ""
     }
