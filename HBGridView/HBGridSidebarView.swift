@@ -64,10 +64,7 @@ struct HBGridSidebarView: View {
                     HBSidebarFont()
                     Spacer()
                     Divider()
-                    if hbProject.hbFont2.available {
-                        GridDisplayOptionsView(gridViewOptions: gridViewOptions)
-                    }
-                    
+                    GridDisplayOptionsView(gridViewOptions: gridViewOptions)
                 }
             }
             .tabItem {
@@ -137,7 +134,10 @@ struct HBGridSidebarView: View {
                                 Spacer()
                                 Divider()
                                 
-                                GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                                // Grid Options only when second font is available for cluster view
+                                if hbProject.hbFont2.available {
+                                    GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                                }
                             } else {
                                 Text("Word list not available for selected script and language.")
                                     .padding(.top, 20)
@@ -246,7 +246,7 @@ struct GridDisplayOptionsView: View {
                 }
             }
             
-            if gridViewOptions.currentTab == HBGridViewTab.ClustersTab && hbProject.hbFont2.available {
+            if gridViewOptions.currentTab == HBGridViewTab.ClustersTab && !hbProject.hbFont2.available {
                 HStack {
                     Toggle("Color glyphs", isOn: $gridViewOptions.colorGlyphs)
                         .padding(.bottom, 10)

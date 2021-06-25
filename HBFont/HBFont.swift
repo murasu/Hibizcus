@@ -63,7 +63,7 @@ class StringLayoutData: Equatable, ObservableObject {
                 }
             }
         }
-        print("   Count match \(countMatch) Glyf match \(glyphsMatch), Positions match \(positionsMatch)")
+        //print("   Count match \(countMatch) Glyf match \(glyphsMatch), Positions match \(positionsMatch)")
         isEqual = countMatch && glyphsMatch && positionsMatch
 
         return isEqual
