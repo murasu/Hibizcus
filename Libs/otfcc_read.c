@@ -75,5 +75,4 @@ char *get_data_as_json_from_font_file(const char* inPath)
     // TODO: Return only a requested table instead of the entire font in json
     
     return buf;
-    
 }

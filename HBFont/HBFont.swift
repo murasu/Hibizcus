@@ -128,6 +128,10 @@ class HBFont: ObservableObject {
     // Use characters in this string when loading a system font
     var charsInScript = ""
     
+    // 2021-06-26 : load hbFontData only once and 'remember it'
+    // TODO: Is this a good idea?
+    var hbFontData = HBFontData(pathAsCString: "")
+    
     // Init with filename
     init(filePath: String, fontSize: Int) {
         if filePath.count > 0  {
@@ -220,6 +224,8 @@ class HBFont: ObservableObject {
         self.available = false
         supportedLanguages.removeAll()
         supportedScripts.removeAll()
+        self.hbFontData = HBFontData(pathAsCString: "")
+        
         // Create
         if filePath.count > 0 {
             self.fileUrl = URL(fileURLWithPath: filePath)
@@ -239,6 +245,7 @@ class HBFont: ObservableObject {
     }
     
     func reloadFont() {
+        hbFontData = HBFontData(pathAsCString: "")
         supportedLanguages.removeAll()
         supportedScripts.removeAll()
         createCTFont()
@@ -419,11 +426,16 @@ class HBFont: ObservableObject {
     }
     
     func getHBFontData() -> HBFontData? {
+        
+        if self.hbFontData.dataDict != nil {
+            return self.hbFontData
+        }
+        
         if fileUrl == nil {
             return nil
         }
         
-        var hbFontData: HBFontData?
+        //var hbFontData: HBFontData?
         
         fileUrl!.withUnsafeFileSystemRepresentation { cStr in
             hbFontData = HBFontData(pathAsCString: cStr!)

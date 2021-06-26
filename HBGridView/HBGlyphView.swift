@@ -93,6 +93,10 @@ struct HBGlyphView: View {
                         .help("Open \(gridItems[currItem].text!) in TraceViewer")
                         .disabled(hbProject.hbFont1.fileUrl == nil)
                     }
+                    else if gridItems[currItem].type == HBGridItemItemType.Glyph {
+                        Text("Glyph ID: \(gridItems[currItem].glyphIds[0])")
+                            .padding(.trailing, 10)
+                    }
                     else {
                         Text(" ")
                     }
