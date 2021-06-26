@@ -101,7 +101,7 @@ struct HBGlyphView: View {
             Divider()
 
             VStack {
-                HBGridCellViewRepresentable(wordItem: gridItems[currItem], scale: scale) //, viewOptions: viewOptions)
+                HBGridCellViewRepresentable(gridItem: gridItems[currItem], scale: scale) //, viewOptions: viewOptions)
                     .frame(width: max((gridItems[currItem].width[0] * scale * 1.2), 800), height: 600, alignment: .center)
                 
                 Divider()

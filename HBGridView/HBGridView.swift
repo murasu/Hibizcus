@@ -33,21 +33,21 @@ class HBProject: ObservableObject {
 
 struct HBGridItem : Hashable {
     var type: HBGridItemItemType?
-    var text: String?
-    var id          = UUID()                    // Unique ID for this item
-    var glyphIds    = [kCGFontIndexInvalid,     // For Font1 and Font2
-                       kCGFontIndexInvalid]
-    var width       = [CGFloat(0),
-                       CGFloat(0)]
-    var height      = CGFloat(0)                // The rest of the data is for Font1 only
-    var lsb         = CGFloat(0)
-    var rsb         = CGFloat(0)
-    var label       = ""                        // Stores the glyph name in the case of font comparison
-    var uniLabel    = ""                        // Label that holds the unicode value
-    var diffWidth   = false
-    var diffGlyf    = false
-    var diffLayout  = false
-    var colorGlyphs = false
+    var text: String?//    = ""
+    var id              = UUID()                    // Unique ID for this item
+    var glyphIds        = [kCGFontIndexInvalid,     // For Font1 and Font2
+                           kCGFontIndexInvalid]
+    var width           = [CGFloat(0),
+                           CGFloat(0)]
+    var height          = CGFloat(0)                // The rest of the data is for Font1 only
+    var lsb             = CGFloat(0)
+    var rsb             = CGFloat(0)
+    var label           = ""                        // Stores the glyph name in the case of font comparison
+    var uniLabel        = ""                        // Label that holds the unicode value
+    var diffWidth       = false
+    var diffGlyf        = false
+    var diffLayout      = false
+    var colorGlyphs     = false
     func hasDiff() -> Bool {
         return diffWidth || diffGlyf || diffLayout
     }
@@ -83,6 +83,7 @@ struct HBGridView: View, DropDelegate {
     @State var hbGridItems                      = [HBGridItem]()
     @State var minCellWidth: CGFloat            = 100
     @State var maxCellWidth: CGFloat            = 100  // 150
+    @State var searchItem: String               = ""
     
     // Used in FontTab
     @State var glyphItems                       = [HBGridItem]()
@@ -201,9 +202,11 @@ struct HBGridView: View, DropDelegate {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
                                 if !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly && hbGridItem.hasDiff()) {
-                                    HBGridCellViewRepresentable(wordItem: hbGridItem, scale: 1.0)//, viewOptions: gridViewOptions)
+                                    HBGridCellViewRepresentable(gridItem: hbGridItem, scale: 1.0)
                                         .frame(width: maxCellWidth, height: 92, alignment: .center)
-                                        .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ? 1 : 0)
+                                        .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ||
+                                                    (searchItem.count>0 && (hbGridItem.label.hasPrefix(searchItem) /*|| hbGridItem.text!.hasPrefix(searchItem)*/) ) ? 1 : 0)
+                                        //.border(Color.primary.opacity(0.7), width: (searchItem.count>0 && hbGridItem.uniLabel.hasPrefix(searchItem)) ? 1 : 0)
                                         .gesture(TapGesture(count: 2).onEnded {
                                             // UI Update should be done on main thread
                                             DispatchQueue.main.async {
@@ -263,6 +266,15 @@ struct HBGridView: View, DropDelegate {
                         Image(systemName: "sidebar.left")
                     })
                 }
+                // Search : Only for fonts tab for now
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    TextField("Search glyph", text: $searchItem)
+                        .font(.body)
+                        .textFieldStyle(SquareBorderTextFieldStyle())
+                        .frame(width: 150)//, height: 50)
+                        .disabled(gridViewOptions.currentTab != HBGridViewTab.FontsTab)
+                }
+                
                 // Copy buton
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
@@ -594,7 +606,9 @@ struct HBGridView: View, DropDelegate {
             let sld1 = hbProject.hbFont1.getStringLayoutData(forText: baseEx)
             maxWidth = max(sld1.width, maxWidth)
 
-            var item = HBGridItem(type:HBGridItemItemType.Cluster, text: baseEx, colorGlyphs: gridViewOptions.colorGlyphs)
+            let colorGlyphs = gridViewOptions.colorGlyphs && !hbProject.hbFont2.available
+            
+            var item = HBGridItem(type:HBGridItemItemType.Cluster, text: baseEx, colorGlyphs: colorGlyphs)
             item.width[0] = (sld1.width)
             
             // If there are two fonts, see if we have a diff
