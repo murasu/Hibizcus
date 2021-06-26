@@ -40,6 +40,9 @@ struct HBTraceView: View, DropDelegate {
                         .onChange(of: hbProject.hbFont1.selectedLanguage, perform: { newLanguage in
                             hbTraceBridge.startTrace()
                         })
+                        .onChange(of: hbProject.hbFont1.fileUrl, perform: { value in
+                            hbTraceBridge.startTrace()
+                        })
                     HStack {
                         Text(hbTraceBridge.theText.hexString())
                             .frame(maxWidth: .infinity, alignment: .leading)
