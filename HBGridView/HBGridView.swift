@@ -127,6 +127,7 @@ struct HBGridView: View, DropDelegate {
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.currentTab) { newTab in
                     print("Tab switched to \(newTab)")
+                    glyphItems.removeAll()
                     refreshGridItems() }
                 .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                     print("Script has changed from \(clusterViewModel.currentScript) to \(newScript)")
@@ -454,17 +455,20 @@ struct HBGridView: View, DropDelegate {
         // Reset the tapped item
         tappedItem = HBGridItem()
         
-        if gridViewOptions.currentTab == HBGridViewTab.FontsTab {
-            refreshGlyphsInFonts()
-        }
-        else if gridViewOptions.currentTab == HBGridViewTab.ClustersTab {
-            refreshClusters()
-        }
-        else if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
-            refreshWordsFromList()
-        }
-        else {
-            refreshNumbers()
+        // Perform the refresh in another thread
+        DispatchQueue.main.async {
+            if gridViewOptions.currentTab == HBGridViewTab.FontsTab {
+                refreshGlyphsInFonts()
+            }
+            else if gridViewOptions.currentTab == HBGridViewTab.ClustersTab {
+                refreshClusters()
+            }
+            else if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
+                refreshWordsFromList()
+            }
+            else {
+                refreshNumbers()
+            }
         }
     }
     

@@ -32,13 +32,6 @@ class HBGridCellView: NSView {
         }
     }
     
-    /*
-    var viewOptions:HBGridViewOptions = HBGridViewOptions() {
-        didSet {
-            needsDisplay = true
-        }
-    } */
-    
     var scale:CGFloat = 1 {
         didSet {
             needsDisplay = true
@@ -139,16 +132,14 @@ class HBGridCellView: NSView {
                     CTFontDrawGlyphs(theFont, glyphs, [CGPoint(x: leftPadding + pos.x, y: pos.y+baseLine)], 1, context)
                 }
                 
-                // Draw the left and right boundaries if there is a diff or if we are viewing scaled glyph
-                //if showDiff || scale > 1.0 {
-                    let xLeft:CGFloat = (self.bounds.width - layoutWidth) / 2
-                    let xRight:CGFloat = xLeft + layoutWidth
-                    let y1 = scale > 1.0 ? 0 : baseLine-10
-                    let y2 = scale > 1.0 ? self.bounds.height : xHeight+10
-                    let sbColor = showDiff ? textColors[colorIndex] : metricLineColor
-                    drawLine(inContext: context, fromPoint: CGPoint(x: xLeft, y: y1), toPoint: CGPoint(x: xLeft, y: y2), lineWidth: 1, lineColor: sbColor)
-                    drawLine(inContext: context, fromPoint: CGPoint(x: xRight, y: y1), toPoint: CGPoint(x: xRight, y: y2), lineWidth: 1, lineColor: sbColor)
-                //}
+                // Draw the left and right boundaries
+                let xLeft:CGFloat = (self.bounds.width - layoutWidth) / 2
+                let xRight:CGFloat = xLeft + layoutWidth
+                let y1 = scale > 1.0 ? 0 : baseLine-10
+                let y2 = scale > 1.0 ? self.bounds.height : xHeight+10
+                let sbColor = showDiff ? textColors[colorIndex] : metricLineColor
+                drawLine(inContext: context, fromPoint: CGPoint(x: xLeft, y: y1), toPoint: CGPoint(x: xLeft, y: y2), lineWidth: 1, lineColor: sbColor)
+                drawLine(inContext: context, fromPoint: CGPoint(x: xRight, y: y1), toPoint: CGPoint(x: xRight, y: y2), lineWidth: 1, lineColor: sbColor)
             }
             colorIndex += 1
         }
