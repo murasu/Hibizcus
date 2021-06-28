@@ -114,7 +114,7 @@ struct HBGridView: View, DropDelegate {
                 .onChange(of: gridViewOptions.showASCIIDigits) { value in
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.dontCompareOutlines) { value in
-                    /*refreshGridItems()*/ hbProject.refresh() }
+                    hbProject.refresh() }
                 .onChange(of: gridViewOptions.showThousand) { value in
                     if gridViewOptions.showLakh {
                         gridViewOptions.showThousand = true
