@@ -45,6 +45,8 @@ class HBFileWatcher: NSObject, NSFilePresenter, ObservableObject {
             DispatchQueue.main.async {
                 print("     ==> File at \(String(describing: self.presentedItemURL)) has changed!")
                 self.fontFileChanged = true
+                // Update the lastDate to the current modification date
+                self.lastDate = self.fileModificationDate()
             }
         }
     }
