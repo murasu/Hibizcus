@@ -14,13 +14,9 @@ import SwiftUI
 enum LabelPosition { case left; case right }
 
 class HBStringLayoutView: NSView {
-    
-    // Flags for drawing
-    //var selected: Bool? { didSet{ needsDisplay = true } }
-    
     // This can be in preferences, later
-    let metricsColor_01 = Hibizcus.FontColor.MainFontColor      // NSColor.systemRed.withAlphaComponent(0.65).cgColor
-    let metricsColor_02 = Hibizcus.FontColor.CompareFontColor   // NSColor.systemGreen.withAlphaComponent(0.65).cgColor
+    let metricsColor_01 = Hibizcus.FontColor.MainFontColor
+    let metricsColor_02 = Hibizcus.FontColor.CompareFontColor
     
     var hbFont1: HBFont = HBFont(filePath: "", fontSize: 40)
     
@@ -139,7 +135,7 @@ class HBStringLayoutView: NSView {
         for glyphIndex in 0..<slData.hbGlyphs.count {
                         
             var fillColor = slData.hbGlyphs[glyphIndex].color.cgColor
-            if viewSettings.showFont1 && viewSettings.showFont2 && hbFont1.available && hbFont2.available { 
+            if hbFont1.available && hbFont2.available {
                 fillColor = isMain ? Hibizcus.FontColor.MainFontColor : Hibizcus.FontColor.CompareFontColor
             }
             context!.setFillColor(fillColor!)
