@@ -250,6 +250,7 @@ class HBFont: ObservableObject {
         supportedScripts.removeAll()
         createCTFont()
         extractFontInfo()
+        fileWatcher.fontFileChanged = false
     }
     
     private func extractFontInfo() {
