@@ -48,8 +48,11 @@ struct HBGridItem : Hashable {
     var diffGlyf        = false
     var diffLayout      = false
     var colorGlyphs     = false
-    func hasDiff() -> Bool {
-        return diffWidth || diffGlyf || diffLayout
+    func hasDiff(excludeOutlines: Bool) -> Bool {
+        if excludeOutlines {
+            return diffWidth || diffLayout
+        }
+        return diffGlyf || diffWidth || diffLayout
     }
 }
 
@@ -67,6 +70,7 @@ class HBGridViewOptions: ObservableObject {
     @Published var wordlistAvailable: Bool      = true          // Flag to indicate if wordlist is availabe for current script
     @Published var showUnicodesOnly: Bool       = false         // Only show glyphs with Unicodes. Font tab only
     @Published var showASCIIDigits: Bool        = false         // Show digits 0-9 instead of native ones
+    @Published var dontCompareOutlines: Bool    = false         // By default outlines are compared. Set this to true to disable
 }
 
 struct HBGridView: View, DropDelegate {
@@ -109,6 +113,8 @@ struct HBGridView: View, DropDelegate {
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.showASCIIDigits) { value in
                     refreshGridItems() }
+                .onChange(of: gridViewOptions.dontCompareOutlines) { value in
+                    /*refreshGridItems()*/ hbProject.refresh() }
                 .onChange(of: gridViewOptions.showThousand) { value in
                     if gridViewOptions.showLakh {
                         gridViewOptions.showThousand = true
@@ -202,8 +208,9 @@ struct HBGridView: View, DropDelegate {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
-                                if !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly && hbGridItem.hasDiff()) {
-                                    HBGridCellViewRepresentable(gridItem: hbGridItem, scale: 1.0)
+                                if !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly
+                                                                        && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
+                                    HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: 1.0)
                                         .frame(width: maxCellWidth, height: 92, alignment: .center)
                                         .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ||
                                                     (searchItem.count>0 && (hbGridItem.label.hasPrefix(searchItem) /*|| hbGridItem.text!.hasPrefix(searchItem)*/) ) ? 1 : 0)
@@ -229,7 +236,7 @@ struct HBGridView: View, DropDelegate {
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
                                         })
                                         .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                            HBGlyphView(document: $document, tappedItem: tappedItem, gridItems: hbGridItems)
+                                            HBGlyphView(document: $document, gridViewOptions: gridViewOptions, tappedItem: tappedItem, gridItems: hbGridItems)
                                         }
                                 }
                             }

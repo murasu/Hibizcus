@@ -14,25 +14,31 @@ class HBGridCellView: NSView {
     let metricLineColor = NSColor.textColor.withAlphaComponent(0.15).cgColor
     
     // The word string that's in the cell
-    var gridItem:HBGridItem? {
+    var gridItem: HBGridItem? {
+        didSet{
+            needsDisplay = true
+        }
+    }
+        
+    var hbFont1: HBFont? {
         didSet{
             needsDisplay = true
         }
     }
     
-    var hbFont1:HBFont? {
+    var hbFont2: HBFont? {
         didSet{
             needsDisplay = true
         }
     }
     
-    var hbFont2:HBFont? {
-        didSet{
+    var gridViewOptions: HBGridViewOptions = HBGridViewOptions() {
+        didSet {
             needsDisplay = true
         }
     }
     
-    var scale:CGFloat = 1 {
+    var scale: CGFloat = 1 {
         didSet {
             needsDisplay = true
         }
@@ -68,7 +74,7 @@ class HBGridCellView: NSView {
         let baseLine: CGFloat   = computeBaseLine(ctFont: ctFont1)
         let xHeight: CGFloat    = baseLine + CTFontGetXHeight(ctFont1)
         
-        let showDiff    = gridItem!.hasDiff() && hbFont2!.available
+        let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available
         let borderColor = showDiff ? NSColor.systemRed.cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
         let borderWidth = showDiff ? 2 : 1
         if scale > 1.0 {

@@ -14,7 +14,8 @@ struct HBGlyphView: View {
 
     @Binding var document: HibizcusDocument
     @EnvironmentObject var hbProject: HBProject
-
+    @ObservedObject var gridViewOptions: HBGridViewOptions
+    
     @State var currItem         = 0
     @State var scale:CGFloat    = 0
     var tappedItem: HBGridItem
@@ -96,6 +97,7 @@ struct HBGlyphView: View {
                     else if gridItems[currItem].type == HBGridItemItemType.Glyph {
                         Text("Glyph ID: \(gridItems[currItem].glyphIds[0])")
                             .padding(.trailing, 10)
+                            .padding(.top, 20)
                     }
                     else {
                         Text(" ")
@@ -105,12 +107,12 @@ struct HBGlyphView: View {
             Divider()
 
             VStack {
-                HBGridCellViewRepresentable(gridItem: gridItems[currItem], scale: scale) //, viewOptions: viewOptions)
+                HBGridCellViewRepresentable(gridItem: gridItems[currItem], gridViewOptions: gridViewOptions, scale: scale)
                     .frame(width: max((gridItems[currItem].width[0] * scale * 1.2), 800), height: 600, alignment: .center)
                 
                 Divider()
                 
-                if gridItems[currItem].hasDiff() && hbProject.hbFont2.available { //fileUrl != nil {
+                if gridItems[currItem].hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbProject.hbFont2.available { //fileUrl != nil {
                     HStack {
                         if gridItems[currItem].diffWidth {
                             Text(" Width Mismatch ")

@@ -267,6 +267,11 @@ struct GridDisplayOptionsView: View {
                         }
                     }
                 }
+       
+                Toggle("Don't compare glyph outlines", isOn: $gridViewOptions.dontCompareOutlines)
+                    .padding(.bottom, 10)
+                    .help("Exclude outlines when comparing")
+                    .disabled(!gridViewOptions.compareWordLayout && gridViewOptions.currentTab == HBGridViewTab.WordsTab)
             
                 Toggle("Show differences only", isOn: $gridViewOptions.showDiffsOnly)
                     .padding(.bottom, 10)
