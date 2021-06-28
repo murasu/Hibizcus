@@ -40,14 +40,15 @@ struct TVLogItem: Identifiable, Equatable {
 }
 
 class HBTracerBridge: ObservableObject {
-    @Published var hbFont: HBFont = HBFont(filePath: "", fontSize: 40)
+    //@Published var theText: String = ""
+    var theText: String = ""
+    
+    //@Published var hbFont: HBFont = HBFont(filePath: "", fontSize: 40)
     @Published var prevGlyphs = TVGlyphs()
     @Published var prevMessage = ""
-    
-    @Published var theText: String = ""
     @Published var tvLogItems = [TVLogItem]()
 
-    var traceId = ""
+    //var traceId = ""
     
     static let shared = HBTracerBridge()
     
@@ -64,14 +65,24 @@ class HBTracerBridge: ObservableObject {
                     //print("Received: \(retstr)")
                     //Check if this is for the current traceId
                     let markIndex = retstr.firstIndex(of: "|")
+                    var retTraceId = ""
+                    var scale: Float = 1.0
                     if  markIndex != nil {
-                        let retTraceId = String(retstr.prefix(upTo: markIndex!))
-                        //print("Returned traceId: \(retTraceId) | current traceId: \(TracerBridge.shared.traceId)")
-                        if retTraceId != HBTracerBridge.shared.traceId {
-                            // This is unlikely
-                            //print("Returned traceId \(retTraceId) expired. New one is \(TracerBridge.shared.traceId)")
-                            return
+                        retTraceId = String(retstr.prefix(upTo: markIndex!))
+                        if retTraceId.lastIndex(of: " ") != nil {
+                            let scaleStr = retTraceId.suffix(from: retTraceId.lastIndex(of: " ")!).trimmingCharacters(in: .whitespacesAndNewlines)
+                            scale = Float(scaleStr) ?? 1.0
+                            
+                            // Trim the scale from the traceid
+                            retTraceId = String(retTraceId.prefix(upTo: retTraceId.firstIndex(of: " ")!))
                         }
+                       
+                            //print("[\(retTraceId == HBTracerBridge.shared.traceId ? "SAME" : "DIFFERENT")] Returned traceId: \(retTraceId) | current traceId: \(HBTracerBridge.shared.traceId)")
+//                        if retTraceId != HBTracerBridge.shared.traceId {
+//                            // This is unlikely
+//                            //print("Returned traceId \(retTraceId) expired. New one is \(TracerBridge.shared.traceId)")
+//                            return
+//                        }
                         retstr = String(retstr.suffix(from: retstr.index(after: markIndex!)))
                     }
                     
@@ -116,7 +127,7 @@ class HBTracerBridge: ObservableObject {
                                 //print("Message: \(message) Items: \(tvGlyphs.items ?? [TVGlyph]())")
 
                                 // Scale the dimensions to facilitate drawing
-                                let scale = (Hibizcus.FontScale / (2048/HBTracerBridge.shared.hbFont.metrics.upem)) * (192/40)
+                                //let scale = (Hibizcus.FontScale / (2048/HBTracerBridge.shared.hbFont.metrics.upem)) * (192/40)
                                 for i in 0..<tvGlyphs.items!.count {
                                     let w = tvGlyphs.items![i].w ?? 0
                                     tvGlyphs.items![i].w = w / scale
@@ -141,7 +152,7 @@ class HBTracerBridge: ObservableObject {
                                 
                                 var tvLogItem = TVLogItem()
                                 tvLogItem.message = message
-                                tvLogItem.traceId = HBTracerBridge.shared.traceId
+                                tvLogItem.traceId = retTraceId //HBTracerBridge.shared.traceId
                                 tvLogItem.items = tvGlyphs.items!
                                 
                                 /*
@@ -205,15 +216,15 @@ class HBTracerBridge: ObservableObject {
                 HBTracerBridge.shared.tvLogItems[i+1].didShape = true
             }
             
-            print("==>Message Prev: \(prevItem.message)")
+            //print("==>Message Prev: \(prevItem.message)")
             let updatedPrevMessage = tagActionTo(message: prevItem.message)
             HBTracerBridge.shared.tvLogItems[i].message = updatedPrevMessage
-            print("   Updated Prev: \(updatedPrevMessage)")
+            //print("   Updated Prev: \(updatedPrevMessage)")
             
-            print("==>Message Curr: \(currItem.message)")
+            //print("==>Message Curr: \(currItem.message)")
             let updatedCurrMessage = tagActionTo(message: currItem.message)
             HBTracerBridge.shared.tvLogItems[i+1].message = updatedCurrMessage
-            print("   Updated Curr: \(updatedCurrMessage)")
+            //print("   Updated Curr: \(updatedCurrMessage)")
             
             if shapingHappened(updatedCurrMessage, prevMessage: updatedPrevMessage, currGlyphs: currItem.items, prevGlyphs: prevItem.items) {
                 HBTracerBridge.shared.tvLogItems[i].didShape = true
@@ -295,15 +306,15 @@ class HBTracerBridge: ObservableObject {
         switch (message) {
         case "start table GSUB" :
             currentShapingAction = Hibizcus.ShapingTableAction.Subtituting
-            print("   Starting Substitution action")
+            //print("   Starting Substitution action")
         case "start table GPOS" :
             currentShapingAction = Hibizcus.ShapingTableAction.Positioning
-            print("   Starting Positioning action")
+            //print("   Starting Positioning action")
         case "start preprocess-text",
              "start reorder",
              "final output" :
             currentShapingAction = Hibizcus.ShapingTableAction.System
-            print("   Starting System action")
+            //print("   Starting System action")
         case "start reordering indic initial",
              "start reordering indic final" :
             print("   Continue with current shaping action")
@@ -341,24 +352,35 @@ class HBTracerBridge: ObservableObject {
         return message
     }
     
-    func startTrace() {
-        tvLogItems.removeAll()
+    func startTrace(traceId: String, hbFont: HBFont) {
+        //tvLogItems.removeAll()
         if theText.count == 0 {
-            traceId = ""
+            //traceId = ""
             return
         }
         // Initialise trace id
-        traceId = NSDate().timeIntervalSince1970.debugDescription
-        print("Tracing \(theText) with traceId \(traceId)")
+        //let traceId = NSDate().timeIntervalSince1970.debugDescription
+        
+        // Appen the scale to the traceId
+        let scale = (Hibizcus.FontScale / (2048/hbFont.metrics.upem)) * (192/40)
+        let traceIdAndScale = "\(traceId) \(scale)"  // Using space as delimiter
+        
+        print("Tracing \(theText) with traceId \(traceIdAndScale)")
         let selectedLanguageCode = hbFont.languageCode(forName: hbFont.selectedLanguage)
         if hbFont.fileUrl != nil {
             hbFont.fileUrl!.withUnsafeFileSystemRepresentation { cStr in
-                print("Starting to trace with \(cStr!), \(theText), \(hbFont.selectedScript), \(selectedLanguageCode), ")
-                start_trace_with_callback(cStr, theText, hbFont.selectedScript, selectedLanguageCode, traceId);
+                //print("Starting to trace with \(cStr!), \(theText), \(hbFont.selectedScript), \(selectedLanguageCode), ")
+                start_trace_with_callback(cStr, theText, hbFont.selectedScript, selectedLanguageCode, traceIdAndScale);
             }
         }
         else {
             print("Font file url is nil")
+        }
+    }
+    
+    func removeItemsFor(traceId: String) {
+        tvLogItems.removeAll { item in
+            item.traceId == traceId
         }
     }
 }

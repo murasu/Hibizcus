@@ -22,6 +22,8 @@ struct HBTraceView: View, DropDelegate {
     // This does not update the saved project as that data is not shared across other windows
     // SwiftUI limitation?
     @StateObject var hbProject = HBProject()
+    @State var traceText = ""
+    @State var traceId = ""
     
     @ObservedObject var hbTraceBridge: HBTracerBridge = HBTracerBridge.shared
     @ObservedObject var traceViewOptions = HBTraceViewOptions()
@@ -31,20 +33,23 @@ struct HBTraceView: View, DropDelegate {
             HBTraceSideBarView(traceViewData: traceViewOptions)
             VStack {
                 VStack {
-                    TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $hbTraceBridge.theText)
+                    TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $traceText)// hbTraceBridge.theText)
                         .font(.title)
-                        .onChange(of: hbTraceBridge.theText) { _ in
+                        .onChange(of: traceText /*hbTraceBridge.theText*/) { _ in
+                            hbTraceBridge.theText = traceText
                             hbProject.hbTraceViewText = hbTraceBridge.theText
-                            hbTraceBridge.startTrace()
+                            /*hbTraceBridge.*/startTrace()
                         }
                         .onChange(of: hbProject.hbFont1.selectedLanguage, perform: { newLanguage in
-                            hbTraceBridge.startTrace()
+                            hbTraceBridge.theText = traceText
+                            /*hbTraceBridge.*/startTrace()
                         })
                         .onChange(of: hbProject.hbFont1.fileUrl, perform: { value in
-                            hbTraceBridge.startTrace()
+                            hbTraceBridge.theText = traceText
+                            /*hbTraceBridge.*/startTrace()
                         })
                     HStack {
-                        Text(hbTraceBridge.theText.hexString())
+                        Text(traceText.hexString()) // hbTraceBridge.theText.hexString())
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.body)
                             .foregroundColor(.blue)
@@ -64,7 +69,7 @@ struct HBTraceView: View, DropDelegate {
                 if hbProject.hbFont1.ctFont != nil && hbProject.hbFont1.fileUrl != nil {
                     List {
                         ForEach(hbTraceBridge.tvLogItems) { logItem in
-                            if (traceViewOptions.showFullTrace || logItem.didShape) && (logItem.traceId == hbTraceBridge.traceId) {
+                            if (traceViewOptions.showFullTrace || logItem.didShape) && (logItem.traceId == /*hbTraceBridge.*/traceId) {
                                 TraceLog(tvLogItem: logItem, ctFont: hbProject.hbFont1.ctFont!, viewOptions: traceViewOptions)
                             }
                         }
@@ -125,10 +130,16 @@ struct HBTraceView: View, DropDelegate {
             if params != nil {
                 updateTextAndFonts(params: params!)
                 hbTraceBridge.tvLogItems.removeAll()
-                hbTraceBridge.hbFont  = hbProject.hbFont1
-                hbTraceBridge.startTrace()
+                //hbTraceBridge.hbFont  = hbProject.hbFont1
+                /*hbTraceBridge.*/startTrace()
             }
         })
+    }
+    
+    func startTrace() {
+        hbTraceBridge.removeItemsFor(traceId: traceId)
+        traceId = NSDate().timeIntervalSince1970.debugDescription
+        hbTraceBridge.startTrace(traceId: traceId, hbFont: hbProject.hbFont1)
     }
     
     func copyHexString() {
@@ -160,7 +171,7 @@ struct HBTraceView: View, DropDelegate {
                         DispatchQueue.main.async {
                             hbTraceBridge.tvLogItems.removeAll()
                             updateTextAndFonts(params: dictionary)
-                            hbTraceBridge.startTrace()
+                            /*hbTraceBridge.*/startTrace()
                         }
                     }
                     catch{
@@ -179,8 +190,8 @@ struct HBTraceView: View, DropDelegate {
                 if urlstring.hasSuffix(".ttf") || urlstring.hasSuffix(".otf") || urlstring.hasSuffix(".ttc") {
                     DispatchQueue.main.async {
                         hbProject.hbFont1.setFontFile(filePath: url.path)
-                        hbTraceBridge.hbFont = hbProject.hbFont1
-                        hbTraceBridge.startTrace()
+                        //hbTraceBridge.hbFont = hbProject.hbFont1
+                        /*hbTraceBridge.*/startTrace()
                     }
                 }
             }
@@ -246,7 +257,8 @@ struct HBTraceView: View, DropDelegate {
         
         // The text
         if params["text"] != nil {
-            hbTraceBridge.theText = params["text"]!
+            traceText = params["text"]!
+            hbTraceBridge.theText = traceText //params["text"]!
         }
         
         hbProject.projectName = params["project"]!
