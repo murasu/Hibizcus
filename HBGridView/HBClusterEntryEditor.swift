@@ -10,7 +10,10 @@ import SwiftUI
 
 struct HBClusterEntryEditor: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var hbProject: HBProject
 
+    @Binding var document: HibizcusDocument
+    @ObservedObject var viewModel: HBGridSidebarClusterViewModel
     @State var entryName: String
     @State var entryData: String
     @State var script: String
@@ -38,7 +41,8 @@ struct HBClusterEntryEditor: View {
                     presentationMode.wrappedValue.dismiss()
                 }
                 Button("Save") {
-                    UserDefaults.standard.set(entryData, forKey: "ToDoCustomBase")
+                    document.projectData.otherBases = entryData
+                    viewModel.setOtherBases(oBases: entryData)
                     presentationMode.wrappedValue.dismiss()
                 }
             }

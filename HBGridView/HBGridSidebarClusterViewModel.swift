@@ -50,6 +50,14 @@ class HBGridSidebarClusterViewModel: ObservableObject {
     @Published var subConsonantString   = "" 
     @Published var justLoadedFromFile   = false
     
+    // This will be set by cluster entry editor
+    @Published var otherBases           = [String](){
+        didSet {
+            setSelectedBase()
+            didChange.send()
+        }
+    }
+    
     private func clearClusterData() {
         errorMessage            = ""
         baseItems               = RadioItems()
@@ -116,7 +124,7 @@ class HBGridSidebarClusterViewModel: ObservableObject {
     func setSelectedBase() {
         // TODO: Handle this better
         if selectedBase == "Other Bases" {
-            baseStrings = [UserDefaults.standard.string(forKey: "ToDoCustomBase") ?? ""]
+            baseStrings = otherBases // [UserDefaults.standard.string(forKey: "ToDoCustomBase") ?? ""]
             return
         }
         
@@ -181,6 +189,15 @@ class HBGridSidebarClusterViewModel: ObservableObject {
         }
         
         return (dict:dictionary, error: errorMessage)
+    }
+    
+    // Called by cluster entry editor when user sets other bases
+    func setOtherBases(oBases: String) {
+        if oBases.count > 0 {
+            let oBasesArray = oBases.components(separatedBy: ",")
+            // trim each element
+            otherBases = oBasesArray.map { $0.trimmingCharacters(in: .whitespaces) }
+        }
     }
 }
 

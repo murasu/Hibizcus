@@ -28,13 +28,15 @@ enum NumberOfDigits: String {
 struct HBGridSidebarView: View {
     @EnvironmentObject var hbProject: HBProject
     
+    @Binding var document: HibizcusDocument
     @ObservedObject var gridViewOptions: HBGridViewOptions
     @ObservedObject var clusterViewModel: HBGridSidebarClusterViewModel
     @ObservedObject var searchOptions = RadioItems()
     @ObservedObject var digitOptions = RadioItems()
 
-
-    init(gridViewOptions: HBGridViewOptions, clusterViewModel: HBGridSidebarClusterViewModel) {
+/*
+    init(document: Binding<HibizcusDocument>, gridViewOptions: HBGridViewOptions, clusterViewModel: HBGridSidebarClusterViewModel) {
+        self.document           = document
         self.gridViewOptions    = gridViewOptions
         self.clusterViewModel   = clusterViewModel
         
@@ -51,7 +53,7 @@ struct HBGridSidebarView: View {
                                     NumberOfDigits.five.rawValue,
                                     NumberOfDigits.six.rawValue
         ]
-    }
+    } */
 
     var body: some View {
         TabView(selection: $gridViewOptions.currentTab) {
@@ -92,7 +94,7 @@ struct HBGridSidebarView: View {
                     Divider()
                     
                     if hbProject.hbFont1.available {
-                        HBGridSidebarCluster(viewModel: clusterViewModel)
+                        HBGridSidebarCluster(document: $document, viewModel: clusterViewModel)
                     }
                     
                     Spacer()
@@ -217,6 +219,21 @@ struct HBGridSidebarView: View {
             .padding(.vertical, 20)
         }
         .frame(minWidth: 300, idealWidth: 320, maxWidth: 340)
+        .onAppear() {
+            self.searchOptions.labels = [WordSearchOptions.string.rawValue,
+                                    WordSearchOptions.anyLetter.rawValue,
+                                    WordSearchOptions.anyUnicode.rawValue,
+                                    WordSearchOptions.onlyUnicodes.rawValue
+            ]
+            
+            self.digitOptions.labels = [NumberOfDigits.one.rawValue,
+                                        NumberOfDigits.two.rawValue,
+                                        NumberOfDigits.three.rawValue,
+                                        NumberOfDigits.four.rawValue,
+                                        NumberOfDigits.five.rawValue,
+                                        NumberOfDigits.six.rawValue
+            ]
+        }
     }
 }
 

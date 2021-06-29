@@ -101,7 +101,7 @@ struct HBGridView: View, DropDelegate {
     
     var body: some View {
         NavigationView() {
-            HBGridSidebarView(gridViewOptions: gridViewOptions, clusterViewModel: clusterViewModel)
+            HBGridSidebarView(document: $document, gridViewOptions: gridViewOptions, clusterViewModel: clusterViewModel)
                 .onChange(of: gridViewOptions.matchOption) { value in
                     print("Time to refresh search with \(gridViewOptions.matchOption) for script \(hbProject.hbFont1.selectedScript) in language \(hbProject.hbFont1.selectedLanguage)")
                     refreshGridItems() }
@@ -178,11 +178,11 @@ struct HBGridView: View, DropDelegate {
                     glyphItems.removeAll()
                     refreshGridItems() }
                 .onChange(of: hbProject.hbFont1.selectedShaper) { _ in
-                        glyphItems.removeAll()
-                        refreshGridItems() }
+                    glyphItems.removeAll()
+                    refreshGridItems() }
                 .onChange(of: hbProject.hbFont2.selectedShaper) { _ in
-                        glyphItems.removeAll()
-                        refreshGridItems() }
+                    glyphItems.removeAll()
+                    refreshGridItems() }
             VStack {
                 if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
                     VStack {
@@ -366,6 +366,10 @@ struct HBGridView: View, DropDelegate {
                                               charsInScript: document.projectData.systemFont2Chars!)
             }
             
+            // Load 'other bases' into cluster view model
+            clusterViewModel.setOtherBases(oBases: document.projectData.otherBases ?? "")
+            
+            // Give the project a name, if there isn't one
             if projectFileUrl != nil {
                 hbProject.projectName = projectFileUrl!.lastPathComponent
             }

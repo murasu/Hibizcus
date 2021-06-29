@@ -21,6 +21,8 @@ struct HibizcusProjectData: Codable {
     var systemFont2Script: String?
     var systemFont1Chars: String?
     var systemFont2Chars: String?
+    // String that stores 'other bases' used in clusters tab
+    var otherBases: String?
 }
 
 struct HibizcusDocument: FileDocument, Codable {

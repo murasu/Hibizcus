@@ -10,6 +10,8 @@ import AppKit
 
 struct HBGridSidebarCluster: View {
     @EnvironmentObject var hbProject: HBProject
+
+    @Binding var document: HibizcusDocument
     @ObservedObject var viewModel: HBGridSidebarClusterViewModel
     
     @State var showingEditor = false
@@ -41,8 +43,9 @@ struct HBGridSidebarCluster: View {
                                 .padding(.bottom, 15)
                                 .help("Edit custom bases")
                                 .sheet(isPresented: $showingEditor, onDismiss: editingDone) {
-                                    let currentEntry = UserDefaults.standard.string(forKey: "ToDoCustomBase") ?? ""
-                                    HBClusterEntryEditor(entryName: "Other Bases", entryData: currentEntry, script: "", language: "", key: "")
+                                    //let currentEntry = UserDefaults.standard.string(forKey: "ToDoCustomBase") ?? ""
+                                    let currentEntry = document.projectData.otherBases == nil ? "" : document.projectData.otherBases!
+                                    HBClusterEntryEditor(document: $document, viewModel: viewModel, entryName: "Other Bases", entryData: currentEntry, script: "", language: "", key: "")
                                 }
                             }
                         }
