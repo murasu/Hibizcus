@@ -208,7 +208,7 @@ struct HBGridView: View, DropDelegate {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
-                                if !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly
+                                if !hbProject.hbFont2.available || !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly
                                                                         && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
                                     HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: 1.0)
                                         .frame(width: maxCellWidth, height: 92, alignment: .center)
