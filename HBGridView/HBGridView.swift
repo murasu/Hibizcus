@@ -23,7 +23,7 @@ class HBProject: ObservableObject {
     @Published var hbGridViewText   = ""
     @Published var hbStringViewText = ""
     @Published var hbTraceViewText  = ""
-    // Holds the last updated timestamp. Used to force change the value for UI updates
+    // Holds the last updated timestamp. Used to force UI updates
     @Published var lastUpdated      = ""
     
     func refresh() {

@@ -48,6 +48,9 @@ struct HBTraceView: View, DropDelegate {
                             hbTraceBridge.theText = traceText
                             /*hbTraceBridge.*/startTrace()
                         })
+                        .onChange(of: hbProject.hbFont1.fileWatcher.fontFileChanged) { _ in
+                            print("TraceView: Font file changed - need to redraw the UI")
+                            hbProject.refresh() }
                     HStack {
                         Text(traceText.hexString()) // hbTraceBridge.theText.hexString())
                             .frame(maxWidth: .infinity, alignment: .leading)

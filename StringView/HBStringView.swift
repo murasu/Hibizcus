@@ -56,6 +56,12 @@ struct HBStringView: View, DropDelegate {
                             hbProject.refresh() }
                         .onChange(of: hbProject.hbFont2.selectedShaper) { _ in
                             hbProject.refresh() }
+                        .onChange(of: hbProject.hbFont1.fileWatcher.fontFileChanged) { _ in
+                            print("StringView: Font file 1 changed - need to redraw the UI")
+                            hbProject.refresh() }
+                        .onChange(of: hbProject.hbFont2.fileWatcher.fontFileChanged) { _ in
+                            print("StringView: Font file 2 changed - need to redraw the UI")
+                            hbProject.refresh() }
                     if  hbProject.hbFont1.available || hbProject.hbFont2.available {
                         // Our custom view to display the shaped text
                         HBStringLayoutViewRepresentable(fontSize: stringViewSettings.fontSize,
