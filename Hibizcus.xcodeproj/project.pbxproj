@@ -82,6 +82,7 @@
 		005352792608E2D6007F33D9 /* devanagari_sanskrit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AFD25FA5E3000D06D7D /* devanagari_sanskrit.txt */; };
 		0053527A2608E2D6007F33D9 /* devanagari_marathi.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AF925FA59D900D06D7D /* devanagari_marathi.txt */; };
 		00535284260B6829007F33D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0053522E2608DB8C007F33D9 /* Assets.xcassets */; };
+		006B1FFE268D7396007215D3 /* khmer_khmer.txt in Resources */ = {isa = PBXBuildFile; fileRef = 006B1FFD268D7396007215D3 /* khmer_khmer.txt */; };
 		006CAE79264E3A0700D404D3 /* AnchorPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083669B25E581AF0058CA1B /* AnchorPoints.swift */; };
 		006CAE7A264E3A1800D404D3 /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053525F2608DE96007F33D9 /* FontMetrics.swift */; };
 		0093EC7B264E83EB009AB412 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0093EC3D264E83EB009AB412 /* LICENSE */; };
@@ -167,6 +168,7 @@
 		00566AFB25FA5B8500D06D7D /* devanagari_nepali.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = devanagari_nepali.txt; sourceTree = "<group>"; };
 		00566AFD25FA5E3000D06D7D /* devanagari_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = devanagari_sanskrit.txt; sourceTree = "<group>"; };
 		00566AFF25FA619A00D06D7D /* grantha_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = grantha_sanskrit.txt; sourceTree = "<group>"; };
+		006B1FFD268D7396007215D3 /* khmer_khmer.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = khmer_khmer.txt; sourceTree = "<group>"; };
 		006FB99025E694E900F05B17 /* HBGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridView.swift; sourceTree = "<group>"; };
 		006FB99325E6950F00F05B17 /* HBTraceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTraceView.swift; sourceTree = "<group>"; };
 		007CFC24264E9AF600AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				0016436F26354C6F0044B965 /* kannada_kannada.txt */,
 				00164374263564610044B965 /* sinhala_sinhala.txt */,
 				001643802636F2B20044B965 /* meeteimayek_meetei.txt */,
+				006B1FFD268D7396007215D3 /* khmer_khmer.txt */,
 				002C626025F7AFB000596186 /* cluster_tamil.json */,
 				002C625B25F781E300596186 /* cluster_devanagari.json */,
 				000B600225F9E74C00A1CC4F /* cluster_gurmukhi.json */,
@@ -1036,6 +1039,7 @@
 				005352322608DB8C007F33D9 /* Preview Assets.xcassets in Resources */,
 				0023783D26340717006B5E9B /* cluster_odia.json in Resources */,
 				0023784626344319006B5E9B /* bengali_assamese.txt in Resources */,
+				006B1FFE268D7396007215D3 /* khmer_khmer.txt in Resources */,
 				0023784A26345CB8006B5E9B /* malayalam_malayalam.txt in Resources */,
 				004546EA26306BDA00601DB6 /* gujarati_gujarati.txt in Resources */,
 				00341CEA263AD91C00EFA443 /* cluster_tirhuta.json in Resources */,
