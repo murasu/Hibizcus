@@ -16,7 +16,11 @@
     "ෝ",
     "ෞ",
     "ෟ",
-    "ෳ"
+    "ෳ",
+    "්"
+  ],
+  "Other Bases" : [
+    ""
   ],
   "Vowels" : [
     "අ",
@@ -38,20 +42,23 @@
     "ඕ",
     "ඖ"
   ],
-  "Other Bases" : [
-    ""
-  ],
-  "BaseNames" : [
-    "Vowels",
-    "Consonants",
-    "Common Touching Letters",
-    "Other Bases"
+  "SubConsonantNames" : [
+    "None",
+    "Repaya",
+    "Yansaya",
+    "Rakaaraansaya"
   ],
   "Hibizcus" : [
     "ClusterData",
     "Sinhala",
     "2021-04-25",
     "1"
+  ],
+  "BaseNames" : [
+    "Vowels",
+    "Consonants",
+    "Common Touching Letters",
+    "Other Bases"
   ],
   "Numbers" : [
     "෦",
@@ -68,16 +75,19 @@
   "Nukta" : [
     ""
   ],
-  "SubConsonantNames" : [
-    "None",
-    "Repaya",
-    "Yansaya",
-    "Rakaaraansaya"
-  ],
   "Other Signs" : [
     "ං",
     "ඃ",
     "෴"
+  ],
+  "UsesLakh" : [
+    "true"
+  ],
+  "None" : [
+    ""
+  ],
+  "Rakaaraansaya" : [
+    "්‍ර"
   ],
   "Consonants" : [
     "ක",
@@ -121,12 +131,6 @@
     "හ",
     "ළ",
     "ෆ"
-  ],
-  "Rakaaraansaya" : [
-    "්‍ර"
-  ],
-  "None" : [
-    ""
   ],
   "Yansaya" : [
     "්‍ය"
