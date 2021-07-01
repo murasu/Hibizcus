@@ -708,6 +708,10 @@ struct HBGridView: View, DropDelegate {
                 if results.count > 0 {
                     selectWords(fromArray: results, defWordLen: 5)
                 }
+                else {
+                    print("No matches found!")
+                    hbGridItems.removeAll()
+                }
 
             } catch {
                 print("Could not load contents of file: \(filepath)")
@@ -726,7 +730,7 @@ struct HBGridView: View, DropDelegate {
             let results = regex.matches(in: text,
                                         range: NSRange(text.startIndex..., in: text))
             
-            // Limit to 2000 results
+            // Limit to 1000 results
             let limit = results.count >= 1000 ? 1000 : results.count
             let returns = results[0..<limit]
             return returns.map {

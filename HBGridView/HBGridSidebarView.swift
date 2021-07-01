@@ -31,29 +31,8 @@ struct HBGridSidebarView: View {
     @Binding var document: HibizcusDocument
     @ObservedObject var gridViewOptions: HBGridViewOptions
     @ObservedObject var clusterViewModel: HBGridSidebarClusterViewModel
-    @ObservedObject var searchOptions = RadioItems()
-    @ObservedObject var digitOptions = RadioItems()
-
-/*
-    init(document: Binding<HibizcusDocument>, gridViewOptions: HBGridViewOptions, clusterViewModel: HBGridSidebarClusterViewModel) {
-        self.document           = document
-        self.gridViewOptions    = gridViewOptions
-        self.clusterViewModel   = clusterViewModel
-        
-        self.searchOptions.labels = [WordSearchOptions.string.rawValue,
-                                WordSearchOptions.anyLetter.rawValue,
-                                WordSearchOptions.anyUnicode.rawValue,
-                                WordSearchOptions.onlyUnicodes.rawValue
-        ]
-        
-        self.digitOptions.labels = [NumberOfDigits.one.rawValue,
-                                    NumberOfDigits.two.rawValue,
-                                    NumberOfDigits.three.rawValue,
-                                    NumberOfDigits.four.rawValue,
-                                    NumberOfDigits.five.rawValue,
-                                    NumberOfDigits.six.rawValue
-        ]
-    } */
+    @StateObject var searchOptions = RadioItems()
+    @StateObject var digitOptions = RadioItems()
 
     var body: some View {
         TabView(selection: $gridViewOptions.currentTab) {
