@@ -100,6 +100,7 @@
 		00CEEA9126410D6800F515A1 /* cluster_javanese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA9026410D6800F515A1 /* cluster_javanese.json */; };
 		00CEEA95264126AE00F515A1 /* cluster_thaana.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA94264126AE00F515A1 /* cluster_thaana.json */; };
 		00CEEA9B2641708400F515A1 /* cluster_thai.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA9A2641708400F515A1 /* cluster_thai.json */; };
+		00D8D6AF269438DF009D48A8 /* myanmar_myanmar.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00D8D6AE269438DF009D48A8 /* myanmar_myanmar.txt */; };
 		00ED49A4260E344F00AF29E0 /* HBFileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED49A2260E344F00AF29E0 /* HBFileWatcher.swift */; };
 /* End PBXBuildFile section */
 
@@ -437,6 +438,7 @@
 		00CEEA9026410D6800F515A1 /* cluster_javanese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_javanese.json; sourceTree = "<group>"; };
 		00CEEA94264126AE00F515A1 /* cluster_thaana.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_thaana.json; sourceTree = "<group>"; };
 		00CEEA9A2641708400F515A1 /* cluster_thai.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_thai.json; sourceTree = "<group>"; };
+		00D8D6AE269438DF009D48A8 /* myanmar_myanmar.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = myanmar_myanmar.txt; sourceTree = "<group>"; };
 		00DDB4FA25E965F3002FC0B4 /* HBTracerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTracerBridge.swift; sourceTree = "<group>"; };
 		00DDB51425E98733002FC0B4 /* HBTraceRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBTraceRowView.swift; sourceTree = "<group>"; };
 		00DDB51525E98733002FC0B4 /* HBTraceRowViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBTraceRowViewRepresentable.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				00CEEA9026410D6800F515A1 /* cluster_javanese.json */,
 				00CEEA94264126AE00F515A1 /* cluster_thaana.json */,
 				00CEEA9A2641708400F515A1 /* cluster_thai.json */,
+				00D8D6AE269438DF009D48A8 /* myanmar_myanmar.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1056,6 +1059,7 @@
 				00CEEA9B2641708400F515A1 /* cluster_thai.json in Resources */,
 				00341CF0263EB15100EFA443 /* cluster_buginese.json in Resources */,
 				00341CF8263EF09E00EFA443 /* cluster_rejang.json in Resources */,
+				00D8D6AF269438DF009D48A8 /* myanmar_myanmar.txt in Resources */,
 				0053527A2608E2D6007F33D9 /* devanagari_marathi.txt in Resources */,
 				00CEEA9126410D6800F515A1 /* cluster_javanese.json in Resources */,
 				00CEEA95264126AE00F515A1 /* cluster_thaana.json in Resources */,

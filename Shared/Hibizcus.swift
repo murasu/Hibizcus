@@ -100,6 +100,8 @@ func defaultLanguage(forScript: String) -> String {
         return "Malayalam"
     case "meeteimayek" :
         return "Meetei"
+    case "myanmar" :
+        return "Myanmar"
     case "odia" :
         return "Odia"
     case "rejang" :
