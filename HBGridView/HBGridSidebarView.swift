@@ -9,11 +9,12 @@ import SwiftUI
 import AppKit
 
 enum WordSearchOptions: String {
-    case string = "Contain string"
-    case anyLetter = "Contain any letter in string"
-    case anyUnicode = "Contain any unicode in string"
-    //case onlyLetters = "Contain only letters in string"
-    case onlyUnicodes = "Contain only unicodes in string"
+    case string         = "Contain string"
+    case anyLetter      = "Contain any letter in string"
+    case anyUnicode     = "Contain any unicode in string"
+    case onlyUnicodes   = "Contain only unicodes in string"
+    case startWith      = "Start with string"
+    case endWith        = "End with string"
 }
 
 enum NumberOfDigits: String {
@@ -202,7 +203,9 @@ struct HBGridSidebarView: View {
             self.searchOptions.labels = [WordSearchOptions.string.rawValue,
                                     WordSearchOptions.anyLetter.rawValue,
                                     WordSearchOptions.anyUnicode.rawValue,
-                                    WordSearchOptions.onlyUnicodes.rawValue
+                                    WordSearchOptions.onlyUnicodes.rawValue,
+                                    WordSearchOptions.startWith.rawValue,
+                                    WordSearchOptions.endWith.rawValue
             ]
             
             self.digitOptions.labels = [NumberOfDigits.one.rawValue,

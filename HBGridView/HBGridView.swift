@@ -656,8 +656,8 @@ struct HBGridView: View, DropDelegate {
     // MARK: ----- Refresh Words from List
     
     func refreshWordsFromList() {
-        print("Refreshing items in Words tab")
-        print ("I need to load word data for \(hbProject.hbFont1.selectedScript)-\(hbProject.hbFont1.selectedLanguage)")
+        //print("Refreshing items in Words tab")
+        //print ("I need to load word data for \(hbProject.hbFont1.selectedScript)-\(hbProject.hbFont1.selectedLanguage)")
          
         // Handle script names w more than a word
         var script = hbProject.hbFont1.selectedScript.hasPrefix("Odia") ? "odia" : hbProject.hbFont1.selectedScript.lowercased()
@@ -699,6 +699,10 @@ struct HBGridView: View, DropDelegate {
                     print("NOT IMPLEMENTED") */
                 case WordSearchOptions.onlyUnicodes.rawValue:
                     pattern = "\\b[\(theText)]+\\b(?![,])"
+                case WordSearchOptions.startWith.rawValue:
+                    pattern = "\\b\(theText).+\\b(?![,])"
+                case WordSearchOptions.endWith.rawValue:
+                    pattern = "\\b.+\(theText)\\b(?![,])"
                 default:
                     print("") // Nothing to do here either
                 }
