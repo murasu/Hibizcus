@@ -137,17 +137,19 @@ struct HBGridView: View, DropDelegate {
                     refreshGridItems() }
                 .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                     print("Script has changed from \(clusterViewModel.currentScript) to \(newScript)")
-                    clusterViewModel.currentScript = newScript
-                    // Save this to project if we have a character string
-                    if hbProject.hbFont1.charsInScript != "" {
-                        document.projectData.systemFont1Script = newScript
-                        document.projectData.systemFont1Chars = hbProject.hbFont1.charsInScript
-                    } else {
-                        document.projectData.systemFont1Script = ""
-                        document.projectData.systemFont1Chars = ""
-                    }
-                    glyphItems.removeAll()
-                    refreshGridItems() }
+                    if clusterViewModel.currentScript != newScript {
+                        clusterViewModel.currentScript = newScript
+                        // Save this to project if we have a character string
+                        if hbProject.hbFont1.charsInScript != "" {
+                            document.projectData.systemFont1Script = newScript
+                            document.projectData.systemFont1Chars = hbProject.hbFont1.charsInScript
+                        } else {
+                            document.projectData.systemFont1Script = ""
+                            document.projectData.systemFont1Chars = ""
+                        }
+                        glyphItems.removeAll()
+                        refreshGridItems()
+                    }}
                 .onChange(of: hbProject.hbFont1.selectedLanguage) { newLanguage in
                     print("Language has changed to \(newLanguage)")
                     glyphItems.removeAll()

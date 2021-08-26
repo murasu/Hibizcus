@@ -60,7 +60,13 @@
   "BaseNames" : [
     "Vowels",
     "Consonants",
+    "Grantha Conjuncts",
     "Other Bases"
+  ],
+  "Grantha Conjuncts" : [
+    "க்ஷ",
+    "ஶ்ரீ",
+    "ஸ்ரீ"
   ],
   "Other Signs" : [
     "ஂ",
@@ -89,8 +95,7 @@
     "ஶ",
     "ஷ",
     "ஸ",
-    "ஹ",
-    "க்ஷ"
+    "ஹ"
   ],
   "UsesLakh" : [
     "true"
