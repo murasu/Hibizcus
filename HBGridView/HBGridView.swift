@@ -705,6 +705,8 @@ struct HBGridView: View, DropDelegate {
                     pattern = "\\b\(theText).+\\b(?![,])"
                 case WordSearchOptions.endWith.rawValue:
                     pattern = "\\b.+\(theText)\\b(?![,])"
+                case WordSearchOptions.matchRegex.rawValue:
+                    pattern = theText
                 default:
                     print("") // Nothing to do here either
                 }
@@ -739,8 +741,9 @@ struct HBGridView: View, DropDelegate {
             // Limit to 1000 results
             let limit = results.count >= 1000 ? 1000 : results.count
             let returns = results[0..<limit]
+  
             return returns.map {
-                String(text[Range($0.range, in: text)!])
+                String(text[Range($0.range, in: text) ?? Range(NSRange(location: 0,length: 1), in:text)!])
             }
             
             // This one returns all matches

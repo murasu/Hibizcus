@@ -15,6 +15,7 @@ enum WordSearchOptions: String {
     case onlyUnicodes   = "Contain only unicodes in string"
     case startWith      = "Start with string"
     case endWith        = "End with string"
+    case matchRegex     = "Match regex"
 }
 
 enum NumberOfDigits: String {
@@ -205,7 +206,8 @@ struct HBGridSidebarView: View {
                                     WordSearchOptions.anyUnicode.rawValue,
                                     WordSearchOptions.onlyUnicodes.rawValue,
                                     WordSearchOptions.startWith.rawValue,
-                                    WordSearchOptions.endWith.rawValue
+                                    WordSearchOptions.endWith.rawValue,
+                                    WordSearchOptions.matchRegex.rawValue
             ]
             
             self.digitOptions.labels = [NumberOfDigits.one.rawValue,
