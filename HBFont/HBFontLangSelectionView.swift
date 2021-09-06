@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HBFontLangSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var hbProject: HBProject
 
     @ObservedObject var hbFont:HBFont
     @State var highlighted:Language? = nil
@@ -100,6 +101,9 @@ struct HBFontLangSelectionView: View {
         
         // Update the filtered languages for the Picker
         hbFont.updateFilteredLanguages()
+        
+        // Refresh so the list gets updated in the sidebar
+        hbProject.refresh()
     }
 }
 

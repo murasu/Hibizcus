@@ -409,6 +409,9 @@ class HBFont: ObservableObject {
             return
         }
         
+        // Clear the array first
+        supportedLanguages.removeAll()
+        
         let currentLocale = Locale.current as NSLocale
         let langCodes = CTFontCopySupportedLanguages(ctFont!) as! [String]
         let allSelected = langCodes.count <= 10
