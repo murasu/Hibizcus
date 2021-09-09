@@ -107,8 +107,8 @@ struct StringGlyphListView: View {
                                 : hbProject.hbFont2.getStringLayoutData(forText:  hbProject.hbStringViewText).hbGlyphs,
                             id: \.self) { hbGlyph in
                         StringViewGlyphRow(glyph: hbGlyph,
-                                           inColor: (hbProject.hbFont1.fileUrl == nil || hbProject.hbFont2.fileUrl == nil)
-                                            || (!stringViewSettings.showFont1 || !stringViewSettings.showFont2)
+                                           inColor: ((hbProject.hbFont1.fileUrl == nil || hbProject.hbFont2.fileUrl == nil)
+                                            || (!stringViewSettings.showFont1 || !stringViewSettings.showFont2))
                                             && stringViewSettings.coloredItems,
                                            defaultColor: defaultColor)
                     }

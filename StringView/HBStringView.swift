@@ -112,7 +112,7 @@ struct HBStringView: View, DropDelegate {
                             // Glyphs in the shaped text, shaped using font1, the main font
                             VStack {
                                 StringGlyphListView(stringViewSettings:stringViewSettings,
-                                                    defaultColor: (hbProject.hbFont2.available /*.fileUrl == nil*/) ? Color.primary : Hibizcus.FontColor.MainFontUIColor.opacity(0.8),
+                                                    defaultColor: (hbProject.hbFont2.available) ? Color.primary : Hibizcus.FontColor.MainFontUIColor.opacity(0.8),
                                                     mainFont: true)
                             }
                             .padding(.leading, 10)
@@ -121,7 +121,7 @@ struct HBStringView: View, DropDelegate {
                                 // Glyphs in the shaped text, shaped font2, the compare font
                                 VStack {
                                     StringGlyphListView(stringViewSettings:stringViewSettings,
-                                                        defaultColor: (hbProject.hbFont2.available /*fileUrl == nil*/) ? Color.primary : Hibizcus.FontColor.CompareFontUIColor.opacity(0.8),
+                                                        defaultColor: (hbProject.hbFont2.available) ? Color.primary : Hibizcus.FontColor.CompareFontUIColor.opacity(0.8),
                                                         mainFont: false)
                                 }
                                 .padding(.trailing, 10)
