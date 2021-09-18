@@ -25,6 +25,7 @@
 		001643772635647F0044B965 /* cluster_sinhala.json in Resources */ = {isa = PBXBuildFile; fileRef = 001643762635647F0044B965 /* cluster_sinhala.json */; };
 		0016437F2635B9F60044B965 /* bengali_manipuri.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0016437E2635B9F60044B965 /* bengali_manipuri.txt */; };
 		001643812636F2B20044B965 /* meeteimayek_meetei.txt in Resources */ = {isa = PBXBuildFile; fileRef = 001643802636F2B20044B965 /* meeteimayek_meetei.txt */; };
+		001708E626EA2A28007B1584 /* cluster_khmer.json in Resources */ = {isa = PBXBuildFile; fileRef = 001708E526EA2A28007B1584 /* cluster_khmer.json */; };
 		0023783B263401CB006B5E9B /* odia_odia.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023783A263401CB006B5E9B /* odia_odia.txt */; };
 		0023783D26340717006B5E9B /* cluster_odia.json in Resources */ = {isa = PBXBuildFile; fileRef = 0023783C26340717006B5E9B /* cluster_odia.json */; };
 		0023784226343112006B5E9B /* bengali_bengali.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023784126343112006B5E9B /* bengali_bengali.txt */; };
@@ -135,6 +136,7 @@
 		001643762635647F0044B965 /* cluster_sinhala.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_sinhala.json; sourceTree = "<group>"; };
 		0016437E2635B9F60044B965 /* bengali_manipuri.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bengali_manipuri.txt; sourceTree = "<group>"; };
 		001643802636F2B20044B965 /* meeteimayek_meetei.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = meeteimayek_meetei.txt; sourceTree = "<group>"; };
+		001708E526EA2A28007B1584 /* cluster_khmer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_khmer.json; sourceTree = "<group>"; };
 		0023783A263401CB006B5E9B /* odia_odia.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = odia_odia.txt; sourceTree = "<group>"; };
 		0023783C26340717006B5E9B /* cluster_odia.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_odia.json; sourceTree = "<group>"; };
 		0023784126343112006B5E9B /* bengali_bengali.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bengali_bengali.txt; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 				00CEEA9026410D6800F515A1 /* cluster_javanese.json */,
 				00CEEA94264126AE00F515A1 /* cluster_thaana.json */,
 				00CEEA9A2641708400F515A1 /* cluster_thai.json */,
+				001708E526EA2A28007B1584 /* cluster_khmer.json */,
 				00D8D6AE269438DF009D48A8 /* myanmar_myanmar.txt */,
 			);
 			path = Resources;
@@ -1045,6 +1048,7 @@
 				006B1FFE268D7396007215D3 /* khmer_khmer.txt in Resources */,
 				0023784A26345CB8006B5E9B /* malayalam_malayalam.txt in Resources */,
 				004546EA26306BDA00601DB6 /* gujarati_gujarati.txt in Resources */,
+				001708E626EA2A28007B1584 /* cluster_khmer.json in Resources */,
 				00341CEA263AD91C00EFA443 /* cluster_tirhuta.json in Resources */,
 				00164375263564610044B965 /* sinhala_sinhala.txt in Resources */,
 				005352762608E2D6007F33D9 /* cluster_tamil.json in Resources */,
