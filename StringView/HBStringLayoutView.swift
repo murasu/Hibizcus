@@ -7,13 +7,21 @@
 //  Copyright © 2020 Murasu Systems Sdn bhd. All rights reserved.
 //
 
-import Cocoa
+#if os(iOS) || os(watchOS)
+    import UIKit
+    public typealias HBView=UIView
+#elseif os(OSX)
+    import Cocoa
+    public typealias HBView=NSView
+#endif
+
+//import Cocoa
 import Combine
 import SwiftUI
 
 enum LabelPosition { case left; case right }
 
-class HBStringLayoutView: NSView {
+class HBStringLayoutView: HBView /*NSView*/ {
     // This can be in preferences, later
     let metricsColor_01 = Hibizcus.FontColor.MainFontColor
     let metricsColor_02 = Hibizcus.FontColor.CompareFontColor
