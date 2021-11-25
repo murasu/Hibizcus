@@ -1,0 +1,58 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target x86_64-apple-macos11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name BinarySwift
+import Foundation
+import Swift
+import _Concurrency
+open class BinaryDataReader {
+  public var readIndex: Swift.Int {
+    get
+  }
+  public init(_ data: BinarySwift.BinaryData, readIndex: Swift.Int = 0)
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.UInt8
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.Int8
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.UInt16
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.Int16
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.UInt32
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.Int32
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.UInt64
+  open func read(_ bigEndian: Swift.Bool? = nil) throws -> Swift.Int64
+  open func read() throws -> Swift.Float32
+  open func read() throws -> Swift.Float64
+  open func readNullTerminatedUTF8() throws -> Swift.String
+  open func readUTF8(_ length: Swift.Int) throws -> Swift.String
+  open func read(_ length: Swift.Int) throws -> BinarySwift.BinaryData
+  @objc deinit
+}
+public struct BinaryData : Swift.ExpressibleByArrayLiteral {
+  public typealias Element = Swift.UInt8
+  public let data: [Swift.UInt8]
+  public let bigEndian: Swift.Bool
+  public init(arrayLiteral elements: BinarySwift.BinaryData.Element...)
+  public init(data: [Swift.UInt8], bigEndian: Swift.Bool = true)
+  public init(data: Foundation.Data, bigEndian: Swift.Bool = true)
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.UInt8
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.UInt16
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.UInt32
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.UInt64
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.Int8
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.Int16
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.Int32
+  public func get(_ offset: Swift.Int, bigEndian: Swift.Bool? = nil) throws -> Swift.Int64
+  public func get(_ offset: Swift.Int) throws -> Swift.Float32
+  public func get(_ offset: Swift.Int) throws -> Swift.Float64
+  public func getNullTerminatedUTF8(_ offset: Swift.Int) throws -> Swift.String
+  public func getUTF8(_ offset: Swift.Int, length: Swift.Int) throws -> Swift.String
+  public func tail(_ offset: Swift.Int) throws -> BinarySwift.BinaryData
+  public func subData(_ offset: Swift.Int, _ length: Swift.Int) throws -> BinarySwift.BinaryData
+  public typealias ArrayLiteralElement = BinarySwift.BinaryData.Element
+}
+public enum BinaryDataErrors : Swift.Error {
+  case notEnoughData
+  case failedToConvertToString
+  public static func == (a: BinarySwift.BinaryDataErrors, b: BinarySwift.BinaryDataErrors) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
