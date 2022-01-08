@@ -1,7 +1,8 @@
 # Hibizcus
 
-Font proofing and debugging tools.
-Written by: Muthu Nedumaran
+Font proofing and debugging tools, written by Muthu Nedumaran.
+
+**[hibizcus.com](https://hibizcus.com)**
 
 Hibizcus is a collection of tools written to proof and debug in-house developed fonts for South Asian and South East Asian scripts. Originally written in Objective-C these tools were used to visually present the layout of text shaped by CoreText using data in AAT tables added to the fonts. This project includes some of the most frequently used tools, rewritten in Swift and presented in SwiftUI. 
 
