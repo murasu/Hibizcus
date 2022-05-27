@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00049881283B2CEA00154812 /* cluster_brahmi.json in Resources */ = {isa = PBXBuildFile; fileRef = 00049880283B2CEA00154812 /* cluster_brahmi.json */; };
 		00129F9F260C861E00B82FB7 /* TraceSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB51825EA5EBF002FC0B4 /* TraceSidebarView.swift */; };
 		00129FA0260C861E00B82FB7 /* HBFontAnkrTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDB53525ED9AA6002FC0B4 /* HBFontAnkrTable.swift */; };
 		00129FA1260C861E00B82FB7 /* HBTraceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FB99325E6950F00F05B17 /* HBTraceView.swift */; };
@@ -120,6 +121,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00049880283B2CEA00154812 /* cluster_brahmi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_brahmi.json; sourceTree = "<group>"; };
 		000B5FF925F8A5D200A1CC4F /* HBGridSidebarClusterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridSidebarClusterViewModel.swift; sourceTree = "<group>"; };
 		000B600225F9E74C00A1CC4F /* cluster_gurmukhi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_gurmukhi.json; sourceTree = "<group>"; };
 		000B600425F9F81000A1CC4F /* gurmukhi_punjabi.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gurmukhi_punjabi.txt; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				00164374263564610044B965 /* sinhala_sinhala.txt */,
 				001643802636F2B20044B965 /* meeteimayek_meetei.txt */,
 				006B1FFD268D7396007215D3 /* khmer_khmer.txt */,
+				00049880283B2CEA00154812 /* cluster_brahmi.json */,
 				002C626025F7AFB000596186 /* cluster_tamil.json */,
 				002C625B25F781E300596186 /* cluster_devanagari.json */,
 				000B600225F9E74C00A1CC4F /* cluster_gurmukhi.json */,
@@ -1071,6 +1074,7 @@
 				0023784226343112006B5E9B /* bengali_bengali.txt in Resources */,
 				00341CF6263EF00D00EFA443 /* cluster_sundanese.json in Resources */,
 				0023784826345710006B5E9B /* cluster_grantha.json in Resources */,
+				00049881283B2CEA00154812 /* cluster_brahmi.json in Resources */,
 				0023785326346717006B5E9B /* cluster_malayalam.json in Resources */,
 				0016437026354C6F0044B965 /* kannada_kannada.txt in Resources */,
 				00535284260B6829007F33D9 /* Assets.xcassets in Resources */,

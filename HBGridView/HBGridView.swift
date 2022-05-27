@@ -248,7 +248,7 @@ struct HBGridView: View, DropDelegate {
                     }
                     Divider()
                     HStack {
-                        Text(tappedItem.text ?? "")
+                        Text(footnoteFor(item: tappedItem)) // tappedItem.text ?? "")
                             .font(.system(size: 12, design: .monospaced))
                             .padding(.top, 1)
                             .padding(.bottom, 5)
@@ -382,6 +382,29 @@ struct HBGridView: View, DropDelegate {
             refreshGridItems()
         }
         .environmentObject(hbProject)
+    }
+    
+    func footnoteFor(item:HBGridItem) -> String {
+        if !item.uniLabel.isEmpty && item.uniLabel.count <= 5 {
+            // We have a single unicode scalar
+            if let uni = Int(item.uniLabel, radix: 16) {
+                return "\(UnicodeScalar(uni)!.description) \(item.uniLabel) : \(UnicodeScalar(uni)!.properties.name ?? "")"
+            }
+        }
+        
+        // Otherwise return the text
+        if item.text != nil {
+            if !item.text!.isEmpty {
+                let components = item.text!
+                    .flatMap(\.unicodeScalars)
+                    .compactMap(\.properties.name)
+                    .joined(separator: ", ")
+                return "\(item.text!) : \(components)"
+            }
+        }
+        
+        // Return the label
+        return item.label
     }
     
     func performDrop(info: DropInfo) -> Bool {
@@ -556,6 +579,7 @@ struct HBGridView: View, DropDelegate {
                             let adv2    = fd2?.width ?? 0
                             wordItem.width[1] = CGFloat(Float(adv2)/scale)
                             widthDiff   = abs(width - wordItem.width[1]) > 0.01
+                            //NSLog("Glyph \(gName) has width diff \(width - wordItem.width[1])")
                         }
                         else if gId2 != nil {
                             // This is a system font, we only compare width
@@ -563,6 +587,7 @@ struct HBGridView: View, DropDelegate {
                             var opticalRect = [CGRect(x: 0, y: 0, width: 0, height: 0), CGRect(x: 0, y: 0, width: 0, height: 0)]
                             let ro = CTFontGetOpticalBoundsForGlyphs(hbProject.hbFont2.ctFont!, &cgGlyphs, &opticalRect, 1, 0)
                             widthDiff = abs(width - ro.width) > 0.01
+                            //NSLog("Glyph in system font \(gName) has width diff \(width - ro.width)")
                         }
                     }
                     
