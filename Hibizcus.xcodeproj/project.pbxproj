@@ -26,6 +26,8 @@
 		001643772635647F0044B965 /* cluster_sinhala.json in Resources */ = {isa = PBXBuildFile; fileRef = 001643762635647F0044B965 /* cluster_sinhala.json */; };
 		0016437F2635B9F60044B965 /* bengali_manipuri.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0016437E2635B9F60044B965 /* bengali_manipuri.txt */; };
 		001643812636F2B20044B965 /* meeteimayek_meetei.txt in Resources */ = {isa = PBXBuildFile; fileRef = 001643802636F2B20044B965 /* meeteimayek_meetei.txt */; };
+		00166C00284C635C003EA3EB /* brahmi_tamil.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00166BFF284C6343003EA3EB /* brahmi_tamil.txt */; };
+		00166C02284C6527003EA3EB /* brahmi_sanskrit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00166C01284C6527003EA3EB /* brahmi_sanskrit.txt */; };
 		001708E626EA2A28007B1584 /* cluster_khmer.json in Resources */ = {isa = PBXBuildFile; fileRef = 001708E526EA2A28007B1584 /* cluster_khmer.json */; };
 		0023783B263401CB006B5E9B /* odia_odia.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023783A263401CB006B5E9B /* odia_odia.txt */; };
 		0023783D26340717006B5E9B /* cluster_odia.json in Resources */ = {isa = PBXBuildFile; fileRef = 0023783C26340717006B5E9B /* cluster_odia.json */; };
@@ -138,6 +140,8 @@
 		001643762635647F0044B965 /* cluster_sinhala.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_sinhala.json; sourceTree = "<group>"; };
 		0016437E2635B9F60044B965 /* bengali_manipuri.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bengali_manipuri.txt; sourceTree = "<group>"; };
 		001643802636F2B20044B965 /* meeteimayek_meetei.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = meeteimayek_meetei.txt; sourceTree = "<group>"; };
+		00166BFF284C6343003EA3EB /* brahmi_tamil.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = brahmi_tamil.txt; sourceTree = "<group>"; };
+		00166C01284C6527003EA3EB /* brahmi_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = brahmi_sanskrit.txt; sourceTree = "<group>"; };
 		001708E526EA2A28007B1584 /* cluster_khmer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_khmer.json; sourceTree = "<group>"; };
 		0023783A263401CB006B5E9B /* odia_odia.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = odia_odia.txt; sourceTree = "<group>"; };
 		0023783C26340717006B5E9B /* cluster_odia.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_odia.json; sourceTree = "<group>"; };
@@ -530,6 +534,8 @@
 				00CEEA9A2641708400F515A1 /* cluster_thai.json */,
 				001708E526EA2A28007B1584 /* cluster_khmer.json */,
 				00D8D6AE269438DF009D48A8 /* myanmar_myanmar.txt */,
+				00166BFF284C6343003EA3EB /* brahmi_tamil.txt */,
+				00166C01284C6527003EA3EB /* brahmi_sanskrit.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1065,12 +1071,14 @@
 				00B254A5262E26B100A8B39D /* Credits.rtf in Resources */,
 				00CEEA9B2641708400F515A1 /* cluster_thai.json in Resources */,
 				00341CF0263EB15100EFA443 /* cluster_buginese.json in Resources */,
+				00166C02284C6527003EA3EB /* brahmi_sanskrit.txt in Resources */,
 				00341CF8263EF09E00EFA443 /* cluster_rejang.json in Resources */,
 				00D8D6AF269438DF009D48A8 /* myanmar_myanmar.txt in Resources */,
 				0053527A2608E2D6007F33D9 /* devanagari_marathi.txt in Resources */,
 				00CEEA9126410D6800F515A1 /* cluster_javanese.json in Resources */,
 				00CEEA95264126AE00F515A1 /* cluster_thaana.json in Resources */,
 				00CEEA8F264105A100F515A1 /* cluster_batak.json in Resources */,
+				00166C00284C635C003EA3EB /* brahmi_tamil.txt in Resources */,
 				0023784226343112006B5E9B /* bengali_bengali.txt in Resources */,
 				00341CF6263EF00D00EFA443 /* cluster_sundanese.json in Resources */,
 				0023784826345710006B5E9B /* cluster_grantha.json in Resources */,
@@ -1161,7 +1169,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 219;
+				CURRENT_PROJECT_VERSION = 222;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1187,7 +1195,7 @@
 					"$(PROJECT_DIR)/Libs/harfbuzz",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1205,7 +1213,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 219;
+				CURRENT_PROJECT_VERSION = 222;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1231,7 +1239,7 @@
 					"$(PROJECT_DIR)/Libs/harfbuzz",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

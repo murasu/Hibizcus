@@ -78,6 +78,8 @@ func defaultLanguage(forScript: String) -> String {
         return "Batak"
     case "bengali" :
         return "Bengali"
+    case "brahmi" :
+        return "Sanskrit"
     case "buginese" :
         return "Buginese"
     case "devanagari" :

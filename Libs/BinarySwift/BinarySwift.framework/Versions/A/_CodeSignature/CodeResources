@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		BnRg8OEcoAVxs56SDjfsXaUFJSM=
+		C2Yhy13hNaQtrQRfQEFRjRsKyK8=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -15,7 +15,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YvdxId9Ykl+vCYg7+4+W8KCLUWgn1e+9T7xCSMsLbM8=
+			SqtzSIJt+b89VErZD3dx/LW0Siskc/7C+LxxRRBbJCw=
 			</data>
 		</dict>
 		<key>Headers/BinarySwift_OSX.h</key>
@@ -29,98 +29,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eW2pHl22qd5BuWFp8Bhw2rFOxzNRB840Pa5nXLeEyto=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/Project/arm64.swiftsourceinfo</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			eW2pHl22qd5BuWFp8Bhw2rFOxzNRB840Pa5nXLeEyto=
+			ebFztqU63xi2RmmTenOL23z6fwgj0bweVEsbrXYidvA=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/Project/x86_64-apple-macos.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NKgirp5NCIGolqEBUkdMiRzVUl/FBq6Cb5AFM8RyvVk=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/Project/x86_64.swiftsourceinfo</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NKgirp5NCIGolqEBUkdMiRzVUl/FBq6Cb5AFM8RyvVk=
+			CvDyTG1QamlGuH+PvsxuCxuxGKWV6Hl9TTzsNfSZ0/g=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/arm64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lFjnazbRtoy3/vCIubmz2Lj1sMcmhVDXWRkHykx6N+I=
+			iJZfLOqI5Zl+BWum27ofm7n8TyP8TjGJ5x6OIRc8FUo=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/arm64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			DKNLYhh1gf4iEmfaI3gmp8ejKYVI5oWinOlYeJFaTRQ=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/arm64.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lFjnazbRtoy3/vCIubmz2Lj1sMcmhVDXWRkHykx6N+I=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/arm64.swiftmodule</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			DKNLYhh1gf4iEmfaI3gmp8ejKYVI5oWinOlYeJFaTRQ=
+			SVXozufWMmAc/S4ZQYb8H0O+4T/taBtUeNJfBSFD8tc=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Atw6C/kYjaynQoOs0jPj2mmsOEkgi78JyWx4f1XxQBM=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			c780AZydEPkTlV/JdmiAx+uuwjQ1s/qmIDVXAFid5o0=
+			gebdpFLbspBO9cIm7OEcz4rxiNj/4z1uO3sDDJjxeUE=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VAVBFMh2rQqDB5QXeGOB78mojddgnGtTEAWtdFfgwLo=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/x86_64.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Atw6C/kYjaynQoOs0jPj2mmsOEkgi78JyWx4f1XxQBM=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/x86_64.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			c780AZydEPkTlV/JdmiAx+uuwjQ1s/qmIDVXAFid5o0=
-			</data>
-		</dict>
-		<key>Modules/BinarySwift.swiftmodule/x86_64.swiftmodule</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VAVBFMh2rQqDB5QXeGOB78mojddgnGtTEAWtdFfgwLo=
+			xyjepxiBmc7xAoFGxsi0yaMJexIr5apMTspra5qXXIQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -134,7 +78,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dr1oT43/CeYta6kuF52Sg2pZtEvBthR/xDJnmD7tm3k=
+			4Ts86mYAvvML0IUWVZlb3k4QrehzOtSeBUdQ8SgU3/s=
 			</data>
 		</dict>
 	</dict>

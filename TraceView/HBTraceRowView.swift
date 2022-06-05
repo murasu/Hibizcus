@@ -181,12 +181,12 @@ class HBTraceRowView: NSView {
     }
     
     func drawSystemLog(context:CGContext, cellWidth:CGFloat, baseLine:CGFloat) {
-        var unichars = [unichar]()
+        var unichars = [Int/*unichar*/]()
         var clusters = [Int]()
         
         for item in tvLogItem!.items {
             if item.u != nil {
-                unichars.append(UniChar(item.u!))
+                unichars.append(/*UniChar*/(item.u!))
                 clusters.append(item.cl!)
             }
         }
