@@ -285,7 +285,26 @@ struct HBGridView: View, DropDelegate {
                         .disabled(gridViewOptions.currentTab != HBGridViewTab.FontsTab)
                 }
                 
-                // Copy buton
+                // Copy glyph names buton
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    Button(action: {
+                        if tappedItem.text != nil && tappedItem.text != "" {
+                            let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
+                            var glyphNames = ""
+                            for hbGlyph in sld.hbGlyphs {
+                                glyphNames += "/\(hbGlyph.name) "
+                            }
+                            copyTextToClipboard(textToCopy: glyphNames)
+                        }
+                    }, label: {
+                        //Image(systemName: "doc.on.doc")
+                        Text("Copy names")
+                    })
+                    .help((tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
+                    .disabled(tappedItem.text == nil || tappedItem.text == "")
+                }
+                
+                // Copy text buton
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         if tappedItem.text != nil && tappedItem.text != "" {
