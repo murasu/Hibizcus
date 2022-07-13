@@ -118,7 +118,7 @@ class HBGridCellView: NSView {
         var colorIndex = 0
         var layoutDatum:StringLayoutData?
         // 2022-07-13 : Show glyphs in color by default if either font is turned off
-        let showColoredGlyphs = (showMainFont != showCompareFont) ? true : gridItem!.colorGlyphs
+        let showColoredGlyphs = (gridItem!.type != HBGridItemItemType.Glyph) && (showMainFont != showCompareFont) ? true : gridItem!.colorGlyphs
         
         for theFont in theFonts {
             // 2022-07-13 : only show selected font
