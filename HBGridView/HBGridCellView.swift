@@ -44,6 +44,19 @@ class HBGridCellView: NSView {
         }
     }
     
+    // 2022-07-13
+    var showMainFont: Bool = true  {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
+    var showCompareFont: Bool = true {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
     override init(frame frameRect: NSRect) {
         super.init(frame:frameRect);
     }
@@ -74,7 +87,7 @@ class HBGridCellView: NSView {
         let baseLine: CGFloat   = computeBaseLine(ctFont: ctFont1)
         let xHeight: CGFloat    = baseLine + CTFontGetXHeight(ctFont1)
         
-        let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available
+        let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available && (showMainFont && showCompareFont)
         let borderColor = showDiff ? NSColor.systemRed.cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
         let borderWidth = showDiff ? 2 : 1
         if scale > 1.0 {
@@ -104,8 +117,19 @@ class HBGridCellView: NSView {
         
         var colorIndex = 0
         var layoutDatum:StringLayoutData?
+        // 2022-07-13 : Show glyphs in color by default if either font is turned off
+        let showColoredGlyphs = (showMainFont != showCompareFont) ? true : gridItem!.colorGlyphs
         
         for theFont in theFonts {
+            // 2022-07-13 : only show selected font
+            if colorIndex == 0 && !showMainFont {
+                colorIndex += 1
+                continue
+            }
+            if colorIndex == 1 && !showCompareFont {
+                continue
+            }
+                        
             if gridItem!.type == HBGridItemItemType.Glyph {
                 layoutDatum = nil
                 let gid = gridItem!.glyphIds[colorIndex]
@@ -127,7 +151,7 @@ class HBGridCellView: NSView {
                 let leftPadding:CGFloat = (self.bounds.width - layoutWidth) / 2
                 for i in 0 ..< layoutDatum!.count {
                     context.setFillColor(textColors[colorIndex])
-                    if gridItem!.colorGlyphs {
+                    if showColoredGlyphs /*gridItem!.colorGlyphs*/ {
                         context.setFillColor(layoutDatum!.hbGlyphs[i].color.cgColor!)
                     }
                     let glyphs = [CGGlyph(layoutDatum!.hbGlyphs[i].glyphId)]

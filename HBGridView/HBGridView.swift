@@ -8,6 +8,7 @@ import Combine
 import SwiftUI
 import AppKit
 
+
 enum HBGridViewTab {
     case FontsTab, ClustersTab, WordsTab, NumbersTab
 }
@@ -212,7 +213,7 @@ struct HBGridView: View, DropDelegate {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
                                 if !hbProject.hbFont2.available || !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly
                                                                         && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
-                                    HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: 1.0)
+                                    HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: 1.0, showMainFont: true, showCompareFont: true)
                                         .frame(width: maxCellWidth, height: 92, alignment: .center)
                                         .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ||
                                                     (searchItem.count>0 && (hbGridItem.label.hasPrefix(searchItem) /*|| hbGridItem.text!.hasPrefix(searchItem)*/) ) ? 1 : 0)
@@ -368,6 +369,7 @@ struct HBGridView: View, DropDelegate {
         }
         .onDrop(of: ["public.truetype-ttf-font", "public.file-url"], delegate: self)
         .onAppear {
+            print("GridView OnAppear Called!")
             // Load font1 from bookmark or system font for script and characters
             if document.projectData.fontFile1Bookmark != nil {
                 hbProject.hbFont1.loadFontWith(fontBookmark: document.projectData.fontFile1Bookmark!, fontSize: 40)

@@ -21,6 +21,11 @@ struct HBGlyphView: View {
     var tappedItem: HBGridItem
     var gridItems: [HBGridItem]
 
+    //@State private var showMain = UserDefaults.standard.bool(forKey: Hibizcus.Key.keyShowMainFont)
+    //@State private var showCompare = UserDefaults.standard.bool(forKey: Hibizcus.Key.keyShowCompareFont)
+    @State private var toggleFonts = false
+    @State private var showingMain = true
+    
     var body: some View {
         VStack {
             ZStack {
@@ -31,7 +36,9 @@ struct HBGlyphView: View {
                     .padding(.bottom, 10)
 
                 HStack {
-                    Button(action: { presentationMode.wrappedValue.dismiss() }, label: {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
                         Image(systemName: "multiply.circle")
                     })
                     .font(.system(size: 20))
@@ -40,6 +47,27 @@ struct HBGlyphView: View {
                     .padding(.horizontal, 10)
                     .buttonStyle(PlainButtonStyle())
 
+                    // 2022-07-13: Option to show string from either or both fonts
+                    if hbProject.hbFont2.available {
+                        Group {
+                            Toggle(isOn: $toggleFonts) {
+                                Text("Toggle")
+                            }
+                            if (toggleFonts) {
+                                Button {
+                                    showingMain.toggle()
+                                } label: {
+                                    Text(showingMain ? "Main" : "Compare")
+                                        .frame(width: 75)
+                                }
+
+                            }
+                        }
+                        .padding(.top, 10)
+                        .padding(.bottom, 0)
+                        .padding(.horizontal, 10)
+                    }
+                    
                     Spacer()
 
                     // Copy button - only for clusters and words.
@@ -107,7 +135,7 @@ struct HBGlyphView: View {
             Divider()
 
             VStack {
-                HBGridCellViewRepresentable(gridItem: gridItems[currItem], gridViewOptions: gridViewOptions, scale: scale)
+                HBGridCellViewRepresentable(gridItem: gridItems[currItem], gridViewOptions: gridViewOptions, scale: scale, showMainFont: toggleFonts ? showingMain : true, showCompareFont: toggleFonts ? !showingMain : true)
                     .frame(width: max((gridItems[currItem].width[0] * scale * 1.2), 800), height: 600, alignment: .center)
                 
                 Divider()
