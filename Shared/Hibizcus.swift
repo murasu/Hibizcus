@@ -33,6 +33,7 @@ struct Hibizcus {
         static let TVString                     = "tv.string"           // The test string in TraceViewer
         static let WVString                     = "wv.string"
         static let SelectedLanguages            = "selected.languages"
+        static let ToggleFont                   = "toggle.fonts"
     }
     
     static let FontScale: Float                 = 10.66666666666666667

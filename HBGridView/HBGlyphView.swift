@@ -21,9 +21,7 @@ struct HBGlyphView: View {
     var tappedItem: HBGridItem
     var gridItems: [HBGridItem]
 
-    //@State private var showMain = UserDefaults.standard.bool(forKey: Hibizcus.Key.keyShowMainFont)
-    //@State private var showCompare = UserDefaults.standard.bool(forKey: Hibizcus.Key.keyShowCompareFont)
-    @State private var toggleFonts = false
+    @State private var toggleFonts = UserDefaults.standard.bool(forKey: Hibizcus.Key.ToggleFont)
     @State private var showingMain = true
     
     var body: some View {
@@ -66,6 +64,9 @@ struct HBGlyphView: View {
                         .padding(.top, 10)
                         .padding(.bottom, 0)
                         .padding(.horizontal, 10)
+                        .onChange(of: toggleFonts) { newValue in
+                            UserDefaults.standard.set(newValue, forKey: Hibizcus.Key.ToggleFont)
+                        }
                     }
                     
                     Spacer()
