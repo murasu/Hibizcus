@@ -26,140 +26,150 @@ struct HBGlyphView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Text((gridItems[currItem].type == HBGridItemItemType.Glyph ? glyphItemLabel() : gridItems[currItem].text) ?? "")
-                    .font(.title)
-                    .padding(.horizontal, 15)
-                    .padding(.top, 15)
-                    .padding(.bottom, 10)
+            // The buttons bar
+            HStack {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "multiply.circle")
+                })
+                .font(.system(size: 20))
+                .padding(.top, 10)
+                .padding(.bottom, 0)
+                .padding(.horizontal, 10)
+                .buttonStyle(PlainButtonStyle())
+                
+                // 2022-07-13: Option to show string from either or both fonts
+                if hbProject.hbFont2.available {
+                    Group {
+                        Toggle(isOn: $toggleFonts) {
+                            Text("Toggle")
+                        }
+                        if (toggleFonts) {
+                            Button {
+                                showingMain.toggle()
+                            } label: {
+                                Text(showingMain ? "Main" : "Compare")
+                                    .frame(width: 75)
+                            }
+                            
+                        }
+                    }
+                    .padding(.top, 10)
+                    .padding(.bottom, 0)
+                    .padding(.horizontal, 10)
+                    .onChange(of: toggleFonts) { newValue in
+                        // Remember this 
+                        UserDefaults.standard.set(newValue, forKey: Hibizcus.Key.ToggleFont)
+                    }
+                }
+                
+                Spacer()
+                
+                // Copy button - only for clusters and words.
+                // TODO: Glyphs only if there's a unicode value
+                Button(action: {
+                    let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
+                    var glyphNames = ""
+                    for hbGlyph in sld.hbGlyphs {
+                        glyphNames += "/\(hbGlyph.name) "
+                    }
+                    copyTextToClipboard(textToCopy: glyphNames)
+                }, label: {
+                    //Image(systemName: "doc.on.doc")
+                    Text("Copy name(s)")
+                        .font(.callout)
+                })
+                .font(.system(size: 20))
+                .padding(.top, 10)
+                .padding(.bottom, 0)
+                .padding(.horizontal, 10)
+                .buttonStyle(PlainButtonStyle())
+                .help("Copy glyph names to clipboard")
+                
+                if gridItems[currItem].type != HBGridItemItemType.Glyph && gridItems[currItem].text != nil {
 
-                HStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "multiply.circle")
+                    
+                    Button(action: { copyTextToClipboard(textToCopy: gridItems[currItem].text!) }, label: {
+                        //Image(systemName: "doc.on.doc")
+                        Text("Copy text")
+                            .font(.callout)
                     })
                     .font(.system(size: 20))
                     .padding(.top, 10)
                     .padding(.bottom, 0)
                     .padding(.horizontal, 10)
                     .buttonStyle(PlainButtonStyle())
-
-                    // 2022-07-13: Option to show string from either or both fonts
-                    if hbProject.hbFont2.available {
-                        Group {
-                            Toggle(isOn: $toggleFonts) {
-                                Text("Toggle")
-                            }
-                            if (toggleFonts) {
-                                Button {
-                                    showingMain.toggle()
-                                } label: {
-                                    Text(showingMain ? "Main" : "Compare")
-                                        .frame(width: 75)
-                                }
-
-                            }
-                        }
-                        .padding(.top, 10)
-                        .padding(.bottom, 0)
-                        .padding(.horizontal, 10)
-                        .onChange(of: toggleFonts) { newValue in
-                            UserDefaults.standard.set(newValue, forKey: Hibizcus.Key.ToggleFont)
-                        }
-                    }
+                    .help("Copy \(gridItems[currItem].text!) to clipboard")
                     
-                    Spacer()
-
-                    // Copy button - only for clusters and words.
-                    // TODO: Glyphs only if there's a unicode value
-                    if gridItems[currItem].type != HBGridItemItemType.Glyph && gridItems[currItem].text != nil {
-                        Button(action: {
-                            let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
-                            var glyphNames = ""
-                            for hbGlyph in sld.hbGlyphs {
-                                glyphNames += "/\(hbGlyph.name) "
-                            }
-                            copyTextToClipboard(textToCopy: glyphNames)                            
-                        }, label: {
-                            //Image(systemName: "doc.on.doc")
-                            Text("Copy names")
-                                .font(.callout)
-                        })
-                        .font(.system(size: 20))
-                        .padding(.top, 10)
-                        .padding(.bottom, 0)
-                        .padding(.horizontal, 10)
-                        .buttonStyle(PlainButtonStyle())
-                        .help("Copy glyph names to clipboard")
-                        
-                        Button(action: { copyTextToClipboard(textToCopy: gridItems[currItem].text!) }, label: {
-                            //Image(systemName: "doc.on.doc")
-                            Text("Copy text")
-                                .font(.callout)
-                        })
-                        .font(.system(size: 20))
-                        .padding(.top, 10)
-                        .padding(.bottom, 0)
-                        .padding(.horizontal, 10)
-                        .buttonStyle(PlainButtonStyle())
-                        .help("Copy \(gridItems[currItem].text!) to clipboard")
-                        
-                        // Open in String Viewer
-                        Button(action: {
-                            //openTextInStringViewer(text: gridItems[currItem].text!)
-                            if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: gridItems[currItem].text ?? ""))") {
-                                openURL(url)
-                            }
-                        }, label: {
-                            //Image(systemName: "rectangle.and.text.magnifyingglass")
-                            Text("String viewer")
-                                .font(.callout)
-                        })
-                        .font(.system(size: 20))
-                        .padding(.top, 10)
-                        .padding(.bottom, 0)
-                        .padding(.horizontal, 10)
-                        .buttonStyle(PlainButtonStyle())
-                        .help("Open \(gridItems[currItem].text!) in StringViewer")
-                        
-                        // Open in Trace Viewer, only if there is file access
-                        Button(action: {
-                            //openTextInStringViewer(text: gridItems[currItem].text!)
-                            if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: gridItems[currItem].text ?? ""))") {
-                                openURL(url)
-                            }
-                        }, label: {
-                            //Image(systemName: "rectangle.and.text.magnifyingglass")
-                            Text("Trace viewer")
-                                .font(.callout)
-                        })
-                        .font(.system(size: 20))
-                        .padding(.top, 10)
-                        .padding(.bottom, 0)
-                        .padding(.horizontal, 10)
-                        .buttonStyle(PlainButtonStyle())
-                        .help("Open \(gridItems[currItem].text!) in TraceViewer")
-                        .disabled(hbProject.hbFont1.fileUrl == nil)
-                    }
-                    else if gridItems[currItem].type == HBGridItemItemType.Glyph {
-                        Text("Glyph ID: \(gridItems[currItem].glyphIds[0])")
-                            .padding(.trailing, 10)
-                            .padding(.top, 20)
-                    }
-                    else {
-                        Text(" ")
-                    }
+                    // Open in String Viewer
+                    Button(action: {
+                        //openTextInStringViewer(text: gridItems[currItem].text!)
+                        if let url = URL(string: "Hibizcus://stringview?\(urlParamsForToolWindow(text: gridItems[currItem].text ?? ""))") {
+                            openURL(url)
+                        }
+                    }, label: {
+                        //Image(systemName: "rectangle.and.text.magnifyingglass")
+                        Text("String viewer")
+                            .font(.callout)
+                    })
+                    .font(.system(size: 20))
+                    .padding(.top, 10)
+                    .padding(.bottom, 0)
+                    .padding(.horizontal, 10)
+                    .buttonStyle(PlainButtonStyle())
+                    .help("Open \(gridItems[currItem].text!) in StringViewer")
+                    
+                    // Open in Trace Viewer, only if there is file access
+                    Button(action: {
+                        //openTextInStringViewer(text: gridItems[currItem].text!)
+                        if let url = URL(string: "Hibizcus://traceview?\(urlParamsForToolWindow(text: gridItems[currItem].text ?? ""))") {
+                            openURL(url)
+                        }
+                    }, label: {
+                        //Image(systemName: "rectangle.and.text.magnifyingglass")
+                        Text("Trace viewer")
+                            .font(.callout)
+                    })
+                    .font(.system(size: 20))
+                    .padding(.top, 10)
+                    .padding(.bottom, 0)
+                    .padding(.horizontal, 10)
+                    .buttonStyle(PlainButtonStyle())
+                    .help("Open \(gridItems[currItem].text!) in TraceViewer")
+                    .disabled(hbProject.hbFont1.fileUrl == nil)
+                }
+                /* else if gridItems[currItem].type == HBGridItemItemType.Glyph {
+                    Text("Glyph ID: \(gridItems[currItem].glyphIds[0])")
+                        .padding(.trailing, 10)
+                        .padding(.top, 20)
+                } */
+                else {
+                    Text(" ")
                 }
             }
+            .padding(.horizontal, 15)
+            .padding(.top, 15)
+            .padding(.bottom, 0)//10)
+            
             Divider()
-
+            
+            // The glyph name or text
+            Text((gridItems[currItem].type == HBGridItemItemType.Glyph ? glyphItemLabel() : gridItems[currItem].text) ?? "")
+                .font(.title)
+                .padding(.horizontal, 15)
+                .padding(.vertical, 0)
+            
+            Divider()
+            
             VStack {
+                // The main view
                 HBGridCellViewRepresentable(gridItem: gridItems[currItem], gridViewOptions: gridViewOptions, scale: scale, showMainFont: toggleFonts ? showingMain : true, showCompareFont: toggleFonts ? !showingMain : true)
                     .frame(width: max((gridItems[currItem].width[0] * scale * 1.2), 800), height: 600, alignment: .center)
                 
                 Divider()
                 
+                // Details of the differences
                 if gridItems[currItem].hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbProject.hbFont2.available { //fileUrl != nil {
                     HStack {
                         if gridItems[currItem].diffWidth {
@@ -183,8 +193,9 @@ struct HBGlyphView: View {
                     }
                     Divider()
                 }
+                // Prev and Next buttons
                 HStack {
-                    Button("Prev") {
+                    Button("⟨ Prev") {
                         if currItem > 0 {
                             currItem  -= 1
                         }
@@ -194,12 +205,13 @@ struct HBGlyphView: View {
                         presentationMode.wrappedValue.dismiss()
                     }
                     Spacer()
-                    Button("Next") {
+                    Button("Next ⟩") {
                         if currItem < gridItems.count-1 {
                             currItem  += 1
                         }
                     }
                 }
+                .padding(4)
             }
             .padding(.horizontal, 10)
             .padding(.top, 5)//-25)
