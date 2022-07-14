@@ -74,6 +74,25 @@ struct HBGlyphView: View {
                     // Copy button - only for clusters and words.
                     // TODO: Glyphs only if there's a unicode value
                     if gridItems[currItem].type != HBGridItemItemType.Glyph && gridItems[currItem].text != nil {
+                        Button(action: {
+                            let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
+                            var glyphNames = ""
+                            for hbGlyph in sld.hbGlyphs {
+                                glyphNames += "/\(hbGlyph.name) "
+                            }
+                            copyTextToClipboard(textToCopy: glyphNames)                            
+                        }, label: {
+                            //Image(systemName: "doc.on.doc")
+                            Text("Copy names")
+                                .font(.callout)
+                        })
+                        .font(.system(size: 20))
+                        .padding(.top, 10)
+                        .padding(.bottom, 0)
+                        .padding(.horizontal, 10)
+                        .buttonStyle(PlainButtonStyle())
+                        .help("Copy glyph names to clipboard")
+                        
                         Button(action: { copyTextToClipboard(textToCopy: gridItems[currItem].text!) }, label: {
                             //Image(systemName: "doc.on.doc")
                             Text("Copy text")
