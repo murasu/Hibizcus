@@ -98,7 +98,10 @@ struct HBGridView: View, DropDelegate {
     @State var theText                          = ""
     
     @State var showGlyphView                    = false
-    @State var tappedItem                       = HBGridItem()
+    //@State var tappedItem                       = HBGridItem()
+    @State var tappedItems                      = [HBGridItem]()
+    @State var didCommandTap                    = false
+    
     
     var body: some View {
         NavigationView() {
@@ -215,20 +218,35 @@ struct HBGridView: View, DropDelegate {
                                                                         && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
                                     HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: 1.0, showMainFont: true, showCompareFont: true)
                                         .frame(width: maxCellWidth, height: 92, alignment: .center)
-                                        .border(Color.primary.opacity(0.7), width: tappedItem==hbGridItem ||
+                                        .border(Color.primary.opacity(0.7), width: tappedItems.contains(hbGridItem) /*tappedItem==hbGridItem*/ ||
                                                     (searchItem.count>0 && (hbGridItem.label.hasPrefix(searchItem) /*|| hbGridItem.text!.hasPrefix(searchItem)*/) ) ? 1 : 0)
                                         //.border(Color.primary.opacity(0.7), width: (searchItem.count>0 && hbGridItem.uniLabel.hasPrefix(searchItem)) ? 1 : 0)
                                         .gesture(TapGesture(count: 2).onEnded {
                                             // UI Update should be done on main thread
                                             DispatchQueue.main.async {
-                                                tappedItem = hbGridItem
+                                                //tappedItem = hbGridItem
+                                                tappedItems.append(hbGridItem)
                                             }
                                             print("double clicked on item \(hbGridItem)")
                                             doubleClicked(clickedItem: hbGridItem)
                                         })
+                                        .simultaneousGesture(TapGesture().modifiers(.command).onEnded {
+                                            DispatchQueue.main.async {
+                                                didCommandTap = true
+                                                //tappedItem = hbGridItem
+                                                tappedItems.append(hbGridItem)
+                                            }
+                                            print("single cmd-clicked on item \(hbGridItem)")
+                                        })
                                         .simultaneousGesture(TapGesture().onEnded {
                                             DispatchQueue.main.async {
-                                                tappedItem = hbGridItem
+                                                if !didCommandTap {
+                                                    // clear current selections
+                                                    tappedItems.removeAll()
+                                                    tappedItems.append(hbGridItem)
+                                                }
+                                                didCommandTap = false
+                                                //tappedItem = hbGridItem
                                             }
                                             print("single clicked on item \(hbGridItem)")
                                         })
@@ -239,7 +257,7 @@ struct HBGridView: View, DropDelegate {
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
                                         })
                                         .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                            HBGlyphView(document: $document, gridViewOptions: gridViewOptions, tappedItem: tappedItem, gridItems: hbGridItems)
+                                            HBGlyphView(document: $document, gridViewOptions: gridViewOptions, tappedItem: tappedItems[0], gridItems: hbGridItems)
                                         }
                                 }
                             }
@@ -249,7 +267,7 @@ struct HBGridView: View, DropDelegate {
                     }
                     Divider()
                     HStack {
-                        Text(footnoteFor(item: tappedItem)) // tappedItem.text ?? "")
+                        Text(tappedItems.count == 1 ? footnoteFor(item: tappedItems[0]) : "") // tappedItem.text ?? "")
                             .font(.system(size: 12, design: .monospaced))
                             .padding(.top, 1)
                             .padding(.bottom, 5)
@@ -289,6 +307,7 @@ struct HBGridView: View, DropDelegate {
                 // Copy glyph names buton
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
+                        /*
                         if tappedItem.text != nil && tappedItem.text != "" {
                             let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
                             var glyphNames = ""
@@ -296,53 +315,58 @@ struct HBGridView: View, DropDelegate {
                                 glyphNames += "/\(hbGlyph.name) "
                             }
                             copyTextToClipboard(textToCopy: glyphNames)
-                        }
+                        } */
+                        copyTextToClipboard(textToCopy: namesOfSelectedItems(maxLen: 1000))
                     }, label: {
                         //Image(systemName: "doc.on.doc")
                         Text("Copy names")
                     })
-                    .help((tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
-                    .disabled(tappedItem.text == nil || tappedItem.text == "")
+                    //.help(tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
+                    .help("Copy selected glyph names to clipboard")
+                    .disabled(tappedItems.count == 0 || namesOfSelectedItems(maxLen: 1000).count == 0)
                 }
                 
                 // Copy text buton
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
-                        if tappedItem.text != nil && tappedItem.text != "" {
-                            copyTextToClipboard(textToCopy: tappedItem.text!)
-                        }
+                        //if tappedItem.text != nil && tappedItem.text != "" {
+                            copyTextToClipboard(textToCopy: textFromSelectedItems(maxLen: 1000))
+                        //}
                     }, label: {
                         //Image(systemName: "doc.on.doc")
                         Text("Copy text")
                     })
-                    .help((tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
-                    .disabled(tappedItem.text == nil || tappedItem.text == "")
+                    //.help((tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
+                    .help(textFromSelectedItems(maxLen: 1000).count > 0 ? "Open \(textFromSelectedItems(maxLen: 1000)) in TraceViewer" : "Open TraceViewer")
+                    .disabled(tappedItems.count == 0 || textFromSelectedItems(maxLen: 1000).count == 0)
                 }
                 // String Viewer
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
                         
-                        if let url = URL(string: "Hibizcus://stringview?\(paramsForToolWindow(asJson: false, text: tappedItem.text ?? ""))") {
+                        if let url = URL(string: "Hibizcus://stringview?\(paramsForToolWindow(asJson: false, text: textFromSelectedItems(maxLen: 30)))") {
                             openURL(url)
                         }
                     }, label: {
                         //Image(systemName: "rectangle.and.text.magnifyingglass")
                         Text("String viewer")
                     })
-                    .help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in StringViewer" : "Open StringViewer")
+                    //.help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in StringViewer" : "Open StringViewer")
+                    .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in TraceViewer" : "Open TraceViewer")
                 }
                 // TraceView - only when font1 has file access
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
-                        if let url = URL(string: "Hibizcus://traceview?\(paramsForToolWindow(asJson: false, text: tappedItem.text ?? ""))") {
+                        if let url = URL(string: "Hibizcus://traceview?\(paramsForToolWindow(asJson: false, text: textFromSelectedItems(maxLen: 30)))") {
                             openURL(url)
                         }
                     }, label: {
                         //Image(systemName: "list.bullet.rectangle")
                         Text("Trace viewer")
                     })
-                    .help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in TraceViewer" : "Open TraceViewer")
-                    .disabled(hbProject.hbFont1.fileUrl == nil)
+                    //.help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in TraceViewer" : "Open TraceViewer")
+                    .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in TraceViewer" : "Open TraceViewer")
+                    .disabled(hbProject.hbFont1.fileUrl == nil || textFromSelectedItems(maxLen: 30).count==0)
                 }
                 
             }
@@ -505,12 +529,14 @@ struct HBGridView: View, DropDelegate {
     }
     
     func doubleClicked(clickedItem: HBGridItem) {
-        showGlyphView = tappedItem == clickedItem
+        // TODO: How do I pick the last clicked item
+        //showGlyphView = tappedItem == clickedItem
     }
     
     func refreshGridItems() {
         // Reset the tapped item
-        tappedItem = HBGridItem()
+        //tappedItem = HBGridItem()
+        tappedItems = [HBGridItem]()
         
         // Perform the refresh in another thread
         DispatchQueue.main.async {
@@ -944,6 +970,41 @@ struct HBGridView: View, DropDelegate {
                                               showLakh: gridViewOptions.showLakh,
                                               showThousand: gridViewOptions.showThousand)
         }
+    }
+    
+    // Handle selections
+    func textFromSelectedItems(maxLen:Int) -> String {
+        var theText = ""
+        
+        for tappedItem in tappedItems {
+            let txt = tappedItem.text ?? ""
+            if txt.count > 0 && txt.count + theText.count < maxLen {
+                theText.append("\(txt) ")
+            }
+        }
+        
+        return theText.trimmingCharacters(in: .whitespaces)
+    }
+    
+    func namesOfSelectedItems(maxLen:Int) -> String {
+        var theNames = ""
+        
+        for tappedItem in tappedItems {
+    
+            
+            let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
+            for hbGlyph in sld.hbGlyphs {
+                theNames.append("/\(hbGlyph.name) ")
+            }
+            
+            /*
+            let glyphname = tappedItem.label
+            if glyphname.count > 0 && glyphname.count + theNames.count < maxLen {
+                theNames.append("\\\(glyphname) ")
+            } */
+        }
+        
+        return theNames.trimmingCharacters(in: .whitespaces)
     }
     
     // MARK: ----- helpers
