@@ -98,7 +98,7 @@ struct HBGridView: View, DropDelegate {
     @State var theText                          = ""
     
     @State var showGlyphView                    = false
-    //@State var tappedItem                       = HBGridItem()
+    @State var viewItem                         = HBGridItem()
     @State var tappedItems                      = [HBGridItem]()
     @State var didCommandTap                    = false
     
@@ -224,8 +224,7 @@ struct HBGridView: View, DropDelegate {
                                         .gesture(TapGesture(count: 2).onEnded {
                                             // UI Update should be done on main thread
                                             DispatchQueue.main.async {
-                                                //tappedItem = hbGridItem
-                                                tappedItems.append(hbGridItem)
+                                                viewItem = hbGridItem
                                             }
                                             print("double clicked on item \(hbGridItem)")
                                             doubleClicked(clickedItem: hbGridItem)
@@ -257,7 +256,7 @@ struct HBGridView: View, DropDelegate {
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
                                         })
                                         .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                            HBGlyphView(document: $document, gridViewOptions: gridViewOptions, tappedItem: tappedItems[0], gridItems: hbGridItems)
+                                            HBGlyphView(document: $document, gridViewOptions: gridViewOptions, tappedItem: /*tappedItems[0]*/viewItem, gridItems: hbGridItems)
                                         }
                                 }
                             }
@@ -529,8 +528,7 @@ struct HBGridView: View, DropDelegate {
     }
     
     func doubleClicked(clickedItem: HBGridItem) {
-        // TODO: How do I pick the last clicked item
-        //showGlyphView = tappedItem == clickedItem
+        showGlyphView = viewItem == clickedItem
     }
     
     func refreshGridItems() {
