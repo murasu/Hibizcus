@@ -103,6 +103,7 @@ struct HBGridView: View, DropDelegate {
     @State var didCommandTap                    = false
     
     @State var cellScale:CGFloat                = 1.0
+    @State var diffItemsCount                   = 0
     
     var body: some View {
         NavigationView() {
@@ -277,7 +278,7 @@ struct HBGridView: View, DropDelegate {
                     }
                     Divider()
                     HStack {
-                        Text(tappedItems.count == 1 ? footnoteFor(item: tappedItems[0]) : "\(tappedItems.count) items selected") // tappedItem.text ?? "")
+                        Text(statusText())
                             .font(.system(size: 12, design: .monospaced))
                             .padding(.top, 1)
                             .padding(.bottom, 5)
@@ -601,6 +602,7 @@ struct HBGridView: View, DropDelegate {
             }
             
             glyphItems.removeAll()
+            diffItemsCount = 0
             
             // Easier to get glyphname in a CGFont
             let cgFont = CTFontCopyGraphicsFont(hbProject.hbFont1.ctFont!, nil)
@@ -676,11 +678,12 @@ struct HBGridView: View, DropDelegate {
                     wordItem.diffWidth  = widthDiff
                     glyphCellWidth = max(width, glyphCellWidth)
                     DispatchQueue.main.async {
-                        //print("appending item '\(wordItem.label)' to hbGridItems which already has \(hbGridItems.count) items. Containts \(wordItem.label)? \(hbGridItems.contains(wordItem) ? "YES" : "NO")")
                         hbGridItems.append(wordItem)
-                        //print("appending item '\(wordItem.label)' to glyphItems which already has \(glyphItems.count) items. Containts \(wordItem.label)? \(glyphItems.contains(wordItem) ? "YES" : "NO")")
                         glyphItems.append(wordItem)
                         maxCellWidth = glyphCellWidth
+                        if wordItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) {
+                            diffItemsCount += 1
+                        }
                     }
                 }
             }
@@ -1058,6 +1061,21 @@ struct HBGridView: View, DropDelegate {
         return theNames.trimmingCharacters(in: .whitespaces)
     }
     
+    func statusText() -> String {
+        let diffCount = diffItemsCount > 0 ? "\(diffItemsCount) \(diffItemsCount == 1 ? "item has" : "items have") differences" : ""
+        if tappedItems.count == 1 {
+            return footnoteFor(item: tappedItems[0])
+        }
+        else if tappedItems.count > 1 {
+            var tapped = "\(tappedItems.count) items selected"
+            if !diffCount.isEmpty {
+                tapped.append(". \(diffCount)")
+            }
+            return tapped
+        }
+        
+        return diffCount
+    }
     // MARK: ----- helpers
     
     // Json Helper
