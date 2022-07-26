@@ -358,6 +358,24 @@ extension NSView {
         context?.addPath(path)
         context?.drawPath(using: .fillStroke)
     }
+    
+    func drawCornerTiangle(rect: CGRect, inContext context: CGContext?, baseLen: CGFloat, borderColor: CGColor, fillColor: CGColor, strokeWidth:CGFloat=1.0) {
+                
+        let path = CGMutablePath()
+        
+        path.move(to: CGPoint(x:rect.width-baseLen, y:rect.height) )
+        path.addLine(to: CGPoint(x:rect.width, y:rect.height) )
+        path.addLine(to: CGPoint(x:rect.width, y:rect.height-baseLen) )
+        //path.addLine(to: CGPoint(x:rect.width-10, y:0) )
+        path.closeSubpath()
+        
+        context?.setLineWidth(strokeWidth)
+        context?.setFillColor(fillColor)
+        context?.setStrokeColor(borderColor)
+        
+        context?.addPath(path)
+        context?.drawPath(using: .fillStroke)
+    }
 }
 
 

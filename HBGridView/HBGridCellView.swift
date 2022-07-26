@@ -91,10 +91,10 @@ class HBGridCellView: NSView {
         
         let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available && (showMainFont && showCompareFont)
         let borderColor = showDiff ? NSColor.systemRed.withAlphaComponent(0.7).cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
-        let borderWidth = showDiff ? 2 : 1
-        //print("scale \(scale) max \(maxGridScale)")
-        if scale > maxGridScale/*1.0*/ {
-            //print("Drawing metrics lines for grid item \(gridItem!)")
+        let borderWidth = showDiff ? 2.5 : 1
+
+        
+        if scale > maxGridScale {
             // If the scale is > 1, draw all metrices along w their labels
             drawMetricLinesForFont(forFont: ctFont1, inContext: context, baseLine: baseLine, lineColor: metricLineColor, labelXPos: .left, drawUnderlinePos: false) 
         }
@@ -105,6 +105,10 @@ class HBGridCellView: NSView {
             // Draw the glyph name
             let glyphName = gridItem!.label.truncated(limit: 15)
             drawGlyphName(inContext: context, glyphName: glyphName, x: self.bounds.width/2, y: 3, color: NSColor.textColor.withAlphaComponent(0.6).cgColor, pointSize: glyphNamePointSize)
+            
+            if showDiff {
+                drawCornerTiangle(rect: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height), inContext: context, baseLen: self.bounds.width*0.15, borderColor: NSColor.systemRed.cgColor, fillColor: NSColor.systemRed.cgColor)
+            }
         }
         
         // Set the colors
