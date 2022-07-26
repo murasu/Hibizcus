@@ -90,12 +90,30 @@ struct HBGridSidebarCluster: View {
                     //print("Selected vowel sign: \(picked)")
                     viewModel.selectedVowelSign = picked
                 }
+                // Show the selected character name
+                if viewModel.selectedVowelSign.count > 0 {
+                    let c = viewModel.selectedVowelSign.unicodeScalars.first
+                    if c != nil {
+                        Text("\(UnicodeScalar(c!).properties.name ?? "")")
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
+                    }
+                }
                 
                 Divider()
                 
                 PickerGrid(title: "Other Signs:", items: viewModel.otherSigns, maxParts: viewModel.vowelSignParts, selected: "") { picked in
                     //print("Selected other sign: \(picked)")
                     viewModel.selectedOtherSign = picked
+                }
+                // Show the selected character name
+                if viewModel.selectedOtherSign.count > 0 {
+                    let c = viewModel.selectedOtherSign.unicodeScalars.first
+                    if c != nil {
+                        Text("\(UnicodeScalar(c!).properties.name ?? "")")
+                            .foregroundColor(.secondary)
+                            .font(.footnote)
+                    }
                 }
             }
         }
