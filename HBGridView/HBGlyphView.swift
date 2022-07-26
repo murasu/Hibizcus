@@ -219,7 +219,8 @@ struct HBGlyphView: View {
         }
         .onAppear() {
             currItem    = gridItems.firstIndex(of: tappedItem) ?? 0
-            scale       = tappedItem.type == .Word ? 4.0 : 6.0
+            //scale       = tappedItem.type == .Word ? 4.0 : 6.0
+            scale       = tappedItem.type == .Word ? 5.0 : 7.0
         }
     }
     

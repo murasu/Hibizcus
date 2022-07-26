@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 class HBGridCellView: NSView {
-    let maxGridScale = 5.0
+    let maxGridScale = 4.0
     
     let glyphNamePointSize:CGFloat = 10
     let frameColor = NSColor.textColor.withAlphaComponent(0.1).cgColor
@@ -92,6 +92,7 @@ class HBGridCellView: NSView {
         let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available && (showMainFont && showCompareFont)
         let borderColor = showDiff ? NSColor.systemRed.cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
         let borderWidth = showDiff ? 2 : 1
+        //print("scale \(scale) max \(maxGridScale)")
         if scale > maxGridScale/*1.0*/ {
             //print("Drawing metrics lines for grid item \(gridItem!)")
             // If the scale is > 1, draw all metrices along w their labels

@@ -269,7 +269,7 @@ struct HBGridView: View, DropDelegate {
                     }
                     Divider()
                     HStack {
-                        Text(tappedItems.count == 1 ? footnoteFor(item: tappedItems[0]) : "") // tappedItem.text ?? "")
+                        Text(tappedItems.count == 1 ? footnoteFor(item: tappedItems[0]) : "\(tappedItems.count) items selected") // tappedItem.text ?? "")
                             .font(.system(size: 12, design: .monospaced))
                             .padding(.top, 1)
                             .padding(.bottom, 5)
@@ -348,35 +348,48 @@ struct HBGridView: View, DropDelegate {
                     .help(textFromSelectedItems(maxLen: 1000).count > 0 ? "Open \(textFromSelectedItems(maxLen: 1000)) in TraceViewer" : "Open TraceViewer")
                     .disabled(tappedItems.count == 0 || textFromSelectedItems(maxLen: 1000).count == 0)
                 }
+                
                 // String Viewer
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                    Button(action: {
-                        
-                        if let url = URL(string: "Hibizcus://stringview?\(paramsForToolWindow(asJson: false, text: textFromSelectedItems(maxLen: 30)))") {
-                            openURL(url)
-                        }
-                    }, label: {
-                        //Image(systemName: "rectangle.and.text.magnifyingglass")
-                        Text("String viewer")
-                    })
-                    //.help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in StringViewer" : "Open StringViewer")
-                    .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in TraceViewer" : "Open TraceViewer")
-                }
-                // TraceView - only when font1 has file access
-                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                    Button(action: {
-                        if let url = URL(string: "Hibizcus://traceview?\(paramsForToolWindow(asJson: false, text: textFromSelectedItems(maxLen: 30)))") {
-                            openURL(url)
-                        }
-                    }, label: {
-                        //Image(systemName: "list.bullet.rectangle")
-                        Text("Trace viewer")
-                    })
-                    //.help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in TraceViewer" : "Open TraceViewer")
-                    .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in TraceViewer" : "Open TraceViewer")
-                    .disabled(hbProject.hbFont1.fileUrl == nil || textFromSelectedItems(maxLen: 30).count==0)
+                    // Doesn't make sense for Fonts Tab
+                    if gridViewOptions.currentTab != HBGridViewTab.FontsTab {
+                        Button(action: {
+                            
+                            if let url = URL(string: "Hibizcus://stringview?\(paramsForToolWindow(asJson: false, text: textFromSelectedItems(maxLen: 30)))") {
+                                openURL(url)
+                            }
+                        }, label: {
+                            //Image(systemName: "rectangle.and.text.magnifyingglass")
+                            Text("String viewer")
+                        })
+                        //.help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in StringViewer" : "Open StringViewer")
+                        .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in TraceViewer" : "Open TraceViewer")
+                    }
+                    else {
+                        Text("")
+                    }
                 }
                 
+                // TraceView - only when font1 has file access
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    // Doesn't make sense for Fonts Tab
+                    if gridViewOptions.currentTab != HBGridViewTab.FontsTab {
+                        Button(action: {
+                            if let url = URL(string: "Hibizcus://traceview?\(paramsForToolWindow(asJson: false, text: textFromSelectedItems(maxLen: 30)))") {
+                                openURL(url)
+                            }
+                        }, label: {
+                            //Image(systemName: "list.bullet.rectangle")
+                            Text("Trace viewer")
+                        })
+                        //.help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in TraceViewer" : "Open TraceViewer")
+                        .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in TraceViewer" : "Open TraceViewer")
+                        .disabled(hbProject.hbFont1.fileUrl == nil || textFromSelectedItems(maxLen: 30).count==0)
+                    }
+                    else {
+                        Text("")
+                    }
+                }
             }
             //.navigationTitle("Hiziscus Font Tools")
             .onChange(of: clusterViewModel.selectedBase) { _ in
@@ -990,36 +1003,50 @@ struct HBGridView: View, DropDelegate {
     
     // Handle selections
     func textFromSelectedItems(maxLen:Int) -> String {
+        if tappedItems.count == 0 {
+            return ""
+        }
+        
         var theText = ""
         
         for tappedItem in tappedItems {
-            let txt = tappedItem.text ?? ""
+            var txt = tappedItem.text ?? ""
+            // If we do not have a text, check unicode values
+            if txt.isEqual("") && tappedItem.uniLabel.count >= 4 {
+                if let uni = Int(tappedItem.uniLabel, radix: 16) {
+                    txt.append(Character(UnicodeScalar(uni)!))
+                }
+            }
+            
             if txt.count > 0 && txt.count + theText.count < maxLen {
                 theText.append("\(txt) ")
             }
         }
-        
         return theText.trimmingCharacters(in: .whitespaces)
     }
     
     func namesOfSelectedItems(maxLen:Int) -> String {
+        if tappedItems.count == 0 {
+            return ""
+        }
+        
         var theNames = ""
         
         for tappedItem in tappedItems {
-    
-            
-            let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
-            for hbGlyph in sld.hbGlyphs {
-                theNames.append("/\(hbGlyph.name) ")
+            if tappedItem.text?.count ?? 0 == 0 {
+                // Get the label
+                if tappedItem.label.count > 0 {
+                    theNames.append("/\(tappedItem.label) ")
+                }
             }
-            
-            /*
-            let glyphname = tappedItem.label
-            if glyphname.count > 0 && glyphname.count + theNames.count < maxLen {
-                theNames.append("\\\(glyphname) ")
-            } */
+            else {
+                // Do the layout and get the glyph names
+                let sld = hbProject.hbFont1.getStringLayoutData(forText: tappedItem.text!)
+                for hbGlyph in sld.hbGlyphs {
+                    theNames.append("/\(hbGlyph.name) ")
+                }
+            }
         }
-        
         return theNames.trimmingCharacters(in: .whitespaces)
     }
     
