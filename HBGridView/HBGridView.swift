@@ -137,7 +137,8 @@ struct HBGridView: View, DropDelegate {
                     refreshGridItems() }
                 .onChange(of: gridViewOptions.currentTab) { newTab in
                     print("Tab switched to \(newTab)")
-                    glyphItems.removeAll()
+                    //glyphItems.removeAll()
+                    hbGridItems.removeAll()
                     refreshGridItems() }
                 .onChange(of: hbProject.hbFont1.selectedScript) { newScript in
                     print("Script has changed from \(clusterViewModel.currentScript) to \(newScript)")
@@ -225,7 +226,7 @@ struct HBGridView: View, DropDelegate {
                                             // UI Update should be done on main thread
                                             DispatchQueue.main.async {
                                                 viewItem = hbGridItem
-                                                print("double clicked on item \(hbGridItem)")
+                                                //print("double clicked on item \(hbGridItem)")
                                                 doubleClicked(clickedItem: hbGridItem)
                                             }
                                         })
@@ -233,8 +234,8 @@ struct HBGridView: View, DropDelegate {
                                             DispatchQueue.main.async {
                                                 didCommandTap = true
                                                 //tappedItem = hbGridItem
+                                                //print("single cmd-clicked on item \(hbGridItem)")
                                                 tappedItems.append(hbGridItem)
-                                                print("single cmd-clicked on item \(hbGridItem)")
                                             }
                                         })
                                         .simultaneousGesture(TapGesture().onEnded {
@@ -246,7 +247,7 @@ struct HBGridView: View, DropDelegate {
                                                 }
                                                 didCommandTap = false
                                                 //tappedItem = hbGridItem
-                                                print("single clicked on item \(hbGridItem)")
+                                                //print("single clicked on item \(hbGridItem)")
                                             }
                                         })
                                         .onDrag({
@@ -423,7 +424,7 @@ struct HBGridView: View, DropDelegate {
             clusterViewModel.currentScript = hbProject.hbFont1.selectedScript
             glyphItems.removeAll()
             hbProject.refresh()
-            refreshGridItems()
+            //refreshGridItems()
         }
         .environmentObject(hbProject)
     }
@@ -560,7 +561,7 @@ struct HBGridView: View, DropDelegate {
     // MARK: ----- Refresh Glyphs in Font
 
     func refreshGlyphsInFonts() {
-        print("Refreshing items in Font tab")
+        print("Refreshing items in Font tab ....")
         hbGridItems.removeAll()
         if hbProject.hbFont1.available {
             // If we already have the data backed up, use it instead of recreating
@@ -585,6 +586,12 @@ struct HBGridView: View, DropDelegate {
             // Let's run this in the background as it can take very long for large fonts
             DispatchQueue.global(qos: .background).async {
                 for i in 0 ..< hbProject.hbFont1.glyphCount {
+                    if gridViewOptions.currentTab != HBGridViewTab.FontsTab {
+                        print("User switched to another tab midway")
+                        glyphItems.removeAll()
+                        break
+                    }
+                    
                     let gId         = CGGlyph(i)
                     let gName       = cgFont.name(for: gId)! as String
                     let fd1         = fontData1?.getGlyfData(forGlyphName: gName) ?? nil
@@ -640,7 +647,9 @@ struct HBGridView: View, DropDelegate {
                     wordItem.diffWidth  = widthDiff
                     glyphCellWidth = max(width, glyphCellWidth)
                     DispatchQueue.main.async {
+                        //print("appending item '\(wordItem.label)' to hbGridItems which already has \(hbGridItems.count) items. Containts \(wordItem.label)? \(hbGridItems.contains(wordItem) ? "YES" : "NO")")
                         hbGridItems.append(wordItem)
+                        //print("appending item '\(wordItem.label)' to glyphItems which already has \(glyphItems.count) items. Containts \(wordItem.label)? \(glyphItems.contains(wordItem) ? "YES" : "NO")")
                         glyphItems.append(wordItem)
                         maxCellWidth = glyphCellWidth
                     }
@@ -656,6 +665,7 @@ struct HBGridView: View, DropDelegate {
     func refreshClusters() {
         print("Refreshing items in Clusters tab")
         hbGridItems.removeAll()
+        
         var maxWidth: CGFloat = 100 //maxCellWidth
         
         // This will be used to compare glyf data
