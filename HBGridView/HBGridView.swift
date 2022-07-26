@@ -190,6 +190,9 @@ struct HBGridView: View, DropDelegate {
                 .onChange(of: hbProject.hbFont2.selectedShaper) { _ in
                     glyphItems.removeAll()
                     refreshGridItems() }
+                .onChange(of: searchItem) { _ in
+                    applySearchFilter()
+                    }
             VStack {
                 if gridViewOptions.currentTab == HBGridViewTab.WordsTab {
                     VStack {
@@ -219,8 +222,8 @@ struct HBGridView: View, DropDelegate {
                                                                         && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
                                     HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: 1.0, showMainFont: true, showCompareFont: true)
                                         .frame(width: maxCellWidth, height: 92, alignment: .center)
-                                        .border(Color.primary.opacity(0.7), width: tappedItems.contains(hbGridItem) /*tappedItem==hbGridItem*/ ||
-                                                    (searchItem.count>0 && (hbGridItem.label.hasPrefix(searchItem) /*|| hbGridItem.text!.hasPrefix(searchItem)*/) ) ? 1 : 0)
+                                        .border(Color.primary.opacity(0.7), width: tappedItems.contains(hbGridItem) /*tappedItem==hbGridItem*/ /*||
+                                                    (searchItem.count>0 && (hbGridItem.label.hasPrefix(searchItem)) )*/ ? 1 : 0)
                                         //.border(Color.primary.opacity(0.7), width: (searchItem.count>0 && hbGridItem.uniLabel.hasPrefix(searchItem)) ? 1 : 0)
                                         .gesture(TapGesture(count: 2).onEnded {
                                             // UI Update should be done on main thread
@@ -297,11 +300,17 @@ struct HBGridView: View, DropDelegate {
                 }
                 // Search : Only for fonts tab for now
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
-                    TextField("Search glyph", text: $searchItem)
-                        .font(.body)
-                        .textFieldStyle(SquareBorderTextFieldStyle())
-                        .frame(width: 150)//, height: 50)
-                        .disabled(gridViewOptions.currentTab != HBGridViewTab.FontsTab)
+                    // Search is only available in Font Tab and when all glyph items are loaded
+                    if gridViewOptions.currentTab == HBGridViewTab.FontsTab && hbProject.hbFont1.glyphCount == glyphItems.count {
+                        TextField("Search glyph", text: $searchItem)
+                            .font(.body)
+                            .textFieldStyle(SquareBorderTextFieldStyle())
+                            .frame(width: 150)//, height: 50)
+                            .disabled(gridViewOptions.currentTab != HBGridViewTab.FontsTab)
+                    }
+                    else {
+                        Text("")
+                    }
                 }
                 
                 // Copy glyph names buton
@@ -587,7 +596,7 @@ struct HBGridView: View, DropDelegate {
             DispatchQueue.global(qos: .background).async {
                 for i in 0 ..< hbProject.hbFont1.glyphCount {
                     if gridViewOptions.currentTab != HBGridViewTab.FontsTab {
-                        print("User switched to another tab midway")
+                        // User switched to another tab midway
                         glyphItems.removeAll()
                         break
                     }
@@ -663,7 +672,7 @@ struct HBGridView: View, DropDelegate {
     // MARK: ----- Refresh Clusters
 
     func refreshClusters() {
-        print("Refreshing items in Clusters tab")
+        //print("Refreshing items in Clusters tab")
         hbGridItems.removeAll()
         
         var maxWidth: CGFloat = 100 //maxCellWidth
@@ -1075,6 +1084,15 @@ struct HBGridView: View, DropDelegate {
         let params = "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)" +
                 "&font1Script=\(scrp1)&font2Script=\(scrp2)&font1Chars=\(echrs1)&font2Chars=\(echrs2)"
         return params
+    }
+    
+    func applySearchFilter() {
+        hbGridItems.removeAll()
+        for item in glyphItems {
+            if item.label.hasPrefix(searchItem) {
+                hbGridItems.append(item)
+            }
+        }
     }
 }
 
