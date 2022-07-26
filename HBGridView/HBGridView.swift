@@ -225,17 +225,17 @@ struct HBGridView: View, DropDelegate {
                                             // UI Update should be done on main thread
                                             DispatchQueue.main.async {
                                                 viewItem = hbGridItem
+                                                print("double clicked on item \(hbGridItem)")
+                                                doubleClicked(clickedItem: hbGridItem)
                                             }
-                                            print("double clicked on item \(hbGridItem)")
-                                            doubleClicked(clickedItem: hbGridItem)
                                         })
                                         .simultaneousGesture(TapGesture().modifiers(.command).onEnded {
                                             DispatchQueue.main.async {
                                                 didCommandTap = true
                                                 //tappedItem = hbGridItem
                                                 tappedItems.append(hbGridItem)
+                                                print("single cmd-clicked on item \(hbGridItem)")
                                             }
-                                            print("single cmd-clicked on item \(hbGridItem)")
                                         })
                                         .simultaneousGesture(TapGesture().onEnded {
                                             DispatchQueue.main.async {
@@ -246,8 +246,8 @@ struct HBGridView: View, DropDelegate {
                                                 }
                                                 didCommandTap = false
                                                 //tappedItem = hbGridItem
+                                                print("single clicked on item \(hbGridItem)")
                                             }
-                                            print("single clicked on item \(hbGridItem)")
                                         })
                                         .onDrag({
                                             let dragData = paramsForToolWindow(asJson: true, text: hbGridItem.text!)
