@@ -143,7 +143,8 @@ class HBStringLayoutView: HBView /*NSView*/ {
         for glyphIndex in 0..<slData.hbGlyphs.count {
                         
             var fillColor = slData.hbGlyphs[glyphIndex].color.cgColor
-            if hbFont1.available && hbFont2.available {
+            // Use single colors if string needs to be shown in both fonts
+            if hbFont1.available && hbFont2.available && viewSettings.showFont1 && viewSettings.showFont2 {
                 fillColor = isMain ? Hibizcus.FontColor.MainFontColor : Hibizcus.FontColor.CompareFontColor
             }
             context!.setFillColor(fillColor!)
