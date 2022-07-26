@@ -9,6 +9,8 @@ import Combine
 import SwiftUI
 
 class HBGridCellView: NSView {
+    let maxGridScale = 5.0
+    
     let glyphNamePointSize:CGFloat = 10
     let frameColor = NSColor.textColor.withAlphaComponent(0.1).cgColor
     let metricLineColor = NSColor.textColor.withAlphaComponent(0.15).cgColor
@@ -72,7 +74,7 @@ class HBGridCellView: NSView {
         if hbFont1 == nil || gridItem == nil {
             return
         }
-        
+                
         guard let context = NSGraphicsContext.current?.cgContext else { return }
                 
         var ctFont1 = hbFont1!.ctFont!
@@ -90,7 +92,7 @@ class HBGridCellView: NSView {
         let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available && (showMainFont && showCompareFont)
         let borderColor = showDiff ? NSColor.systemRed.cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
         let borderWidth = showDiff ? 2 : 1
-        if scale > 1.0 {
+        if scale > maxGridScale/*1.0*/ {
             //print("Drawing metrics lines for grid item \(gridItem!)")
             // If the scale is > 1, draw all metrices along w their labels
             drawMetricLinesForFont(forFont: ctFont1, inContext: context, baseLine: baseLine, lineColor: metricLineColor, labelXPos: .left, drawUnderlinePos: false) 

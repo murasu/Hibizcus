@@ -31,6 +31,7 @@ struct HBGridSidebarView: View {
     @EnvironmentObject var hbProject: HBProject
     
     @Binding var document: HibizcusDocument
+    @Binding var scale: CGFloat
     @ObservedObject var gridViewOptions: HBGridViewOptions
     @ObservedObject var clusterViewModel: HBGridSidebarClusterViewModel
     @StateObject var searchOptions = RadioItems()
@@ -47,7 +48,7 @@ struct HBGridSidebarView: View {
                     HBSidebarFont()
                     Spacer()
                     Divider()
-                    GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                    GridDisplayOptionsView(gridViewOptions: gridViewOptions, scale: $scale)
                 }
             }
             .tabItem {
@@ -81,7 +82,7 @@ struct HBGridSidebarView: View {
                     Spacer()
                     Divider()
                     
-                    GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                    GridDisplayOptionsView(gridViewOptions: gridViewOptions, scale: $scale)
                 }
             }
             .tabItem {
@@ -119,7 +120,7 @@ struct HBGridSidebarView: View {
                                 
                                 // Grid Options only when second font is available for cluster view
                                 if hbProject.hbFont2.available {
-                                    GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                                    GridDisplayOptionsView(gridViewOptions: gridViewOptions, scale: $scale)
                                 }
                             } else {
                                 Text("Word list not available for selected script and language.")
@@ -183,7 +184,7 @@ struct HBGridSidebarView: View {
                             Spacer()
                             Divider()
                             
-                            GridDisplayOptionsView(gridViewOptions: gridViewOptions)
+                            GridDisplayOptionsView(gridViewOptions: gridViewOptions, scale: $scale)
                         }
                     }
                     else {
@@ -225,11 +226,21 @@ struct HBGridSidebarView: View {
 struct GridDisplayOptionsView: View {
     @EnvironmentObject var hbProject: HBProject
     @ObservedObject var gridViewOptions:HBGridViewOptions
-    
+    @Binding var scale: CGFloat
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Display options:")
                 .padding(.bottom, 10)
+            
+            
+            VStack (alignment: .leading) {
+                Text("Grid size:")
+                Slider(value: $scale, in: 1...4)
+            }
+            .padding(.trailing, 10)
+            .padding(.bottom, 10)
+            
             
             if gridViewOptions.currentTab == HBGridViewTab.FontsTab {
                 HStack {

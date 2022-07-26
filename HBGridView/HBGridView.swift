@@ -102,10 +102,11 @@ struct HBGridView: View, DropDelegate {
     @State var tappedItems                      = [HBGridItem]()
     @State var didCommandTap                    = false
     
+    @State var cellScale:CGFloat                = 1.0
     
     var body: some View {
         NavigationView() {
-            HBGridSidebarView(document: $document, gridViewOptions: gridViewOptions, clusterViewModel: clusterViewModel)
+            HBGridSidebarView(document: $document, scale: $cellScale, gridViewOptions: gridViewOptions, clusterViewModel: clusterViewModel)
                 .onChange(of: gridViewOptions.matchOption) { value in
                     print("Time to refresh search with \(gridViewOptions.matchOption) for script \(hbProject.hbFont1.selectedScript) in language \(hbProject.hbFont1.selectedLanguage)")
                     refreshGridItems() }
@@ -216,15 +217,13 @@ struct HBGridView: View, DropDelegate {
                 }
                 if hbProject.hbFont1.available {
                     ScrollView {
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth))], spacing: 10) {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: maxCellWidth*cellScale))], spacing: 10) {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
                                 if !hbProject.hbFont2.available || !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly
                                                                         && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
-                                    HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: 1.0, showMainFont: true, showCompareFont: true)
-                                        .frame(width: maxCellWidth, height: 92, alignment: .center)
-                                        .border(Color.primary.opacity(0.7), width: tappedItems.contains(hbGridItem) /*tappedItem==hbGridItem*/ /*||
-                                                    (searchItem.count>0 && (hbGridItem.label.hasPrefix(searchItem)) )*/ ? 1 : 0)
-                                        //.border(Color.primary.opacity(0.7), width: (searchItem.count>0 && hbGridItem.uniLabel.hasPrefix(searchItem)) ? 1 : 0)
+                                    HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: cellScale/*1.0*/, showMainFont: true, showCompareFont: true)
+                                        .frame(width: maxCellWidth*cellScale, height: 92*cellScale, alignment: .center)
+                                        .border(Color.primary.opacity(0.7), width: tappedItems.contains(hbGridItem) ? 1 : 0)
                                         .gesture(TapGesture(count: 2).onEnded {
                                             // UI Update should be done on main thread
                                             DispatchQueue.main.async {
