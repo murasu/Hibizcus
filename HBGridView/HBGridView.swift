@@ -223,7 +223,8 @@ struct HBGridView: View, DropDelegate {
                                                                         && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
                                     HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: cellScale/*1.0*/, showMainFont: true, showCompareFont: true)
                                         .frame(width: maxCellWidth*cellScale, height: 92*cellScale, alignment: .center)
-                                        .border(Color.primary.opacity(0.7), width: tappedItems.contains(hbGridItem) ? 1 : 0)
+                                        .border(Color.primary/*.opacity(0.7)*/, width: tappedItems.contains(hbGridItem) ? 2 : 0)
+                                        .padding(2)
                                         .gesture(TapGesture(count: 2).onEnded {
                                             // UI Update should be done on main thread
                                             DispatchQueue.main.async {

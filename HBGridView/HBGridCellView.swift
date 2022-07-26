@@ -90,7 +90,7 @@ class HBGridCellView: NSView {
         let xHeight: CGFloat    = baseLine + CTFontGetXHeight(ctFont1)
         
         let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available && (showMainFont && showCompareFont)
-        let borderColor = showDiff ? NSColor.systemRed.cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
+        let borderColor = showDiff ? NSColor.systemRed.withAlphaComponent(0.7).cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
         let borderWidth = showDiff ? 2 : 1
         //print("scale \(scale) max \(maxGridScale)")
         if scale > maxGridScale/*1.0*/ {
