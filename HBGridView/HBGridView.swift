@@ -253,7 +253,7 @@ struct HBGridView: View, DropDelegate {
                                             }
                                         })
                                         .onDrag({
-                                            let dragData = paramsForToolWindow(asJson: true, text: hbGridItem.text!)
+                                            let dragData = paramsForToolWindow(asJson: true, text:textFromSelectedItems(maxLen: 1000)) // text: hbGridItem.text!)
                                             UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
                                             print("Dragging out \(dragData)")
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
