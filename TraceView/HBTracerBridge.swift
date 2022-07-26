@@ -317,7 +317,8 @@ class HBTracerBridge: ObservableObject {
             //print("   Starting System action")
         case "start reordering indic initial",
              "start reordering indic final" :
-            print("   Continue with current shaping action")
+            //print("   Continue with current shaping action")
+            break
         default:
             if message.hasPrefix("start lookup") || message.hasPrefix("end lookup") {
                 var tag = ""
