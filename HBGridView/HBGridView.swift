@@ -253,7 +253,14 @@ struct HBGridView: View, DropDelegate {
                                             }
                                         })
                                         .onDrag({
-                                            let dragData = paramsForToolWindow(asJson: true, text:textFromSelectedItems(maxLen: 1000)) // text: hbGridItem.text!)
+                                            var draggedText = textFromSelectedItems(maxLen: 1000)
+                                            // If hbGridItem is not in the selection, unselect everything and select this one before dragging
+                                            if !tappedItems.contains(hbGridItem) {
+                                                draggedText = hbGridItem.text!
+                                                tappedItems.removeAll()
+                                                tappedItems.append(hbGridItem)
+                                            }
+                                            let dragData = paramsForToolWindow(asJson: true, text:draggedText) //textFromSelectedItems(maxLen: 1000), fallback: hbGridItem.text!)
                                             UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
                                             print("Dragging out \(dragData)")
                                             return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)

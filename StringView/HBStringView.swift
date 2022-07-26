@@ -249,41 +249,51 @@ struct HBStringView: View, DropDelegate {
     }
     
     func updateTextAndFonts(params: [String: String]) {
-        if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
-            // Load from bookmark
-            let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
-            hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-            // Save the bookmark
-            stringViewSettings.fontBookmark1 = bookMarkData!
-        }
-        else if params["font1Url"] != nil && params["font1Url"] != "" {
-            // Load from URL
-            hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
-        }
-        else if params["font1Script"] != nil && params["font1Script"] != "" {
-            // Load system font
-            hbProject.hbFont1.loadFontFor(script: params["font1Script"]!, fontSize: 40, charsInScript: params["font1Chars"]!)
+        // load Fonts if Font1 is not loaded
+        if !hbProject.hbFont1.available {
+            if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
+                // Load from bookmark
+                let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
+                hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+                // Save the bookmark
+                stringViewSettings.fontBookmark1 = bookMarkData!
+            }
+            else if params["font1Url"] != nil && params["font1Url"] != "" {
+                // Load from URL
+                hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
+            }
+            else if params["font1Script"] != nil && params["font1Script"] != "" {
+                // Load system font
+                hbProject.hbFont1.loadFontFor(script: params["font1Script"]!, fontSize: 40, charsInScript: params["font1Chars"]!)
+            }
+
+            if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
+                let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
+                hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+                stringViewSettings.fontBookmark2 = bookMarkData!
+            }
+            else if params["font2Url"] != nil && params["font2Url"] != "" {
+                hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
+            }
+            else if params["font2Script"] != nil && params["font2Script"] != "" {
+                // Load system font
+                hbProject.hbFont2.loadFontFor(script: params["font2Script"]!, fontSize: 40, charsInScript: params["font2Chars"]!)
+            }
         }
         
-        if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
-            let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
-            hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-            stringViewSettings.fontBookmark2 = bookMarkData!
-        }
-        else if params["font2Url"] != nil && params["font2Url"] != "" {
-            hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
-        }
-        else if params["font2Script"] != nil && params["font2Script"] != "" {
-            // Load system font
-            hbProject.hbFont2.loadFontFor(script: params["font2Script"]!, fontSize: 40, charsInScript: params["font2Chars"]!)
-        }
-        
-        // Set the text
+        // Set the text if current text is blank, append otherwise
         if params["text"] != nil {
-            hbProject.hbStringViewText = params["text"]!
+            if hbProject.hbStringViewText.isEmpty {
+                hbProject.hbStringViewText = params["text"]!
+            }
+            else {
+                hbProject.hbStringViewText.append(" \(params["text"]!)")
+            }
         }
         
-        hbProject.projectName = params["project"]!
+        if hbProject.projectName.isEmpty {
+            hbProject.projectName = params["project"]!
+        }
     }
     
     // Help construct URL parameters

@@ -227,44 +227,64 @@ struct HBTraceView: View, DropDelegate {
             hbTraceBridge.theText = params["text"]!
         } */
         
-        // Font 1
-        if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
-            // Load from bookmark
-            let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
-            hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-            // Save the bookmark
-            traceViewOptions.fontBookmark1 = bookMarkData!
-        }
-        else if params["font1Url"] != nil && params["font1Url"] != "" {
-            // Load from URL
-            hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
-        }
-        else if params["font1Script"] != nil && params["font1Script"] != "" {
-            // Load system font
-            hbProject.hbFont1.loadFontFor(script: params["font1Script"]!, fontSize: 40, charsInScript: params["font1Chars"]!)
-        }
-        
-        // Font 2
-        if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
-            let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
-            hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-            traceViewOptions.fontBookmark2 = bookMarkData!
-        }
-        else if params["font2Url"] != nil && params["font2Url"] != "" {
-            hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
-        }
-        else if params["font2Script"] != nil && params["font2Script"] != "" {
-            // Load system font
-            hbProject.hbFont2.loadFontFor(script: params["font2Script"]!, fontSize: 40, charsInScript: params["font2Chars"]!)
+        // load Fonts if Font1 is not loaded
+        if !hbProject.hbFont1.available {
+            
+            if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
+                // Load from bookmark
+                let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
+                hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+                // Save the bookmark
+                traceViewOptions.fontBookmark1 = bookMarkData!
+            }
+            else if params["font1Url"] != nil && params["font1Url"] != "" {
+                // Load from URL
+                hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
+            }
+            else if params["font1Script"] != nil && params["font1Script"] != "" {
+                // Load system font
+                hbProject.hbFont1.loadFontFor(script: params["font1Script"]!, fontSize: 40, charsInScript: params["font1Chars"]!)
+            }
+            
+            // Font 2
+            if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
+                let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
+                hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+                traceViewOptions.fontBookmark2 = bookMarkData!
+            }
+            else if params["font2Url"] != nil && params["font2Url"] != "" {
+                hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
+            }
+            else if params["font2Script"] != nil && params["font2Script"] != "" {
+                // Load system font
+                hbProject.hbFont2.loadFontFor(script: params["font2Script"]!, fontSize: 40, charsInScript: params["font2Chars"]!)
+            }
         }
         
         // The text
+        /*
         if params["text"] != nil {
             traceText = params["text"]!
             hbTraceBridge.theText = traceText //params["text"]!
         }
         
         hbProject.projectName = params["project"]!
+        */
+        
+        // Set the text if current text is blank, append otherwise
+        if params["text"] != nil {
+            if traceText.isEmpty {
+                traceText = params["text"]!
+            }
+            else {
+                traceText.append(" \(params["text"]!)")
+            }
+            hbTraceBridge.theText = traceText
+        }
+        
+        if hbProject.projectName.isEmpty {
+            hbProject.projectName = params["project"]!
+        }
     }
     
     // Help construct URL parameters
