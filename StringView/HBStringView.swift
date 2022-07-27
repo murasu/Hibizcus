@@ -29,9 +29,10 @@ struct HBStringView: View, DropDelegate {
     // This does not update the saved project as that data is not shared across other windows
     // SwiftUI limitation?
     @StateObject var stringViewSettings = HBStringViewSettings()
-    
     @StateObject var hbProject = HBProject()
     @State var listViewOpen = true
+    
+    let pubFontFileChanged = NotificationCenter.default.publisher(for: NSNotification.Name(Hibizcus.Messages.FontFileChanged))
 
     var body: some View {
         NavigationView() {
@@ -56,12 +57,15 @@ struct HBStringView: View, DropDelegate {
                             hbProject.refresh() }
                         .onChange(of: hbProject.hbFont2.selectedShaper) { _ in
                             hbProject.refresh() }
+                    // listen to notifications instead - that seem to work better
+                    /*
                         .onChange(of: hbProject.hbFont1.fileWatcher.fontFileChanged) { _ in
                             print("StringView: Font file 1 changed - need to redraw the UI")
                             hbProject.refresh() }
                         .onChange(of: hbProject.hbFont2.fileWatcher.fontFileChanged) { _ in
                             print("StringView: Font file 2 changed - need to redraw the UI")
                             hbProject.refresh() }
+                     */
                     if  hbProject.hbFont1.available || hbProject.hbFont2.available {
                         // Our custom view to display the shaped text
                         HBStringLayoutViewRepresentable(fontSize: stringViewSettings.fontSize,
@@ -175,6 +179,10 @@ struct HBStringView: View, DropDelegate {
         })
         .onDrop(of: ["public.text", "public.truetype-ttf-font", "public.file-url"], delegate: self)
         .navigationTitle(Text("StringViewer: \(hbProject.projectName)"))
+        .onReceive(pubFontFileChanged) { _ in
+            print("Notification about filechange received!")
+            hbProject.refresh()
+        }
     }
     
     func performDrop(info: DropInfo) -> Bool {

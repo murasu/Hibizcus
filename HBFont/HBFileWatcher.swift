@@ -9,13 +9,15 @@ import Combine
 import SwiftUI
 
 class HBFileWatcher: NSObject, NSFilePresenter, ObservableObject {
-    //var didChange = PassthroughSubject<Bool, Never>()
-
     var presentedItemURL: URL?
     let presentedItemOperationQueue = OperationQueue()
-    var lastDate:Date?
+    @Published var lastDate:Date = Date.init(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude) {
+        didSet { self.objectWillChange.send() }
+    }
     
-    @Published var fontFileChanged: Bool = false 
+    @Published var fontFileChanged: Bool = false {
+        didSet { self.objectWillChange.send() }
+    }
     
     deinit {
         stopWatchingForChanges()
@@ -26,8 +28,8 @@ class HBFileWatcher: NSObject, NSFilePresenter, ObservableObject {
         NSFileCoordinator.addFilePresenter(self)
         presentedItemURL = fileUrl
         // Save the current date of the file
-        lastDate = fileModificationDate()
-        print("HBFileWatcher: Watching for changes in file: \(fileUrl). Current time: \(lastDate?.description ?? "NOT Available")")
+        lastDate = fileModificationDate()!
+        print("HBFileWatcher: Watching for changes in file: \(fileUrl). Current time: \(lastDate.description)")
     }
     
     func stopWatchingForChanges() {
@@ -41,12 +43,15 @@ class HBFileWatcher: NSObject, NSFilePresenter, ObservableObject {
         print("HBFileWatcher: Item did change!")
         // We get this callback even if an attribute of the file has changed. We only need
         // to trigger if the file itself has changed. We used to date to determine that
-        if lastDate == nil || lastDate != fileModificationDate() {
+        if /*lastDate == nil ||*/ lastDate != fileModificationDate() {
             DispatchQueue.main.async {
                 print("     ==> File at \(String(describing: self.presentedItemURL)) has changed!")
                 self.fontFileChanged = true
                 // Update the lastDate to the current modification date
-                self.lastDate = self.fileModificationDate()
+                self.lastDate = self.fileModificationDate()!
+                // Post a notification
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name(Hibizcus.Messages.FontFileChanged), object: nil)
             }
         }
     }

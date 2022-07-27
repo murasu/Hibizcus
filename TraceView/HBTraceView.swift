@@ -28,6 +28,8 @@ struct HBTraceView: View, DropDelegate {
     @ObservedObject var hbTraceBridge: HBTracerBridge = HBTracerBridge.shared
     @ObservedObject var traceViewOptions = HBTraceViewOptions()
     
+    let pubFontFileChanged = NotificationCenter.default.publisher(for: NSNotification.Name(Hibizcus.Messages.FontFileChanged))
+
     var body: some View {
         NavigationView() {
             HBTraceSideBarView(traceViewData: traceViewOptions)
@@ -137,6 +139,10 @@ struct HBTraceView: View, DropDelegate {
                 /*hbTraceBridge.*/startTrace()
             }
         })
+        .onReceive(pubFontFileChanged) { _ in
+            print("Notification about filechange received!")
+            hbProject.refresh()
+        }
     }
     
     func startTrace() {

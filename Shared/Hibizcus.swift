@@ -28,6 +28,10 @@ struct Hibizcus {
         case System, Subtituting, Positioning
     }
     
+    struct Messages {
+        static let FontFileChanged              = "font.file.changed"
+    }
+    
     struct Key {
         static let SVString                     = "sv.string"           // The test string in StringViewer
         static let TVString                     = "tv.string"           // The test string in TraceViewer
