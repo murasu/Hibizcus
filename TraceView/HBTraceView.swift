@@ -126,7 +126,7 @@ struct HBTraceView: View, DropDelegate {
         }
         .environmentObject(hbProject)
         .onOpenURL(perform: { url in
-            print("Url opened = \(url.absoluteString)")
+            //print("Url opened = \(url.absoluteString)")
             let params = url.queryParameters
             if params != nil {
                 updateTextAndFonts(params: params!)

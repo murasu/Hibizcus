@@ -60,7 +60,7 @@ hb_bool_t message_func (hb_buffer_t *buffer,
 {
     unsigned int num_glyphs = hb_buffer_get_length (buffer);
     //printf("Received : %s Glyph count: %d\n", message, num_glyphs);
-    printf("Received : user_data: %s\n", (char *)user_data);
+    //printf("Received : user_data: %s\n", (char *)user_data);
     
     unsigned int start = 0;
     
