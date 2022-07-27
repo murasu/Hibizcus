@@ -416,7 +416,11 @@ class HBFont: ObservableObject {
         let langCodes = CTFontCopySupportedLanguages(ctFont!) as! [String]
         let allSelected = langCodes.count <= 10
         for langCode in langCodes {
-            let n = currentLocale.displayName(forKey:NSLocale.Key.identifier, value:langCode)
+            var n = currentLocale.displayName(forKey:NSLocale.Key.identifier, value:langCode)
+            if n == nil {
+                // Hack: macOS 12.4 returns nil for langCode = "rej"
+                n = langCode == "rej" ? "Rejang" : "Unknown"
+            }
             let l = Language(langName: n!, langId: langCode, selected: allSelected)
             supportedLanguages.append(l)
         }
