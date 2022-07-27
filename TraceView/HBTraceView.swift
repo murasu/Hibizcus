@@ -37,24 +37,21 @@ struct HBTraceView: View, DropDelegate {
                 VStack {
                     TextField(Hibizcus.UIString.TestStringPlaceHolder, text: $traceText)// hbTraceBridge.theText)
                         .font(.title)
-                        .onChange(of: traceText /*hbTraceBridge.theText*/) { _ in
+                        .onChange(of: traceText) { _ in
                             hbTraceBridge.theText = traceText
                             hbProject.hbTraceViewText = hbTraceBridge.theText
-                            /*hbTraceBridge.*/startTrace()
+                            startTrace()
                         }
                         .onChange(of: hbProject.hbFont1.selectedLanguage, perform: { newLanguage in
                             hbTraceBridge.theText = traceText
-                            /*hbTraceBridge.*/startTrace()
+                            startTrace()
                         })
                         .onChange(of: hbProject.hbFont1.fileUrl, perform: { value in
                             hbTraceBridge.theText = traceText
-                            /*hbTraceBridge.*/startTrace()
+                            startTrace()
                         })
-                        .onChange(of: hbProject.hbFont1.fileWatcher.fontFileChanged) { _ in
-                            print("TraceView: Font file changed - need to redraw the UI")
-                            hbProject.refresh() }
                     HStack {
-                        Text(traceText.hexString()) // hbTraceBridge.theText.hexString())
+                        Text(traceText.hexString())
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.body)
                             .foregroundColor(.blue)
@@ -74,7 +71,7 @@ struct HBTraceView: View, DropDelegate {
                 if hbProject.hbFont1.ctFont != nil && hbProject.hbFont1.fileUrl != nil {
                     List {
                         ForEach(hbTraceBridge.tvLogItems) { logItem in
-                            if (traceViewOptions.showFullTrace || logItem.didShape) && (logItem.traceId == /*hbTraceBridge.*/traceId) {
+                            if (traceViewOptions.showFullTrace || logItem.didShape) && (logItem.traceId == traceId) {
                                 TraceLog(tvLogItem: logItem, ctFont: hbProject.hbFont1.ctFont!, viewOptions: traceViewOptions)
                             }
                         }
@@ -119,7 +116,6 @@ struct HBTraceView: View, DropDelegate {
                             openURL(url)
                         }
                     }, label: {
-                        //Image(systemName: "rectangle.and.text.magnifyingglass")
                         Text("String viewer")
                     })
                     .help(hbTraceBridge.theText != "" ? "Open \(hbTraceBridge.theText) in StringViewer" : "Open StringViewer")
@@ -135,8 +131,7 @@ struct HBTraceView: View, DropDelegate {
             if params != nil {
                 updateTextAndFonts(params: params!)
                 hbTraceBridge.tvLogItems.removeAll()
-                //hbTraceBridge.hbFont  = hbProject.hbFont1
-                /*hbTraceBridge.*/startTrace()
+                startTrace()
             }
         })
         .onReceive(pubFontFileChanged) { _ in
@@ -180,7 +175,7 @@ struct HBTraceView: View, DropDelegate {
                         DispatchQueue.main.async {
                             hbTraceBridge.tvLogItems.removeAll()
                             updateTextAndFonts(params: dictionary)
-                            /*hbTraceBridge.*/startTrace()
+                            startTrace()
                         }
                     }
                     catch{
@@ -199,8 +194,7 @@ struct HBTraceView: View, DropDelegate {
                 if urlstring.hasSuffix(".ttf") || urlstring.hasSuffix(".otf") || urlstring.hasSuffix(".ttc") {
                     DispatchQueue.main.async {
                         hbProject.hbFont1.setFontFile(filePath: url.path)
-                        //hbTraceBridge.hbFont = hbProject.hbFont1
-                        /*hbTraceBridge.*/startTrace()
+                        startTrace()
                     }
                 }
             }
@@ -210,29 +204,6 @@ struct HBTraceView: View, DropDelegate {
     }
     
     func updateTextAndFonts(params: [String: String]) {
-        /*
-        if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
-            let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
-            hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-            // Save the bookmark
-            traceViewOptions.fontBookmark1 = bookMarkData!
-        }
-        if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
-            let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
-            hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
-            // Save the bookmark
-            traceViewOptions.fontBookmark2 = bookMarkData!
-        }
-        if params["font1Url"] != nil && params["font1Url"] != "" {
-            hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
-        }
-        if params["font2Url"] != nil && params["font2Url"] != "" {
-            hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
-        }
-        if params["text"] != nil {
-            hbTraceBridge.theText = params["text"]!
-        } */
-        
         // load Fonts if Font1 is not loaded
         if !hbProject.hbFont1.available {
             
@@ -267,16 +238,6 @@ struct HBTraceView: View, DropDelegate {
             }
         }
         
-        // The text
-        /*
-        if params["text"] != nil {
-            traceText = params["text"]!
-            hbTraceBridge.theText = traceText //params["text"]!
-        }
-        
-        hbProject.projectName = params["project"]!
-        */
-        
         // Set the text if current text is blank, append otherwise
         if params["text"] != nil {
             if traceText.isEmpty {
@@ -307,7 +268,7 @@ struct HBTraceView: View, DropDelegate {
         var chrs2 = ""
         
         if traceViewOptions.fontBookmark1.count > 0 {
-            bkMk1 = traceViewOptions.fontBookmark1.base64EncodedString() //document.projectData.fontFile1Bookmark!.base64EncodedString()
+            bkMk1 = traceViewOptions.fontBookmark1.base64EncodedString()
         } else if hbProject.hbFont1.fileUrl != nil {
             f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
         } else {
@@ -316,7 +277,7 @@ struct HBTraceView: View, DropDelegate {
         }
         
         if traceViewOptions.fontBookmark2.count > 0 {
-            bkMk2 = traceViewOptions.fontBookmark2.base64EncodedString() // document.projectData.fontFile2Bookmark!.base64EncodedString()
+            bkMk2 = traceViewOptions.fontBookmark2.base64EncodedString()
         } else if hbProject.hbFont2.fileUrl != nil {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
         } else {
@@ -344,14 +305,14 @@ struct TraceLog: View {
             ZStack {
                 Text("")
                     .font(.callout)
-                    .frame(width: 100, height: 100/*viewOptions.showGlyphNames ? 100 : 80*/, alignment: .leading)
+                    .frame(width: 100, height: 100, alignment: .leading)
                     .border(Color.primary.opacity(0.3), width: 1)
                 Text(tvLogItem.message) //  + " " + tvLogItem.traceId) // for debugging
                     .font(.callout)
-                    .frame(width: 80, height: 90/*viewOptions.showGlyphNames ? 90 : 70*/, alignment: .leading)
+                    .frame(width: 80, height: 90, alignment: .leading)
             }
             HBTraceRowViewRepresentable(tvLogItem: tvLogItem, ctFont: ctFont, viewOptions: viewOptions)
-                .frame(height:100/*viewOptions.showGlyphNames ? 100 : 80*/)
+                .frame(height:100)
                 .padding(.horizontal, 0)
                 .border(Color.primary.opacity(0.3), width: 1)
         }
