@@ -158,7 +158,7 @@ struct HBGlyphView: View {
             Text((gridItems[currItem].type == HBGridItemItemType.Glyph ? glyphItemLabel() : gridItems[currItem].text) ?? "")
                 .font(.title)
                 .padding(.horizontal, 15)
-                .padding(.vertical, 0)
+                .padding(.bottom, 10)
             
             Divider()
             
