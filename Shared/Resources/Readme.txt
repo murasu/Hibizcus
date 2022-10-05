@@ -4,7 +4,7 @@
 
 1. Wordlists are plain text files with all the words saved in a single line, space delimited.
 
-2. If you have a file with hundreds of thousand lines of one word, you can merge them into a single line by removing the \n:
+2. If you have a file with hundreds of thousand of lines with a single word, you can merge them into a single line by removing the \n:
     sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' file
     
 3. The files are named as script_language.txt. All lower cased.
