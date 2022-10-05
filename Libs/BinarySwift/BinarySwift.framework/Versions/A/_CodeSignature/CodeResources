@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		C2Yhy13hNaQtrQRfQEFRjRsKyK8=
+		yiIEkEIJgflLQfqftF8C6MCi6qk=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -15,7 +15,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SqtzSIJt+b89VErZD3dx/LW0Siskc/7C+LxxRRBbJCw=
+			t3UCFmVu7hS02797bT88+z3yJd6/6KsCNwAQGzKuJBo=
 			</data>
 		</dict>
 		<key>Headers/BinarySwift_OSX.h</key>
@@ -29,42 +29,56 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ebFztqU63xi2RmmTenOL23z6fwgj0bweVEsbrXYidvA=
+			YPrOyWYbZA3uMSzxy1Rmwbqq5dO5sL1hONRzD7ob694=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/Project/x86_64-apple-macos.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CvDyTG1QamlGuH+PvsxuCxuxGKWV6Hl9TTzsNfSZ0/g=
+			molpKpqxRUs06f0KPNPdNg35KOlBoc2SO4hug5xG1sk=
+			</data>
+		</dict>
+		<key>Modules/BinarySwift.swiftmodule/arm64-apple-macos.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/arm64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iJZfLOqI5Zl+BWum27ofm7n8TyP8TjGJ5x6OIRc8FUo=
+			XzAtXacLTptUhPesvYh0nIe4Mf2POGTOsPLemzBnRkM=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/arm64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SVXozufWMmAc/S4ZQYb8H0O+4T/taBtUeNJfBSFD8tc=
+			JMcHK0Unk9f5yLLXDYjKCbuCkmNB+qXqxMmedZ1QQc0=
+			</data>
+		</dict>
+		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KnRdWE4y6t4QM5zi5JDptPdHFgJy1Tku+7GLkZS2aNM=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gebdpFLbspBO9cIm7OEcz4rxiNj/4z1uO3sDDJjxeUE=
+			c7lSLo/LVvdbg24NseTo1gc2Op4+efr7qvxhUj08L4M=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xyjepxiBmc7xAoFGxsi0yaMJexIr5apMTspra5qXXIQ=
+			RxJcyeIfSs5cPYFvd9+Lv87c9k88Ixk1AxFRG32MU5c=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -78,7 +92,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4Ts86mYAvvML0IUWVZlb3k4QrehzOtSeBUdQ8SgU3/s=
+			mO67g8qF88QDHwlgg65njt71GNEfqn5Nkp8fqbCxfuI=
 			</data>
 		</dict>
 	</dict>
