@@ -228,7 +228,8 @@ class HBFont: ObservableObject {
         
         // Create
         if filePath.count > 0 {
-            self.fileUrl = URL(fileURLWithPath: filePath)
+            //self.fileUrl = URL(fileURLWithPath: filePath)
+            self.fileUrl = filePath.hasPrefix("file://") ? URL(string: filePath) : URL(fileURLWithPath: filePath)
             // If we have a file, we support both shapers
             self.shapers = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
         } 
@@ -236,7 +237,9 @@ class HBFont: ObservableObject {
         extractFontInfo()
         fileWatcher.stopWatchingForChanges()
         if filePath.count > 0 {
-            fileWatcher.watchForChangesInFileAtUrl(fileUrl: URL(fileURLWithPath: filePath))
+            let fileUrl = filePath.hasPrefix("file://") ? URL(string: filePath) : URL(fileURLWithPath: filePath)
+            //fileWatcher.watchForChangesInFileAtUrl(fileUrl: URL(fileURLWithPath: filePath))
+            fileWatcher.watchForChangesInFileAtUrl(fileUrl: fileUrl!)
         }
         // Notify change when fileWatcher, which is a nested ObservableObject, changes
         anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in

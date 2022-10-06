@@ -95,6 +95,7 @@
 		00A8D250264E866B00C2B964 /* libharfbuzz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A8D120264E866B00C2B964 /* libharfbuzz.a */; };
 		00A8D276264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl in Resources */ = {isa = PBXBuildFile; fileRef = 00A8D16C264E866B00C2B964 /* hb-ot-shape-complex-khmer-machine.rl */; };
 		00A8D2A6264E866B00C2B964 /* harfbuzz-gobject.pc.in in Resources */ = {isa = PBXBuildFile; fileRef = 00A8D1D3264E866B00C2B964 /* harfbuzz-gobject.pc.in */; };
+		00AF64A928EDE12900A8058C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00AF64A828EDE12900A8058C /* Assets.xcassets */; };
 		00B2548A2625ECAD00A8B39D /* HBStringGlyphListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B254892625ECAD00A8B39D /* HBStringGlyphListView.swift */; };
 		00B2548D2628619200A8B39D /* HBSidebarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B2548C2628619200A8B39D /* HBSidebarFont.swift */; };
 		00B254912628845500A8B39D /* HBSidebarLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B254902628845500A8B39D /* HBSidebarLanguage.swift */; };
@@ -437,6 +438,7 @@
 		00A8D24A264E866B00C2B964 /* hb-ft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hb-ft.h"; sourceTree = "<group>"; };
 		00A8D24B264E866B00C2B964 /* hb-ot-shape-complex-arabic.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-ot-shape-complex-arabic.hh"; sourceTree = "<group>"; };
 		00A8D24D264E866B00C2B964 /* hb-shaper-impl.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "hb-shaper-impl.hh"; sourceTree = "<group>"; };
+		00AF64A828EDE12900A8058C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00B254892625ECAD00A8B39D /* HBStringGlyphListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBStringGlyphListView.swift; sourceTree = "<group>"; };
 		00B2548C2628619200A8B39D /* HBSidebarFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBSidebarFont.swift; sourceTree = "<group>"; };
 		00B254902628845500A8B39D /* HBSidebarLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBSidebarLanguage.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 				005352332608DB8C007F33D9 /* Info.plist */,
 				005352342608DB8C007F33D9 /* Hibizcus.entitlements */,
 				005352302608DB8C007F33D9 /* Preview Content */,
+				00AF64A828EDE12900A8058C /* Assets.xcassets */,
 			);
 			path = Hibizcus;
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				00341CF0263EB15100EFA443 /* cluster_buginese.json in Resources */,
 				00166C02284C6527003EA3EB /* brahmi_sanskrit.txt in Resources */,
 				00341CF8263EF09E00EFA443 /* cluster_rejang.json in Resources */,
+				00AF64A928EDE12900A8058C /* Assets.xcassets in Resources */,
 				00D8D6AF269438DF009D48A8 /* myanmar_myanmar.txt in Resources */,
 				0053527A2608E2D6007F33D9 /* devanagari_marathi.txt in Resources */,
 				00CEEA9126410D6800F515A1 /* cluster_javanese.json in Resources */,
@@ -1165,11 +1169,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Hibizcus/Hibizcus.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 303;
+				CURRENT_PROJECT_VERSION = 304;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1184,6 +1189,8 @@
 					"$PROJECT_DIR/Libs/otfcc/include/**",
 				);
 				INFOPLIST_FILE = Hibizcus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Hibizcus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1209,11 +1216,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Hibizcus/Hibizcus.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 303;
+				CURRENT_PROJECT_VERSION = 304;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1228,6 +1236,8 @@
 					"$PROJECT_DIR/Libs/otfcc/include/**",
 				);
 				INFOPLIST_FILE = Hibizcus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Hibizcus;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
