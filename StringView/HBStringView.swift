@@ -134,7 +134,24 @@ struct HBStringView: View, DropDelegate {
                     Image(systemName: "sidebar.left")
                 })
             }
-            // Copy buton
+            // Copy Names button
+            ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                Button(action: {
+                    let sld = hbProject.hbFont1.getStringLayoutData(forText: hbProject.hbStringViewText)
+                    var glyphNames = ""
+                    for hbGlyph in sld.hbGlyphs {
+                        glyphNames += "/\(hbGlyph.name) "
+                    }
+                    copyTextToClipboard(textToCopy: glyphNames)
+                }, label: {
+                    //Image(systemName: "doc.on.doc")
+                    Text("Copy names")
+                })
+                //.help(tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
+                .help("Copy glyph names to clipboard")
+                .disabled(hbProject.hbStringViewText.count == 0)
+            }
+            // Copy Text buton
             ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                 Button(action: {
                     if hbProject.hbStringViewText != "" {
