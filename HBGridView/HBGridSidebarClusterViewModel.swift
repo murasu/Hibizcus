@@ -182,7 +182,7 @@ class HBGridSidebarClusterViewModel: ObservableObject {
                 }
             }
             
-            
+            // Open the custom JSON file, if not the included one
             if let fileURL = customClusterFilepath.isEmpty ? Bundle.main.path(forResource: clusterFile, ofType: "json") : customClusterFilepath  {
                 jsonString = try String(contentsOfFile: fileURL, encoding: .utf8)
                 
