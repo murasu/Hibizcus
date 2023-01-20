@@ -871,8 +871,8 @@ struct HBGridView: View, DropDelegate {
             let results = regex.matches(in: text,
                                         range: NSRange(text.startIndex..., in: text))
             
-            // Limit to 1000 results
-            let limit = results.count >= 1000 ? 1000 : results.count
+            // Limit to 5000 results
+            let limit = results.count >= 5000 ? 5000 : results.count
             let returns = results[0..<limit]
   
             return returns.map {
@@ -942,7 +942,7 @@ struct HBGridView: View, DropDelegate {
                     
                     // Update a local array
                     selections.append(item)
-                    if selections.count > 1000 {
+                    if selections.count >= 1000 {
                         break
                     }
                 }
