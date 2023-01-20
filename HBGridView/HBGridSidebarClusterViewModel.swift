@@ -164,9 +164,27 @@ class HBGridSidebarClusterViewModel: ObservableObject {
         print("Initializing cluster view model from: \(clusterFile). Nukta is \(nukta)")
         // Read the json string from file
         do {
-            if let fileURL = Bundle.main.url(forResource: clusterFile, withExtension: "json") {
-                
-                jsonString = try String(contentsOf: fileURL, encoding: .utf8)
+            // Look for it in the Application Support dir first!
+            var customClusterFilepath = ""
+            let fileManager = FileManager.default
+            let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask) as [NSURL]
+            
+            if let applicationSupportURL = urls.first {
+                let appSupportPath = applicationSupportURL.path!
+                // appSupportPath should have been created
+                if fileManager.fileExists(atPath: appSupportPath) {
+                    customClusterFilepath = applicationSupportURL.appendingPathComponent("\(clusterFile).json")!.path
+                    print("Checking for custom cluster data file at \(customClusterFilepath)")
+                    if !fileManager.fileExists(atPath: customClusterFilepath) {
+                        print("No custom cluster data file at \(customClusterFilepath)")
+                        customClusterFilepath = ""
+                    }
+                }
+            }
+            
+            
+            if let fileURL = customClusterFilepath.isEmpty ? Bundle.main.path(forResource: clusterFile, ofType: "json") : customClusterFilepath  {
+                jsonString = try String(contentsOfFile: fileURL, encoding: .utf8)
                 
                 // Parse the json into dictionary
                 do {
