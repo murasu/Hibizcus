@@ -784,7 +784,28 @@ struct HBGridView: View, DropDelegate {
         }
         
         let filename = script + "_" + language
-        if let filepath = Bundle.main.path(forResource: filename, ofType: "txt") {
+        
+        // See if we have a custom file in application support
+        var worlistFilepath = ""
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask) as [NSURL]
+        
+        if let applicationSupportURL = urls.first {
+            let appSupportPath = applicationSupportURL.path!
+            print("appSupportPath: '\(appSupportPath)'");
+            // appSupportPath should have been created
+            if fileManager.fileExists(atPath: appSupportPath) {
+                worlistFilepath = applicationSupportURL.appendingPathComponent("\(filename).txt")!.path
+                print("Checking for wordlist file at \(worlistFilepath)")
+                if !fileManager.fileExists(atPath: worlistFilepath) {
+                    print("No custom wordlist file at \(worlistFilepath)")
+                    worlistFilepath = ""
+                }
+            }
+        }
+        
+        if let filepath = worlistFilepath.isEmpty ? Bundle.main.path(forResource: filename, ofType: "txt") : worlistFilepath {
+            print("Using wordlist file at: \(filepath)")
             gridViewOptions.wordlistAvailable = true
             // Get groups - for searches that involve letters instead of unicodes
             var groups = ""
