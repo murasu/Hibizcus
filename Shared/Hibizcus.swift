@@ -128,7 +128,7 @@ func defaultLanguage(forScript: String) -> String {
     case "tirhuta" :
         return "Maithili"
     default:
-        return ""
+        return forScript // ""
     }
 }
 
