@@ -847,7 +847,7 @@ struct HBGridView: View, DropDelegate {
                 let results = matches(regex: pattern, in: contents)
                                 
                 if results.count > 0 {
-                    selectWords(fromArray: results, defWordLen: 5)
+                    selectWords(fromArray: results, defWordLen: 10)
                 }
                 else {
                     print("No matches found!")
@@ -871,8 +871,9 @@ struct HBGridView: View, DropDelegate {
             let results = regex.matches(in: text,
                                         range: NSRange(text.startIndex..., in: text))
             
-            // Limit to 5000 results
-            let limit = results.count >= 5000 ? 5000 : results.count
+            // Limit to Max results
+            let maxWords = UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount)
+            let limit = results.count >= maxWords ? maxWords : results.count
             let returns = results[0..<limit]
   
             return returns.map {
@@ -913,8 +914,9 @@ struct HBGridView: View, DropDelegate {
             var selections = [HBGridItem]()
             let maxWords = UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount)
             
+            let givenTextlen = theText.count == 0 ? 3 : theText.count
             for word in fromArray {
-                if word.count < max(defWordLen, theText.count * 3) {
+                if word.count <= max(defWordLen, givenTextlen * 4) {
                     //print("Word: \(word) has \(word.count) chars vs \(theText.count) chars")
                     let width = max(100, word.size(withAttributes: attributes).width)
                     maxWidth = max(width, maxWidth)
@@ -947,6 +949,9 @@ struct HBGridView: View, DropDelegate {
                     if selections.count >= maxWords {
                         break
                     }
+                }
+                else {
+                    print("Dropping word '\(word)' which contains \(word.count) letters. text count=\(theText.count)")
                 }
             }
             
