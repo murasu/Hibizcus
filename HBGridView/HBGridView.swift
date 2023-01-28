@@ -911,6 +911,8 @@ struct HBGridView: View, DropDelegate {
         // This is a long comparison, run it in the background
         DispatchQueue.global(qos: .background).async {
             var selections = [HBGridItem]()
+            let maxWords = UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount)
+            
             for word in fromArray {
                 if word.count < max(defWordLen, theText.count * 3) {
                     //print("Word: \(word) has \(word.count) chars vs \(theText.count) chars")
@@ -942,7 +944,7 @@ struct HBGridView: View, DropDelegate {
                     
                     // Update a local array
                     selections.append(item)
-                    if selections.count >= 1000 {
+                    if selections.count >= maxWords {
                         break
                     }
                 }

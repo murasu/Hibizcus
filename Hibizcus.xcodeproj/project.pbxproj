@@ -89,6 +89,7 @@
 		006B1FFE268D7396007215D3 /* khmer_khmer.txt in Resources */ = {isa = PBXBuildFile; fileRef = 006B1FFD268D7396007215D3 /* khmer_khmer.txt */; };
 		006CAE79264E3A0700D404D3 /* AnchorPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083669B25E581AF0058CA1B /* AnchorPoints.swift */; };
 		006CAE7A264E3A1800D404D3 /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053525F2608DE96007F33D9 /* FontMetrics.swift */; };
+		006FE1EF29854FD700A04925 /* HibizcusSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006FE1EE29854FD700A04925 /* HibizcusSettings.swift */; };
 		0093EC7B264E83EB009AB412 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0093EC3D264E83EB009AB412 /* LICENSE */; };
 		0093EC7C264E83EB009AB412 /* liblibotfcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0093EC7A264E83EB009AB412 /* liblibotfcc.a */; };
 		00A8D24F264E866B00C2B964 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 00A8D11F264E866B00C2B964 /* README */; };
@@ -181,6 +182,7 @@
 		006B1FFD268D7396007215D3 /* khmer_khmer.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = khmer_khmer.txt; sourceTree = "<group>"; };
 		006FB99025E694E900F05B17 /* HBGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBGridView.swift; sourceTree = "<group>"; };
 		006FB99325E6950F00F05B17 /* HBTraceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBTraceView.swift; sourceTree = "<group>"; };
+		006FE1EE29854FD700A04925 /* HibizcusSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HibizcusSettings.swift; sourceTree = "<group>"; };
 		007CFC24264E9AF600AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
 		007CFC26264E9B1200AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
 		007CFC29264E9CC500AF2FD2 /* README.Hibizcus.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.Hibizcus.md; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				007CFC2B264EB0B800AF2FD2 /* README.md */,
 				005352282608DB8A007F33D9 /* HibizcusApp.swift */,
 				0053522A2608DB8A007F33D9 /* HibizcusDocument.swift */,
+				006FE1EE29854FD700A04925 /* HibizcusSettings.swift */,
 				0053522E2608DB8C007F33D9 /* Assets.xcassets */,
 				005352332608DB8C007F33D9 /* Info.plist */,
 				005352342608DB8C007F33D9 /* Hibizcus.entitlements */,
@@ -1158,6 +1161,7 @@
 				00129FAA260C93F100B82FB7 /* HBStringView.swift in Sources */,
 				0053526C2608DF2E007F33D9 /* HBFontData.swift in Sources */,
 				005352442608DC90007F33D9 /* HBGridCellViewRepresentable.swift in Sources */,
+				006FE1EF29854FD700A04925 /* HibizcusSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,7 +1178,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 309;
+				CURRENT_PROJECT_VERSION = 310;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1221,7 +1225,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 309;
+				CURRENT_PROJECT_VERSION = 310;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;

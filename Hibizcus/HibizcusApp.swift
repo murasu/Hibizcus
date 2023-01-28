@@ -50,5 +50,9 @@ struct HibizcusApp: App {
                 .handlesExternalEvents(preferring: Set(arrayLiteral: "traceview"), allowing: Set(arrayLiteral: "traceview"))
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "traceview"))
+        
+        Settings {
+            HibizcusSettings()
+        }
     }
 }
