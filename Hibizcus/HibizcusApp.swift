@@ -19,6 +19,23 @@ struct HibizcusApp: App {
                     NSWorkspace.shared.open(URL(string: "https://hibizcus.com")!)
                 }
             }
+            // This places the menu item under the view top level command
+            CommandGroup(before: .appVisibility) { //} .toolbar) {
+                Button("Application Support Directory") {
+                    let fileManager = FileManager.default
+                    let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask) as [NSURL]
+                    if let applicationSupportURL = urls.first {
+                        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: applicationSupportURL.path!)
+                    }
+                }
+            }
+            // To add my own menu - for later
+            /*
+            CommandMenu("My Own Top Menu") {
+                Button("My Sub Menu Item") { print("User selected my submenu") }
+                    .keyboardShortcut("S")
+            }
+            */
         }
             
         WindowGroup("StringViewer") {
