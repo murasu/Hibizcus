@@ -925,12 +925,18 @@ struct HBGridView: View, DropDelegate {
                     let sld1 = hbProject.hbFont1.getStringLayoutData(forText: word)
                     item.width[0] = (sld1.width)
                     
+                    // For debugging
+                    if word == "هذا" {
+                        print("Check this word: \(word)!")
+                    }
                     // If there are two fonts, see if we have a diff
                     if gridViewOptions.compareWordLayout {
                         if hbProject.hbFont2.fileUrl != nil {
                             let sld2 = hbProject.hbFont2.getStringLayoutData(forText: word)
                             item.width[1] = sld2.width
-                            item.diffWidth = abs(item.width[1] - item.width[0]) > 0.01
+                            // 2023-01-29 Change the max allowable diff to 0.2 from 0.01
+                            // This seems reasonable allowance when comparing outcomes bw OT and AAT
+                            item.diffWidth = abs(item.width[1] - item.width[0]) > 0.2 //0.01
                             item.diffLayout = !(sld1 == sld2)
                             // Compare the glyph data of each glyph
                             for hbGlyph in sld1.hbGlyphs {
