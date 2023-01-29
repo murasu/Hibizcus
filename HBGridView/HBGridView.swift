@@ -938,6 +938,9 @@ struct HBGridView: View, DropDelegate {
                             // This seems reasonable allowance when comparing outcomes bw OT and AAT
                             item.diffWidth = abs(item.width[1] - item.width[0]) > 0.2 //0.01
                             item.diffLayout = !(sld1 == sld2)
+                            // Added: 2023-01-29 => Compare position information
+                            item.diffLayout = !(sld1.positions == sld2.positions)
+                            
                             // Compare the glyph data of each glyph
                             for hbGlyph in sld1.hbGlyphs {
                                 let fd1 = fontData1!.getGlyfData(forGlyphName: hbGlyph.name)

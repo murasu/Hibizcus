@@ -135,10 +135,15 @@ class HBStringLayoutView: HBView /*NSView*/ {
     
     func drawGlyphsWithData(slData: StringLayoutData, ctFont: CTFont, isMain: Bool, context: CGContext?) {
         let yOffset = getYOffsetFor(font: ctFont as NSFont)
-        let xOffset = CGFloat(30) // For some padding
+        var xOffset = CGFloat(30) // For some padding
         
         // Values in sdData were obtained with a point size of 40
         let scale = CGFloat(fontSize/40)
+        
+        // Adjust starting position if writing direction is RTL
+        if text.isWrittenRightToLeft() {
+            xOffset = bounds.size.width - ((slData.width*scale) + 30)
+        }
         
         for glyphIndex in 0..<slData.hbGlyphs.count {
                         

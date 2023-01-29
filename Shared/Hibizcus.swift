@@ -6,6 +6,7 @@
 
 import Foundation
 import SwiftUI
+import NaturalLanguage
 
 struct Hibizcus {
 
@@ -247,6 +248,25 @@ extension String {
         case .tail:
             return self.prefix(limit) + leader
         }
+    }
+    
+    func detectedLanguageCode() -> String? {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(self)
+        guard let languageCode = recognizer.dominantLanguage?.rawValue else { return nil }
+        return languageCode
+    }
+    
+    func detectedLanguageName() -> String? {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(self)
+        guard let languageCode = recognizer.dominantLanguage?.rawValue else { return nil }
+        let detectedLanguage = Locale.current.localizedString(forIdentifier: languageCode)
+        return detectedLanguage
+    }
+    
+    func isWrittenRightToLeft() -> Bool {
+        CFLocaleGetLanguageCharacterDirection(self.detectedLanguageCode() as CFString?) == .rightToLeft
     }
     
     /*

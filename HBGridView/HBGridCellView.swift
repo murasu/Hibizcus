@@ -92,7 +92,6 @@ class HBGridCellView: NSView {
         let showDiff    = gridItem!.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines) && hbFont2!.available && (showMainFont && showCompareFont)
         let borderColor = showDiff ? NSColor.systemRed.withAlphaComponent(0.7).cgColor : NSColor.textColor.withAlphaComponent(0.2).cgColor
         let borderWidth = showDiff ? 2.5 : 1
-
         
         if scale > maxGridScale {
             // If the scale is > 1, draw all metrices along w their labels
