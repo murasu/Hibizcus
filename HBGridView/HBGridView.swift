@@ -803,7 +803,7 @@ struct HBGridView: View, DropDelegate {
                 }
             }
         }
-        
+                
         if let filepath = worlistFilepath.isEmpty ? Bundle.main.path(forResource: filename, ofType: "txt") : worlistFilepath {
             print("Using wordlist file at: \(filepath)")
             gridViewOptions.wordlistAvailable = true
@@ -859,7 +859,7 @@ struct HBGridView: View, DropDelegate {
                 hbGridItems.removeAll()
             }
         } else {
-            print("The text file \(filename) can't be found in the bundle")
+            print("The wordlist file \(filename) can't be found")
             hbGridItems.removeAll()
             gridViewOptions.wordlistAvailable = false
         }
@@ -872,7 +872,7 @@ struct HBGridView: View, DropDelegate {
                                         range: NSRange(text.startIndex..., in: text))
             
             // Limit to Max results
-            let maxWords = UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount)
+            let maxWords = maxWordCountPreference()
             let limit = results.count >= maxWords ? maxWords : results.count
             let returns = results[0..<limit]
   
@@ -912,7 +912,7 @@ struct HBGridView: View, DropDelegate {
         // This is a long comparison, run it in the background
         DispatchQueue.global(qos: .background).async {
             var selections = [HBGridItem]()
-            let maxWords = UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount)
+            let maxWords = maxWordCountPreference()
             
             let givenTextlen = theText.count == 0 ? 3 : theText.count
             for word in fromArray {

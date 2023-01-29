@@ -10,7 +10,7 @@ import Combine
 
 struct HibizcusSettings: View {
     
-    @State var maxWords: String = String(UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount) == 0 ? 1000 : UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount))
+    @State var maxWords: String = String(maxWordCountPreference())
 
     var body: some View {
         HStack {
@@ -36,4 +36,8 @@ struct HibizcusSettings: View {
         .frame(width: 600, height: 150)
         .padding(20)
     }
+}
+
+func maxWordCountPreference() -> Int {
+    return UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount) == 0 ? 1000 : UserDefaults.standard.integer(forKey: Hibizcus.Key.MaxWordCount)
 }
