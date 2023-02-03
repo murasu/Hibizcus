@@ -343,6 +343,22 @@ struct HBGridView: View, DropDelegate {
                     .disabled(tappedItems.count == 0 || namesOfSelectedItems(maxLen: 1000).count == 0)
                 }
                 
+                // Copy all text buton
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    Button(action: {
+                        //if tappedItem.text != nil && tappedItem.text != "" {
+                            copyTextToClipboard(textToCopy: extractTextInAllDiffItems())
+                        //}
+                    }, label: {
+                        //Image(systemName: "doc.on.doc")
+                        Text("Copy diffs")
+                    })
+                    //.help((tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
+                    .help("Copy text with diffs")
+                    // I can use the function gridHasDiffs, but there are no diffs, it takes a long time. We use the flag instead
+                    .disabled(!gridViewOptions.showDiffsOnly)
+                }
+                
                 // Copy text buton
                 ToolbarItem(placement: ToolbarItemPlacement.automatic) {
                     Button(action: {
@@ -354,7 +370,7 @@ struct HBGridView: View, DropDelegate {
                         Text("Copy text")
                     })
                     //.help((tappedItem.text != nil && tappedItem.text != "") ? "Copy \(tappedItem.text!) to clipboard" : "")
-                    .help(textFromSelectedItems(maxLen: 1000).count > 0 ? "Open \(textFromSelectedItems(maxLen: 1000)) in TraceViewer" : "Open TraceViewer")
+                    .help(textFromSelectedItems(maxLen: 1000).count > 0 ? "Copy \(textFromSelectedItems(maxLen: 1000))" : "Copy selected text")
                     .disabled(tappedItems.count == 0 || textFromSelectedItems(maxLen: 1000).count == 0)
                 }
                 
@@ -372,7 +388,7 @@ struct HBGridView: View, DropDelegate {
                             Text("String viewer")
                         })
                         //.help((tappedItem.text != nil && tappedItem.text != "") ? "Open \(tappedItem.text!) in StringViewer" : "Open StringViewer")
-                        .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in TraceViewer" : "Open TraceViewer")
+                        .help(textFromSelectedItems(maxLen: 30).count > 0 ? "Open \(textFromSelectedItems(maxLen: 30)) in StringViewer" : "Open StringViewer")
                     }
                     else {
                         Text("")
@@ -1071,6 +1087,30 @@ struct HBGridView: View, DropDelegate {
             }
         }
         return theText.trimmingCharacters(in: .whitespaces)
+    }
+    
+    func extractTextInAllDiffItems() -> String {
+        var textWithDiffs = ""
+        for i in 0 ..< hbGridItems.count {
+            if hbGridItems[i].hasDiff(excludeOutlines: false) {
+                if textWithDiffs.count > 0 {
+                    textWithDiffs.append(" ")
+                }
+                textWithDiffs.append(hbGridItems[i].text ?? "")
+            }
+        }
+        
+        return textWithDiffs
+    }
+    
+    func gridHasDiffs() -> Bool {
+        for i in 0 ..< hbGridItems.count {
+            if hbGridItems[i].hasDiff(excludeOutlines: false) {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func namesOfSelectedItems(maxLen:Int) -> String {
