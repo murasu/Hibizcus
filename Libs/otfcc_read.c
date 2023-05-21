@@ -26,6 +26,7 @@ char *get_data_as_json_from_font_file(const char* inPath)
     options->logger = otfcc_newLogger(otfcc_newStdErrTarget());
     options->logger->indent(options->logger, "otfccdump");
     options->decimal_cmap = true;
+    options->ignore_hints = true;
     
     otfcc_SplineFontContainer *sfnt;
     

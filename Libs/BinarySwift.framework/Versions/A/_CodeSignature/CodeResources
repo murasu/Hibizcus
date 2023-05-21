@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		PJLjYMBEnMPllBR7O2tuT6T9G4M=
+		dH6B3rsVBU2VnnvufVtoh9gDv5o=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -15,7 +15,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VD66bXYl05rljoFVyGFMrIqU1qOBSq2cUhSPj4CfzLM=
+			vD34363lYj2R1VyCXfNatV7DANF5ufDrycDTlXghjHk=
 			</data>
 		</dict>
 		<key>Headers/BinarySwift_OSX.h</key>
@@ -29,14 +29,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5o6G86Or36pgNTIxgzHwQ6zCtsxPoP8iVqtBPHHXTXk=
+			4DH8C18LpsyvtRqFmAkkZQWxMP9J1N7p1pm0BeVI8I8=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/Project/x86_64-apple-macos.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mvhSdIHKm04TCxJK3VKMRVXdoXzgfOxMojefwTlgV7Y=
+			1U4v9kExT31UCEFhHXG2hak5m99ieFPaxioso+YNmQk=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/arm64-apple-macos.abi.json</key>
@@ -50,14 +50,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			csOrKkozIwdpTTEziT7WHumMIRvZMlKKFJ0zreWa45M=
+			6F7YHwM2X9/BNlztd5TNG61/saBPmlVCI7cRMLrMXIE=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/arm64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yY8/gmVgXfU3xdpS2zhldAQZ94cK8tcVJXUQ2tcq5kI=
+			zY+O+ZjP/LhKs+x4e0gEFolk61rbWrRDYE0WCiRw9nA=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.abi.json</key>
@@ -71,14 +71,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1oN6vG+sVVokg6aLkUAMeTpUiF36hJHw7/fzhVMcxWQ=
+			E1uWLFR/fiyvrvEHrktEgpdcfh3Yh03/NSasgGp4oy8=
 			</data>
 		</dict>
 		<key>Modules/BinarySwift.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			O+7Ycr6JWubN1AyZqWL0/465Dzak1OrhnV7aRYXf2+A=
+			7HfrHWQuifDPU9qlCUAsuSNAoDRu+cY+ScZuCHG8Qjc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -92,7 +92,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kxnDwN0Q5GYhWf64pxFnBK0XgTNqKjG/KOs/RSJ6ikg=
+			gOvYMQyUp8Bb0s73LwcSopPLDVE4PfX9wT7Yqj2mWOE=
 			</data>
 		</dict>
 	</dict>
