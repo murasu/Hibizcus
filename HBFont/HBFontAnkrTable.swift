@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import BinarySwift
+//import BinarySwift
 
 class HBFontAnkrTable: NSObject {
     

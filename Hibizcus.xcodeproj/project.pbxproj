@@ -29,8 +29,6 @@
 		00166C00284C635C003EA3EB /* brahmi_tamil.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00166BFF284C6343003EA3EB /* brahmi_tamil.txt */; };
 		00166C02284C6527003EA3EB /* brahmi_sanskrit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00166C01284C6527003EA3EB /* brahmi_sanskrit.txt */; };
 		001708E626EA2A28007B1584 /* cluster_khmer.json in Resources */ = {isa = PBXBuildFile; fileRef = 001708E526EA2A28007B1584 /* cluster_khmer.json */; };
-		001C95672A15115700482455 /* BinarySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001C95652A15112C00482455 /* BinarySwift.framework */; };
-		001C95682A15115700482455 /* BinarySwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 001C95652A15112C00482455 /* BinarySwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0023783B263401CB006B5E9B /* odia_odia.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023783A263401CB006B5E9B /* odia_odia.txt */; };
 		0023783D26340717006B5E9B /* cluster_odia.json in Resources */ = {isa = PBXBuildFile; fileRef = 0023783C26340717006B5E9B /* cluster_odia.json */; };
 		0023784226343112006B5E9B /* bengali_bengali.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0023784126343112006B5E9B /* bengali_bengali.txt */; };
@@ -102,6 +100,12 @@
 		00B254912628845500A8B39D /* HBSidebarLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B254902628845500A8B39D /* HBSidebarLanguage.swift */; };
 		00B2549A262DA48600A8B39D /* LoadAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B25499262DA48600A8B39D /* LoadAnimation.swift */; };
 		00B254A5262E26B100A8B39D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 00B254A1262E265F00A8B39D /* Credits.rtf */; };
+		00B581AE2A47270C0084B1E3 /* BinaryDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B581A82A47270B0084B1E3 /* BinaryDataErrors.swift */; };
+		00B581AF2A47270C0084B1E3 /* BinaryDataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B581A92A47270C0084B1E3 /* BinaryDataReader.swift */; };
+		00B581B02A47270C0084B1E3 /* IntegerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B581AA2A47270C0084B1E3 /* IntegerType.swift */; };
+		00B581B12A47270C0084B1E3 /* BinaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B581AB2A47270C0084B1E3 /* BinaryData.swift */; };
+		00B581B22A47270C0084B1E3 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B581AC2A47270C0084B1E3 /* Common.swift */; };
+		00B581B32A47270C0084B1E3 /* Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B581AD2A47270C0084B1E3 /* Tuple.swift */; };
 		00CEEA8F264105A100F515A1 /* cluster_batak.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA8E264105A100F515A1 /* cluster_batak.json */; };
 		00CEEA9126410D6800F515A1 /* cluster_javanese.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA9026410D6800F515A1 /* cluster_javanese.json */; };
 		00CEEA95264126AE00F515A1 /* cluster_thaana.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CEEA94264126AE00F515A1 /* cluster_thaana.json */; };
@@ -117,7 +121,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				001C95682A15115700482455 /* BinarySwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +148,6 @@
 		00166BFF284C6343003EA3EB /* brahmi_tamil.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = brahmi_tamil.txt; sourceTree = "<group>"; };
 		00166C01284C6527003EA3EB /* brahmi_sanskrit.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = brahmi_sanskrit.txt; sourceTree = "<group>"; };
 		001708E526EA2A28007B1584 /* cluster_khmer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_khmer.json; sourceTree = "<group>"; };
-		001C95652A15112C00482455 /* BinarySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BinarySwift.framework; sourceTree = "<group>"; };
 		0023783A263401CB006B5E9B /* odia_odia.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = odia_odia.txt; sourceTree = "<group>"; };
 		0023783C26340717006B5E9B /* cluster_odia.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cluster_odia.json; sourceTree = "<group>"; };
 		0023784126343112006B5E9B /* bengali_bengali.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bengali_bengali.txt; sourceTree = "<group>"; };
@@ -446,6 +448,12 @@
 		00B254902628845500A8B39D /* HBSidebarLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBSidebarLanguage.swift; sourceTree = "<group>"; };
 		00B25499262DA48600A8B39D /* LoadAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAnimation.swift; sourceTree = "<group>"; };
 		00B254A1262E265F00A8B39D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		00B581A82A47270B0084B1E3 /* BinaryDataErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryDataErrors.swift; sourceTree = "<group>"; };
+		00B581A92A47270C0084B1E3 /* BinaryDataReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryDataReader.swift; sourceTree = "<group>"; };
+		00B581AA2A47270C0084B1E3 /* IntegerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerType.swift; sourceTree = "<group>"; };
+		00B581AB2A47270C0084B1E3 /* BinaryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryData.swift; sourceTree = "<group>"; };
+		00B581AC2A47270C0084B1E3 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		00B581AD2A47270C0084B1E3 /* Tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuple.swift; sourceTree = "<group>"; };
 		00CEEA8E264105A100F515A1 /* cluster_batak.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_batak.json; sourceTree = "<group>"; };
 		00CEEA9026410D6800F515A1 /* cluster_javanese.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_javanese.json; sourceTree = "<group>"; };
 		00CEEA94264126AE00F515A1 /* cluster_thaana.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cluster_thaana.json; sourceTree = "<group>"; };
@@ -468,7 +476,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				001C95672A15115700482455 /* BinarySwift.framework in Frameworks */,
 				00A8D250264E866B00C2B964 /* libharfbuzz.a in Frameworks */,
 				0093EC7C264E83EB009AB412 /* liblibotfcc.a in Frameworks */,
 			);
@@ -628,7 +635,7 @@
 		0083652925DB0E310058CA1B /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				001C95652A15112C00482455 /* BinarySwift.framework */,
+				00B581A72A4726F50084B1E3 /* BinarySwift */,
 				00A8D11E264E866B00C2B964 /* Harfbuzz */,
 				0093EC3C264E83EB009AB412 /* Otfcc */,
 				0083652C25DB0F720058CA1B /* Hibizcus-Bridging-Header.h */,
@@ -954,6 +961,19 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		00B581A72A4726F50084B1E3 /* BinarySwift */ = {
+			isa = PBXGroup;
+			children = (
+				00B581AB2A47270C0084B1E3 /* BinaryData.swift */,
+				00B581A82A47270B0084B1E3 /* BinaryDataErrors.swift */,
+				00B581A92A47270C0084B1E3 /* BinaryDataReader.swift */,
+				00B581AC2A47270C0084B1E3 /* Common.swift */,
+				00B581AA2A47270C0084B1E3 /* IntegerType.swift */,
+				00B581AD2A47270C0084B1E3 /* Tuple.swift */,
+			);
+			path = BinarySwift;
+			sourceTree = "<group>";
+		};
 		00E5E76D25D2BCA50061AC60 = {
 			isa = PBXGroup;
 			children = (
@@ -1117,6 +1137,7 @@
 				005352492608DD02007F33D9 /* Hibizcus.swift in Sources */,
 				0053526A2608DEFA007F33D9 /* HBFontLangSelectionView.swift in Sources */,
 				0053523B2608DC90007F33D9 /* HBGridSidebarView.swift in Sources */,
+				00B581AE2A47270C0084B1E3 /* BinaryDataErrors.swift in Sources */,
 				005352532608DD28007F33D9 /* hb_shaper_cpp.cpp in Sources */,
 				005352572608DD30007F33D9 /* HibizcusCppBridge.mm in Sources */,
 				00B254912628845500A8B39D /* HBSidebarLanguage.swift in Sources */,
@@ -1125,9 +1146,12 @@
 				005352292608DB8A007F33D9 /* HibizcusApp.swift in Sources */,
 				00B2549A262DA48600A8B39D /* LoadAnimation.swift in Sources */,
 				00129F9F260C861E00B82FB7 /* TraceSidebarView.swift in Sources */,
+				00B581B32A47270C0084B1E3 /* Tuple.swift in Sources */,
 				004546F12631993F00601DB6 /* HBGridViewNumberFuncs.swift in Sources */,
 				005352642608DEBD007F33D9 /* OTScriptTags.swift in Sources */,
 				00129FA2260C861E00B82FB7 /* HBTraceRowViewRepresentable.swift in Sources */,
+				00B581B02A47270C0084B1E3 /* IntegerType.swift in Sources */,
+				00B581B12A47270C0084B1E3 /* BinaryData.swift in Sources */,
 				005352652608DEBD007F33D9 /* OTLanguageTags.swift in Sources */,
 				005352432608DC90007F33D9 /* HBGridSidebarCluster.swift in Sources */,
 				00B2548D2628619200A8B39D /* HBSidebarFont.swift in Sources */,
@@ -1140,10 +1164,12 @@
 				00B2548A2625ECAD00A8B39D /* HBStringGlyphListView.swift in Sources */,
 				005352412608DC90007F33D9 /* HBGridSidebarClusterViewModel.swift in Sources */,
 				005352452608DC90007F33D9 /* HBClusterEntryEditor.swift in Sources */,
+				00B581AF2A47270C0084B1E3 /* BinaryDataReader.swift in Sources */,
 				00129FA4260C861E00B82FB7 /* HBTraceRowView.swift in Sources */,
 				00129FB0260CC9C500B82FB7 /* HBStringLayoutViewRepresentable.swift in Sources */,
 				0036DB1D267968CF003E91AF /* HBFontScriptSelectionView.swift in Sources */,
 				00129FAD260C950D00B82FB7 /* HBStringSidebarView.swift in Sources */,
+				00B581B22A47270C0084B1E3 /* Common.swift in Sources */,
 				0053523F2608DC90007F33D9 /* PickerGrid.swift in Sources */,
 				00129FA3260C861E00B82FB7 /* HBTracerBridge.swift in Sources */,
 				005352402608DC90007F33D9 /* HBGridCellView.swift in Sources */,
@@ -1168,7 +1194,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 315;
+				CURRENT_PROJECT_VERSION = 316;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1196,7 +1222,7 @@
 					"$(PROJECT_DIR)/Libs/harfbuzz",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1215,7 +1241,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 315;
+				CURRENT_PROJECT_VERSION = 316;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
 				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1243,7 +1269,7 @@
 					"$(PROJECT_DIR)/Libs/harfbuzz",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
