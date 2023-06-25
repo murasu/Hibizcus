@@ -17,8 +17,8 @@ You can get the released version from the Mac App Store: https://apps.apple.com/
 ## Third-party libraries
 
 1. Harfbuzz : https://github.com/harfbuzz/harfbuzz
-2. Otfcc : https://github.com/caryll/otfcc
-3. BinarySwift : https://cocoapods.org/pods/BinarySwift
+2. Otfcc : https://github.com/caryll/otfcc (2023-06-25: Reading CFF data crashes otfcc and in turn Hibizcus. Comment out reading CFF).
+3. BinarySwift : https://cocoapods.org/pods/BinarySwift (2023-06-25: The sources are included in the project. No need to build this lib anymore).
 
 Pre-built libraries for all the above are included in the repo
 
