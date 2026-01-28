@@ -69,10 +69,9 @@ class HBStringLayoutView: HBView /*NSView*/ {
         
         guard let context = NSGraphicsContext.current?.cgContext else { return }
         
-        // Draw a diagonal line to ensure that self.bounds is capturing this view's bounds
-        //let r = self.bounds
-        //drawLine(inContext: context, fromPoint: r.origin, toPoint: CGPoint(x: r.width, y: r.height), lineWidth: 2.0, lineColor: .white)
-
+        // Calculate a shared baseline position based on the first font
+        var sharedYOffset: CGFloat = 0
+        
         if hbFont1.available && viewSettings.showFont1 {
             // --- Draw a diagonal line across the height of the font - for debugging
             /*
@@ -85,32 +84,37 @@ class HBStringLayoutView: HBView /*NSView*/ {
             if CTFontGetSize(ctFont1) != CGFloat(fontSize) {
                 ctFont1 = CTFontCreateCopyWithAttributes(ctFont1, CGFloat(fontSize), nil, nil)
             }
+            
+            // Use font1's baseline as the reference
+            sharedYOffset = getYOffsetFor(font: ctFont1 as NSFont)
+            
             if ( viewSettings.drawMetrics && text.count > 0 ) {
-                drawMetricsWithData(ctFont: ctFont1, context: context, lineColor:metricsColor_01, labelPosition: .left, drawUnderline: viewSettings.drawUnderLine)
+                drawMetricsWithData(ctFont: ctFont1, context: context, lineColor:metricsColor_01, labelPosition: .left, drawUnderline: viewSettings.drawUnderLine, yOffset: sharedYOffset)
             }
-            drawGlyphsWithData(slData: slData1, ctFont: ctFont1, isMain: true, context: context)
+            drawGlyphsWithData(slData: slData1, ctFont: ctFont1, isMain: true, context: context, yOffset: sharedYOffset)
         }
         else {
             print("Font 1 not set \(hbFont1)")
         }
         
-        if hbFont1.available && viewSettings.showFont2 {
+        if hbFont2.available && viewSettings.showFont2 {
             
             var ctFont2 = hbFont2.ctFont!
             if CTFontGetSize(ctFont2) != CGFloat(fontSize) {
                 ctFont2 = CTFontCreateCopyWithAttributes(ctFont2, CGFloat(fontSize), nil, nil)
             }
             
+            // Use the same yOffset as font1 (shared baseline)
             if ( viewSettings.drawMetrics && text.count > 0  ) {
-                drawMetricsWithData(ctFont: ctFont2, context: context, lineColor:metricsColor_02, labelPosition: .right, drawUnderline: viewSettings.drawUnderLine)
+                drawMetricsWithData(ctFont: ctFont2, context: context, lineColor:metricsColor_02, labelPosition: .right, drawUnderline: viewSettings.drawUnderLine, yOffset: sharedYOffset)
             }
-            drawGlyphsWithData(slData: slData2, ctFont: ctFont2, isMain: false, context: context)
+            drawGlyphsWithData(slData: slData2, ctFont: ctFont2, isMain: false, context: context, yOffset: sharedYOffset)
         }
     }
 
-    func drawMetricsWithData(ctFont: CTFont, context: CGContext, lineColor:CGColor, labelPosition: LabelPosition, drawUnderline: Bool) {
+    func drawMetricsWithData(ctFont: CTFont, context: CGContext, lineColor:CGColor, labelPosition: LabelPosition, drawUnderline: Bool, yOffset: CGFloat) {
         let nsFont  = ctFont as NSFont
-        let yOffset = getYOffsetFor(font: nsFont)
+        // Use the passed yOffset instead of calculating it
         
         // Baseline
         drawMetricLine(atY: yOffset, inContext: context, label:"base", lx:labelPosition, ly:1, color: lineColor)
@@ -133,8 +137,8 @@ class HBStringLayoutView: HBView /*NSView*/ {
         }
     }
     
-    func drawGlyphsWithData(slData: StringLayoutData, ctFont: CTFont, isMain: Bool, context: CGContext?) {
-        let yOffset = getYOffsetFor(font: ctFont as NSFont)
+    func drawGlyphsWithData(slData: StringLayoutData, ctFont: CTFont, isMain: Bool, context: CGContext?, yOffset: CGFloat) {
+        // Use the passed yOffset instead of calculating it
         var xOffset = CGFloat(30) // For some padding
         
         // Values in sdData were obtained with a point size of 40
@@ -158,7 +162,7 @@ class HBStringLayoutView: HBView /*NSView*/ {
             g.append(slData.hbGlyphs[glyphIndex].glyphId)
             var p = [CGPoint]()
             var pos = slData.positions[glyphIndex]
-            pos = CGPoint(x: (pos.x * scale)+xOffset, y: (pos.y * scale)+yOffset)
+            pos = CGPoint(x: (pos.x * scale)+xOffset, y: yOffset) // Zero out relative Y positioning
             p.append(pos)
             CTFontDrawGlyphs(ctFont, g, p, 1, context!)
             
