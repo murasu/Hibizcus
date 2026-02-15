@@ -162,7 +162,11 @@ class HBStringLayoutView: HBView /*NSView*/ {
             g.append(slData.hbGlyphs[glyphIndex].glyphId)
             var p = [CGPoint]()
             var pos = slData.positions[glyphIndex]
-            pos = CGPoint(x: (pos.x * scale)+xOffset, y: yOffset) // Zero out relative Y positioning
+            // 2026-02-15: By zeroing out the Y positioning, we're losing the anchor-specific
+            // vertical positioning that CoreText/HarfBuzz calculated.
+            //pos = CGPoint(x: (pos.x * scale)+xOffset, y: yOffset) // Zero out relative Y positioning
+            pos = CGPoint(x: (pos.x * scale)+xOffset, y: (pos.y * scale) + yOffset)
+            
             p.append(pos)
             CTFontDrawGlyphs(ctFont, g, p, 1, context!)
             
