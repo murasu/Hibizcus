@@ -28,7 +28,7 @@
  * Google Author(s): Behdad Esfahbod
  */
 
-#ifndef HB_H_IN
+#if !defined(HB_H_IN) && !defined(HB_NO_SINGLE_HEADER_ERROR)
 #error "Include <hb.h> instead."
 #endif
 
@@ -41,7 +41,9 @@ HB_BEGIN_DECLS
 
 
 /**
- * HB_UNICODE_MAX
+ * HB_UNICODE_MAX:
+ *
+ * Maximum valid Unicode code point.
  *
  * Since: 1.9.0
  **/
@@ -162,7 +164,7 @@ typedef enum
  * @HB_UNICODE_COMBINING_CLASS_CCC122: [Lao]
  * @HB_UNICODE_COMBINING_CLASS_CCC129: [Tibetan]
  * @HB_UNICODE_COMBINING_CLASS_CCC130: [Tibetan]
- * @HB_UNICODE_COMBINING_CLASS_CCC133: [Tibetan]
+ * @HB_UNICODE_COMBINING_CLASS_CCC132: [Tibetan] Since: 7.2.0
  * @HB_UNICODE_COMBINING_CLASS_ATTACHED_BELOW_LEFT: Marks attached at the bottom left
  * @HB_UNICODE_COMBINING_CLASS_ATTACHED_BELOW: Marks attached directly below
  * @HB_UNICODE_COMBINING_CLASS_ATTACHED_ABOVE: Marks attached directly above
@@ -244,7 +246,7 @@ typedef enum
   /* Tibetan */
   HB_UNICODE_COMBINING_CLASS_CCC129	= 129,
   HB_UNICODE_COMBINING_CLASS_CCC130	= 130,
-  HB_UNICODE_COMBINING_CLASS_CCC133	= 132,
+  HB_UNICODE_COMBINING_CLASS_CCC132	= 132,
 
 
   HB_UNICODE_COMBINING_CLASS_ATTACHED_BELOW_LEFT	= 200,
@@ -315,8 +317,8 @@ hb_unicode_funcs_set_user_data (hb_unicode_funcs_t *ufuncs,
 
 
 HB_EXTERN void *
-hb_unicode_funcs_get_user_data (hb_unicode_funcs_t *ufuncs,
-				hb_user_data_key_t *key);
+hb_unicode_funcs_get_user_data (const hb_unicode_funcs_t *ufuncs,
+				hb_user_data_key_t       *key);
 
 
 HB_EXTERN void
@@ -427,7 +429,7 @@ typedef hb_script_t			(*hb_unicode_script_func_t)		(hb_unicode_funcs_t *ufuncs,
  * The method must return an #hb_bool_t indicating the success
  * of the composition.
  * 
- * Return value: True is @a,@b composed, false otherwise
+ * Return value: `true` is @a,@b composed, `false` otherwise
  *
  **/
 typedef hb_bool_t			(*hb_unicode_compose_func_t)		(hb_unicode_funcs_t *ufuncs,
@@ -451,7 +453,7 @@ typedef hb_bool_t			(*hb_unicode_compose_func_t)		(hb_unicode_funcs_t *ufuncs,
  * output parameters (if successful). The method must return an
  * #hb_bool_t indicating the success of the composition.
  * 
- * Return value: True if @ab decomposed, false otherwise
+ * Return value: `true` if @ab decomposed, `false` otherwise
  *
  **/
 typedef hb_bool_t			(*hb_unicode_decompose_func_t)		(hb_unicode_funcs_t *ufuncs,
@@ -467,7 +469,7 @@ typedef hb_bool_t			(*hb_unicode_decompose_func_t)		(hb_unicode_funcs_t *ufuncs,
  * @ufuncs: A Unicode-functions structure
  * @func: (closure user_data) (destroy destroy) (scope notified): The callback function to assign
  * @user_data: Data to pass to @func
- * @destroy: (optional): The function to call when @user_data is not needed anymore
+ * @destroy: (nullable): The function to call when @user_data is not needed anymore
  *
  * Sets the implementation function for #hb_unicode_combining_class_func_t.
  *
@@ -483,7 +485,7 @@ hb_unicode_funcs_set_combining_class_func (hb_unicode_funcs_t *ufuncs,
  * @ufuncs: A Unicode-functions structure
  * @func: (closure user_data) (destroy destroy) (scope notified): The callback function to assign
  * @user_data: Data to pass to @func
- * @destroy: (optional): The function to call when @user_data is not needed anymore
+ * @destroy: (nullable): The function to call when @user_data is not needed anymore
  *
  * Sets the implementation function for #hb_unicode_general_category_func_t.
  *
@@ -499,7 +501,7 @@ hb_unicode_funcs_set_general_category_func (hb_unicode_funcs_t *ufuncs,
  * @ufuncs: A Unicode-functions structure
  * @func: (closure user_data) (destroy destroy) (scope notified): The callback function to assign
  * @user_data: Data to pass to @func
- * @destroy: (optional): The function to call when @user_data is not needed anymore
+ * @destroy: (nullable): The function to call when @user_data is not needed anymore
  *
  * Sets the implementation function for #hb_unicode_mirroring_func_t.
  *
@@ -515,7 +517,7 @@ hb_unicode_funcs_set_mirroring_func (hb_unicode_funcs_t *ufuncs,
  * @ufuncs: A Unicode-functions structure
  * @func: (closure user_data) (destroy destroy) (scope notified): The callback function to assign
  * @user_data: Data to pass to @func
- * @destroy: (optional): The function to call when @user_data is not needed anymore
+ * @destroy: (nullable): The function to call when @user_data is not needed anymore
  *
  * Sets the implementation function for #hb_unicode_script_func_t.
  *
@@ -531,7 +533,7 @@ hb_unicode_funcs_set_script_func (hb_unicode_funcs_t *ufuncs,
  * @ufuncs: A Unicode-functions structure
  * @func: (closure user_data) (destroy destroy) (scope notified): The callback function to assign
  * @user_data: Data to pass to @func
- * @destroy: (optional): The function to call when @user_data is not needed anymore
+ * @destroy: (nullable): The function to call when @user_data is not needed anymore
  *
  * Sets the implementation function for #hb_unicode_compose_func_t.
  *
@@ -547,7 +549,7 @@ hb_unicode_funcs_set_compose_func (hb_unicode_funcs_t *ufuncs,
  * @ufuncs: A Unicode-functions structure
  * @func: (closure user_data) (destroy destroy) (scope notified): The callback function to assign
  * @user_data: Data to pass to @func
- * @destroy: (optional): The function to call when @user_data is not needed anymore
+ * @destroy: (nullable): The function to call when @user_data is not needed anymore
  *
  * Sets the implementation function for #hb_unicode_decompose_func_t.
  *
@@ -624,40 +626,12 @@ HB_EXTERN hb_script_t
 hb_unicode_script (hb_unicode_funcs_t *ufuncs,
 		   hb_codepoint_t unicode);
 
-/**
- * hb_unicode_compose:
- * @ufuncs: The Unicode-functions structure
- * @a: The first code point to compose
- * @b: The second code point to compose
- * @ab: (out): The composed code point
- *
- * Composes the code point sequence @a,@b by canonical equivalence into
- * code point @ab.
- *
- * Return value: True is @a,@b composed, false otherwise
- *
- * Since: 0.9.2
- **/
 HB_EXTERN hb_bool_t
 hb_unicode_compose (hb_unicode_funcs_t *ufuncs,
 		    hb_codepoint_t      a,
 		    hb_codepoint_t      b,
 		    hb_codepoint_t     *ab);
 
-/**
- * hb_unicode_decompose:
- * @ufuncs: The Unicode-functions structure
- * @ab: The code point to decompose
- * @a: (out): The first decomposed code point
- * @b: (out): The second decomposed code point
- *
- * Decomposes code point @ab by canonical equivalence, into code points
- * @a and @b.
- *
- * Return value: True if @ab decomposed, false otherwise
- *
- * Since: 0.9.2
- **/
 HB_EXTERN hb_bool_t
 hb_unicode_decompose (hb_unicode_funcs_t *ufuncs,
 		      hb_codepoint_t      ab,
