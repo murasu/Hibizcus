@@ -415,6 +415,22 @@ struct HBGridView: View, DropDelegate {
                         Text("")
                     }
                 }
+                
+                // Reload Main Font button - convenience duplicate for non-Fonts tabs
+                ToolbarItem(placement: ToolbarItemPlacement.automatic) {
+                    if hbProject.hbFont1.available && hbProject.hbFont1.fileWatcher.fontFileChanged {
+                        Button(action: {
+                            hbProject.hbFont1.fileWatcher.fontFileChanged = false
+                            hbProject.hbFont1.reloadFont()
+                            hbProject.refresh()
+                        }, label: {
+                            Image(systemName: "arrow.clockwise")
+                        })
+                        .help("Main font file has changed - click to reload")
+                    } else {
+                        EmptyView()
+                    }
+                }
             }
             //.navigationTitle("Hiziscus Font Tools")
             .onChange(of: clusterViewModel.selectedBase) { _ in
