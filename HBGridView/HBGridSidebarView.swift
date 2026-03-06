@@ -67,6 +67,12 @@ struct HBGridSidebarView: View {
                 VStack(alignment: .leading) {
                     if hbProject.hbFont1.available {
                         HBSidebarLanguage()
+                        
+                        // Weight/Style picker for TTC/Variable fonts
+                        if hbProject.hbFont1.isTTC && hbProject.hbFont1.availableVariants.count > 1 {
+                            Divider()
+                            HBSidebarFontVariantPicker(hbFont: hbProject.hbFont1)
+                        }
                     }
                     else {
                         Text("Load a font to select script and language")
@@ -101,6 +107,13 @@ struct HBGridSidebarView: View {
                 VStack(alignment: .leading) {
                     if hbProject.hbFont1.available {
                         HBSidebarLanguage(showDefaultLanguage: true)
+                        
+                        // Weight/Style picker for TTC/Variable fonts
+                        if hbProject.hbFont1.isTTC && hbProject.hbFont1.availableVariants.count > 1 {
+                            Divider()
+                            HBSidebarFontVariantPicker(hbFont: hbProject.hbFont1)
+                        }
+                        
                         Divider()
                         VStack(alignment: .leading) {
                             if gridViewOptions.wordlistAvailable {
@@ -154,6 +167,13 @@ struct HBGridSidebarView: View {
                 VStack(alignment: .leading) {
                     if hbProject.hbFont1.available {
                         HBSidebarLanguage(showDefaultLanguage: true)
+                        
+                        // Weight/Style picker for TTC/Variable fonts
+                        if hbProject.hbFont1.isTTC && hbProject.hbFont1.availableVariants.count > 1 {
+                            Divider()
+                            HBSidebarFontVariantPicker(hbFont: hbProject.hbFont1)
+                        }
+                        
                         Divider()
                         VStack(alignment: .leading) {
                             Text("Number of digits:")

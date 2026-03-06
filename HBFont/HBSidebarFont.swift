@@ -299,3 +299,38 @@ struct HBSidebarFont: View {
         showingScriptSelection = true
     }
 }
+// MARK: - Reusable Font Variant Picker Component
+
+struct HBSidebarFontVariantPicker: View {
+    @EnvironmentObject var hbProject: HBProject
+    @ObservedObject var hbFont: HBFont
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Weight/Style:")
+                .multilineTextAlignment(.leading)
+                .padding(.leading, 20)
+                .padding(.top, 10)
+                .padding(.bottom, 5)
+            
+            Picker("", selection: Binding(
+                get: { hbFont.selectedVariant },
+                set: { newVariant in
+                    if let variant = newVariant {
+                        hbFont.selectVariant(variant)
+                        hbProject.refresh()
+                    }
+                }
+            )) {
+                ForEach(hbFont.availableVariants) { variant in
+                    Text(variant.styleName.isEmpty ? variant.displayName : variant.styleName)
+                        .tag(Optional(variant))
+                }
+            }
+            .padding(.leading, 10)
+            .padding(.trailing, 15)
+            .padding(.bottom, 10)
+        }
+    }
+}
+
