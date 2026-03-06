@@ -15,6 +15,49 @@ struct Language: Identifiable, Equatable, Hashable, Codable {
     var selected: Bool
 }
 
+struct HBFontVariant: Identifiable, Hashable {
+    let id = UUID()
+    let index: Int                    // Index in TTC (0 for single fonts)
+    let displayName: String           // "Helvetica Bold", "Arial Regular", etc.
+    let familyName: String            // "Helvetica", "Arial"
+    let styleName: String             // "Bold", "Regular", "Italic"
+    let postScriptName: String        // Unique identifier
+    let descriptor: CTFontDescriptor
+    
+    static func == (lhs: HBFontVariant, rhs: HBFontVariant) -> Bool {
+        return lhs.postScriptName == rhs.postScriptName && lhs.index == rhs.index
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(postScriptName)
+        hasher.combine(index)
+    }
+}
+
+class TTCFontEnumerator {
+    static func getVariantsFromFile(url: URL) -> [HBFontVariant] {
+        guard let descriptors = CTFontManagerCreateFontDescriptorsFromURL(url as CFURL) as? [CTFontDescriptor] else {
+            return []
+        }
+        
+        return descriptors.enumerated().map { index, descriptor in
+            let displayName = CTFontDescriptorCopyAttribute(descriptor, kCTFontDisplayNameAttribute) as? String ?? "Unknown"
+            let familyName = CTFontDescriptorCopyAttribute(descriptor, kCTFontFamilyNameAttribute) as? String ?? ""
+            let styleName = CTFontDescriptorCopyAttribute(descriptor, kCTFontStyleNameAttribute) as? String ?? ""
+            let postScriptName = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute) as? String ?? ""
+            
+            return HBFontVariant(
+                index: index,
+                displayName: displayName,
+                familyName: familyName,
+                styleName: styleName,
+                postScriptName: postScriptName,
+                descriptor: descriptor
+            )
+        }
+    }
+}
+
 struct HBGlyph: Identifiable, Equatable, Hashable {
     var id                  = UUID()        // To conform to identifiable protocol
     var name                = ""            // Glyph name
@@ -116,6 +159,14 @@ class HBFont: ObservableObject {
         didSet { self.objectWillChange.send() }
     }
     
+    // TTC support
+    @Published var availableVariants: [HBFontVariant] = []
+    @Published var selectedVariant: HBFontVariant? {
+        didSet { self.objectWillChange.send() }
+    }
+    @Published var isTTC: Bool = false
+    var ttcFileUrl: URL?
+    
     var anyCancellable: AnyCancellable?             = nil
 
     private var anchorsByGlyphName: [String: [CGPoint]]?
@@ -169,7 +220,7 @@ class HBFont: ObservableObject {
     }
     
     // Init with scoped bookmark and watch for changes
-    func loadFontWith(fontBookmark: Data, fontSize: Int) {
+    func loadFontWith(fontBookmark: Data, fontSize: Int, ttcIndex: Int? = nil) {
         do {
             var isStale = false
                     
@@ -179,24 +230,24 @@ class HBFont: ObservableObject {
                 throw BookmarkedFontOpenError.startAccessingFailed
             }
             
-            // Create CTFont
-            // TODO: reuse createCTFont func here!
-            let fontData = NSData(contentsOf: fileUrl!) //as CFData
-            if fontData != nil {
-                let descriptor = CTFontManagerCreateFontDescriptorFromData(fontData! as CFData)
-                self.ctFont = CTFontCreateWithFontDescriptor(descriptor!, CGFloat(fontSize), nil)
-                if ( ctFont != nil ) {
-                    print("New cfont created: \(String(describing: ctFont))")
-                    displayName = CTFontCopyDisplayName(ctFont!) as String
-                    version = CTFontCopyName(ctFont!, kCTFontVersionNameKey)! as String
-                    // If we have a file, we support both shapers
-                    self.shapers = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
-                    available = true
-                }
-                
-                fileWatcher.stopWatchingForChanges()
-                fileWatcher.watchForChangesInFileAtUrl(fileUrl: fileUrl!)
+            // Enumerate variants (works for both TTC and single fonts)
+            self.ttcFileUrl = fileUrl
+            let variants = TTCFontEnumerator.getVariantsFromFile(url: fileUrl!)
+            self.availableVariants = variants
+            self.isTTC = variants.count > 1
+            
+            // Select variant
+            let selectedIndex = ttcIndex ?? 0
+            if selectedIndex < variants.count {
+                self.selectedVariant = variants[selectedIndex]
             }
+            
+            self.fontSize = fontSize
+            self.shapers = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
+            available = true
+            
+            fileWatcher.stopWatchingForChanges()
+            fileWatcher.watchForChangesInFileAtUrl(fileUrl: fileUrl!)
         }
         catch {
             // Create from system font
@@ -204,9 +255,9 @@ class HBFont: ObservableObject {
             ctFont = CTFontCreateUIFontForLanguage(CTFontUIFontType.label, CGFloat(fontSize), nil)!
         }
         
-        self.fontSize = fontSize
         supportedLanguages.removeAll()
         supportedScripts.removeAll()
+        createCTFont()
         extractFontInfo()
     }
     
@@ -216,20 +267,37 @@ class HBFont: ObservableObject {
         }
     }
     
-    func setFontFile(filePath: String) {
+    func setFontFile(filePath: String, ttcIndex: Int? = nil) {
         // Clear
         self.fileUrl = nil
         self.charsInScript = ""
         self.selectedScript = ""
         self.available = false
+        self.availableVariants = []
+        self.selectedVariant = nil
+        self.isTTC = false
+        self.ttcFileUrl = nil
         supportedLanguages.removeAll()
         supportedScripts.removeAll()
         self.hbFontData = HBFontData(pathAsCString: "")
         
         // Create
         if filePath.count > 0 {
-            //self.fileUrl = URL(fileURLWithPath: filePath)
-            self.fileUrl = filePath.hasPrefix("file://") ? URL(string: filePath) : URL(fileURLWithPath: filePath)
+            let url = filePath.hasPrefix("file://") ? URL(string: filePath)! : URL(fileURLWithPath: filePath)
+            self.ttcFileUrl = url
+            self.fileUrl = url
+            
+            // Enumerate variants (works for both TTC and single fonts)
+            let variants = TTCFontEnumerator.getVariantsFromFile(url: url)
+            self.availableVariants = variants
+            self.isTTC = variants.count > 1
+            
+            // Select the specified variant or default to first
+            let selectedIndex = ttcIndex ?? 0
+            if selectedIndex < variants.count {
+                self.selectedVariant = variants[selectedIndex]
+            }
+            
             // If we have a file, we support both shapers
             self.shapers = [Hibizcus.Shaper.CoreText, Hibizcus.Shaper.Harfbuzz]
         } 
@@ -245,6 +313,13 @@ class HBFont: ObservableObject {
         anyCancellable = fileWatcher.objectWillChange.sink { [weak self] (_) in
             self?.objectWillChange.send()
         }
+    }
+    
+    // Method for switching variants without reloading file
+    func selectVariant(_ variant: HBFontVariant) {
+        self.selectedVariant = variant
+        createCTFont()
+        extractFontInfo()
     }
     
     func reloadFont() {
@@ -276,6 +351,19 @@ class HBFont: ObservableObject {
         version     = ""
         ctFont      = nil
         
+        // Try to use selected variant first (for TTC support)
+        if let variant = selectedVariant {
+            ctFont = CTFontCreateWithFontDescriptor(variant.descriptor, CGFloat(fontSize), nil)
+            if ctFont != nil {
+                print("New cfont created from variant: \(String(describing: ctFont))")
+                displayName = CTFontCopyDisplayName(ctFont!) as String
+                version = CTFontCopyName(ctFont!, kCTFontVersionNameKey)! as String
+                available = true
+                return
+            }
+        }
+        
+        // Fallback to original logic for non-TTC or if variant selection failed
         if ( fileUrl != nil ) {
             do {
                 let fontData = try NSData(contentsOf: fileUrl!) as CFData

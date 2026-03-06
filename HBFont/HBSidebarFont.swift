@@ -72,6 +72,32 @@ struct HBSidebarFont: View {
                 .padding(.bottom, 10)
                 .foregroundColor(Hibizcus.FontColor.MainFontUIColor)
             
+            // NEW: Weight/Style picker for TTC files
+            if hbProject.hbFont1.isTTC && hbProject.hbFont1.availableVariants.count > 1 {
+                Text("Weight/Style:")
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading, 20)
+                    .padding(.bottom, 5)
+                
+                Picker("", selection: Binding(
+                    get: { hbProject.hbFont1.selectedVariant },
+                    set: { newVariant in
+                        if let variant = newVariant {
+                            hbProject.hbFont1.selectVariant(variant)
+                            hbProject.refresh()
+                        }
+                    }
+                )) {
+                    ForEach(hbProject.hbFont1.availableVariants) { variant in
+                        Text(variant.styleName.isEmpty ? variant.displayName : variant.styleName)
+                            .tag(Optional(variant))
+                    }
+                }
+                .padding(.leading, 10)
+                .padding(.trailing, 15)
+                .padding(.bottom, 15)
+            }
+            
             // TODO: Should I have a seperate flag to show shaper?
             if showCompareFont {
                 Text("Shaper:")
@@ -159,6 +185,33 @@ struct HBSidebarFont: View {
                     .padding(.leading, 20)
                     .padding(.bottom, 10)
                     .foregroundColor(Hibizcus.FontColor.CompareFontUIColor)
+                
+                // NEW: Weight/Style picker for TTC files
+                if hbProject.hbFont2.isTTC && hbProject.hbFont2.availableVariants.count > 1 {
+                    Text("Weight/Style:")
+                        .multilineTextAlignment(.leading)
+                        .padding(.leading, 20)
+                        .padding(.bottom, 5)
+                    
+                    Picker("", selection: Binding(
+                        get: { hbProject.hbFont2.selectedVariant },
+                        set: { newVariant in
+                            if let variant = newVariant {
+                                hbProject.hbFont2.selectVariant(variant)
+                                hbProject.refresh()
+                            }
+                        }
+                    )) {
+                        ForEach(hbProject.hbFont2.availableVariants) { variant in
+                            Text(variant.styleName.isEmpty ? variant.displayName : variant.styleName)
+                                .tag(Optional(variant))
+                        }
+                    }
+                    .padding(.leading, 10)
+                    .padding(.trailing, 15)
+                    .padding(.bottom, 15)
+                }
+                
                 Text("Shaper:")
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 20)

@@ -458,7 +458,9 @@ struct HBGridView: View, DropDelegate {
             print("GridView OnAppear Called!")
             // Load font1 from bookmark or system font for script and characters
             if document.projectData.fontFile1Bookmark != nil {
-                hbProject.hbFont1.loadFontWith(fontBookmark: document.projectData.fontFile1Bookmark!, fontSize: 40)
+                hbProject.hbFont1.loadFontWith(fontBookmark: document.projectData.fontFile1Bookmark!, 
+                                               fontSize: 40,
+                                               ttcIndex: document.projectData.font1TTCIndex)
             }
             else if document.projectData.systemFont1Script != nil {
                 hbProject.hbFont1.loadFontFor(script: document.projectData.systemFont1Script!,
@@ -467,7 +469,9 @@ struct HBGridView: View, DropDelegate {
             }
             // Likewise font2
             if document.projectData.fontFile2Bookmark != nil {
-                hbProject.hbFont2.loadFontWith(fontBookmark: document.projectData.fontFile2Bookmark!, fontSize: 40)
+                hbProject.hbFont2.loadFontWith(fontBookmark: document.projectData.fontFile2Bookmark!, 
+                                               fontSize: 40,
+                                               ttcIndex: document.projectData.font2TTCIndex)
             }
             else if document.projectData.systemFont2Script != nil {
                 hbProject.hbFont2.loadFontFor(script: document.projectData.systemFont2Script!,
@@ -487,6 +491,18 @@ struct HBGridView: View, DropDelegate {
             glyphItems.removeAll()
             hbProject.refresh()
             refreshGridItems()
+        }
+        .onChange(of: hbProject.hbFont1.selectedVariant) { newVariant in
+            if let variant = newVariant {
+                document.projectData.font1TTCIndex = variant.index
+            }
+            hbProject.refresh()
+        }
+        .onChange(of: hbProject.hbFont2.selectedVariant) { newVariant in
+            if let variant = newVariant {
+                document.projectData.font2TTCIndex = variant.index
+            }
+            hbProject.refresh()
         }
         .environmentObject(hbProject)
     }
@@ -1177,6 +1193,8 @@ struct HBGridView: View, DropDelegate {
         var f2Url = ""
         var bkMk1 = ""
         var bkMk2 = ""
+        var ttcIdx1 = ""
+        var ttcIdx2 = ""
         // Script info for system fonts in project
         var scrp1 = ""
         var chrs1 = ""
@@ -1185,8 +1203,14 @@ struct HBGridView: View, DropDelegate {
         
         if document.projectData.fontFile1Bookmark != nil {
             bkMk1 = document.projectData.fontFile1Bookmark!.base64EncodedString()
+            if let idx = document.projectData.font1TTCIndex {
+                ttcIdx1 = String(idx)
+            }
         } else if hbProject.hbFont1.fileUrl != nil {
             f1Url = hbProject.hbFont1.fileUrl?.absoluteString ?? ""
+            if let variant = hbProject.hbFont1.selectedVariant {
+                ttcIdx1 = String(variant.index)
+            }
         } else {
             scrp1 = hbProject.hbFont1.selectedScript
             chrs1 = hbProject.hbFont1.charsInScript
@@ -1194,8 +1218,14 @@ struct HBGridView: View, DropDelegate {
         
         if document.projectData.fontFile2Bookmark != nil {
             bkMk2 = document.projectData.fontFile2Bookmark!.base64EncodedString()
+            if let idx = document.projectData.font2TTCIndex {
+                ttcIdx2 = String(idx)
+            }
         } else if hbProject.hbFont2.fileUrl != nil {
             f2Url = hbProject.hbFont2.fileUrl?.absoluteString ?? ""
+            if let variant = hbProject.hbFont2.selectedVariant {
+                ttcIdx2 = String(variant.index)
+            }
         } else {
             scrp2 = hbProject.hbFont2.selectedScript
             chrs2 = hbProject.hbFont2.charsInScript
@@ -1209,6 +1239,8 @@ struct HBGridView: View, DropDelegate {
                 "text": text,
                 "font1BookMark": bkMk1,
                 "font2BookMark": bkMk2,
+                "font1TTCIndex": ttcIdx1,
+                "font2TTCIndex": ttcIdx2,
                 "font1Url": f1Url,
                 "font2Url": f2Url,
                 "font1Script": scrp1,
@@ -1226,7 +1258,7 @@ struct HBGridView: View, DropDelegate {
         let etext = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let echrs1 = chrs1.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let echrs2 = chrs2.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let params = "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)" +
+        let params = "text=\(etext)&font1BookMark=\(bkMk1)&font2BookMark=\(bkMk2)&font1TTCIndex=\(ttcIdx1)&font2TTCIndex=\(ttcIdx2)&font1Url=\(f1Url)&font2Url=\(f2Url)&project=\(prjName)" +
                 "&font1Script=\(scrp1)&font2Script=\(scrp2)&font1Chars=\(echrs1)&font2Chars=\(echrs2)"
         return params
     }

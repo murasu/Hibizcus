@@ -226,13 +226,15 @@ struct HBTraceView: View, DropDelegate {
             if params["font1BookMark"] != nil && params["font1BookMark"] != "" {
                 // Load from bookmark
                 let bookMarkData = Data(base64Encoded: params["font1BookMark"]!)
-                hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+                let ttcIndex = params["font1TTCIndex"] != nil && params["font1TTCIndex"] != "" ? Int(params["font1TTCIndex"]!) : nil
+                hbProject.hbFont1.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40, ttcIndex: ttcIndex)
                 // Save the bookmark
                 traceViewOptions.fontBookmark1 = bookMarkData!
             }
             else if params["font1Url"] != nil && params["font1Url"] != "" {
                 // Load from URL
-                hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!)
+                let ttcIndex = params["font1TTCIndex"] != nil && params["font1TTCIndex"] != "" ? Int(params["font1TTCIndex"]!) : nil
+                hbProject.hbFont1.setFontFile(filePath: params["font1Url"]!, ttcIndex: ttcIndex)
             }
             else if params["font1Script"] != nil && params["font1Script"] != "" {
                 // Load system font
@@ -242,11 +244,13 @@ struct HBTraceView: View, DropDelegate {
             // Font 2
             if params["font2BookMark"] != nil && params["font2BookMark"] != "" {
                 let bookMarkData = Data(base64Encoded: params["font2BookMark"]!)
-                hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40)
+                let ttcIndex = params["font2TTCIndex"] != nil && params["font2TTCIndex"] != "" ? Int(params["font2TTCIndex"]!) : nil
+                hbProject.hbFont2.loadFontWith(fontBookmark: bookMarkData!, fontSize: 40, ttcIndex: ttcIndex)
                 traceViewOptions.fontBookmark2 = bookMarkData!
             }
             else if params["font2Url"] != nil && params["font2Url"] != "" {
-                hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!)
+                let ttcIndex = params["font2TTCIndex"] != nil && params["font2TTCIndex"] != "" ? Int(params["font2TTCIndex"]!) : nil
+                hbProject.hbFont2.setFontFile(filePath: params["font2Url"]!, ttcIndex: ttcIndex)
             }
             else if params["font2Script"] != nil && params["font2Script"] != "" {
                 // Load system font

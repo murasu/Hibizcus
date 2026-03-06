@@ -15,6 +15,8 @@ struct HibizcusProjectData: Codable {
     var searchText  = ""
     var fontFile1Bookmark: Data?
     var fontFile2Bookmark: Data?
+    var font1TTCIndex: Int?       // NEW: for TTC font selection
+    var font2TTCIndex: Int?       // NEW: for TTC font selection
     // Also allow system fonts, picked up by
     // string or characters in that script
     var systemFont1Script: String?
