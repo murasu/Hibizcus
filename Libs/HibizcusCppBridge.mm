@@ -51,6 +51,11 @@
     hb->init_with_font_file(cString);
 }
 
+- (void) hbSetFontFilePath:(const char *)cString faceIndex:(unsigned int)faceIndex
+{
+    hb->init_with_font_file(cString, faceIndex);
+}
+
 - (NSString *) hbShapeString:(NSString *) string inLanguage:(NSString *) language
 {
     NSString *shapedJson = [NSString stringWithUTF8String:hb->shape_text(string.UTF8String, language.UTF8String).c_str()];

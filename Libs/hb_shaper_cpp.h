@@ -36,7 +36,7 @@ private:
     string get_name_entry(unsigned int hb_ot_name_id_t);
     
 public:
-    void init_with_font_file(string file);
+    void init_with_font_file(string file, unsigned int face_index = 0);
     void clean_up();
     string get_hb_version();
     string get_font_display_name();

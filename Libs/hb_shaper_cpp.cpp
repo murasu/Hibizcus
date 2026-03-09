@@ -22,12 +22,12 @@ string hb_shaper_cpp::get_hb_version() {
     return vss.str();
 }
 
-void hb_shaper_cpp::init_with_font_file(string font_file) {
+void hb_shaper_cpp::init_with_font_file(string font_file, unsigned int face_index) {
     font_file = font_file;
     
     // Create a face and a font from a font file.
     blob = hb_blob_create_from_file(font_file.c_str());
-    face = hb_face_create(blob, 0);
+    face = hb_face_create(blob, face_index);
     font = hb_font_create(face);
 }
 

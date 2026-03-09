@@ -18,6 +18,7 @@
 - (NSString *) hbShapeString:(NSString *) string inLanguage:(NSString *)language;
 //- (void) hbSetFontFilePath:(NSString *) path;
 - (void) hbSetFontFilePath:(const char *)cString;
+- (void) hbSetFontFilePath:(const char *)cString faceIndex:(unsigned int)faceIndex;
 - (NSDictionary *)hbGetFontMetrics;
 - (NSArray *) hbCollectUnicodes;
 

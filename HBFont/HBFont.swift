@@ -56,6 +56,50 @@ class TTCFontEnumerator {
             )
         }
     }
+    
+    /// Re-enumerate variants by reading font data fresh from disk, bypassing Core Text's URL-based cache.
+    static func getVariantsFromFileData(url: URL) -> [HBFontVariant] {
+        guard let fontData = try? Data(contentsOf: url) else {
+            return []
+        }
+        
+        let cfData = fontData as CFData
+        guard let descriptors = CTFontManagerCreateFontDescriptorsFromData(cfData) as? [CTFontDescriptor], !descriptors.isEmpty else {
+            // Fallback: single font via CTFontManagerCreateFontDescriptorFromData
+            if let descriptor = CTFontManagerCreateFontDescriptorFromData(cfData) {
+                let displayName = CTFontDescriptorCopyAttribute(descriptor, kCTFontDisplayNameAttribute) as? String ?? "Unknown"
+                let familyName = CTFontDescriptorCopyAttribute(descriptor, kCTFontFamilyNameAttribute) as? String ?? ""
+                let styleName = CTFontDescriptorCopyAttribute(descriptor, kCTFontStyleNameAttribute) as? String ?? ""
+                let postScriptName = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute) as? String ?? ""
+                
+                return [HBFontVariant(
+                    index: 0,
+                    displayName: displayName,
+                    familyName: familyName,
+                    styleName: styleName,
+                    postScriptName: postScriptName,
+                    descriptor: descriptor
+                )]
+            }
+            return []
+        }
+        
+        return descriptors.enumerated().map { index, descriptor in
+            let displayName = CTFontDescriptorCopyAttribute(descriptor, kCTFontDisplayNameAttribute) as? String ?? "Unknown"
+            let familyName = CTFontDescriptorCopyAttribute(descriptor, kCTFontFamilyNameAttribute) as? String ?? ""
+            let styleName = CTFontDescriptorCopyAttribute(descriptor, kCTFontStyleNameAttribute) as? String ?? ""
+            let postScriptName = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute) as? String ?? ""
+            
+            return HBFontVariant(
+                index: index,
+                displayName: displayName,
+                familyName: familyName,
+                styleName: styleName,
+                postScriptName: postScriptName,
+                descriptor: descriptor
+            )
+        }
+    }
 }
 
 struct HBGlyph: Identifiable, Equatable, Hashable {
@@ -175,6 +219,7 @@ class HBFont: ObservableObject {
     // TODO: Call the C function directly instead of going through a ObjC++/C++ bridge
     // Used only by the hb shaper
     private var bridge = HibizcusCppBridge()
+    private var hbInitializedVariantIndex: Int = -1  // Track which variant index HB was initialized with
     
     // Use characters in this string when loading a system font
     var charsInScript = ""
@@ -324,8 +369,23 @@ class HBFont: ObservableObject {
     
     func reloadFont() {
         hbFontData = HBFontData(pathAsCString: "")
+        hbInitializedVariantIndex = -1
         supportedLanguages.removeAll()
         supportedScripts.removeAll()
+        
+        // Re-enumerate variants from fresh file data to bypass Core Text's cache
+        if let url = ttcFileUrl ?? fileUrl {
+            let currentIndex = selectedVariant?.index ?? 0
+            let freshVariants = TTCFontEnumerator.getVariantsFromFileData(url: url)
+            self.availableVariants = freshVariants
+            self.isTTC = freshVariants.count > 1
+            if currentIndex < freshVariants.count {
+                self.selectedVariant = freshVariants[currentIndex]
+            } else if !freshVariants.isEmpty {
+                self.selectedVariant = freshVariants[0]
+            }
+        }
+        
         createCTFont()
         extractFontInfo()
         fileWatcher.fontFileChanged = false
@@ -351,11 +411,16 @@ class HBFont: ObservableObject {
         version     = ""
         ctFont      = nil
         
-        // Try to use selected variant first (for TTC support)
-        if let variant = selectedVariant {
-            ctFont = CTFontCreateWithFontDescriptor(variant.descriptor, CGFloat(fontSize), nil)
+        // For TTC/variant fonts, always load from raw file data to avoid Core Text's cache
+        if let variant = selectedVariant, let url = ttcFileUrl ?? fileUrl {
+            if let fontData = try? Data(contentsOf: url) as CFData {
+                let descriptors = CTFontManagerCreateFontDescriptorsFromData(fontData) as? [CTFontDescriptor] ?? []
+                if variant.index < descriptors.count {
+                    ctFont = CTFontCreateWithFontDescriptor(descriptors[variant.index], CGFloat(fontSize), nil)
+                }
+            }
             if ctFont != nil {
-                print("New cfont created from variant: \(String(describing: ctFont))")
+                print("New cfont created from variant (data): \(String(describing: ctFont))")
                 displayName = CTFontCopyDisplayName(ctFont!) as String
                 version = CTFontCopyName(ctFont!, kCTFontVersionNameKey)! as String
                 available = true
@@ -801,10 +866,12 @@ class HBFont: ObservableObject {
             return stringLayoutData
         }
         
-        // Make sure harfbuzz bridge is initialised
-        if bridge.hbGetFontDisplayName() == "" {
-            // Font not set in shaper
+        // Make sure harfbuzz bridge is initialised with the correct variant
+        let currentVariantIndex = selectedVariant?.index ?? 0
+        if bridge.hbGetFontDisplayName() == "" || hbInitializedVariantIndex != currentVariantIndex {
+            // Font not set in shaper, or variant changed
             setFontInHarfbuzz()
+            hbInitializedVariantIndex = currentVariantIndex
             //print("Display name: \(bridge.hbGetFontDisplayName() )")
         }
                 
@@ -894,8 +961,10 @@ class HBFont: ObservableObject {
             return
         }
         
+        let faceIndex = UInt32(selectedVariant?.index ?? 0)
+        
         fileUrl!.withUnsafeFileSystemRepresentation { cStr in
-            bridge.hbSetFontFilePath(cStr)
+            bridge.hbSetFontFilePath(cStr, face: faceIndex)
             // Get the metics
             let hbMetrics = bridge.hbGetFontMetrics()
             let scale = (Hibizcus.FontScale / (2048/metrics.upem)) * (192/Float(fontSize))
