@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -83,7 +83,6 @@
 		005352782608E2D6007F33D9 /* cluster_devanagari.json in Resources */ = {isa = PBXBuildFile; fileRef = 002C625B25F781E300596186 /* cluster_devanagari.json */; };
 		005352792608E2D6007F33D9 /* devanagari_sanskrit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AFD25FA5E3000D06D7D /* devanagari_sanskrit.txt */; };
 		0053527A2608E2D6007F33D9 /* devanagari_marathi.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00566AF925FA59D900D06D7D /* devanagari_marathi.txt */; };
-		00535284260B6829007F33D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0053522E2608DB8C007F33D9 /* Assets.xcassets */; };
 		006B1FFE268D7396007215D3 /* khmer_khmer.txt in Resources */ = {isa = PBXBuildFile; fileRef = 006B1FFD268D7396007215D3 /* khmer_khmer.txt */; };
 		006CAE79264E3A0700D404D3 /* AnchorPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083669B25E581AF0058CA1B /* AnchorPoints.swift */; };
 		006CAE7A264E3A1800D404D3 /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053525F2608DE96007F33D9 /* FontMetrics.swift */; };
@@ -1034,8 +1033,9 @@
 		00E5E76E25D2BCA50061AC60 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					005352252608DB8A007F33D9 = {
 						CreatedOnToolsVersion = 12.4;
@@ -1102,7 +1102,6 @@
 				00049881283B2CEA00154812 /* cluster_brahmi.json in Resources */,
 				0023785326346717006B5E9B /* cluster_malayalam.json in Resources */,
 				0016437026354C6F0044B965 /* kannada_kannada.txt in Resources */,
-				00535284260B6829007F33D9 /* Assets.xcassets in Resources */,
 				005352792608E2D6007F33D9 /* devanagari_sanskrit.txt in Resources */,
 				0036DB1B26795DB0003E91AF /* supported_scripts.txt in Resources */,
 				005352712608E2D6007F33D9 /* Readme.txt in Resources */,
@@ -1194,11 +1193,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 415;
+				CURRENT_PROJECT_VERSION = 416;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
-				DEVELOPMENT_TEAM = F7UG2X3VU8;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs",
@@ -1226,6 +1227,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Libs/Hibizcus-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1242,11 +1244,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 415;
+				CURRENT_PROJECT_VERSION = 416;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Hibizcus/Preview Content\"";
-				DEVELOPMENT_TEAM = F7UG2X3VU8;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Libs",
@@ -1274,6 +1278,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.murasu.hibizcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Libs/Hibizcus-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1314,9 +1319,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1334,6 +1342,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1373,9 +1382,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = F7UG2X3VU8;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1386,6 +1398,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};

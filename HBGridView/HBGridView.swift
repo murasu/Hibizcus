@@ -100,7 +100,6 @@ struct HBGridView: View, DropDelegate {
     @State var showGlyphView                    = false
     @State var viewItem                         = HBGridItem()
     @State var tappedItems                      = [HBGridItem]()
-    @State var didCommandTap                    = false
     
     @State var cellScale:CGFloat                = 1.0
     @State var diffItemsCount                   = 0
@@ -222,54 +221,7 @@ struct HBGridView: View, DropDelegate {
                             ForEach(hbGridItems, id: \.self) { hbGridItem in
                                 if !hbProject.hbFont2.available || !gridViewOptions.showDiffsOnly || (gridViewOptions.showDiffsOnly
                                                                         && hbGridItem.hasDiff(excludeOutlines: gridViewOptions.dontCompareOutlines)) {
-                                    HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: cellScale/*1.0*/, showMainFont: true, showCompareFont: true)
-                                        .frame(width: maxCellWidth*cellScale, height: 92*cellScale, alignment: .center)
-                                        .border(Color.primary/*.opacity(0.7)*/, width: tappedItems.contains(hbGridItem) ? 1.5 : 0)
-                                        .padding(2)
-                                        .gesture(TapGesture(count: 2).onEnded {
-                                            // UI Update should be done on main thread
-                                            DispatchQueue.main.async {
-                                                viewItem = hbGridItem
-                                                //print("double clicked on item \(hbGridItem)")
-                                                doubleClicked(clickedItem: hbGridItem)
-                                            }
-                                        })
-                                        .simultaneousGesture(TapGesture().modifiers(.command).onEnded {
-                                            DispatchQueue.main.async {
-                                                didCommandTap = true
-                                                //tappedItem = hbGridItem
-                                                //print("single cmd-clicked on item \(hbGridItem)")
-                                                tappedItems.append(hbGridItem)
-                                            }
-                                        })
-                                        .simultaneousGesture(TapGesture().onEnded {
-                                            DispatchQueue.main.async {
-                                                if !didCommandTap {
-                                                    // clear current selections
-                                                    tappedItems.removeAll()
-                                                    tappedItems.append(hbGridItem)
-                                                }
-                                                didCommandTap = false
-                                                //tappedItem = hbGridItem
-                                                //print("single clicked on item \(hbGridItem)")
-                                            }
-                                        })
-                                        .onDrag({
-                                            var draggedText = textFromSelectedItems(maxLen: 1000)
-                                            // If hbGridItem is not in the selection, unselect everything and select this one before dragging
-                                            if !tappedItems.contains(hbGridItem) {
-                                                draggedText = hbGridItem.text!
-                                                tappedItems.removeAll()
-                                                tappedItems.append(hbGridItem)
-                                            }
-                                            let dragData = paramsForToolWindow(asJson: true, text:draggedText) //textFromSelectedItems(maxLen: 1000), fallback: hbGridItem.text!)
-                                            UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
-                                            print("Dragging out \(dragData)")
-                                            return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
-                                        })
-                                        .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
-                                            HBGlyphView(document: $document, gridViewOptions: gridViewOptions, tappedItem: /*tappedItems[0]*/viewItem, gridItems: hbGridItems)
-                                        }
+                                    gridCellView(for: hbGridItem)
                                 }
                             }
                         }
@@ -505,6 +457,52 @@ struct HBGridView: View, DropDelegate {
             hbProject.refresh()
         }
         .environmentObject(hbProject)
+    }
+    
+    @ViewBuilder
+    func gridCellView(for hbGridItem: HBGridItem) -> some View {
+        HBGridCellViewRepresentable(gridItem: hbGridItem, gridViewOptions: gridViewOptions, scale: cellScale, showMainFont: true, showCompareFont: true)
+            .frame(width: maxCellWidth*cellScale, height: 92*cellScale, alignment: .center)
+            .border(Color.primary, width: tappedItems.contains(hbGridItem) ? 1.5 : 0)
+            .padding(2)
+            .gesture(TapGesture(count: 2).onEnded {
+                DispatchQueue.main.async {
+                    viewItem = hbGridItem
+                    doubleClicked(clickedItem: hbGridItem)
+                }
+            })
+            .simultaneousGesture(TapGesture().onEnded {
+                DispatchQueue.main.async {
+                    let isCommandHeld = NSApp.currentEvent?.modifierFlags.contains(.command) ?? false
+                    if isCommandHeld {
+                        // Cmd-click: toggle selection
+                        if let index = tappedItems.firstIndex(of: hbGridItem) {
+                            tappedItems.remove(at: index)
+                        } else {
+                            tappedItems.append(hbGridItem)
+                        }
+                    } else {
+                        // Regular click: clear current selections and select this one
+                        tappedItems.removeAll()
+                        tappedItems.append(hbGridItem)
+                    }
+                }
+            })
+            .onDrag({
+                var draggedText = textFromSelectedItems(maxLen: 1000)
+                if !tappedItems.contains(hbGridItem) {
+                    draggedText = hbGridItem.text!
+                    tappedItems.removeAll()
+                    tappedItems.append(hbGridItem)
+                }
+                let dragData = paramsForToolWindow(asJson: true, text:draggedText)
+                UserDefaults.standard.setValue(dragData, forKey: "droppedjson")
+                print("Dragging out \(dragData)")
+                return NSItemProvider(item: dragData as NSString, typeIdentifier: kUTTypeText as String)
+            })
+            .sheet(isPresented: $showGlyphView, onDismiss: glyphViewDismissed) {
+                HBGlyphView(document: $document, gridViewOptions: gridViewOptions, tappedItem: viewItem, gridItems: hbGridItems)
+            }
     }
     
     func footnoteFor(item:HBGridItem) -> String {
