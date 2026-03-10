@@ -19,8 +19,6 @@
 			<array>
 				<string>com.murasu.hibizcus.project</string>
 			</array>
-			<key>NSDocumentClass</key>
-			<string></string>
 			<key>NSUbiquitousDocumentUserActivityType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).example-document</string>
 		</dict>

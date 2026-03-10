@@ -7,8 +7,19 @@
 import SwiftUI
 import Combine
 
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+        return false
+    }
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        NSDocumentController.shared.newDocument(nil)
+    }
+}
+
 @main
 struct HibizcusApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         DocumentGroup(newDocument: HibizcusDocument()) { file in
             HBGridView(document: file.$document, projectFileUrl: file.fileURL)
