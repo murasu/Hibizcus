@@ -59,6 +59,23 @@ class HBStringLayoutView: HBView /*NSView*/ {
         super.init(coder: coder)
     }
     
+    /// Updates the frame size to fit the rendered content so the scroll view can scroll.
+    func updateFrameSize(in scrollView: NSScrollView) {
+        let scale = CGFloat(fontSize / 40)
+        let padding: CGFloat = 60 // 30px on each side
+        let contentWidth = max(slData1.width, slData2.width) * scale + padding
+        let visibleWidth = scrollView.contentSize.width
+        let visibleHeight = scrollView.contentSize.height
+        
+        let newWidth = max(contentWidth, visibleWidth)
+        let newSize = NSSize(width: newWidth, height: visibleHeight)
+        
+        if frame.size != newSize {
+            setFrameSize(newSize)
+            needsDisplay = true
+        }
+    }
+    
     // The drawing happens here!
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

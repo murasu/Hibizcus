@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HBStringLayoutViewRepresentable: NSViewRepresentable {
 
-    typealias NSViewType = HBStringLayoutView
+    typealias NSViewType = NSScrollView
 
     @EnvironmentObject var hbProject: HBProject
 
@@ -18,7 +18,7 @@ struct HBStringLayoutViewRepresentable: NSViewRepresentable {
     @ObservedObject var slData2: StringLayoutData
     @ObservedObject var stringViewSettings: HBStringViewSettings
 
-    func makeNSView(context: Context) -> HBStringLayoutView {
+    func makeNSView(context: Context) -> NSScrollView {
         let slView = HBStringLayoutView()
         slView.hbFont1      = hbProject.hbFont1
         slView.hbFont2      = hbProject.hbFont2
@@ -28,17 +28,25 @@ struct HBStringLayoutViewRepresentable: NSViewRepresentable {
         slView.fontSize     = fontSize
         slView.viewSettings = stringViewSettings
 
-        return slView
+        let scrollView = NSScrollView()
+        scrollView.documentView = slView
+        scrollView.hasHorizontalScroller = true
+        scrollView.hasVerticalScroller = false
+        scrollView.autohidesScrollers = true
+        scrollView.drawsBackground = false
+
+        return scrollView
     }
     
-    func updateNSView(_ nsView: HBStringLayoutView, context: Context) {
-        //print("Update called: in TraceRowViewRepresentable")
-        nsView.hbFont1      = hbProject.hbFont1
-        nsView.hbFont2      = hbProject.hbFont2
-        nsView.slData1      = slData1
-        nsView.slData2      = slData2
-        nsView.text         = hbProject.hbStringViewText
-        nsView.fontSize     = fontSize
-        nsView.viewSettings = stringViewSettings
+    func updateNSView(_ scrollView: NSScrollView, context: Context) {
+        guard let slView = scrollView.documentView as? HBStringLayoutView else { return }
+        slView.hbFont1      = hbProject.hbFont1
+        slView.hbFont2      = hbProject.hbFont2
+        slView.slData1      = slData1
+        slView.slData2      = slData2
+        slView.text         = hbProject.hbStringViewText
+        slView.fontSize     = fontSize
+        slView.viewSettings = stringViewSettings
+        slView.updateFrameSize(in: scrollView)
     }
 }
